@@ -27,7 +27,8 @@ $data = json_decode(file_get_contents("php://input"));
 $productID = $data->productID;
 $customer_id = $data->customerID;
 $uniqid = uniqid();
-
+$customer_form16_p1 = $data->downloadURLP1;
+$bank_statement = $data->downloadURLBrsU;
 if ($data->productID != "") {
     $db = db_connect();
     $builder = $db->table('servicesDetails');
@@ -44,22 +45,32 @@ if ($data->productID != "") {
     ];
     $builder->where('customer_id', $customer_id);
     $builder->where('product_id', $productID);
+    $query = $builder->get();
     $count = $builder->countAllResults();
+    foreach ($query->getResult() as $row) {
+        $ex_uniqID = $row->uniqid;
+    }
     if ($count > 0) {
-        $response[] = array(
-            "uniqid" => $uniqid,
+        $data = [
+            'uniqid'            => $ex_uniqID,
+            'customer_form16_p1' => $customer_form16_p1,
+            'bank_statement' => $bank_statement,
+        ];
+        $builder->upsert($data);
+        $response = array(
+            "uniqid" => $ex_uniqID,
             "customer_id" => $customer_id,
             "status" => "Already Received"
         );
     } else {
         $builder->insert($data);
-        $response[] = array(
+        $response = array(
             "uniqid" => $uniqid,
             "customer_id" => $customer_id,
             "status" => "Received"
         );
     }
 } else {
-    $response = 'SIGN IN FAILLED';
+    $response = 'INTERNAL FAILLURE';
 }
 echo json_encode($response);
