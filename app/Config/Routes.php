@@ -12,3 +12,5 @@ $routes->add('customer/(:any)', 'Home::panel');
 // API FOR APP
 $routes->add('login-api-v1', 'Home::api_v1_login');
 $routes->add('service-api-v1', 'Home::api_v1_service');
+$routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');
+$routes->add('dashboard-api-service-list-v1', 'Home::api_v1_dashboard_ser_list');

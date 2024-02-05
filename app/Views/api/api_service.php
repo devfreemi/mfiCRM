@@ -60,14 +60,16 @@ if ($data->productID != "") {
         $response = array(
             "uniqid" => $ex_uniqID,
             "customer_id" => $customer_id,
-            "status" => "Already Received"
+            "product_id" => $productID,
+            "status" => "Your Application Is Already Received"
         );
     } else {
         $builder->insert($data);
         $response = array(
             "uniqid" => $uniqid,
             "customer_id" => $customer_id,
-            "status" => "Received"
+            "product_id" => $productID,
+            "status" => "Your Application Is Successfully Submited"
         );
     }
 } else {

@@ -38,7 +38,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/dashboards-crm.html" target="_blank" class="menu-link">
+                    <a href="<?php echo base_url(); ?>tax/dashboard" class="menu-link">
                         <div data-i18n="CRM">Dashboards</div>
                     </a>
                 </li>

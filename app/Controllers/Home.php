@@ -63,4 +63,12 @@ class Home extends BaseController
     {
         return view('api/api_service');
     }
+    public function api_v1_dashboard()
+    {
+        return view('api/api_dashboard');
+    }
+    public function api_v1_dashboard_ser_list()
+    {
+        return view('api/api_dashboard_ser_list');
+    }
 }
