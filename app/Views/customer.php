@@ -8,7 +8,7 @@
 <?php
 $uri = service('uri');
 //
-$customer_id = $uri->getSegment(2);
+$uniq_id = $uri->getSegment(2);
 
 ?>
 
@@ -31,7 +31,7 @@ $customer_id = $uri->getSegment(2);
                         $builder = $db->table('customerDetails');
                         $builder->select('*');
                         $builder->join('servicesDetails', 'servicesDetails.customer_id = customerDetails.uniqid');
-                        $builder->where('servicesDetails.customer_id', $customer_id);
+                        $builder->where('servicesDetails.uniqid', $uniq_id);
                         $query = $builder->get();
                         foreach ($query->getResult() as $row) {
                             $product_id = $row->product_id;
@@ -54,7 +54,7 @@ $customer_id = $uri->getSegment(2);
                                                 </div>
                                             </div>
                                             <div class="card-body pt-2 mt-1">
-                                                <form id="formAccountSettings" method="POST" onsubmit="return false">
+                                                <form id="formAccountSettings" action="<?php echo base_url() ?>tax/insert-data" method="POST">
                                                     <div class="row mt-2 gy-4">
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
@@ -84,43 +84,59 @@ $customer_id = $uri->getSegment(2);
                                                                 <label for="address">PAN Number</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-floating form-floating-outline">
-                                                                <input type="text" class="form-control" id="employment" name="employment" readonly value="<?php
-                                                                                                                                                            if ($row->employment_type == "SE") {
-                                                                                                                                                                echo "Self Employed";
-                                                                                                                                                            } else {
-                                                                                                                                                                echo "Salaried";
-                                                                                                                                                            } ?>" />
-                                                                <label for="address">Employment Type</label>
+                                                        <?php
+                                                        if ($product_id == 1) {
+                                                            # code... 
+                                                        ?>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating form-floating-outline">
+                                                                    <input type="text" class="form-control" id="employment" name="employment" readonly value="<?php
+                                                                                                                                                                if ($row->employment_type == "SE") {
+                                                                                                                                                                    echo "Self Employed";
+                                                                                                                                                                } else if ($row->employment_type == "SR") {
+                                                                                                                                                                    echo "Salaried";
+                                                                                                                                                                } ?>" />
+                                                                    <label for="address">Employment Type</label>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        <?php
+
+                                                        } else {
+                                                        ?>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating form-floating-outline">
+                                                                    <input type="text" class="form-control" id="prop" name="prop" readonly value="" />
+                                                                    <label for="address">Type of Business</label>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
-                                                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
+                                                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="<?php echo $row->address; ?>" />
                                                                 <label for="address">Address</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
-                                                                <input class="form-control" type="text" id="state" name="state" placeholder="California" />
+                                                                <input class="form-control" type="text" id="state" name="state" placeholder="California" value="<?php echo $row->state; ?>" />
                                                                 <label for="state">State</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
-                                                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="231465" maxlength="6" />
+                                                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="231465" maxlength="6" value="<?php echo $row->pin; ?>" />
                                                                 <label for="zipCode">Zip Code</label>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
-                                                                <select id="status" class="select2 form-select">
+                                                                <select id="status" class="select2 form-select" name="status">
                                                                     <option value="Pending" <?php if ($row->status === 'Pending') echo 'selected="selected"'; ?>>Pending</option>
                                                                     <option value="Received" <?php if ($row->status === 'Received') echo 'selected="selected"'; ?>>Received</option>
                                                                     <option value="Approved" <?php if ($row->status === 'Approved') echo 'selected="selected"'; ?>>Approved</option>
                                                                     <option value="Pending Payment" <?php if ($row->status === 'Pending Payment') echo 'selected="selected"'; ?>>Pending Payment</option>
+                                                                    <option value="Completed" <?php if ($row->status === 'Completed') echo 'selected="selected"'; ?>>Completed</option>
                                                                     <option value="Rejected" <?php if ($row->status === 'Rejected') echo 'selected="selected"'; ?>>Rejected</option>
                                                                 </select>
                                                                 <label for="Status">Status</label>
@@ -139,6 +155,18 @@ $customer_id = $uri->getSegment(2);
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" id="uniqID" name="uniqID" value="<?php echo $row->uniqid; ?>" />
+                                                    <input type="hidden" id="paymentID" name="paymentID" value="DIGI<?php echo md5($row->uniqid); ?>" />
+                                                    <input type="hidden" id="customerID" name="customerID" value="<?php echo $row->customer_id; ?>" />
+                                                    <input type="hidden" id="paymentStatus" name="paymentStatus" value="Pending" />
+                                                    <?php
+                                                    $builder_price = $db->table('price');
+                                                    $builder_price->where('pID', $product_id);
+                                                    $queryP = $builder_price->get();
+                                                    foreach ($queryP->getResult() as $rowP) {
+                                                    ?>
+                                                        <input type="hidden" id="paymentPrice" name="price" value="<?php echo $rowP->price; ?>" />
+                                                    <?php } ?>
                                                     <div class="mt-4">
                                                         <button type="submit" class="btn btn-primary me-2">Save changes</button>
                                                     </div>

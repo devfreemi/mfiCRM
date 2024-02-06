@@ -27,8 +27,8 @@ $data = json_decode(file_get_contents("php://input"));
 $productID = $data->productID;
 $customer_id = $data->customerID;
 $uniqid = uniqid();
-$customer_income = $data->downloadURLP1;
-$pan = $data->downloadURLBrsU;
+$customer_income = $data->income;
+$pan = $data->pan;
 if ($data->productID != "") {
     $db = db_connect();
     $builder = $db->table('servicesDetails');
@@ -39,21 +39,18 @@ if ($data->productID != "") {
         'customer_id'   => $data->customerID,
         'customer_income'          => $data->income,
         'customer_pan'   => $data->pan,
+        'date'   => date('Y-m-d'),
     ];
     $builder->where('customer_id', $customer_id);
     $builder->where('product_id', $productID);
-    $query = $builder->get();
+
     $count = $builder->countAllResults();
-    foreach ($query->getResult() as $row) {
-        $ex_uniqID = $row->uniqid;
-    }
+
     if ($count > 0) {
-        $data = [
-            'uniqid'            => $ex_uniqID,
-            'customer_income' => $customer_income,
-            'customer_pan' => $pan,
-        ];
-        $builder->upsert($data);
+        $query = $builder->get();
+        foreach ($query->getResult() as $row) {
+            $ex_uniqID = $row->uniqid;
+        }
         $response = array(
             "uniqid" => $ex_uniqID,
             "customer_id" => $customer_id,

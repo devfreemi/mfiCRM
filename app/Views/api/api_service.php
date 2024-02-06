@@ -32,7 +32,6 @@ $bank_statement = $data->downloadURLBrsU;
 if ($data->productID != "") {
     $db = db_connect();
     $builder = $db->table('servicesDetails');
-
     $data = [
         'uniqid'            => $uniqid,
         'product_id'   => $data->productID,
@@ -42,15 +41,18 @@ if ($data->productID != "") {
         'customer_pan'   => $data->pan,
         'customer_form16_p1' => $data->downloadURLP1,
         'bank_statement' => $data->downloadURLBrsU,
+        'date'   => date('Y-m-d'),
     ];
     $builder->where('customer_id', $customer_id);
     $builder->where('product_id', $productID);
-    $query = $builder->get();
+
     $count = $builder->countAllResults();
-    foreach ($query->getResult() as $row) {
-        $ex_uniqID = $row->uniqid;
-    }
+
     if ($count > 0) {
+        $query = $builder->get();
+        foreach ($query->getResult() as $row) {
+            $ex_uniqID = $row->uniqid;
+        }
         $data = [
             'uniqid'            => $ex_uniqID,
             'customer_form16_p1' => $customer_form16_p1,
@@ -64,6 +66,7 @@ if ($data->productID != "") {
             "status" => "Your Application Is Already Received"
         );
     } else {
+
         $builder->insert($data);
         $response = array(
             "uniqid" => $uniqid,

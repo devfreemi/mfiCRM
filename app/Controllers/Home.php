@@ -53,6 +53,37 @@ class Home extends BaseController
             // echo "Test3";
         }
     }
+    public function insert_data()
+    {
+        $db = db_connect();
+        $builder = $db->table('servicesDetails');
+        $data = [
+            'address'   => $this->request->getPost('address'),
+            'state'     => $this->request->getPost('state'),
+            'pin'       => $this->request->getPost('zipCode'),
+            'status'       => $this->request->getPost('status'),
+            'price'     => $this->request->getPost('price'),
+        ];
+        $uniqID = $this->request->getPost('uniqID');
+        $builder->where('uniqid', $uniqID);
+        $builder->update($data);
+        // PAyment
+        date_default_timezone_set('Asia/Kolkata');
+        $builderPayment = $db->table('payment');
+        $dataPayment = [
+            'jpbID'             => $this->request->getPost('uniqID'),
+            'paymentID'         => $this->request->getPost('paymentID'),
+            'customerID'        => $this->request->getPost('customerID'),
+            'paymentStatus'     => $this->request->getPost('paymentStatus'),
+            'amount'            => $this->request->getPost('price'),
+            'date'              => date('Y-m-d'),
+            'time'              => date('h:i:s'),
+        ];
+        $builderPayment->upsert($dataPayment);
+        $session = session();
+        $session->setFlashdata('update', 'Profile successfully updated.');
+        return redirect()->to(base_url() . 'tax/dashboard');
+    }
     // User Login
     // api
     public function api_v1_login()
