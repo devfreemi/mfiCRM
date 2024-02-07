@@ -12,6 +12,8 @@ $routes->add('customer/(:any)', 'Home::panel');
 $routes->add('insert-data', 'Home::insert_data');
 // API FOR APP
 $routes->add('login-api-v1', 'Home::api_v1_login');
+$routes->add('mobile-api-v1', 'Home::api_v1_mobile');
+$routes->add('mobile-api-update-v1', 'Home::api_v1_update_mobile');
 $routes->add('service-api-v1', 'Home::api_v1_service');
 $routes->add('service-api-gst-v1', 'Home::api_v1_service_gst');
 $routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');

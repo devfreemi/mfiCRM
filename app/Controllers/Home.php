@@ -90,6 +90,10 @@ class Home extends BaseController
     {
         return view('api/api_login');
     }
+    public function api_v1_mobile()
+    {
+        return view('api/api_mobile');
+    }
     public function api_v1_service()
     {
         return view('api/api_service');
@@ -105,5 +109,9 @@ class Home extends BaseController
     public function api_v1_dashboard_ser_list()
     {
         return view('api/api_dashboard_ser_list');
+    }
+    public function api_v1_update_mobile()
+    {
+        return view('api/api_mobile_update');
     }
 }
