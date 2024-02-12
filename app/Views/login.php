@@ -29,6 +29,8 @@
             include 'dashboard.php';
         } else if ($url_panel == 'customer') {
             include 'customer.php';  //Update customer Profile
+        } else if ($url_panel == 'customer-list') {
+            include 'customer_list.php';  //Update customer Profile
         }
 
     ?>

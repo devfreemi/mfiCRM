@@ -72,7 +72,7 @@ $uniq_id = $uri->getSegment(2);
                                                             <div class="input-group input-group-merge">
                                                                 <span class="input-group-text">IND (+91)</span>
                                                                 <div class="form-floating form-floating-outline">
-                                                                    <input type="number" id="phoneNumber" name="phoneNumber" maxlength='10' class="form-control" placeholder="9051652308" />
+                                                                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="<?php echo $row->mobile; ?>" readonly />
                                                                     <label for="phoneNumber">Phone Number</label>
                                                                 </div>
 

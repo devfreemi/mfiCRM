@@ -114,4 +114,8 @@ class Home extends BaseController
     {
         return view('api/api_mobile_update');
     }
+    public function api_v1_profile()
+    {
+        return view('api/api_profile');
+    }
 }

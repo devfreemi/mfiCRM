@@ -54,9 +54,9 @@
         <!-- Apps -->
 
         <li class="menu-item">
-            <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/app-calendar.html" target="_blank" class="menu-link">
+            <a href="<?php echo base_url(); ?>tax/customer-list" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
-                <div data-i18n="Calendar">Calendar</div>
+                <div data-i18n="Calendar">Customers</div>
             </a>
         </li>
         <li class="menu-item">
