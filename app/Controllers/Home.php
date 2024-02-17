@@ -70,16 +70,56 @@ class Home extends BaseController
         // PAyment
         date_default_timezone_set('Asia/Kolkata');
         $builderPayment = $db->table('payment');
-        $dataPayment = [
-            'jpbID'             => $this->request->getPost('uniqID'),
-            'paymentID'         => $this->request->getPost('paymentID'),
-            'customerID'        => $this->request->getPost('customerID'),
-            'paymentStatus'     => $this->request->getPost('paymentStatus'),
-            'amount'            => $this->request->getPost('price'),
-            'date'              => date('Y-m-d'),
-            'time'              => date('h:i:s'),
-        ];
-        $builderPayment->upsert($dataPayment);
+        // PAYMENT INTEGRATION
+        $arrayOrder = array(
+            'receipt' => 'Receipt#' . $uniqID,
+            'amount' => $this->request->getPost('price'),
+            'currency' => 'INR',
+            'notes' => array(
+                'customerReference' => $this->request->getPost('customerID'),
+                'CustomerMobile' => $this->request->getPost('phoneNumber')
+            )
+
+        );
+        $data_string_order_api = json_encode($arrayOrder); //LOGIN IN FREEMI
+
+        $curlO = curl_init();
+        $loginOrderURL = "https://api.razorpay.com/v1/orders";
+        $header_js_Order = array('Accept: application/json', 'Content-Type: application/json');
+        print_r($header_js_Order);
+        //set cURL options
+        curl_setopt($curlO, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curlO, CURLOPT_URL, $loginOrderURL);
+        curl_setopt($curlO, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlO, CURLOPT_POST, 1);
+        curl_setopt($curlO, CURLOPT_POSTFIELDS, $data_string_order_api);
+        curl_setopt($curlO, CURLOPT_USERPWD, "rzp_test_xDskoVbdRxNOez:5VoK3dCCvkN6UXeliOi4WjV3");
+        curl_setopt($curlO, CURLOPT_HTTPHEADER, $header_js_Order);
+
+        //Execute cURL
+        $curl_response_order = curl_exec($curlO);
+        $httpCode = curl_getinfo($curlO, CURLINFO_HTTP_CODE);
+        if ($httpCode == 200) {
+            echo $curl_response_order;
+            $orderResponseDecode = json_decode($curl_response_order, true);
+            // $order_id =  $orderResponseDecode['id'];
+            $dataPayment = [
+                'jpbID'             => $this->request->getPost('uniqID'),
+                'p_id'             => $this->request->getPost('productID'),
+                'orderID'           => $orderResponseDecode['id'],
+                'customerID'        => $this->request->getPost('customerID'),
+                'paymentStatus'     =>  $orderResponseDecode['status'],
+                'amount'            => $orderResponseDecode['amount_due'],
+                'receipt'           => $orderResponseDecode['receipt'],
+                'date'              => date('Y-m-d'),
+                'time'              => date('h:i:s'),
+            ];
+            $builderPayment->upsert($dataPayment);
+        } else {
+            $_SESSION['dataOrder'] = $curl_response_order;
+        }
+        curl_close($curlO);
+        // END PAYMENT
         $session = session();
         $session->setFlashdata('update', 'Profile successfully updated.');
         return redirect()->to(base_url() . 'tax/dashboard');
@@ -117,5 +157,9 @@ class Home extends BaseController
     public function api_v1_profile()
     {
         return view('api/api_profile');
+    }
+    public function api_v1_payment()
+    {
+        return view('api/api_payment');
     }
 }

@@ -24,28 +24,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // Data
 $data = json_decode(file_get_contents("php://input"));
-$customer_id = $data->customerID;
+$customer_id = $data->customerIDP;
 
 if ($customer_id != "") {
     $db = db_connect();
     $builder = $db->table('customerDetails');
     $builder->where('uniqid', $customer_id);
     $query = $builder->get();
-    foreach ($query->getResult() as $row) {
-        $customerID = $row->uniqid;
-        $name = $row->name;
-        $photo = $row->photo;
-        $mobile = $row->mobile;
-        $email = $row->email;
+    $count = $builder->countAllResults();
+    if ($count > 0) {
+        # code...
+        foreach ($query->getResult() as $row) {
+            $customerID = $row->uniqid;
+            $name = $row->mod_name;
+            $photo = $row->photo;
+            $mobile = $row->mobile;
+            $email = $row->email;
+        }
+        $response = array(
+            "customerID" => $customerID,
+            "name" => $name,
+            "photo" => $photo,
+            "mobile" => $mobile,
+            "email" => $email,
+            "status" => 200,
+        );
+    } else {
+        $response = array(
+            "status" => 101,
+        );
     }
-    $response = array(
-        "customerID" => $customerID,
-        "name" => $name,
-        "photo" => $photo,
-        "mobile" => $mobile,
-        "email" => $email,
-        "status" => 200,
-    );
 } else {
     $response = 'INTERNAL FAILLURE';
 }

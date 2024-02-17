@@ -20,3 +20,4 @@ $routes->add('service-api-gst-v1', 'Home::api_v1_service_gst');
 $routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');
 $routes->add('dashboard-api-service-list-v1', 'Home::api_v1_dashboard_ser_list');
 $routes->add('profile-api-v1', 'Home::api_v1_profile');
+$routes->add('payment-api-v1', 'Home::api_v1_payment');

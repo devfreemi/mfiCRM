@@ -27,8 +27,8 @@ $data = json_decode(file_get_contents("php://input"));
 $productID = $data->productID;
 $customer_id = $data->customerID;
 $uniqid = uniqid();
-$customer_income = $data->income;
-$pan = $data->pan;
+$customer_trade = $data->trade;
+$gst = $data->gst;
 if ($data->productID != "") {
     $db = db_connect();
     $builder = $db->table('servicesDetails');
@@ -37,8 +37,8 @@ if ($data->productID != "") {
         'uniqid'            => $uniqid,
         'product_id'   => $data->productID,
         'customer_id'   => $data->customerID,
-        'customer_income'          => $data->income,
-        'customer_pan'   => $data->pan,
+        'trade_name'          => $data->trade,
+        'gst'   => $data->gst,
         'date'   => date('Y-m-d'),
     ];
     $builder->where('customer_id', $customer_id);

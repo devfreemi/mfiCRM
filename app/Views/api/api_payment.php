@@ -24,34 +24,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // Data
 $data = json_decode(file_get_contents("php://input"));
-$customer_id = $data->customerIDL;
+$customer_id = $data->customerIPL;
 
 if ($customer_id != "") {
     $db = db_connect();
-    $builder = $db->table('servicesDetails');
-    $builder->where('customer_id', $customer_id);
+    $builder = $db->table('payment');
+    $builder->where('customerID', $customer_id);
+    $builder->where('paymentStatus', 'created');
     $query = $builder->get();
     $count = $builder->countAllResults();
     if ($count > 0) {
-        # code...
         foreach ($query->getResult() as $row) {
-            $product_id = $row->product_id;
+            $product_id = $row->p_id;
             $builder_name = $db->table('product');
             $builder_name->where('id', $product_id);
             $query_name = $builder_name->get();
             foreach ($query_name->getResult() as $row_name) {
-
-                $response[] = array(
-                    "product" => $row_name->productName,
-                    "statusCode" => 200,
-                    "status" => $row->status,
-
-                );
             }
         }
+        $response = array(
+            "product"       => $row_name->productName,
+            "OrderId"       => $row->orderID,
+            "Receipt"       => $row->receipt,
+            "Amount"        => $row->amount,
+            "AmountUI"      => number_format($row->amount),
+            "statusCode"    => 200,
+            "status"        => $row->paymentStatus,
+
+        );
     } else {
         $response = array(
-            "statusCode" => 201,
+            "statusCode"    => 201,
+            "status"        => "No Payment Pending",
 
         );
     }

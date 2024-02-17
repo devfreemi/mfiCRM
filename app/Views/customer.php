@@ -156,9 +156,9 @@ $uniq_id = $uri->getSegment(2);
                                                         </div>
                                                     </div>
                                                     <input type="hidden" id="uniqID" name="uniqID" value="<?php echo $row->uniqid; ?>" />
-                                                    <input type="hidden" id="paymentID" name="paymentID" value="DIGI<?php echo md5($row->uniqid); ?>" />
                                                     <input type="hidden" id="customerID" name="customerID" value="<?php echo $row->customer_id; ?>" />
                                                     <input type="hidden" id="paymentStatus" name="paymentStatus" value="Pending" />
+                                                    <input type="hidden" name="productID" value="<?php echo $product_id; ?>" />
                                                     <?php
                                                     $builder_price = $db->table('price');
                                                     $builder_price->where('pID', $product_id);

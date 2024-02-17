@@ -29,6 +29,7 @@ $customer_id = $data->customerID;
 $uniqid = uniqid();
 $customer_form16_p1 = $data->downloadURLP1;
 $bank_statement = $data->downloadURLBrsU;
+$name_mod = $data->name;
 if ($data->productID != "") {
     $db = db_connect();
     $builder = $db->table('servicesDetails');
@@ -37,11 +38,18 @@ if ($data->productID != "") {
         'product_id'   => $data->productID,
         'customer_id'   => $data->customerID,
         'employment_type'          => $data->selectRadio,
-        'customer_income'          => $data->income,
+        'customer_income'          => 0,
+        'name'          => $data->name,
         'customer_pan'   => $data->pan,
         'customer_form16_p1' => $data->downloadURLP1,
         'bank_statement' => $data->downloadURLBrsU,
+        '80C' => $data->eightyC,
+        '80D' => $data->eightyD,
         'date'   => date('Y-m-d'),
+    ];
+    // FOR UPDATE CUSTOMER DB
+    $data_c = [
+        'mod_name'          => $name_mod,
     ];
     $builder->where('customer_id', $customer_id);
     $builder->where('product_id', $productID);
@@ -57,8 +65,13 @@ if ($data->productID != "") {
             'uniqid'            => $ex_uniqID,
             'customer_form16_p1' => $customer_form16_p1,
             'bank_statement' => $bank_statement,
+            'name'          => $name_mod,
         ];
         $builder->upsert($data);
+        // UPDATE CUSTOMER NAME 
+        $builder_customer = $db->table('customerDetails');
+        $builder_customer->where('uniqid', $customer_id);
+        $builder_customer->update($data_c);
         $response = array(
             "uniqid" => $ex_uniqID,
             "customer_id" => $customer_id,
@@ -68,6 +81,11 @@ if ($data->productID != "") {
     } else {
 
         $builder->insert($data);
+        // UPDATE CUSTOMER NAME 
+        $builder_customer = $db->table('customerDetails');
+        $builder_customer->where('uniqid', $customer_id);
+        $builder_customer->update($data_c);
+
         $response = array(
             "uniqid" => $uniqid,
             "customer_id" => $customer_id,

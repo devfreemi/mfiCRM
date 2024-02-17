@@ -30,15 +30,18 @@ if ($customer_id != "") {
     $db = db_connect();
     $builder = $db->table('servicesDetails');
     $builder->where('customer_id', $customer_id);
-    $query = $builder->get();
     $count = $builder->countAllResults();
-    foreach ($query->getResult() as $row) {
-        $product = $row->product_id;
+    if ($count > 0) {
+        $response = array(
+            "product" => $count,
+            "status" => 200
+        );
+    } else {
+        $response = array(
+            "product" => 0,
+            "status" => 201
+        );
     }
-    $response = array(
-        "product" => $count,
-        "status" => "Fetched"
-    );
 } else {
     $response = 'INTERNAL FAILLURE';
 }

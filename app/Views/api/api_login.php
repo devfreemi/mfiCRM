@@ -36,6 +36,7 @@ if ($uniqid != "") {
         'familyName'   => $data->familyName,
         'givenName'   => $data->givenName,
         'name'          => $data->name,
+        'mod_name'          => $data->name,
         'photo'          => $data->photo,
         'loginWith'   => $data->loginWith,
         'email'      => $email,
