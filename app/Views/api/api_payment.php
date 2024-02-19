@@ -31,19 +31,21 @@ if ($customer_id != "") {
     $builder = $db->table('payment');
     $builder->where('customerID', $customer_id);
     $builder->where('paymentStatus', 'created');
-    $query = $builder->get();
     $count = $builder->countAllResults();
+
     if ($count > 0) {
+        $query = $builder->get();
         foreach ($query->getResult() as $row) {
             $product_id = $row->p_id;
             $builder_name = $db->table('product');
             $builder_name->where('id', $product_id);
             $query_name = $builder_name->get();
             foreach ($query_name->getResult() as $row_name) {
+                $pName =  $row_name->productName;
             }
         }
         $response = array(
-            "product"       => $row_name->productName,
+            "product"       => $pName,
             "OrderId"       => $row->orderID,
             "Receipt"       => $row->receipt,
             "Amount"        => $row->amount,
