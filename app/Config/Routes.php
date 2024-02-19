@@ -17,6 +17,7 @@ $routes->add('mobile-api-v1', 'Home::api_v1_mobile');
 $routes->add('mobile-api-update-v1', 'Home::api_v1_update_mobile');
 $routes->add('service-api-v1', 'Home::api_v1_service');
 $routes->add('service-api-gst-v1', 'Home::api_v1_service_gst');
+$routes->add('service-api-dsc-v1', 'Home::api_v1_service_dsc');
 $routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');
 $routes->add('dashboard-api-service-list-v1', 'Home::api_v1_dashboard_ser_list');
 $routes->add('profile-api-v1', 'Home::api_v1_profile');

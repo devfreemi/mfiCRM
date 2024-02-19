@@ -162,4 +162,8 @@ class Home extends BaseController
     {
         return view('api/api_payment');
     }
+    public function api_v1_service_dsc()
+    {
+        return view('api/api_service_dsc');
+    }
 }
