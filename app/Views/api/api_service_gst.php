@@ -38,6 +38,7 @@ if ($data->productID != "") {
         'product_id'   => $data->productID,
         'customer_id'   => $data->customerID,
         'trade_name'          => $data->trade,
+        'name'   => $data->customerName,
         'gst'   => $data->gst,
         'date'   => date('Y-m-d'),
     ];

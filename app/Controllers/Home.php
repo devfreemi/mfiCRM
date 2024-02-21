@@ -14,6 +14,10 @@ class Home extends BaseController
     {
         return view('login');
     }
+    public function terms()
+    {
+        return view('termsandcondition');
+    }
     // USER login
     public function user_login()
     {
@@ -113,6 +117,9 @@ class Home extends BaseController
                     'paymentStatus'     =>  $orderResponseDecode['status'],
                     'amount'            => $orderResponseDecode['amount_due'],
                     'receipt'           => $orderResponseDecode['receipt'],
+                    'name'           => $this->request->getPost('customerName'),
+                    'email'           => $this->request->getPost('email'),
+                    'mobile'           => $this->request->getPost('phoneNumber'),
                     'date'              => date('Y-m-d'),
                     'time'              => date('h:i:s'),
                 ];
@@ -186,5 +193,9 @@ class Home extends BaseController
     public function api_v1_service_dsc()
     {
         return view('api/api_service_dsc');
+    }
+    public function api_v1_service_company()
+    {
+        return view('api/api_service_incorporation');
     }
 }

@@ -24,44 +24,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // Data
 $data = json_decode(file_get_contents("php://input"));
-$customer_id = $data->customerIPL;
-
-if ($customer_id != "") {
+$productID = $data->productID;
+$customer_id = $data->customerID;
+$uniqid = uniqid();
+if ($data->productID != "") {
     $db = db_connect();
-    $builder = $db->table('payment');
-    $builder->where('customerID', $customer_id);
-    $builder->where('paymentStatus', 'created');
+    $builder = $db->table('servicesDetails');
+
+    $data = [
+        'uniqid'            => $uniqid,
+        'product_id'   => $data->productID,
+        'customer_id'   => $data->customerID,
+        'contact_mail'          => $data->email,
+        'contact_mobile'   => $data->mobile,
+        'name'   => $data->customerName,
+        'date'   => date('Y-m-d'),
+    ];
+    $builder->where('customer_id', $customer_id);
+    $builder->where('product_id', $productID);
+
     $count = $builder->countAllResults();
 
     if ($count > 0) {
         $query = $builder->get();
         foreach ($query->getResult() as $row) {
-            $product_id = $row->p_id;
-            $builder_name = $db->table('product');
-            $builder_name->where('id', $product_id);
-            $query_name = $builder_name->get();
-            foreach ($query_name->getResult() as $row_name) {
-                $pName =  $row_name->productName;
-            }
+            $ex_uniqID = $row->uniqid;
         }
         $response = array(
-            "product"       => $pName,
-            "OrderId"       => $row->orderID,
-            "Receipt"       => $row->receipt,
-            "Amount"        => $row->amount,
-            "Name"        => $row->name,
-            "Mobile"        => substr($row->mobile, 3),
-            "Email"        => $row->email,
-            "AmountUI"      => number_format($row->amount),
-            "statusCode"    => 200,
-            "status"        => $row->paymentStatus,
-
+            "uniqid" => $ex_uniqID,
+            "customer_id" => $customer_id,
+            "product_id" => $productID,
+            "status" => "Your Application Is Already Received"
         );
     } else {
+        $builder->insert($data);
         $response = array(
-            "statusCode"    => 201,
-            "status"        => "No Payment Pending",
-
+            "uniqid" => $uniqid,
+            "customer_id" => $customer_id,
+            "product_id" => $productID,
+            "status" => "Your Application Is Successfully Submited"
         );
     }
 } else {

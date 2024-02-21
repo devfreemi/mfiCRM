@@ -159,6 +159,7 @@ $uniq_id = $uri->getSegment(2);
                                                     <input type="hidden" id="customerID" name="customerID" value="<?php echo $row->customer_id; ?>" />
                                                     <input type="hidden" id="paymentStatus" name="paymentStatus" value="Pending" />
                                                     <input type="hidden" name="productID" value="<?php echo $product_id; ?>" />
+                                                    <input type="hidden" name="customerName" value="<?php echo $row->name; ?>" />
                                                     <?php
                                                     $builder_price = $db->table('price');
                                                     $builder_price->where('pID', $product_id);
