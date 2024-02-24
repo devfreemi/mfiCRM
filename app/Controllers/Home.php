@@ -198,4 +198,8 @@ class Home extends BaseController
     {
         return view('api/api_service_incorporation');
     }
+    public function api_v1_service_compliance()
+    {
+        return view('api/api_service_compliance');
+    }
 }
