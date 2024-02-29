@@ -99,7 +99,7 @@ class Home extends BaseController
             curl_setopt($curlO, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curlO, CURLOPT_POST, 1);
             curl_setopt($curlO, CURLOPT_POSTFIELDS, $data_string_order_api);
-            curl_setopt($curlO, CURLOPT_USERPWD, "rzp_test_xDskoVbdRxNOez:5VoK3dCCvkN6UXeliOi4WjV3");
+            curl_setopt($curlO, CURLOPT_USERPWD, "rzp_test_nM0gkKKYwEqjex:5Tj6UnAptHc2oB8lNJvdeIf7");
             curl_setopt($curlO, CURLOPT_HTTPHEADER, $header_js_Order);
 
             //Execute cURL
@@ -201,5 +201,21 @@ class Home extends BaseController
     public function api_v1_service_compliance()
     {
         return view('api/api_service_compliance');
+    }
+    public function api_v1_license_gst()
+    {
+        return view('api/api_license_gst_license');
+    }
+    public function api_v1_license_trade()
+    {
+        return view('api/api_license_trade');
+    }
+    public function api_v1_application_pan()
+    {
+        return view('api/api_application_pan');
+    }
+    public function api_v1_payment_response()
+    {
+        return view('api/api_payment_response');
     }
 }
