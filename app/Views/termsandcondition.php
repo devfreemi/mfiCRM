@@ -1,1066 +1,918 @@
-<!DOCTYPE html>
-
-<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template-no-customizer">
-
+<a href='https://me-qr.com' border='0' style='cursor:pointer;display:block'><img src='<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-    <title>Complyify | Terms and Conditions</title>
-
-    <meta name="description" content="" />
-
-    <style>
-        [data-custom-class='body'],
-        [data-custom-class='body'] * {
-            background: transparent !important;
-        }
-
-        [data-custom-class='title'],
-        [data-custom-class='title'] * {
-            font-family: Arial !important;
-            font-size: 26px !important;
-            color: #000000 !important;
-        }
-
-        [data-custom-class='subtitle'],
-        [data-custom-class='subtitle'] * {
-            font-family: Arial !important;
-            color: #595959 !important;
-            font-size: 14px !important;
-        }
-
-        [data-custom-class='heading_1'],
-        [data-custom-class='heading_1'] * {
-            font-family: Arial !important;
-            font-size: 19px !important;
-            color: #000000 !important;
-        }
-
-        [data-custom-class='heading_2'],
-        [data-custom-class='heading_2'] * {
-            font-family: Arial !important;
-            font-size: 17px !important;
-            color: #000000 !important;
-        }
-
-        [data-custom-class='body_text'],
-        [data-custom-class='body_text'] * {
-            color: #595959 !important;
-            font-size: 14px !important;
-            font-family: Arial !important;
-        }
-
-        [data-custom-class='link'],
-        [data-custom-class='link'] * {
-            color: #3030F1 !important;
-            font-size: 14px !important;
-            font-family: Arial !important;
-            word-break: break-word !important;
-        }
-    </style>
-    <link href="https://resources.freemi.in/mdbtheme/4.8.10/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://resources.freemi.in/mdbtheme/4.8.10/css/mdb.min.css" rel="stylesheet">
+<title> Log in on ME-QR resource
+</title>
+<link rel="stylesheet" href="/build/additional-pages.d3ad96b8b0.css">
+<script src="/build/runtime.41c4aa3d62.js" defer></script><script src="/build/871.3b707fcb74.js" defer></script><script src="/build/1001.4e6edec0dc.js" defer></script><script src="/build/6468.56f7d32591.js" defer></script><script src="/build/231.bd9bee1dc7.js" defer></script><script src="/build/1165.16f553116a.js" defer></script><script src="/build/additional-pages.dbcf7fced9.js" defer></script>
+<link rel="alternate" type="application/rss+xml" href="https://me-qr.com/feed.rss">
+<link rel="icon" href="https://me-qr.com/favicon.ico">
+<link rel="icon" type="image/gif" href="https://me-qr.com/favicon.gif">
+<link rel="icon" type="image/png" href="https://me-qr.com/favicon.png">
+<link rel="canonical" href="https://me-qr.com/login" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content=" Make QR codes in easy way with ME-QR generator. Sign in an account and manage your QR codes.
+">
+<meta name="keywords" content="qr code generator, free qr code, create qr code online, qr barcode, free qr code, barcode maker">
+<meta property="og:title" content=" Log in on ME-QR resource
+" />
+<meta property="og:locale" content="en" />
+<meta property="og:description" content=" Make QR codes in easy way with ME-QR generator. Sign in an account and manage your QR codes.
+" />
+<meta property="og:image" content="https://me-qr.com/static/pages/logo/logo-v2.jpg">
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76" href="https://me-qr.com/favicon.ico">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+<meta property="og:type" content="website" />
+<meta property="og:locale:alternate" content="es" />
+<meta property="og:locale:alternate" content="pt" />
+<meta property="og:locale:alternate" content="ru" />
+<link rel="alternate" hreflang="en" href="https://me-qr.com/login">
+<link rel="alternate" hreflang="es" href="https://me-qr.com/es/login">
+<link rel="alternate" hreflang="ms" href="https://me-qr.com/ms/login">
+<link rel="alternate" hreflang="pt" href="https://me-qr.com/pt/login">
+<link rel="alternate" hreflang="ru" href="https://me-qr.com/ru/login">
+<link rel="alternate" hreflang="vi" href="https://me-qr.com/vi/login">
+<link rel="alternate" hreflang="fr" href="https://me-qr.com/fr/login">
+<link rel="alternate" hreflang="th" href="https://me-qr.com/th/login">
+<link rel="alternate" hreflang="de" href="https://me-qr.com/de/login">
+<link rel="alternate" hreflang="ar" href="https://me-qr.com/ar/login">
+<link rel="alternate" hreflang="id" href="https://me-qr.com/id/login">
+<link rel="alternate" hreflang="it" href="https://me-qr.com/it/login">
+<link rel="alternate" hreflang="ja" href="https://me-qr.com/ja/login">
+<link rel="alternate" hreflang="ko" href="https://me-qr.com/ko/login">
+<link rel="alternate" hreflang="nl" href="https://me-qr.com/nl/login">
+<link rel="alternate" hreflang="sv" href="https://me-qr.com/sv/login">
+<link rel="alternate" hreflang="uk" href="https://me-qr.com/uk/login">
+<link rel="alternate" hreflang="zh" href="https://me-qr.com/zh/login">
+<link rel="alternate" hreflang="he" href="https://me-qr.com/he/login">
+<meta name="google-site-verification" content="ZGlhwE9LwdB6audS7jAeQMdwXUTVGzhyFJJuVR9nOLA" />
 </head>
+<body data-locale="en" data-user-id>
+<nav class="navbar navbar-expand-lg bg-white" data-controller="nav " data-nav-new-home-value="0">
+<div class="container">
+<button class="navbar-toggler border-0" aria-label="menu" aria-labelledby="span-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+<span id="span-menu" class="navbar-toggler-icon"></span>
+</button>
+<a id="logo-image" href="/">
+<img class="mx-auto" src="/static/pages/logo/logo.svg" alt="free QR code generator" width="100" height="55">
+</a>
+<div class="d-xl-none d-lg-none d-block pe-5"></div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+<div class="offcanvas-header">
+<button type="button" class="bg-white border-0" data-bs-dismiss="offcanvas" aria-label="Close"><img loading="lazy" width="18" height="18" src="/image/header/ic-close.svg" alt="close"></button>
+<div class="offcanvas-title" id="offcanvasNavbarLabel"><a href="/">
+</a></div>
+</div>
+<div class="offcanvas-body">
+<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 d-xl-flex d-lg-flex d-none">
+<li class="nav-item me-xl-4 dropdown nav-pills">
+<a href class="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+Why Me-QR?
+<span class="ps-1"><img width="13" height="8" loading="lazy" src="/image/header/ic-arrow.svg" alt="arrow"></span>
+</a>
+<ul class="dropdown-menu">
+<li class="pb-2">
+<div class="dropdown-header">
+Product
+</div>
+</li>
+<li class="pb-1">
+<a class="dropdown-item" href="/#blockAllFeatures" data-nav-label-param="features" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Features
+</a>
+</li>
+<li class="border-bottom pb-3">
+<a class="dropdown-item" href="/#blockWhereUse" data-nav-label-param="where_to_use" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Where To Use
+</a>
+</li>
+<li class="pt-3 pb-2">
+<div class="dropdown-header">
+Knowledge Base
+</div>
+</li>
+<li class="pb-1">
+<a class="dropdown-item" href="/page/articles?url=all" data-nav-label-param="blog" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Blog
+</a>
+</li>
+<li class="pb-1">
+<a class="dropdown-item" href="/page/articles?url=instructions" data-nav-label-param="instructions" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Instructions
+</a>
+</li>
+</ul>
+</li>
+<li class="nav-item me-xl-4">
+<a href="https://me-qr-scanner.com/" target="_blank" class="nav-link" data-nav-label-param="qr_scanner" data-nav-type-param="link" data-action="click->nav#gtagClick">
+QR Scanner
+</a>
+</li>
+<li class="nav-item me-xl-4">
+<a href="/pricing" class="nav-link color-nav" data-nav-label-param="pricing" data-action="click->nav#gtagClick" data-nav-type-param="link">
+Pricing
+</a>
+</li>
+<li class="nav-item me-xl-4">
+<a href="/faq" class="nav-link" data-nav-label-param="faq" data-nav-type-param="link" data-action="click->nav#gtagClick">
+FAQ</a>
+</li>
+<li class="nav-item me-xl-4">
+<a href="/support" class="nav-link" data-nav-label-param="support" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Support</a>
+</li>
+<li class="nav-item ms-2 me-lg-4 ">
+<a class="border-0 p-2 fs-6 btn-primary btn btn-sm ps-3 pe-3" href="/qr-code-generator" data-nav-label-param="create_qr_code" data-action="click->nav#gtagClick" data-nav-type-param="button" id="createNewBtnHeader">
+<img loading="lazy" width="22" height="22" class="pe-2" src="/image/header/ic-create-code.svg" alt="ic">
+Create QR Code</a>
+</li>
+<li class="nav-item me-xl-4">
+<a class="border-0 p-2 ps-4 pe-4 fs-6 btn-secondary btn btn-sm text-white" data-action="click->nav#loginBtn" href="/login">Login</a>
+</li>
+<li class="dropdown nav-item">
+<a href="#" class="nav-link " data-bs-toggle="dropdown" aria-expanded="false" role="button">
+<span>EN</span>
+<span><img width="13" height="8" loading="lazy" src="/image/header/ic-arrow.svg" alt="arrow"></span>
+</a>
+<ul class="dropdown-menu">
+<li><a href="/login" hreflang="en" class="dropdown-item lang">
+English
+</a></li>
+<li><a href="/es/login" hreflang="es" class="dropdown-item lang">
+Español
+</a>
+</li>
+<li>
+<a href="/pt/login" hreflang="pt" class="dropdown-item lang">
+Português
+</a>
+</li>
+<li>
+<a href="/ru/login" hreflang="ru" class="dropdown-item lang">
+Русский
+</a>
+</li>
+<li>
+<a href="/ms/login" hreflang="ms" class="dropdown-item lang">
+Bahasa Melayu
+</a>
+</li>
+<li>
+<a href="/vi/login" hreflang="vi" class="dropdown-item lang">
+Tiếng Việt
+</a>
+</li>
+<li>
+<a href="/fr/login" hreflang="fr" class="dropdown-item lang">
+Français
+</a>
+</li>
+<li>
+<a href="/de/login" hreflang="de" class="dropdown-item lang">
+Deutsch
+</a>
+</li>
+<li>
+<a href="/ar/login" hreflang="ar" class="dropdown-item lang">
+عرب
+</a>
+</li>
+<li>
+<a href="/id/login" hreflang="id" class="dropdown-item lang">
+bahasa Indonesia
+</a>
+</li>
+<li>
+<a href="/th/login" hreflang="th" class="dropdown-item lang">
+ไทย
+</a>
+</li>
+<li>
+<a href="/ko/login" hreflang="ko" class="dropdown-item lang">
+한국인
+</a>
+</li>
+<li>
+<a href="/ja/login" hreflang="ja" class="dropdown-item lang">
+日本
+</a>
+</li>
+<li>
+<a href="/nl/login" hreflang="nl" class="dropdown-item lang">
+Nederlands
+</a>
+</li>
+<li>
+<a href="/it/login" hreflang="it" class="dropdown-item lang">
+Italiano
+</a>
+</li>
+<li>
+<a href="/sv/login" hreflang="sv" class="dropdown-item lang">
+Svenska
+</a>
+</li>
+<li>
+<a href="/uk/login" hreflang="uk" class="dropdown-item lang">
+Українська
+</a>
+</li>
+<li>
+<a href="/zh/login" hreflang="zh" class="dropdown-item lang">
+中国人
+</a>
+</li>
+<li>
+<a href="/he/login" hreflang="he" class="dropdown-item lang">
+עִברִית
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 d-xl-none d-lg-none d-flex">
+<li class="nav-item mb-3">
+<a class="nav-link" href="/qr-code-generator">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/ic-create-code_m.svg" alt="Create QR code">
+Create QR Code</a>
+</li>
+<li class="nav-item mb-3 d-none">
+<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+<img class="pe-2" loading="lazy" src="/image/header/person.svg" alt="ic person">
+Profile
+</a>
+<div class="dropdown-menu border-0">
+<a href="/entry" class="dropdown-item" data-nav-label-param="my_qr_codes" data-nav-type-param="link" data-action="click->nav#gtagClick">My QR-Codes</a>
+<a href="/dash-board" class="dropdown-item" data-nav-label-param="statistic" data-nav-type-param="link" data-action="click->nav#gtagClick">Statistic</a>
+<a href="/account" class="dropdown-item" data-nav-label-param="profile_settings" data-nav-type-param="link" data-action="click->nav#gtagClick">Profile Settings</a>
+<a href="/support" class="dropdown-item" data-nav-label-param="support" data-action="click->nav#gtagClick" data-nav-type-param="link">Support</a>
+</div>
+</li>
+<li class="nav-item mb-3 dropdown">
+<a href class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/qr-code.svg" alt="qr code">
+Why Me-QR
+</a>
+<ul class="dropdown-menu border-0">
+<li>
+<a class="dropdown-item" href="/#blockAllFeatures" data-nav-label-param="features" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Features
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="/#blockWhereUse" data-nav-label-param="where_to_use" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Where To Use
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="/page/articles?url=blog" data-nav-label-param="blog" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Blog
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="/page/articles?url=instructions" data-nav-label-param="instructions" data-nav-type-param="link" data-action="click->nav#gtagClick">
+Instructions
+</a>
+</li>
+</ul>
+</li>
+<li class="nav-item mb-3">
+<a href="https://me-qr-scanner.com/" target="_blank" class="nav-link" data-nav-label-param="qr_scanner" data-nav-type-param="link" data-action="click->nav#gtagClick">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/qr-code-scan.svg" alt="qr code scan">
+QR Scanner
+</a>
+</li>
+<li class="nav-item mb-3">
+<a href="/pricing" class="nav-link color-nav" data-nav-label-param="pricing" data-action="click->nav#gtagClick" data-nav-type-param="link">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/ic-pricing.svg" alt="pricing">
+Pricing
+</a>
+</li>
+<li class="nav-item mb-3">
+<a href="/faq" class="nav-link" data-nav-label-param="faq" data-action="click->nav#gtagClick" data-nav-type-param="link">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/ic-faq.svg" alt="faq">
+FAQ</a>
+</li>
+<li class="nav-item mb-3 pb-3 border-bottom">
+<a href="/support" class="nav-link" data-nav-label-param="support" data-action="click->nav#gtagClick" data-nav-type-param="link">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/ic-support.svg" alt="support">
+Support</a>
+</li>
+<li class="dropdown nav-item  mb-3">
+<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+<img class="pe-2" width="24" height="24" loading="lazy" src="/image/header/ic-lng.svg" alt="lng">
+Language
+</a>
+<ul class="dropdown-menu  border-0">
+<li><a href="/login" hreflang="en" class="dropdown-item lang">
+English
+</a></li>
+<li><a href="/es/login" hreflang="es" class="dropdown-item lang">
+Español
+</a>
+</li>
+<li>
+<a href="/pt/login" hreflang="pt" class="dropdown-item lang">
+Português
+</a>
+</li>
+<li>
+<a href="/ru/login" hreflang="ru" class="dropdown-item lang">
+Русский
+</a>
+</li>
+<li>
+<a href="/ms/login" hreflang="ms" class="dropdown-item lang">
+Bahasa Melayu
+</a>
+</li>
+<li>
+<a href="/vi/login" hreflang="vi" class="dropdown-item lang">
+Tiếng Việt
+</a>
+</li>
+<li>
+<a href="/fr/login" hreflang="fr" class="dropdown-item lang">
+Français
+</a>
+</li>
+<li>
+<a href="/de/login" hreflang="de" class="dropdown-item lang">
+Deutsch
+</a>
+</li>
+<li>
+<a href="/ar/login" hreflang="ar" class="dropdown-item lang">
+عرب
+</a>
+</li>
+<li>
+<a href="/id/login" hreflang="id" class="dropdown-item lang">
+bahasa Indonesia
+</a>
+</li>
+<li>
+<a href="/th/login" hreflang="th" class="dropdown-item lang">
+ไทย
+</a>
+</li>
+<li>
+<a href="/ko/login" hreflang="ko" class="dropdown-item lang">
+한국인
+</a>
+</li>
+<li>
+<a href="/ja/login" hreflang="ja" class="dropdown-item lang">
+日本
+</a>
+</li>
+<li>
+<a href="/nl/login" hreflang="nl" class="dropdown-item lang">
+Nederlands
+</a>
+</li>
+<li>
+<a href="/it/login" hreflang="it" class="dropdown-item lang">
+Italiano
+</a>
+</li>
+<li>
+<a href="/sv/login" hreflang="sv" class="dropdown-item lang">
+Svenska
+</a>
+</li>
+<li>
+<a href="/uk/login" hreflang="uk" class="dropdown-item lang">
+Українська
+</a>
+</li>
+<li>
+<a href="/zh/login" hreflang="zh" class="dropdown-item lang">
+中国人
+</a>
+</li>
+<li>
+<a href="/he/login" hreflang="he" class="dropdown-item lang">
+עִברִית
+</a>
+</li>
+</ul>
+</li>
+<li class="nav-item mb-3">
+<a class="nav-link text-secondary" href="/login">
+<img loading="lazy" width="24" height="24" class="pe-2" src="/image/header/ic-logout.svg" alt="login">Log in</a>
+</li>
+<li class="d-flex justify-content-end mt-5">
+<a class="nav-link" href="/qr-code-generator">
+<img loading="lazy" width="67" height="67" src="/image/header/add-qr.png" alt="add qr">
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<style>
+    .bottom-right-button {
+        bottom: 90px;
+        right: 17px;
+        width: 50px;
+        height: 50px;
+        z-index: 1000;
+    }
+</style>
+<div class="container">
+<button class="btn btn-primary bottom-right-button rounded-circle position-fixed d-flex justify-content-center align-items-center d-none" id="scrollTop">
+<img loading="lazy" width="36" height="36" src="/image/header/arrow-up.svg" alt="arrow up">
+</button>
+</div>
+<script src="/assets/js/scroll-top.js?v=1" type="text/javascript" defer></script>
+<div class="container">
+<div class="row py-5 px-3 px-lg-0">
+<div class="bg-white register-card position-relative rounded-3">
+<div class="position-absolute register-card-left-img d-none d-md-block">
+<img class="img-fluid" loading="lazy" src="/static/pages/login-img/qr.png" alt="Log in on ME-QR">
+</div>
+<div class="row pe-0">
+<div class="col-md-12 col-xl-7 col-sm-12 d-flex flex-column register-card-left p-md-5 p-sm-3">
+<div class="px-md-5 py-md-5 py-3">
+<h1 class="register-card-title pt-2 text-center text-md-start pt-md-5 fs-1">Welcome back!</h1>
+<div class="register-card-text text-center text-md-start">Please enter your details.</div>
+<div class>
+<div class="pt-5">
+<a class="register-btn text-decoration-none d-flex justify-content-center w-100" target="_blank" href="/connect/google">
+<button class="w-100 justify-content-center d-flex bg-white rounded-2 text-start register-card-btn py-3 py-lg-3">
+<img class="img-fluid pe-2" loading="lazy" src="/static/pages/login-img/google.png" alt>
+<div class="fs-6">Sign Up with Google</div>
+</button>
+</a>
+</div>
+</div>
+<div class="line position-relative text-center mt-2">
+<hr/>
+<div class="line-text position-absolute">or</div>
+</div>
+<form class="pt-3" method="post">
+<div class="form-floating mb-3">
+<input type="email" class="form-control" name="username" id="floatingInput" placeholder="name@example.com">
+<label for="floatingInput">Email Address</label>
+</div>
+<div class="form-floating position-relative " data-controller="password-visibility" data-password-visibility-hidden-class="d-none">
+<input type="password" class="form-control" data-password-visibility-target="input" name="password" id="floatingPassword" placeholder="Password">
+<button data-action="password-visibility#toggle" class="btn btn-default border-0 password-visibility-btn">
 
-<body>
-    <div class="container my-4">
-        <div><strong><span style="font-size: 26px;"><span data-custom-class="title">
-                        <bdt class="block-component"></bdt>
-                        <bdt class="question">PRIVACY POLICY</bdt>
-                        <bdt class="statement-end-if-in-editor"></bdt>
-                    </span></span></strong></div>
-        <div><br></div>
-        <div><span style="color: rgb(127, 127, 127);"><strong><span style="font-size: 15px;"><span data-custom-class="subtitle">Last updated <bdt class="question">February 20, 2024</bdt></span></span></strong></span></div>
-        <div><br></div>
-        <div><br></div>
-        <div><br></div>
-        <div style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">This privacy notice for <bdt class="question">True Technologies<bdt class="block-component"></bdt> (doing business as <bdt class="question">Complyify</bdt>)<bdt class="statement-end-if-in-editor"></bdt>
-                        </bdt> (<bdt class="block-component"></bdt>'<strong>we</strong>', '<strong>us</strong>', or '<strong>our</strong>'<bdt class="else-block"></bdt></span><span data-custom-class="body_text">), describes how and why we might collect, store, use, and/or share (<bdt class="block-component"></bdt>'<strong>process</strong>'<bdt class="else-block"></bdt>) your information when you use our services (<bdt class="block-component"></bdt>'<strong>Services</strong>'<bdt class="else-block"></bdt>), such as when you:</span></span></span><span style="font-size: 15px;"><span style="color: rgb(127, 127, 127);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">Visit our website<bdt class="block-component"></bdt> at <span style="color: rgb(0, 58, 250);">
-                                <bdt class="question"><a href="https://complyify.in" target="_blank" data-custom-class="link">https://complyify.in</a></bdt>
-                            </span><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                <bdt class="statement-end-if-in-editor">, or any website of ours that links to this privacy notice</bdt>
-                                            </span></span></span></span></span></span></span></span></li>
-        </ul>
-        <div>
-            <bdt class="block-component"><span style="font-size: 15px;"><span style="font-size: 15px;"><span style="color: rgb(127, 127, 127);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                        <bdt class="block-component"></bdt>
-                                    </span></span></span></span></span></span></bdt>
-        </div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">Download and use<bdt class="block-component"></bdt> our mobile application<bdt class="block-component"></bdt> (<bdt class="question">Complyifi)<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                <bdt class="statement-end-if-in-editor">,</bdt>
-                                                            </span></span></span></span></span></span></span></span></bdt></span><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                <bdt class="statement-end-if-in-editor">
-                                                    <bdt class="block-component"></bdt> our Facebook application<bdt class="block-component">,</bdt>
-                                                    <bdt class="statement-end-if-in-editor"> or any other application of ours that links to this privacy notice</bdt>
-                                                </bdt>
-                                            </span></span></span></span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(127, 127, 127);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">Engage with us in other related ways, including any sales, marketing, or events<span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                            </span></span></span></span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(127, 127, 127);"><span data-custom-class="body_text"><strong>Questions or concerns? </strong>Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services.<bdt class="block-component"></bdt> If you still have any questions or concerns, please contact us at <bdt class="question">truetechnologybuzz@gmail.com</bdt>.</span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><strong><span style="font-size: 15px;"><span data-custom-class="heading_1">SUMMARY OF KEY POINTS</span></span></strong></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong><em>This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our </em></strong></span></span><a data-custom-class="link" href="#toc"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text"><strong><em>table of contents</em></strong></span></span></a><span style="font-size: 15px;"><span data-custom-class="body_text"><strong><em> below to find the section you are looking for.</em></strong></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about </span></span><a data-custom-class="link" href="#personalinfo"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">personal information you disclose to us</span></span></a><span data-custom-class="body_text">.</span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>Do we process any sensitive personal information?</strong>
-                    <bdt class="block-component"></bdt>We may process sensitive personal information when necessary with your consent or as otherwise permitted by applicable law. Learn more about
-                </span></span><a data-custom-class="link" href="#sensitiveinfo"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">sensitive information we process</span></span></a><span data-custom-class="body_text">.</span><span style="font-size: 15px;"><span data-custom-class="body_text">
-                    <bdt class="statement-end-if-in-editor"></bdt>
-                </span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>Do we receive any information from third parties?</strong>
-                    <bdt class="block-component"></bdt>We may receive information from public databases, marketing partners, social media platforms, and other outside sources. Learn more about
-                </span></span><a data-custom-class="link" href="#othersources"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">information collected from other sources</span></span></a><span data-custom-class="body_text">.</span><span style="font-size: 15px;"><span data-custom-class="body_text">
-                    <bdt class="statement-end-if-in-editor"></bdt>
-                </span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about </span></span><a data-custom-class="link" href="#infouse"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">how we process your information</span></span></a><span data-custom-class="body_text">.</span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>In what situations and with which <bdt class="block-component"></bdt>types of <bdt class="statement-end-if-in-editor"></bdt>parties do we share personal information?</strong> We may share information in specific situations and with specific <bdt class="block-component"></bdt>categories of <bdt class="statement-end-if-in-editor"></bdt>third parties. Learn more about </span></span><a data-custom-class="link" href="#whoshare"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">when and with whom we share your personal information</span></span></a><span style="font-size: 15px;"><span data-custom-class="body_text">.<bdt class="block-component"></bdt></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>How do we keep your information safe?</strong> We have <bdt class="block-component"></bdt>organisational<bdt class="else-block"></bdt> and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other <bdt class="block-component"></bdt>unauthorised<bdt class="else-block"></bdt> third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about </span></span><a data-custom-class="link" href="#infosafe"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">how we keep your information safe</span></span></a><span data-custom-class="body_text">.</span><span style="font-size: 15px;"><span data-custom-class="body_text">
-                    <bdt class="statement-end-if-in-editor"></bdt>
-                </span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about </span></span><a data-custom-class="link" href="#privacyrights"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">your privacy rights</span></span></a><span data-custom-class="body_text">.</span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by <bdt class="block-component"></bdt>visiting <span style="color: rgb(0, 58, 250);">
-                        <bdt class="question"><a href="http://www.cpmplify.in" target="_blank" data-custom-class="link">http://www.cpmplify.in</a></bdt>
-                    </span>
-                    <bdt class="else-block"></bdt>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
-                </span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">Want to learn more about what we do with any information we collect? </span></span><a data-custom-class="link" href="#toc"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">Review the privacy notice in full</span></span></a><span style="font-size: 15px;"><span data-custom-class="body_text">.</span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div id="toc" style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">TABLE OF CONTENTS</span></strong></span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#infocollect"><span style="color: rgb(0, 58, 250);">1. WHAT INFORMATION DO WE COLLECT?</span></a></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#infouse"><span style="color: rgb(0, 58, 250);">2. HOW DO WE PROCESS YOUR INFORMATION?<bdt class="block-component"></bdt></span></a></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(0, 58, 250);"><a data-custom-class="link" href="#whoshare">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></span><span data-custom-class="body_text">
-                    <bdt class="block-component"></bdt></a><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                    <bdt class="block-component"></bdt>
-                                </span></span></span></span>
-                </span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#cookies"><span style="color: rgb(0, 58, 250);">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</span></a><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                <bdt class="statement-end-if-in-editor"></bdt>
-                            </span></span><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);">
-                                        <bdt class="block-component"></bdt>
-                                    </span></span></span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#sociallogins"><span style="color: rgb(0, 58, 250);"><span style="color: rgb(0, 58, 250);"><span style="color: rgb(0, 58, 250);">5. HOW DO WE HANDLE YOUR SOCIAL LOGINS?</span></span></span></a><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);">
-                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                    </span></span>
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#inforetain"><span style="color: rgb(0, 58, 250);">6. HOW LONG DO WE KEEP YOUR INFORMATION?</span></a><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);">
-                                    <bdt class="block-component"></bdt>
-                                </span></span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#infosafe"><span style="color: rgb(0, 58, 250);">7. HOW DO WE KEEP YOUR INFORMATION SAFE?</span></a><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                <bdt class="statement-end-if-in-editor"></bdt>
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#infominors"><span style="color: rgb(0, 58, 250);">8. DO WE COLLECT INFORMATION FROM MINORS?</span></a><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                <bdt class="statement-end-if-in-editor"></bdt>
-                            </span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(0, 58, 250);"><a data-custom-class="link" href="#privacyrights">9. WHAT ARE YOUR PRIVACY RIGHTS?</a></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#DNT"><span style="color: rgb(0, 58, 250);">10. CONTROLS FOR DO-NOT-TRACK FEATURES<bdt class="block-component"></span>
-                    <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></bdt></span></div>
-        <div style="line-height: 1.5;">
-            <bdt class="block-component"><span style="font-size: 15px;"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></bdt>
-            <bdt class="block-component"></span></bdt>
-        </div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><a data-custom-class="link" href="#policyupdates"><span style="color: rgb(0, 58, 250);">11. DO WE MAKE UPDATES TO THIS NOTICE?</span></a></span></div>
-        <div style="line-height: 1.5;"><a data-custom-class="link" href="#contact"><span style="color: rgb(0, 58, 250); font-size: 15px;">12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</span></a></div>
-        <div style="line-height: 1.5;"><a data-custom-class="link" href="#request"><span style="color: rgb(0, 58, 250);">13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</span></a></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div id="infocollect" style="line-height: 1.5;"><span style="color: rgb(0, 0, 0);"><span style="color: rgb(0, 0, 0); font-size: 15px;"><span style="font-size: 15px; color: rgb(0, 0, 0);"><span style="font-size: 15px; color: rgb(0, 0, 0);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">1. WHAT INFORMATION DO WE COLLECT?</span></strong></span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div id="personalinfo" style="line-height: 1.5;"><span data-custom-class="heading_2" style="color: rgb(0, 0, 0);"><span style="font-size: 15px;"><strong>Personal information you disclose to us</strong></span></span></div>
-        <div>
-            <div><br></div>
-            <div style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short:</em></strong></span></span></span></span><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em> </em></strong><em>We collect personal information that you provide to us.</em></span></span></span></span></span></span></div>
-        </div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We collect personal information that you voluntarily provide to us when you <span style="font-size: 15px;">
-                            <bdt class="block-component"></bdt>
-                        </span>register on the Services, </span><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                                <bdt class="statement-end-if-in-editor"></bdt>
-                            </span></span><span data-custom-class="body_text">express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</span></span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                            <bdt class="block-component"></bdt>
-                        </span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>Personal Information Provided by You.</strong> The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:<span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">names</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">phone numbers</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">email addresses</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">mailing addresses</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">job titles</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">usernames</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">passwords</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">contact preferences</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">contact or authentication data</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">billing addresses</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">debit/credit card numbers</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">company details </bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">director details</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">income tax details</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span></span></span></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="question">corporate compliance related details</bdt>
-                                </span></span></span></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="forloop-component"></bdt>
-                            </span><span data-custom-class="body_text">
-                                <bdt class="statement-end-if-in-editor"></bdt>
-                            </span></span></span></span></span></div>
-        <div id="sensitiveinfo" style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>Sensitive Information.</strong>
-                    <bdt class="block-component"></bdt>When necessary, with your consent or as otherwise permitted by applicable law, we process the following categories of sensitive information:<bdt class="forloop-component"></bdt>
-                </span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                        <bdt class="question">financial data</bdt>
-                    </span></span></li>
-        </ul>
-        <div><span style="font-size: 15px;"><span data-custom-class="body_text">
-                    <bdt class="forloop-component"></bdt>
-                </span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                        <bdt class="question">social security numbers or other government identifiers</bdt>
-                    </span></span></li>
-        </ul>
-        <div><span style="font-size: 15px;"><span data-custom-class="body_text">
-                    <bdt class="forloop-component"></bdt>
-                </span><span data-custom-class="body_text">
-                    <bdt class="statement-end-if-in-editor"></bdt>
-                </span></span><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>Payment Data.</strong> We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by<bdt class="forloop-component"></bdt><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                            <bdt class="block-component"></bdt>
-                                        </span></span></span></span></span>
-                        <bdt class="question">razorpay</bdt><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                        <bdt class="block-component"></bdt>
-                                                    </span></span></span><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                    <bdt class="forloop-component"></bdt>
-                                                                                </span></span></span></span></span></span></span></span></span></span></span></span>. You may find their privacy notice link(s) here:<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                <bdt class="forloop-component"></bdt><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                    <bdt class="block-component"></bdt>
-                                                                </span></span></span></span></span>
-                                            </span></span></span> <span style="color: rgb(0, 58, 250);">
-                                        <bdt class="question"><a href="https://razorpay.com/privacy-policy/" target="_blank" data-custom-class="link">https://razorpay.com/privacy-policy/</a></bdt>
-                                    </span><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                <bdt class="block-component"></bdt>
-                                                                            </span></span></span></span></span></span></span></span>
-                                                <bdt class="forloop-component"></bdt><span style="font-size: 15px;"><span data-custom-class="body_text">.<bdt class="block-component"></bdt></span></span>
-                                            </span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                <bdt class="statement-end-if-in-editor">
-                                    <bdt class="block-component"></bdt>
-                                </bdt>
-                            </span></span></span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>Social Media Login Data. </strong>We may provide you with the option to register with us using your existing social media account details, like your Facebook, Twitter, or other social media account. If you choose to register in this way, we will collect the information described in the section called <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(0, 58, 250);"><a data-custom-class="link" href="#sociallogins">HOW DO WE HANDLE YOUR SOCIAL LOGINS?</a></span></span></span></span>
-                        <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt> below.
-                    </span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                            <bdt class="statement-end-if-in-editor">
-                                <bdt class="statement-end-if-in-editor"></bdt>
-                            </bdt>
-                        </span></span></span></span>
-            <bdt class="block-component">
-                <bdt class="block-component"></bdt>
-            </bdt>
-        </div>
-        <div style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;"><strong>Application Data.</strong> If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:<bdt class="block-component"></bdt></span></span></div>
-        <ul>
-            <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;"><em>Geolocation Information.</em> We may request access or permission to track location-based information from your mobile device, either continuously or while you are using our mobile application(s), to provide certain location-based services. If you wish to change our access or permissions, you may do so in your device's settings.<bdt class="statement-end-if-in-editor"></bdt></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;">
-            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-        </div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><em>Mobile Device Access.</em> We may request access or permission to certain features from your mobile device, including your mobile device's <bdt class="forloop-component"></bdt>
-                        <bdt class="question">camera</bdt>, <bdt class="forloop-component"></bdt>
-                        <bdt class="question">contacts</bdt>, <bdt class="forloop-component"></bdt>
-                        <bdt class="question">sms messages</bdt>, <bdt class="forloop-component"></bdt>
-                        <bdt class="question">social media accounts</bdt>, <bdt class="forloop-component"></bdt>
-                        <bdt class="question">calendar</bdt>, <bdt class="forloop-component"></bdt>and other features. If you wish to change our access or permissions, you may do so in your device's settings.<bdt class="statement-end-if-in-editor"></bdt>
-                    </span></span></li>
-        </ul>
-        <div style="line-height: 1.5;">
-            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-        </div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><em>Mobile Device Data.</em> We automatically collect device information (such as your mobile device ID, model, and manufacturer), operating system, version information and system configuration information, device and application identification numbers, browser type and version, hardware model Internet service provider and/or mobile carrier, and Internet Protocol (IP) address (or proxy server). If you are using our application(s), we may also collect information about the phone network associated with your mobile device, your mobile device’s operating system or platform, the type of mobile device you use, your mobile device’s unique device ID, and information about the features of our application(s) you accessed.<bdt class="statement-end-if-in-editor"></bdt></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;">
-            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-        </div>
-        <ul>
-            <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><em>Push Notifications.</em> We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device's settings.<bdt class="statement-end-if-in-editor"></bdt></span></span></li>
-        </ul>
-        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.</span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;">
-            <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-        </div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                        <bdt class="block-component"></bdt>
-                    </span></span></span></div>
-        <div style="line-height: 1.5;"><span data-custom-class="heading_2" style="color: rgb(0, 0, 0);"><span style="font-size: 15px;"><strong>Information automatically collected</strong></span></span></div>
-        <div>
-            <div><br></div>
-            <div style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short:</em></strong></span></span></span></span><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em> </em></strong><em>Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.</em></span></span></span></span></span></span></div>
-        </div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.</span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                        <bdt class="block-component"></bdt>
-                    </span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">Like many businesses, we also collect information through cookies and similar technologies. <bdt class="block-component"></bdt>
-                        <bdt class="block-component"></bdt>
-                    </span></span></span></div>
-        <div style="line-height: 1.5;"><br></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                        <bdt class="statement-end-if-in-editor"><span data-custom-class="body_text"></span></bdt>
-                    </span><span data-custom-class="body_text">
-                        <bdt class="block-component"></bdt>
-                    </span></span></span></div>
-        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">The information we collect includes:<bdt class="block-component"></bdt></span></span></span></span></span></span></span></span></li>
-            </ul>
-            <div style="line-height: 1.5;">
-                <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-            </div>
-            <ul>
-                <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><em>Device Data.</em> We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.<span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                    <bdt class="statement-end-if-in-editor"></bdt>
-                                                </span></span></span></span></span></span></span></span></li>
-            </ul>
-            <div style="line-height: 1.5;">
-                <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-            </div>
-            <ul>
-                <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><em>Location Data.</em> We collect location data such as information about your device's location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.<span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                    <bdt class="statement-end-if-in-editor"></bdt>
-                                                </span></span></span></span></span></span></span></span></li>
-            </ul>
-            <div>
-                <bdt class="block-component"><span style="font-size: 15px;"></bdt>
-                </bdt>
-                <bdt class="statement-end-if-in-editor"></bdt>
-                </bdt></span><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">
-                                    <bdt class="statement-end-if-in-editor">
-                                        <bdt class="block-component"></bdt>
-                                    </bdt>
-                                </span></span></span></span></span></span></span>
-            </div>
-            <div id="othersources" style="line-height: 1.5;"><span data-custom-class="heading_2" style="color: rgb(0, 0, 0);"><span style="font-size: 15px;"><strong>Information collected from other sources</strong></span></span></div>
-            <div>
-                <div><br></div>
-                <div style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short: </em></strong><em>We may collect limited data from public databases, marketing partners, <span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><em><span data-custom-class="body_text">
-                                                                <bdt class="block-component"></bdt>social media platforms, <bdt class="statement-end-if-in-editor"></bdt>
-                                                            </span></em></span></span>and other outside sources.</em></span></span></span></span></span></span></div>
-            </div>
-            <div style="line-height: 1.5;"><br></div>
-            <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">In order to enhance our ability to provide relevant marketing, offers, and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers,<span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                        <bdt class="block-component"></bdt> social media platforms,<bdt class="statement-end-if-in-editor"></bdt>
-                                    </span></span> </span>and from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user <bdt class="block-component"></bdt>behaviour<bdt class="else-block"></bdt> data), Internet Protocol (IP) addresses, social media profiles, social media URLs, and custom profiles, for purposes of targeted advertising and event promotion.<span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                    <bdt class="block-component"></bdt>
-                                                </span></span> </span>If you interact with us on a social media platform using your social media account (e.g.<bdt class="block-component"></bdt> Facebook or Twitter), we receive personal information about you such as your name, email address, and gender. Any personal information that we collect from your social media account depends on your social media account's privacy settings.</span></span></span></span><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                            </span></span></span></span></span></span></span></span></span></span></span></span></div>
-            <div style="line-height: 1.5;"><br></div>
-            <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);">
-                                                <bdt class="block-component"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">
-                                                                    <bdt class="statement-end-if-in-editor">
-                                                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                                                    </bdt>
-                                                                </span></span></span></span></bdt>
-                                            </span></span></span></span></span></span></span></span><span style="font-size: 15px;"><span data-custom-class="body_text">
-                        <bdt class="block-component"></bdt>
-                    </span></span></div>
-            <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>Information collected when you use our Facebook application(s).</strong> We by default access your </span><span data-custom-class="body_text">Facebook basic account information, including your name, email, gender, birthday, current city, and profile picture URL, as well as other information that you choose to make public. We may also request access to other permissions related to your account, such as friends, check-ins, and likes, and you may choose to grant or deny us access to each individual permission. For more information regarding Facebook permissions, refer to the </span></span><a data-custom-class="link" href="https://developers.facebook.com/docs/facebook-login/permissions" rel="noopener noreferrer" target="_blank"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">Facebook Permissions Reference</span></span></a><span style="font-size: 15px;"><span data-custom-class="body_text"> page.</span></span></div>
-            <div style="line-height: 1.5;"><br></div>
-            <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                        <bdt class="statement-end-if-in-editor"></bdt>
-                    </span></span></div>
-            <div id="infouse" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">2. HOW DO WE PROCESS YOUR INFORMATION?</span></strong></span></span></span></span></span></div>
-            <div>
-                <div style="line-height: 1.5;"><br></div>
-                <div style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short: </em></strong><em>We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</em></span></span></span></span></span></span></div>
-            </div>
-            <div style="line-height: 1.5;"><br></div>
-            <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>We process your personal information for a variety of reasons, depending on how you interact with our Services, including:</strong>
-                            <bdt class="block-component"></bdt>
-                        </span></span></span></div>
-            <ul>
-                <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>To facilitate account creation and authentication and otherwise manage user accounts. </strong>We may process your information so you can create and log in to your account, as well as keep your account in working order.<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                    <bdt class="statement-end-if-in-editor"></bdt>
-                                                                </span></span></span></span></span></span></span></span></span></span></span></span></li>
-            </ul>
-            <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                            <bdt class="block-component"></bdt>
-                        </span></span></span></div>
-            <ul>
-                <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>To deliver and facilitate delivery of services to the user. </strong>We may process your information to provide you with the requested service.<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                            </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></li>
-            </ul>
-            <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                            <bdt class="block-component"></bdt>
-                        </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></li>
-                </ul>
-                <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></div>
-                <ul>
-                    <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>To respond to user inquiries/offer support to users. </strong>We may process your information to respond to your inquiries and solve any potential issues you might have with the requested service.<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                                                    </span></span></span></span></span></span></span></span></span></span></span></span></li>
-                </ul>
-                <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                <bdt class="block-component"></bdt>
-                            </span></span></span></li>
-                    </ul>
-                    <div style="line-height: 1.5;">
-                        <bdt class="block-component"><span style="font-size: 15px;"></span></bdt>
-                    </div>
-                    <ul>
-                        <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>To send administrative information to you. </strong>We may process your information to send you details about our products and services, changes to our terms and policies, and other similar information.<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                    <bdt class="statement-end-if-in-editor"></bdt>
-                                                </span></span></span></span></span></span></li>
-                    </ul>
-                    <div style="line-height: 1.5;">
-                        <bdt class="block-component"><span style="font-size: 15px;"></bdt></span></span></span></span></span></span></span></span></span></li>
-                        </ul>
-                        <div style="line-height: 1.5;">
-                            <bdt class="block-component"><span style="font-size: 15px;"></span></bdt>
-                        </div>
-                        <ul>
-                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>To <bdt class="block-component"></bdt>fulfil<bdt class="else-block"></bdt> and manage your orders. </strong>We may process your information to <bdt class="block-component"></bdt>fulfil<bdt class="else-block"></bdt> and manage your orders, payments, returns, and exchanges made through the Services.<span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                            </span></span></span></span></span></span></span></span></span></span></span></span></li>
-                        </ul>
-                        <div style="line-height: 1.5;">
-                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                            </li>
-                            </ul>
-                            <p style="font-size: 15px; line-height: 1.5;">
-                                <bdt class="block-component"><span style="font-size: 15px;"></bdt></span></span></span></span></span></span></span></span></span></span></span></li>
-                                </ul>
-                            <p style="font-size: 15px; line-height: 1.5;">
-                                <bdt class="block-component"><span style="font-size: 15px;"></bdt></span></span></span></span></span></span></span></span></span></span></span></li>
-                                </ul>
-                            <p style="font-size: 15px; line-height: 1.5;">
-                                <bdt class="block-component"></bdt>
-                            </p>
-                            <ul>
-                                <li style="line-height: 1.5;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong>To request feedback. </strong>We may process your information when necessary to request feedback and to contact you about your use of our Services.<span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                            </span></span></span></span></span></span></span></span></span></span></span></li>
-                            </ul>
-                            <p style="font-size: 15px; line-height: 1.5;">
-                                <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span></span></span></span></li>
-                                </ul>
-                            <div style="line-height: 1.5;">
-                                <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                            </div>
-                            <ul>
-                                <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>To send you marketing and promotional communications. </strong>We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt></span></span><a href="#privacyrights"><span data-custom-class="link"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="link">WHAT ARE YOUR PRIVACY RIGHTS?</span></span></span></a><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                            <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt> below.
-                                        </span>
-                                        <bdt class="statement-end-if-in-editor"><span data-custom-class="body_text"></span></bdt>
-                                    </span></li>
-                            </ul>
-                            <div style="line-height: 1.5;">
-                                <bdt class="block-component"><span style="font-size: 15px;"></bdt></span></span></span></li>
-                                </ul>
-                                <div style="line-height: 1.5;">
-                                    <bdt class="block-component"><span style="font-size: 15px;"></bdt></span></span></span></li>
-                                    </ul>
-                                    <div style="line-height: 1.5;"><span style="font-size: 15px;">
-                                            <bdt class="block-component"><span data-custom-class="body_text"></bdt>
-                                        </span></span></li>
-                                        </ul>
-                                        <div style="line-height: 1.5;">
-                                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></bdt></span></span></li>
-                                            </ul>
-                                            <div style="line-height: 1.5;">
-                                                <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                            </div>
-                                            <ul>
-                                                <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;"><strong>To protect our Services.</strong> We may process your information as part of our efforts to keep our Services safe and secure, including fraud monitoring and prevention.</span></span>
-                                                    <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                </li>
-                                            </ul>
-                                            <div style="line-height: 1.5;">
-                                                <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                </li>
-                                                </ul>
-                                                <div style="line-height: 1.5;">
-                                                    <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                    </li>
-                                                    </ul>
-                                                    <div style="line-height: 1.5;">
-                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                    </div>
-                                                    <ul>
-                                                        <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;"><strong>To evaluate and improve our Services, products, marketing, and your experience.</strong> We may process your information when we believe it is necessary to identify usage trends, determine the effectiveness of our promotional campaigns, and to evaluate and improve our Services, products, marketing, and your experience.</span></span>
-                                                            <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                        </li>
-                                                    </ul>
-                                                    <div style="line-height: 1.5;">
-                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                        </li>
-                                                        </ul>
-                                                        <div style="line-height: 1.5;">
-                                                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                            </li>
-                                                            </ul>
-                                                            <div style="line-height: 1.5;">
-                                                                <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></bdt></span></span></li>
-                                                                </ul>
-                                                                <div style="line-height: 1.5;">
-                                                                    <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></bdt></span></span></li>
-                                                                    </ul>
-                                                                    <div style="line-height: 1.5;">
-                                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>To comply with our legal obligations.</strong> We may process your information to comply with our legal obligations, respond to legal requests, and exercise, establish, or defend our legal rights.<bdt class="statement-end-if-in-editor"></bdt></span></span></li>
-                                                                    </ul>
-                                                                    <div style="line-height: 1.5;">
-                                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                        </li>
-                                                                        </ul>
-                                                                        <div style="line-height: 1.5;">
-                                                                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></bdt></span></span>
-                                                                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                            <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                        </div>
-                                                                        <div style="line-height: 1.5;"><br></div>
-                                                                        <div id="whoshare" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</span></strong></span></span></span></span></span></div>
-                                                                        <div style="line-height: 1.5;"><br></div>
-                                                                        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short:</em></strong><em> We may share information in specific situations described in this section and/or with the following <bdt class="block-component"></bdt>categories of <bdt class="statement-end-if-in-editor"></bdt>third parties.</em></span></span></span></div>
-                                                                        <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                        <bdt class="block-component"></bdt>
-                                                                                    </span></span></span></div>
-                                                                        <div style="line-height: 1.5;"><br></div>
-                                                                        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>Vendors, Consultants, and Other Third-Party Service Providers.</strong> We may share your data with third-party vendors, service providers, contractors, or agents (<bdt class="block-component"></bdt>'<strong>third parties</strong>'<bdt class="else-block"></bdt>) who perform services for us or on our behalf and require access to such information to do that work. <bdt class="block-component"></bdt>We have contracts in place with our third parties, which are designed to help safeguard your personal information. This means that they cannot do anything with your personal information unless we have instructed them to do it. They will also not share your personal information with any <bdt class="block-component"></bdt>organisation<bdt class="else-block"></bdt> apart from us. They also commit to protect the data they hold on our behalf and to retain it for the period we instruct. <bdt class="statement-end-if-in-editor"></bdt>The <bdt class="block-component"></bdt>categories of <bdt class="statement-end-if-in-editor"></bdt>third parties we may share personal information with are as follows:</span></span><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                        <bdt class="block-component"></bdt>
-                                                                                        <bdt class="forloop-component"></bdt>
-                                                                                    </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">Finance & Accounting Tools</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"></bdt>
-                                                                                                                        </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">Government Entities</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"></bdt>
-                                                                                                                        </span></span></span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span data-custom-class="body_text">Order <bdt class="block-component"></bdt>Fulfilment<bdt class="else-block"></bdt> Service Providers</span></li>
-                                                                        </ul>
-                                                                        <div><span data-custom-class="body_text">
-                                                                                <bdt class="block-component"></bdt>
-                                                                            </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">Payment Processors</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"></bdt>
-                                                                                                                        </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">Product Engineering & Design Tools</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"></bdt>
-                                                                                                                        </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">User Account Registration & Authentication Services</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"></bdt>
-                                                                                                                        </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">Data Analytics Services</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"></bdt>
-                                                                                                                        </span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                            <bdt class="question">Data Storage Service Providers</bdt>
-                                                                                        </span></span></span></li>
-                                                                        </ul>
-                                                                        <div><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="forloop-component"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                                                                            </span></span></span></span></span></span></span></span></span></span></span></span></bdt>
-                                                                                                                        </span></span></span></bdt>
-                                                                                                        </span></span></span></span></span></span><span data-custom-class="body_text">
-                                                                                        <bdt class="block-component"></bdt>
-                                                                                    </span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span>
-                                                                            <bdt class="block-component"></bdt></span></span></span></span></span></span></span></span><span data-custom-class="body_text"></span><span data-custom-class="body_text"></span><span data-custom-class="body_text"></span><span data-custom-class="body_text"></span>
-                                                                        </div>
-                                                                        <div style="line-height: 1.5;"><br></div>
-                                                                        <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">We <bdt class="block-component"></bdt>also <bdt class="statement-end-if-in-editor"></bdt>may need to share your personal information in the following situations:</span></span></div>
-                                                                        <ul>
-                                                                            <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</span></span></li>
-                                                                        </ul>
-                                                                        <div style="line-height: 1.5;">
-                                                                            <bdt class="block-component"><span style="font-size: 15px;"></span></bdt>
-                                                                            </li>
-                                                                            </ul>
-                                                                            <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                        <bdt class="block-component"></bdt>
-                                                                                    </span></span></div>
-                                                                            <ul>
-                                                                                <li style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong>When we use Google Maps Platform APIs.</strong> We may share your information with certain Google Maps Platform APIs (e.g.<bdt class="block-component"></bdt> Google Maps API, Places API).</span><span data-custom-class="body_text">
-                                                                                            <bdt class="block-component"></bdt>
-                                                                                            <bdt class="block-component"></bdt> We obtain and store on your device (<bdt class="block-component"></bdt>'cache'<bdt class="else-block"></bdt>) your location<bdt class="block-component"></bdt>. You may revoke your consent anytime by contacting us at the contact details provided at the end of this document.<bdt class="statement-end-if-in-editor"></bdt>
-                                                                                            <bdt class="block-component"></bdt>
-                                                                                        </span></span></li>
-                                                                            </ul>
-                                                                            <div style="line-height: 1.5;"><span style="font-size: 15px;">
-                                                                                    <bdt class="block-component"><span data-custom-class="body_text"></span></bdt>
-                                                                                </span></li>
-                                                                                </ul>
-                                                                                <div style="line-height: 1.5;">
-                                                                                    <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                                </div>
-                                                                                <ul>
-                                                                                    <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;"><strong>Business Partners.</strong> We may share your information with our business partners to offer you certain products, services, or promotions.</span></span>
-                                                                                        <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                                    </li>
-                                                                                </ul>
-                                                                                <div style="line-height: 1.5;">
-                                                                                    <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></bdt></span></span></li>
-                                                                                    </ul>
-                                                                                    <div style="line-height: 1.5;">
-                                                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt><span data-custom-class="body_text"><span style="font-size: 15px;">
-                                                                                                <bdt class="block-component"></bdt>
-                                                                                            </span></span>
-                                                                                    </div>
-                                                                                    <ul>
-                                                                                        <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;"><strong>Offer Wall. </strong>Our application(s) may display a third-party hosted <bdt class="block-component"></bdt>'offer wall'.<bdt class="else-block"></bdt> Such an offer wall allows third-party advertisers to offer virtual currency, gifts, or other items to users in return for the acceptance and completion of an advertisement offer. Such an offer wall may appear in our application(s) and be displayed to you based on certain data, such as your geographic area or demographic information. When you click on an offer wall, you will be brought to an external website belonging to other persons and will leave our application(s). A unique identifier, such as your user ID, will be shared with the offer wall provider in order to prevent fraud and properly credit your account with the relevant reward.<bdt class="statement-end-if-in-editor"></bdt></span></span>
-                                                                                            <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                    <div style="line-height: 1.5;">
-                                                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"><span data-custom-class="heading_1"></span></bdt>
-                                                                                                        </span></span></span></span></span>
-                                                                                    </div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="cookies" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short:</em></strong><em> We may use cookies and other tracking technologies to collect and store your information.</em></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice<span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                            <bdt class="block-component"></bdt>.
-                                                                                                        </span><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                            </span></span></span></span></span></span></span></span><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                                    <bdt class="block-component"></bdt>
-                                                                                                                                </span></span></span></span></span></span></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="sociallogins" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">5. HOW DO WE HANDLE YOUR SOCIAL LOGINS?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short: </em></strong><em>If you choose to register or log in to our Services using a social media account, we may have access to certain information about you.</em></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">Our Services offer you the ability to register and log in using your third-party social media account details (like your Facebook or Twitter logins). Where you choose to do this, we will receive certain profile information about you from your social media provider. The profile information we receive may vary depending on the social media provider concerned, but will often include your name, email address, friends list, and profile picture, as well as other information you choose to make public on such a social media platform.<span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                <bdt class="block-component"></bdt>
-                                                                                                            </span></span> </span>If you log in using Facebook, we may also request access to other permissions related to your account, such as your friends, check-ins, and likes, and you may choose to grant or deny us access to each individual permission.<span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                            </span></span></span></span></span></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We will use the information we receive only for the purposes that are described in this privacy notice or that are otherwise made clear to you on the relevant Services. Please note that we do not control, and are not responsible for, other uses of your personal information by your third-party social media provider. We recommend that you review their privacy notice to understand how they collect, use, and share your personal information, and how you can set your privacy preferences on their sites and apps.<span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                                    </span>
-                                                                                                                                    <bdt class="block-component"><span data-custom-class="body_text">
-                                                                                                                                            <bdt class="block-component"></bdt>
-                                                                                                                                        </span>
-                                                                                                                                </span></span></span></span></span></span></span></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="inforetain" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">6. HOW LONG DO WE KEEP YOUR INFORMATION?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short: </em></strong><em>We keep your information for as long as necessary to <bdt class="block-component"></bdt>fulfil<bdt class="else-block"></bdt> the purposes outlined in this privacy notice unless otherwise required by law.</em></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements).<bdt class="block-component"></bdt> No purpose in this notice will require us keeping your personal information for longer than <span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                <bdt class="block-component"></bdt>
-                                                                                                            </span></span></span>
-                                                                                                    <bdt class="block-component"></bdt>the period of time in which users have an account with us<bdt class="block-component"></bdt><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                <bdt class="else-block"></bdt>
-                                                                                                            </span></span></span>.
-                                                                                                </span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">When we have no ongoing legitimate business need to process your personal information, we will either delete or <bdt class="block-component"></bdt>anonymise<bdt class="else-block"></bdt> such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.<span style="color: rgb(89, 89, 89);">
-                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                    </span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="infosafe" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">7. HOW DO WE KEEP YOUR INFORMATION SAFE?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short: </em></strong><em>We aim to protect your personal information through a system of <bdt class="block-component"></bdt>organisational<bdt class="else-block"></bdt> and technical security measures.</em></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We have implemented appropriate and reasonable technical and <bdt class="block-component"></bdt>organisational<bdt class="else-block"></bdt> security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other <bdt class="block-component"></bdt>unauthorised<bdt class="else-block"></bdt> third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.<span style="color: rgb(89, 89, 89);">
-                                                                                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                    </span><span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                            <bdt class="block-component"></bdt>
-                                                                                                        </span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="infominors" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">8. DO WE COLLECT INFORMATION FROM MINORS?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short:</em></strong><em> We do not knowingly collect data from or market to <bdt class="block-component"></bdt>children under 18 years of age<bdt class="else-block"></bdt>.</em>
-                                                                                                    <bdt class="block-component"></bdt>
-                                                                                                </span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                            <bdt class="block-component"></bdt>
-                                                                                                            <bdt class="question">truetechnologybuzz@gmail.com</bdt>
-                                                                                                            <bdt class="else-block"></bdt>
-                                                                                                        </span></span>.</span><span data-custom-class="body_text">
-                                                                                                    <bdt class="else-block">
-                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                </span></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="privacyrights" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">9. WHAT ARE YOUR PRIVACY RIGHTS?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><em>In Short:</em></strong><em> <span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text"><em>
-                                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                                    </em></span></span> </span>You may review, change, or terminate your account at any time.</em><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;">
-                                                                                                            <bdt class="block-component">
-                                                                                                                <bdt class="block-component">
-                                                                                                        </span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="withdrawconsent" style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><u>Withdrawing your consent:</u></strong> If we are relying on your consent to process your personal information,<bdt class="block-component"></bdt> which may be express and/or implied consent depending on the applicable law,<bdt class="statement-end-if-in-editor"></bdt> you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt></span></span></span><a data-custom-class="link" href="#contact"><span style="font-size: 15px; color: rgb(0, 58, 250);"><span style="font-size: 15px; color: rgb(0, 58, 250);"><span data-custom-class="body_text">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</span></span></span></a><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                    <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt> below<bdt class="block-component"></bdt>.
-                                                                                                </span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">However, please note that this will not affect the lawfulness of the processing before its withdrawal nor,<bdt class="block-component"></bdt> when applicable law allows,<bdt class="statement-end-if-in-editor"></bdt> will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.<bdt class="block-component"></bdt></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><strong><u>Opting out of marketing and promotional communications:</u></strong><strong><u> </u></strong>You can unsubscribe from our marketing and promotional communications at any time by<bdt class="block-component"></bdt> clicking on the unsubscribe link in the emails that we send,<bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                <bdt class="block-component"></bdt>
-                                                                                                <bdt class="block-component"></bdt> or by contacting us using the details provided in the section <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt>
-                                                                                            </span></span><a data-custom-class="link" href="#contact"><span style="color: rgb(0, 58, 250); font-size: 15px;"><span data-custom-class="body_text">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</span></span></a><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                <bdt class="block-component"></bdt>'<bdt class="else-block"></bdt> below. You will then be removed from the marketing lists. However, we may still communicate with you — for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.
-                                                                                            </span><span data-custom-class="body_text">
-                                                                                                <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                            </span></span>
-                                                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                                    </div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="heading_2"><strong>Account Information</strong></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;">If you would at any time like to review or change the information in your account or terminate your account, you can:<bdt class="forloop-component"></bdt></span></span></div>
-                                                                                    <ul>
-                                                                                        <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                                                                                                    <bdt class="question">Log in to your account settings and update your user account.</bdt>
-                                                                                                </span></span></li>
-                                                                                    </ul>
-                                                                                    <div style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                                                                                                <bdt class="forloop-component"></bdt>
-                                                                                            </span></span></div>
-                                                                                    <ul>
-                                                                                        <li style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                                                                                                    <bdt class="question">Contact us using the contact information provided.</bdt>
-                                                                                                </span></span></li>
-                                                                                    </ul>
-                                                                                    <div style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;">
-                                                                                                <bdt class="forloop-component"></bdt>
-                                                                                            </span></span></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</span></span>
-                                                                                        <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                                                <bdt class="block-component"></bdt>
-                                                                                                                            </span></span></span></span></span></span></span></span></span></span>
-                                                                                    </div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. <bdt class="block-component"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                    <bdt class="block-component"></bdt><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);">
-                                                                                                                                            <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                                        </span></span></span></span></span></span>
-                                                                                                                </span></span></span></span></span></span>
-                                                                                        <bdt class="block-component"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                                    </div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span data-custom-class="body_text"><span style="font-size: 15px;">If you have questions or comments about your privacy rights, you may email us at <bdt class="question">truetechnologybuzz@gmail.com</bdt>.</span></span>
-                                                                                        <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"></span></span></bdt>
-                                                                                    </div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="DNT" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">10. CONTROLS FOR DO-NOT-TRACK FEATURES</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track (<bdt class="block-component"></bdt>'DNT'<bdt class="else-block"></bdt>) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for <bdt class="block-component"></bdt>recognising<bdt class="else-block"></bdt> and implementing DNT signals has been <bdt class="block-component"></bdt>finalised<bdt class="else-block"></bdt>. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.<bdt class="block-component"></bdt>
-                                                                                                    </bdt></span></span></span></span></span></span></span></span></span></span></span></bdt></span></span></span></span></span></span></span></span></span></span>
-                                                                                        <bdt class="block-component"><span style="font-size: 15px;"></bdt></span>
-                                                                                        <bdt class="block-component"><span style="font-size: 15px;"></span></bdt>
-                                                                                    </div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="policyupdates" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">11. DO WE MAKE UPDATES TO THIS NOTICE?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><em><strong>In Short: </strong>Yes, we will update this notice as necessary to stay compliant with relevant laws.</em></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">We may update this privacy notice from time to time. The updated version will be indicated by an updated <bdt class="block-component"></bdt>'Revised'<bdt class="else-block"></bdt> date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="contact" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">If you have questions or comments about this notice, you may <span style="color: rgb(89, 89, 89); font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                            <bdt class="block-component">
-                                                                                                                <bdt class="block-component"></bdt>
-                                                                                                            </bdt>email us at <bdt class="question">truetechnologybuzz@gmail.com or </bdt>
-                                                                                                            <bdt class="statement-end-if-in-editor">
-                                                                                                                <bdt class="block-component"></bdt>
-                                                                                                            </bdt>
-                                                                                                        </span></span><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">contact us by post at:</span></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text"><span style="font-size: 15px;"><span style="color: rgb(89, 89, 89);"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                                    <bdt class="question">True Technologies</bdt>
-                                                                                                                </span></span></span></span></span><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                            <bdt class="block-component"></bdt>
-                                                                                                            </bdt>
-                                                                                                        </span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                <bdt class="question">Krishti Plaza, Kalipark, Bablatala, Gopalpur I, Kolkata, West Bengal 700052, India</bdt><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;">
-                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                    </span></span>
-                                                                                            </span></bdt></span></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                <bdt class="question">Kolkata</bdt><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;">
-                                                                                                        <bdt class="block-component"></bdt>, <bdt class="question">West Bengal</bdt>
-                                                                                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                        <bdt class="question">700136</bdt>
-                                                                                                        <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                    </span></span>
-                                                                                            </span></bdt></span></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="block-component"></bdt>
-                                                                                                        </span></span></span>
-                                                                                                <bdt class="question">India</bdt><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                                                                                                            <bdt class="statement-end-if-in-editor"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                                                                                                                            <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                                        </span></span></span></bdt>
-                                                                                                                            <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                        </span></span></span><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;">
-                                                                                                                            <bdt class="statement-end-if-in-editor"></bdt>
-                                                                                                                        </span></span></span></bdt>
-                                                                                                        </span></span></span>
-                                                                                            </span><span data-custom-class="body_text"><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89);">
-                                                                                                            <bdt class="statement-end-if-in-editor"><span style="color: rgb(89, 89, 89);"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                                            <bdt class="block-component">
-                                                                                                                                <bdt class="block-component"></bdt>
-                                                                                                                        </span></span></span>
-                                                                                                        </span></span></span>
-                                                                                                <bdt class="block-component"><span style="font-size: 15px;"></span></bdt><span style="font-size: 15px;"><span data-custom-class="body_text"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px;"><span data-custom-class="body_text">
-                                                                                                                    <bdt class="statement-end-if-in-editor">
-                                                                                                                        <bdt class="block-component"></bdt>
-                                                                                                                </span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div id="request" style="line-height: 1.5;"><span style="color: rgb(127, 127, 127);"><span style="color: rgb(89, 89, 89); font-size: 15px;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span id="control" style="color: rgb(0, 0, 0);"><strong><span data-custom-class="heading_1">13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</span></strong></span></span></span></span></span></div>
-                                                                                    <div style="line-height: 1.5;"><br></div>
-                                                                                    <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">
-                                                                                                    <bdt class="block-component"></bdt>
-                                                                                                    </bdt>You have the right to request access to the personal information we collect from you, change that information, or delete it. <bdt class="statement-end-if-in-editor"></bdt>To request to review, update, or delete your personal information, please <bdt class="block-component">
-                                                                                                </span></bdt><span data-custom-class="body_text">visit: <span style="color: rgb(0, 58, 250);">
-                                                                                                        <bdt class="question"><a href="http://www.cpmplify.in" target="_blank" data-custom-class="link">http://www.cpmplify.in</a></bdt>
-                                                                                                    </span>
-                                                                                                    <bdt class="else-block"></bdt>
-                                                                                                </span></span><span data-custom-class="body_text">.</span></span></span></div>
-                                                                                    <style>
-                                                                                        ul {
-                                                                                            list-style-type: square;
-                                                                                        }
+<svg data-password-visibility-target="icon" xmlns="http://www.w3.org/2000/svg" class fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+</svg>
 
-                                                                                        ul>li>ul {
-                                                                                            list-style-type: circle;
-                                                                                        }
+<svg data-password-visibility-target="icon" xmlns="http://www.w3.org/2000/svg" class="d-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+</svg>
+</button>
+<label for="floatingPassword">Password</label>
+</div>
+<div class="pt-4 row align-items-center">
+<div class="col-6">
+<input class="form-check-input" type="checkbox" value id="flexCheckDefault">
+<label class="form-check-label" for="flexCheckDefault">
+Remember me
+</label>
+</div>
+<div class="col-6 text-end password-text">
+<a href="/reset-password" class="password-text text-decoration-none">Forgot password?</a>
+</div>
+</div>
+<div class="pt-2 pt-md-5">
+<div class="pt-3 pt-md-5 d-flex justify-content-center">
+<button type="submit" class="btn register-card-left-btn text-center text-white w-100 py-3 fs-6 rounded-1">Login</button>
+</div>
+</div>
+<input type="hidden" name="_csrf_token" value="00ea81f1bfa90335336826.NYnTElPbABJKMejAnXyfaTyDEsExdNNjl7t7tocLKac.Q-WbJwWeaHQfVJHt00-oWX_SYY58G5UawdkOxcBpft9h44BiFppaUxh32A">
+</form>
+<div class="pt-4 row align-items-center">
+<div class="col-12 col-md-6 text-md-end text-center">Don’t have an account?</div>
+<a class="col-12 col-md-6 text-decoration-none text-md-start text-center" rel="nofollow" href="/register">
+Create Account!
+</a>
+</div>
+</div>
+</div>
+<div class="col-md-12 col-xl-5 col-sm-12 d-flex flex-column register-card-right p-0">
+<div class="position-absolute register-card-right-img d-none d-md-block">
+<img class="img-fluid" loading="lazy" src="/static/pages/login-img/qr_1.png" alt="Login image">
+</div>
+<div class="register-card-right-inner pt-2 pt-md-5 p-md-5 p-3">
+<div class="mt-5">
+<div class="d-flex justify-content-center register-card-right-logo py-md-5 px-md-5 p-2">
+<img class="img-fluid" loading="lazy" src="/static/pages/login-img/logo.png" alt="ME-QR Logo">
+</div>
+<div class="d-flex flex-column justify-content-between px-md-5 py-md-5 ps-4">
+<div class="d-flex align-items-center pt-3">
+<img class="img-fluid pe-3" loading="lazy" src="/static/pages/login-img/qr_3.png" alt>
+<div class="fs-3 text-capitalize register-card-right-inner-title">What Are We Doing</div>
+</div>
+<div class="fs-6 register-card-right-inner-text col-9">ME-QR provides you the ability to create fully customizable dynamic QR codes of various categories with further collection of scan statistics.</div>
+<div class="d-flex align-items-center pt-5">
+<img class="img-fluid pe-3" loading="lazy" src="/static/pages/login-img/people.png" alt>
+<div class="fs-3 text-capitalize register-card-right-inner-title">Our Audience</div>
+</div>
+<div class="fs-6 register-card-right-inner-text col-9">Our codes can be implemented for both personal and commercial use - no restrictions!</div>
+<div class="d-flex align-items-center pt-5">
+<img class="img-fluid pe-3" loading="lazy" src="/static/pages/login-img/Subtract.png" alt>
+<div class="fs-3 text-capitalize register-card-right-inner-title">Our Benefits</div>
+</div>
+<div class="fs-6 register-card-right-inner-text col-9">All the functionality of our QR code generator is immediately available for free. You can pay only for the extra convenience of your users.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section class="footer bg-dark" data-controller="footer" data-footer-new-home-value="0">
+<div class="container text-info pt-5">
+<div class="row p-0 mb-0 position-relative d-none d-xl-flex">
+<div class="col-xl-5 border-end border-info border-opacity-10">
+<div class="mb-5">
+<img loading="lazy" src="/image/footer/meqr.svg" alt="ME-QR Logo">
+</div>
+<p class="mb-5 pe-xl-5">
+Create codes with our free QR generator of codes. Comprehensible interface, variety in choosing the type of your QR-code, the ability to view statistics!
+</p>
+<div class="mt-xl-3">
+<p class="mb-0 fs-5 text-white">
+Download Our App
+</p>
+<p class="mb-4">
+Now it’s simple and easy to create and scan QR Codes!
+</p>
+<div class="d-flex flex-nowrap ">
+<a target="_blank" href="https://apps.apple.com/ua/app/me-qr-generator/id1601025694?l=ru" class="me-4" rel="nofollow" data-footer-label-param="appstore" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" loading="lazy" src="/image/footer/appStore.png" alt="AppStore Icon"></a>
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.meqr" rel="nofollow" data-footer-label-param="googleplay" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" loading="lazy" src="/image/footer/googlePlay.png" alt="GooglePlay Icon"></a>
+</div>
+</div>
+</div>
+<div class="col-xl-7 col-lg-12 col-md-12 col-12">
+<ul class="row ps-xl-5 ps-0 list-unstyled">
+<li class="col-xl-3 col-6 pe-xl-0">
+<ul class="p-0 lh-lg list-unstyled">
+<li>
+<p class="h6 mb-3 fs-5 text-white">Product</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/#blockAllFeatures" data-footer-label-param="benefits" data-footer-type-param="link" data-action="click->footer#gtagClick">Benefits</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/#blockWhereUse" data-footer-label-param="where_to_use" data-footer-type-param="link" data-action="click->footer#gtagClick">Where To Use</a>
+</li>
+<li>
+<a target="_blank" class="text-reset text-decoration-none" href="/api/doc" data-footer-label-param="api" data-footer-type-param="link" data-action="click->footer#gtagClick">API</a>
+</li>
+<li>
+<a target="_blank" class="text-reset text-decoration-none" href="/affiliate-program" data-action="click->footer#gtagClick">Affiliate Program</a>
+</li>
+</ul>
+</li>
+<li class="col-xl-3 col-6 ps-xl-3">
+<ul class="p-0 lh-lg list-unstyled">
+<li>
+<p class="h6 mb-3 fs-5 text-white">Information</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/instructions-account-and-payment" data-footer-label-param="payment_content" data-footer-type-param="link" data-action="click->footer#gtagClick">Payment &amp; Content
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/pricing" data-footer-label-param="pricing" data-footer-type-param="link" data-action="click->footer#gtagClick">Pricing
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/gdpr" data-footer-label-param="GDPR" data-footer-type-param="link" data-action="click->footer#gtagClick">GDPR
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="https://www.trustpilot.com/review/me-qr.com" data-action="click->footer#gtagClick">TrustPilot
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/customers" data-action="click->footer#gtagClick">Reviews
+</a>
+</li>
+</ul>
+</li>
+<li class="col-xl-3 col-6 ps-xl-3">
+<ul class="p-0 lh-lg list-unstyled">
+<li><p class="h6 mb-3 fs-5 text-white">Legal</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/about-us">About Us
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/instructions-account-and-payment" data-footer-label-param="account_payment" data-footer-type-param="link" data-action="click->footer#gtagClick">Account &amp; Payment
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/privacy-policy" data-footer-label-param="privacy_policy" data-footer-type-param="link" data-action="click->footer#gtagClick">Privacy Policy
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/terms-and-conditions" data-footer-label-param="terms_conditions" data-footer-type-param="link" data-action="click->footer#gtagClick">Terms &amp; Conditions
+</a>
+</li>
+</ul>
+</li>
+<li class="col-xl-3 col-6 ps-xl-5 ">
+<ul class="p-0 lh-lg list-unstyled">
+<li><p class="h6 mb-3 fs-5 text-white">Support</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/faq" data-footer-label-param="faq" data-footer-type-param="link" data-action="click->footer#gtagClick">FAQ
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/instructions" data-footer-label-param="instructions" data-footer-type-param="link" data-action="click->footer#gtagClick">Instructions
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/page/articles?url=blog" data-footer-label-param="blog" data-footer-type-param="link" data-action="click->footer#gtagClick">Blog
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/support-chat" data-footer-label-param="help_center" data-footer-type-param="link" data-action="click->footer#gtagClick">Help Center
+</a>
+</li>
+</ul>
+</li>
+<li class="col-12 mt-xl-4" data-controller="subscribes--subscribe" data-subscribes--subscribe-new-home-value="0">
+<div class="d-flex justify-content-between">
+<p class="h6 fs-5 text-white">
+Our Newsletter
+</p>
+<div class="d-flex ">
+<div class="text-end">
+<div class="d-inline pe-2">
+<a target="_blank" href="https://www.instagram.com/me_team_company/" rel="nofollow external noopener noreferrer" data-footer-label-param="instagram" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" src="/image/footer/instagram.svg" alt="Instagram Icon" loading="lazy"></a>
+</div>
+<div class="d-inline pe-2">
+<a target="_blank" href="https://www.facebook.com/meteamco/" rel="nofollow external noopener noreferrer" data-footer-label-param="facebook" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" src="/image/footer/facebook.svg" alt="Facebook Icon" loading="lazy"></a>
+</div>
+<div class="d-inline">
+<a target="_blank" href="https://www.youtube.com/channel/UC1dFtSZOUtuse150GgaZktg" rel="nofollow external noopener noreferrer" data-footer-label-param="youtube" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" src="/image/footer/youtube.svg" alt="YouTube Icon" loading="lazy"></a>
+</div>
+</div>
+</div>
+</div>
+<form class="row align-items-start" data-subscribes--subscribe-target="form">
+<input type="hidden" name="_csrf_token" value="ecf0f619db9c41e2d5a5c89d.N09pvPdKCJVbKeG2TTydo8TjM6tw0b1bWyO7OQTo3N0.aHo23oYHR8Mdc5v_KF3_8aerXd89pdswGFaWVG-9pZp6LijlsBNR4wRHsA" disabled>
+<label for="exampleInputPassword1" class="form-label pb-4">Subscribe to our newsletter to receive our latest news and special offers.
+</label>
+<div class="col-xl-9">
+<input data-action="subscribes--subscribe#handleInput" data-subscribes--subscribe-target="input" name="email" type="email" class="form-control border-info bg-dark p-3 text-white" placeholder="Enter your email">
+<p data-subscribes--subscribe-target="message" class="fs-5 text-white mt-1"></p>
+</div>
+<div class="col-xl-3">
+<button type="submit" class="btn btn-light pe-5 ps-5 fw-bold py-3" data-subscribes--subscribe-url-param="/mailing/create" data-action="click->subscribes--subscribe#addEmail">
+Subscribe</button>
+</div>
+</form>
+</li>
+</ul>
+</div>
+</div>
+<div class="row p-0 mb-0 position-relative d-flex d-xl-none">
+<div class="col-xl-5">
+<p class="mb-5 pe-xl-5">
+Create codes with our free QR generator of codes. Comprehensible interface, variety in choosing the type of your QR-code, the ability to view statistics!
+</p>
+</div>
+<div class="col-12">
+<ul class="row ps-xl-5 list-unstyled footer-list">
+<li class="col-6 mb-4">
+<ul class="p-0 lh-lg list-unstyled">
+<li><p class="h6 mb-3 fs-5 text-white">Product</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/#blockAllFeatures" data-footer-label-param="benefits" data-footer-type-param="link" data-action="click->footer#gtagClick">Benefits</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/#blockWhereUse" data-footer-label-param="where_to_use" data-footer-type-param="link" data-action="click->footer#gtagClick">Where To Use</a>
+</li>
+<li>
+<a target="_blank" class="text-reset text-decoration-none" href="/api/doc" data-footer-label-param="api" data-footer-type-param="link" data-action="click->footer#gtagClick">API</a>
+</li>
+<li>
+<a target="_blank" class="text-reset text-decoration-none" href="/affiliate-program" data-action="click->footer#gtagClick">Affiliate Program</a>
+</li>
+</ul>
+</li>
+<li class="col-6 mb-4">
+<ul class="p-0 lh-lg list-unstyled">
+<li><p class="h6 mb-3 fs-5 text-white">Information</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/instructions-account-and-payment" data-footer-label-param="payment_content" data-footer-type-param="link" data-action="click->footer#gtagClick">Payment &amp; Content
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/pricing" data-footer-label-param="pricing" data-footer-type-param="link" data-action="click->footer#gtagClick">Pricing
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/gdpr" data-footer-label-param="GDPR" data-footer-type-param="link" data-action="click->footer#gtagClick">GDPR
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="https://www.trustpilot.com/review/me-qr.com" data-action="click->footer#gtagClick">TrustPilot
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/customers" data-action="click->footer#gtagClick">Reviews
+</a>
+</li>
+</ul>
+</li>
+<li class="col-6 mb-4">
+<ul class="p-0 lh-lg list-unstyled">
+<li><p class="h6 mb-3 fs-5 text-white">Legal</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/about-us">About Us
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/instructions-account-and-payment" data-footer-label-param="account_payment" data-footer-type-param="link" data-action="click->footer#gtagClick">Account &amp; Payment
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/privacy-policy" data-footer-label-param="privacy_policy" data-footer-type-param="link" data-action="click->footer#gtagClick">Privacy Policy
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/terms-and-conditions" data-footer-label-param="terms_conditions" data-footer-type-param="link" data-action="click->footer#gtagClick">Terms &amp; Conditions
+</a>
+</li>
+</ul>
+</li>
+<li class="col-6 mb-4">
+<ul class="p-0 lh-lg list-unstyled">
+<li><p class="h6 mb-3 fs-5 text-white">Support</p>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/faq" data-footer-label-param="faq" data-footer-type-param="link" data-action="click->footer#gtagClick">FAQ
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/instructions" data-footer-label-param="instructions" data-footer-type-param="link" data-action="click->footer#gtagClick">Instructions
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/page/articles?url=blog" data-footer-label-param="blog" data-footer-type-param="link" data-action="click->footer#gtagClick">Blog
+</a>
+</li>
+<li>
+<a class="text-reset text-decoration-none" href="/support-chat" data-footer-label-param="help_center" data-footer-type-param="link" data-action="click->footer#gtagClick">Help Center
+</a>
+</li>
+</ul>
+</li>
+<li class="col-12 mt-xl-4" data-controller="subscribes--subscribe" data-subscribes--subscribe-new-home-value="0">
+<p class="h6 fs-5 text-white">
+Our Newsletter
+</p>
+<form class="row align-items-center" data-subscribes--subscribe-target="form">
+<input type="hidden" name="_csrf_token" value="15ed2f1.JnomCPamaKai4tWbihvLryUYU1xs9QjIW-572Qk69ys.eU95aofrJ_DkuK_S73qp_UZQPSghgW6jGJtWtGJvjmxrG2dRsf8x0P2MhA">
+<label for="exampleInputPassword1" class="form-label pb-4">Subscribe to our newsletter to receive our latest news and special offers.
+</label>
+<div class="mb-3 col-lg-7">
+<input type="email" name="email" class="form-control border-info bg-dark p-3 text-white" placeholder="Enter your email" data-action="subscribes--subscribe#handleInput" data-subscribes--subscribe-target="input">
+<p data-subscribes--subscribe-target="message" class="fs-5 text-white mt-1"></p>
+</div>
+<div class>
+<button type="submit" class="col-12 btn btn-lg btn-light pe-5 ps-5 fs-5 pt-3 pb-3 fw-semibold fs-6 col-lg-3" data-subscribes--subscribe-url-param="/mailing/create" data-action="click->subscribes--subscribe#addEmail">
+Subscribe</button>
+</div>
+</form>
+</li>
+</ul>
+</div>
+<div class="col-12">
+<p class="mt-5 mb-0 fs-5 text-white">
+Download Our App
+</p>
+<p class="fs-6 mb-4">
+Now it’s simple and easy to create and scan QR Codes!
+</p>
+<div class="d-flex flex-nowrap ">
+<a target="_blank" href="https://apps.apple.com/ua/app/me-qr-generator/id1601025694?l=ru" class=" me-4" rel="nofollow" data-footer-label-param="appstore" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" loading="lazy" src="/image/footer/appStore.png" alt="AppStore Icon"></a>
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.meqr" rel="nofollow" data-footer-label-param="googleplay" data-footer-type-param="button" data-action="click->footer#gtagClick"><img class="img-fluid" loading="lazy" src="/image/footer/googlePlay.png" alt="GooglePlay Icon"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="container border-top border-info border-opacity-10 pt-4 pb-4 mt-4">
+<div class="products-block ">
+<div class="products-container d-flex flex-wrap justify-content-around">
+<a target="_blank" href="https://me-ticket.com/" class="me-xl-5 mb-3" data-footer-label-param="meticket" data-footer-type-param="link" data-action="click->footer#gtagClick"> <img loading="lazy" src="/image/footer/meticket.svg" alt="meticket" style="width: 80%;">
+</a>
+<a target="_blank" href="https://me-page.org/?bannerid=7555841913" class="me-xl-5 mb-3" data-footer-label-param="mepage" data-footer-type-param="link" data-action="click->footer#gtagClick"> <img loading="lazy" src="/image/footer/mepage.svg" alt="mepage" style="width: 80%;">
+</a>
+<a target="_blank" href="https://me-qr-review.com/" class="me-xl-5 mb-3" data-footer-label-param="mereview" data-footer-type-param="link" data-action="click->footer#gtagClick">
+<img loading="lazy" src="/image/footer/mereview.svg" alt="mereview" style="width: 80%;">
+</a>
+<a target="_blank" href="https://me-booking.com/" class="me-xl-5 mb-3" data-footer-label-param="mebooking" data-footer-type-param="link" data-action="click->footer#gtagClick">
+<img loading="lazy" src="/image/footer/mebooking.svg" alt="mebooking" style="width: 80%;">
+</a>
+<a target="_blank" href="https://me-ads.org/" class="me-xl-5 mb-3" data-footer-label-param="meads" data-footer-type-param="link" data-action="click->footer#gtagClick">
+<img loading="lazy" src="/image/footer/meads.svg" alt="meads" style="width: 80%;">
+</a>
+<a target="_blank" href="https://me-qr-city.com/" class="me-xl-5 mb-3" data-footer-label-param="mecity" data-footer-type-param="link" data-action="click->footer#gtagClick">
+<img loading="lazy" src="/image/footer/mecity.svg" alt="mecity" style="width: 80%;">
+</a>
+<a target="_blank" href="https://me-promo.com/" data-footer-label-param="mepromo" data-footer-type-param="link" data-action="click->footer#gtagClick"> <img loading="lazy" src="/image/footer/mepromo.svg" alt="mepromo" style="width: 80%;">
+</a>
+</div>
+</div>
+</div>
+</section>
+<div class="privacy-footer">
+<div class="container d-flex justify-content-between align-items-center">
+<p class="fs-6 m-0 p-2 text-info">Copyright © 2018-2024<a class="text-decoration-none text-reset" target="_blank" href="https://me-team.org/">
+<b>Me-Team</b>
+</a>
+</p>
+<div>
+<img loading="lazy" src="/image/footer/visa.png" width="30" height="20" alt="Visa">
+<img loading="lazy" src="/image/footer/mastercard.png" width="30" height="20" alt="Master Card">
+<img loading="lazy" src="/image/footer/paypal.png" width="30" height="20" alt="PayPal">
+</div>
+</div>
+</div>
 
-                                                                                        ul>li>ul>li>ul {
-                                                                                            list-style-type: square;
-                                                                                        }
+<script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-LNNBBTRGEJ');
+        function ga(w, d) {
 
-                                                                                        ol li {
-                                                                                            font-family: Arial;
-                                                                                        }
-                                                                                    </style>
-                                                                                </div>
-                                                                                <div style="color: #595959;font-size: 14px;font-family: Arial;padding-top:16px;">
-                                                                                    This privacy policy was created using Termly's <a style="color: rgb(48, 48, 241) !important;" href="https://termly.io/products/privacy-policy-generator/">Privacy Policy Generator</a>.
-                                                                                </div>
+            function gar() {
+                var s = document.createElement('script');
+                s.async = 1;
+                s.type = 'text/javascript';
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LNNBBTRGEJ';
+                (d.body || d.head).appendChild(s);
+            }
+            gar();
+        }
+        setTimeout(function () {ga(window, document)}, 4000);
+    </script>
 
+
+
+<script type="text/javascript">
+            if(!window.webview) {
+                function a(w, d) {
+                    w.HelpCrunch = function () {
+                        w.HelpCrunch.q.push(arguments)
+                    };
+                    w.HelpCrunch.q = [];
+
+                    function r() {
+                        var s = document.createElement('script');
+                        s.async = 1;
+                        s.type = 'text/javascript';
+                        s.src = 'https://widget.helpcrunch.com/';
+                        (d.body || d.head).appendChild(s);
+                    }
+
+                    r();
+                }
+                setTimeout(function () {a(window, document)}, 3000);
+            }
+        </script>
+<script type="text/javascript">
+            if(!window.webview) {
+                setTimeout(function () {
+                    HelpCrunch('init', 'meteam', {
+                        applicationId: 1,
+                        applicationSecret: '0zJerEeJKnnuZHzgCJC/LZmP/fKzNw3LiHJAcJvIYxar8YduPwOeTGJKE0DGVp1bcrIeADG+68VCrWO3IabN6A==',
+                                            })
+
+                    HelpCrunch('showChatWidget');
+                    HelpCrunch('onChatOpen', () => dataLayer.push({'event': 'Me-Team_Support'}));
+                }, 3500);
+            }
+        </script>
+
+<script defer src="https://me-qr.com/assets/js/lazy.js?v=02072023"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"858e56f47a339e28","r":1,"version":"2024.2.1","token":"ba9386ef69374dbc9ca25bc62eb77e0a"}' crossorigin="anonymous"></script>
 </body>
-
 </html>
+' alt='Create qr code for free'></a><a href='https://me-qr.com' border='0' style='cursor:default;display:none'>Create qr code for free</a>

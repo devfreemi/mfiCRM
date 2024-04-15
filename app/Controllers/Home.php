@@ -158,6 +158,10 @@ class Home extends BaseController
     {
         return view('api/api_login');
     }
+    public function api_v1_login_mobile()
+    {
+        return view('api/api_login_mobile');
+    }
     public function api_v1_mobile()
     {
         return view('api/api_mobile');
@@ -217,5 +221,9 @@ class Home extends BaseController
     public function api_v1_payment_response()
     {
         return view('api/api_payment_response');
+    }
+    public function api_v1_mobile_count()
+    {
+        return view('api/api_mobile_count');
     }
 }

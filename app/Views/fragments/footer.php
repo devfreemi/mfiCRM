@@ -7,8 +7,8 @@
                 <script>
                     document.write(new Date().getFullYear());
                 </script>
-                , made with <span class="text-danger"><i class="tf-icons mdi mdi-heart"></i></span> by
-                <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">TrueTechnology</a>
+                , powered by
+                <a href="https://truetechnologies.in/" target="_blank" class="footer-link fw-medium">TrueTechnologies</a>
             </div>
 
         </div>

@@ -24,22 +24,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // Data
 $data = json_decode(file_get_contents("php://input"));
-$customer_id = $data->customerIDM;
-$mobile = $data->mobileNumber;
-if ($customer_id != "") {
+$mobile_id = $data->mobileID;
+
+if ($mobile_id != "") {
     $db = db_connect();
     $builder = $db->table('customerDetails');
-    $data = [
-        'uniqidMobile'            => $data->uniqid,
-        'mobile'            => $data->mobileNumber,
-
-    ];
-    $builder->where('uniqid', $customer_id);
-    $builder->update($data);
-    $response = array(
-        "mobile" => $mobile,
-        "status" => "Mobile Number Update"
-    );
+    $builder->where('mobile', $mobile_id);
+    $count = $builder->countAllResults();
+    if ($count > 0) {
+        $builder->select('uniqid');
+        $builder->where('mobile', $mobile_id);
+        $query = $builder->get();
+        foreach ($query->getResult() as $row) {
+            $userId = $row->uniqid;
+        }
+        $response = array(
+            "uniqid" => $userId,
+            "status" => "Fetched"
+        );
+    } else {
+        $response = array(
+            "status" => "New User"
+        );
+    }
 } else {
     $response = 'INTERNAL FAILLURE';
 }

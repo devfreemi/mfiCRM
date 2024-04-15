@@ -68,17 +68,17 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar">
                                                         <div class="avatar-initial bg-success rounded shadow">
-                                                            <i class="mdi mdi-trending-up mdi-24px"></i>
+                                                            <i class="mdi mdi-progress-pencil mdi-24px"></i>
                                                         </div>
                                                     </div>
                                                     <div class="ms-3">
-                                                        <div class="small mb-1">Jobs</div>
-                                                        <?php $db = db_connect();
-                                                        $builderSer = $db->table('servicesDetails');
-                                                        $countSer = $builderSer->countAllResults();
+                                                        <div class="small mb-1">WIP <small>(Work in progress)</small></div>
+                                                        <?php $builderWIP = $db->table('servicesDetails');
+                                                        $builderWIP->where('status', "Pending");
+                                                        $countWIP = $builderWIP->countAllResults();
 
                                                         ?>
-                                                        <h5 class="mb-0"><?php echo $countSer; ?></h5>
+                                                        <h5 class="mb-0"><?php echo $countWIP; ?></h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,17 +86,17 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar">
                                                         <div class="avatar-initial bg-warning rounded shadow">
-                                                            <i class="mdi mdi-cellphone-link mdi-24px"></i>
+                                                            <i class="mdi mdi-progress-check mdi-24px"></i>
                                                         </div>
                                                     </div>
                                                     <div class="ms-3">
-                                                        <div class="small mb-1">Product</div>
-                                                        <?php $db = db_connect();
-                                                        $builder = $db->table('product');
-                                                        $count = $builder->countAllResults();
+                                                        <div class="small mb-1">Complete Jobs</div>
+                                                        <?php $builderCOJ = $db->table('servicesDetails');
+                                                        $builderCOJ->where('status', "Pending");
+                                                        $countCOJ = $builderCOJ->countAllResults();
 
                                                         ?>
-                                                        <h5 class="mb-0"><?php echo $count; ?></h5>
+                                                        <h5 class="mb-0"><?php echo $countCOJ; ?></h5>
 
                                                     </div>
                                                 </div>
@@ -105,13 +105,13 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar">
                                                         <div class="avatar-initial bg-info rounded shadow">
-                                                            <i class="mdi mdi-currency-usd mdi-24px"></i>
+                                                            <i class="mdi mdi-currency-rupee mdi-24px"></i>
                                                         </div>
                                                     </div>
                                                     <div class="ms-3">
-                                                        <div class="small mb-1">Total Pending Payment</div>
+                                                        <div class="small mb-1">Total Payment Received</div>
                                                         <?php
-                                                        $sql = $db->query('SELECT SUM(`price`) AS totalDue FROM `servicesDetails` WHERE `status` = "Pending PAyment"');
+                                                        $sql = $db->query('SELECT SUM(`price`) AS totalDue FROM `servicesDetails` WHERE `status` = "Payment Success"');
                                                         foreach ($sql->getResult() as $rows) {
                                                             $totalDue = $rows->totalDue;
                                                         }
@@ -146,6 +146,7 @@
                                                 $builder = $db->table('customerDetails');
                                                 $builder->select('*');
                                                 $builder->join('servicesDetails', 'servicesDetails.customer_id = customerDetails.uniqid');
+                                                $builder->orderBy('servicesDetails.id', 'DESC');
                                                 $query = $builder->get();
                                                 foreach ($query->getResult() as $row) {
                                                     $product_id = $row->product_id;
@@ -153,12 +154,15 @@
                                                     $builder_name->where('id', $product_id);
                                                     $query_name = $builder_name->get();
                                                     foreach ($query_name->getResult() as $row_name) {
-                                                        if ($row->status == "Approved" || $row->status == "Received") {
-                                                            $badgeCL = "bg-label-primary";
-                                                        } elseif ($row->status == "Pending") {
-                                                            # code...
+                                                        if ($row->status == "Approved") {
                                                             $badgeCL = "bg-label-warning";
+                                                        } elseif ($row->status == "New Customer") {
+                                                            # code...
+                                                            $badgeCL = "bg-primary";
                                                         } elseif ($row->status == "Pending Payment") {
+                                                            # code...
+                                                            $badgeCL = "bg-label-dark";
+                                                        } elseif ($row->status == "Pending Initiated") {
                                                             # code...
                                                             $badgeCL = "bg-label-info";
                                                         } elseif ($row->status == "Completed") {
@@ -289,7 +293,7 @@
                                                 <a class="fw-medium" href="javascript:void(0);">View all</a>
                                             </div>
                                             <div class="pt-2">
-                                                <ul class="p-0 m-0">
+                                                <!-- <ul class="p-0 m-0">
                                                     <li class="d-flex mb-4 align-items-center pb-2">
                                                         <div class="flex-shrink-0 me-3">
                                                             <img src="<?php echo base_url(); ?>/assets/img/icons/brands/google.png" class="img-fluid" alt="google" height="30" width="30" />
@@ -350,7 +354,9 @@
                                                             <h6 class="text-danger mb-0">-$21</h6>
                                                         </div>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
+                                                <p class="mb-0 text-danger fw-bold text-center my-5 py-5">No Jobs to Show !</p>
+
                                             </div>
                                         </div>
                                     </div>
