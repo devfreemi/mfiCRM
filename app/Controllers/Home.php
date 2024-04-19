@@ -214,9 +214,9 @@ class Home extends BaseController
     {
         return view('api/api_license_trade');
     }
-    public function api_v1_application_pan()
+    public function api_v1_license_trademark()
     {
-        return view('api/api_application_pan');
+        return view('api/api_license_trademark');
     }
     public function api_v1_payment_response()
     {

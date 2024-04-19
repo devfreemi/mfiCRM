@@ -105,7 +105,7 @@ $uniq_id = $uri->getSegment(2);
                                                         ?>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating form-floating-outline">
-                                                                    <input type="text" class="form-control" id="prop" name="prop" readonly value="" />
+                                                                    <input type="text" class="form-control" id="prop" name="prop" readonly value="<?php echo $row->company_entity; ?>" />
                                                                     <label for="address">Type of Business</label>
                                                                 </div>
                                                             </div>
@@ -132,9 +132,9 @@ $uniq_id = $uri->getSegment(2);
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
                                                                 <select id="status" class="select2 form-select" name="status">
-                                                                    <option value="Pending" <?php if ($row->status === 'Pending') echo 'selected="selected"'; ?>>Pending</option>
-                                                                    <option value="Received" <?php if ($row->status === 'Received') echo 'selected="selected"'; ?>>Received</option>
-                                                                    <option value="Approved" <?php if ($row->status === 'Approved') echo 'selected="selected"'; ?>>Approved</option>
+                                                                    <option value="New Customer" <?php if ($row->status === 'New Customer') echo 'selected="selected"'; ?>>New Customer</option>
+                                                                    <option value="Payment Initiate" <?php if ($row->status === 'Payment Initiate') echo 'selected="selected"'; ?>>Payment Initiate</option>
+                                                                    <option value="Work Approved" <?php if ($row->status === 'Approved') echo 'selected="selected"'; ?>>Work Approved</option>
                                                                     <option value="Pending Payment" <?php if ($row->status === 'Pending Payment') echo 'selected="selected"'; ?>>Pending Payment</option>
                                                                     <option value="Completed" <?php if ($row->status === 'Completed') echo 'selected="selected"'; ?>>Completed</option>
                                                                     <option value="Rejected" <?php if ($row->status === 'Rejected') echo 'selected="selected"'; ?>>Rejected</option>

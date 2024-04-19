@@ -26,7 +26,7 @@ $routes->add('service-api-compliance-v1', 'Home::api_v1_service_compliance');
 // License
 $routes->add('license-api-gst-v1', 'Home::api_v1_license_gst');
 $routes->add('license-api-trade-v1', 'Home::api_v1_license_trade');
-$routes->add('license-api-pan-v1', 'Home::api_v1_application_pan');
+$routes->add('registration-api-trademark-v1', 'Home::api_v1_license_trademark');
 // Others
 $routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');
 $routes->add('dashboard-api-service-list-v1', 'Home::api_v1_dashboard_ser_list');
