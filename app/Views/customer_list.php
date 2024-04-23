@@ -77,9 +77,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php
-                    echo hash_hmac('sha256', 'order_O1gNQizv9ZNbgr|pay_O1gOzCm3yx7Atd', '5Tj6UnAptHc2oB8lNJvdeIf7');
-                    ?>
                     <!-- / Content -->
                     <?php include 'fragments/footer.php' ?>
 
