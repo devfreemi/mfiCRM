@@ -31,7 +31,7 @@ if ($customer_id != "") {
     $builder = $db->table('payment');
     $builder->where('customerID', $customer_id);
     $builder->where('paymentStatus', 'created');
-    $builder->orWhere('paymentStatus', 'Initiated');
+    $builder->orWhere('paymentStatus', 'Payment Success');
 
     $count = $builder->countAllResults();
 

@@ -78,12 +78,6 @@ $uniq_id = $uri->getSegment(2);
 
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-floating form-floating-outline">
-                                                                <input type="text" class="form-control" id="pan" name="pan" placeholder="Address" readonly value="<?php echo $row->customer_pan; ?>" />
-                                                                <label for="address">PAN Number</label>
-                                                            </div>
-                                                        </div>
                                                         <?php
                                                         if ($product_id == 1) {
                                                             # code... 
@@ -112,6 +106,19 @@ $uniq_id = $uri->getSegment(2);
                                                         <?php } ?>
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
+                                                                <input type="text" class="form-control" id="pan" name="pan" placeholder="Address" readonly value="<?php echo $row->customer_pan; ?>" />
+                                                                <label for="pan">PAN Number</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating form-floating-outline">
+                                                                <input type="text" class="form-control" id="aadhar" name="aadhar" placeholder="Address" readonly value="<?php echo $row->adhar; ?>" />
+                                                                <label for="aadhar">Aadhar Number</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating form-floating-outline">
                                                                 <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="<?php echo $row->address; ?>" />
                                                                 <label for="address">Address</label>
                                                             </div>
@@ -128,7 +135,12 @@ $uniq_id = $uri->getSegment(2);
                                                                 <label for="zipCode">Zip Code</label>
                                                             </div>
                                                         </div>
-
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating form-floating-outline">
+                                                                <input type="text" class="form-control" id="pStatus" name="pStatus" readonly value="<?php echo $row->paymentStatus; ?>" />
+                                                                <label for="pStatus">Payment Status</label>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-md-6">
                                                             <div class="form-floating form-floating-outline">
                                                                 <select id="status" class="select2 form-select" name="status">
