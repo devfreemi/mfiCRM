@@ -45,7 +45,6 @@ foreach ($queryPrice->getResult() as $rowPrice) {
 }
 
 if ($data->productID != "") {
-    $db = db_connect();
     $builder = $db->table('servicesDetails');
 
     $builder->where('customer_id', $customer_id);
