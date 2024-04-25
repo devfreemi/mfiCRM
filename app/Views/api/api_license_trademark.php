@@ -35,7 +35,10 @@ $builderPrice = $db->table('price');
 $builderPrice->where('pId', $productID);
 $queryPrice = $builderPrice->get();
 foreach ($queryPrice->getResult() as $rowPrice) {
+    $product_gst = $rowPrice->gst;
     $product_price = $rowPrice->price;
+    $product_price = round($product_price + ($product_price * ($product_gst / 100)));
+    $product_msg = $rowPrice->comments;
 }
 
 $uniqid = uniqid();
@@ -77,7 +80,7 @@ if ($data->productID != "") {
         $builderPayment = $db->table('payment');
         // PAYMENT INTEGRATION
         $arrayOrder = array(
-            'receipt' => 'INV' . substr($customer_id, -4),
+            'receipt' => 'INV/' . substr($customer_id, -4) . '/' . $productID,
             'amount' => $product_price,
             'currency' => 'INR',
             'notes' => array(
@@ -107,7 +110,7 @@ if ($data->productID != "") {
         if ($httpCode == 200) {
             $orderResponseDecode = json_decode($curl_response_order, true);
             $dataPayment = [
-                'jpbID'             => $uniqid,
+                'jobID'             => $uniqid,
                 'p_id'             => $productID,
                 'orderID'           => $orderResponseDecode['id'],
                 'customerID'        => $customer_id,
@@ -123,7 +126,7 @@ if ($data->productID != "") {
         } else {
             $orderResponseDecode = json_decode($curl_response_order, true);
             $dataPayment = [
-                'jpbID'             => $uniqid,
+                'jobID'             => $uniqid,
                 'p_id'             => $productID,
                 'customerID'        => $customer_id,
                 'paymentStatus'     =>  $orderResponseDecode['status'],
@@ -168,6 +171,7 @@ if ($data->productID != "") {
             "AmountUI"      => number_format($orderResponseDecode['amount_due']),
             "statusCode"    => 200,
             "statusPayment"        => $orderResponseDecode['status'],
+            "ProductPriceCommnets" => $product_msg,
             "status" => "Your Application Is Successfully Submited"
         );
     }

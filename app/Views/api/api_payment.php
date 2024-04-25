@@ -48,6 +48,7 @@ if ($customer_id != "") {
         }
         $response = array(
             "product"       => $pName,
+            "applicationId"       => $row->jobID,
             "OrderId"       => $row->orderID,
             "Receipt"       => $row->receipt,
             "Amount"        => $row->amount,
