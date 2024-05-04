@@ -30,6 +30,7 @@ $routes->add('registration-api-trademark-v1', 'Home::api_v1_license_trademark');
 // Others
 $routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');
 $routes->add('dashboard-api-service-list-v1', 'Home::api_v1_dashboard_ser_list');
+$routes->add('application-api-view-v1', 'Home::api_v1_application_view');
 $routes->add('profile-api-v1', 'Home::api_v1_profile');
 // Payment
 $routes->add('payment-api-v1', 'Home::api_v1_payment');

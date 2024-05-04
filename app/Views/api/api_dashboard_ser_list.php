@@ -42,9 +42,13 @@ if ($customer_id != "") {
             foreach ($query_name->getResult() as $row_name) {
 
                 $response[] = array(
+                    "productId" => $product_id,
+                    "jobId" => $row->uniqid,
                     "product" => $row_name->productName,
+                    "product_image" => $row_name->product_icon,
                     "statusCode" => 200,
                     "status" => $row->status,
+                    "PaymentStatus" => $row->paymentStatus,
 
                 );
             }
@@ -52,7 +56,6 @@ if ($customer_id != "") {
     } else {
         $response = array(
             "statusCode" => 201,
-
         );
     }
 } else {

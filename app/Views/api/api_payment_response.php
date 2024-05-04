@@ -45,7 +45,8 @@ if ($order_id != "") {
         // Service TABLE Payment response
         $builderService = $db->table('servicesDetails');
         $dataService = [
-            'paymentStatus'                 => 'Payment Success'
+            'paymentStatus'                 => 'Payment Success',
+            'pay_date'                      => date('Y-m-d')
         ];
         $builderService->where('uniqid', $applicationId);
         $builderService->update($dataService);
@@ -66,7 +67,8 @@ if ($order_id != "") {
         // Service TABLE Payment response
         $builderService = $db->table('servicesDetails');
         $dataService = [
-            'paymentStatus'                 => 'Payment Failed'
+            'paymentStatus'                 => 'Payment Failed',
+            'pay_date'                      => date('Y-m-d')
         ];
         $builderService->where('uniqid', $applicationId);
         $builderService->update($dataService);

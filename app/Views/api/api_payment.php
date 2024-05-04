@@ -30,8 +30,9 @@ if ($customer_id != "") {
     $db = db_connect();
     $builder = $db->table('payment');
     $builder->where('customerID', $customer_id);
-    $builder->where('paymentStatus', 'created');
-    $builder->orWhere('paymentStatus', 'Payment Success');
+    $builder->orderBy('date', 'DESC');
+    $builder->orderBy('time', 'DESC');
+
 
     $count = $builder->countAllResults();
 
@@ -49,12 +50,6 @@ if ($customer_id != "") {
         $response = array(
             "product"       => $pName,
             "applicationId"       => $row->jobID,
-            "OrderId"       => $row->orderID,
-            "Receipt"       => $row->receipt,
-            "Amount"        => $row->amount,
-            "Name"        => $row->name,
-            "Mobile"        => substr($row->mobile, 3),
-            "Email"        => $row->email,
             "AmountUI"      => number_format($row->amount),
             "statusCode"    => 200,
             "status"        => $row->paymentStatus,

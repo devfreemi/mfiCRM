@@ -110,7 +110,7 @@ class Home extends BaseController
                 $orderResponseDecode = json_decode($curl_response_order, true);
                 // $order_id =  $orderResponseDecode['id'];
                 $dataPayment = [
-                    'jpbID'             => $this->request->getPost('uniqID'),
+                    'jobID'             => $this->request->getPost('uniqID'),
                     'p_id'             => $this->request->getPost('productID'),
                     'orderID'           => $orderResponseDecode['id'],
                     'customerID'        => $this->request->getPost('customerID'),
@@ -135,7 +135,7 @@ class Home extends BaseController
             $builderPayment = $db->table('payment');
             // $order_id =  $orderResponseDecode['id'];
             $dataPayment = [
-                'jpbID'             => $this->request->getPost('uniqID'),
+                'jobID'             => $this->request->getPost('uniqID'),
                 'p_id'             => $this->request->getPost('productID'),
                 'orderID'           => "Null",
                 'customerID'        => $this->request->getPost('customerID'),
@@ -225,5 +225,9 @@ class Home extends BaseController
     public function api_v1_mobile_count()
     {
         return view('api/api_mobile_count');
+    }
+    public function api_v1_application_view()
+    {
+        return view('api/api_application_view');
     }
 }
