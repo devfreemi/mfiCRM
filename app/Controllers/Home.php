@@ -99,7 +99,7 @@ class Home extends BaseController
             curl_setopt($curlO, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curlO, CURLOPT_POST, 1);
             curl_setopt($curlO, CURLOPT_POSTFIELDS, $data_string_order_api);
-            curl_setopt($curlO, CURLOPT_USERPWD, "rzp_test_nM0gkKKYwEqjex:5Tj6UnAptHc2oB8lNJvdeIf7");
+            curl_setopt($curlO, CURLOPT_USERPWD, "rzp_live_bnIERNe35ujSDt:UAlkDT92HfqVRIiIADQA0d7d");
             curl_setopt($curlO, CURLOPT_HTTPHEADER, $header_js_Order);
 
             //Execute cURL
@@ -225,6 +225,10 @@ class Home extends BaseController
     public function api_v1_mobile_count()
     {
         return view('api/api_mobile_count');
+    }
+    public function api_v1_email_count()
+    {
+        return view('api/api_email_count');
     }
     public function api_v1_application_view()
     {

@@ -100,7 +100,7 @@ if ($data->productID != "") {
         curl_setopt($curlO, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlO, CURLOPT_POST, 1);
         curl_setopt($curlO, CURLOPT_POSTFIELDS, $data_string_order_api);
-        curl_setopt($curlO, CURLOPT_USERPWD, "rzp_test_nM0gkKKYwEqjex:5Tj6UnAptHc2oB8lNJvdeIf7");
+        curl_setopt($curlO, CURLOPT_USERPWD, "rzp_live_bnIERNe35ujSDt:UAlkDT92HfqVRIiIADQA0d7d");
         curl_setopt($curlO, CURLOPT_HTTPHEADER, $header_js_Order);
 
         //Execute cURL
@@ -108,6 +108,7 @@ if ($data->productID != "") {
         $httpCode = curl_getinfo($curlO, CURLINFO_HTTP_CODE);
         if ($httpCode == 200) {
             $orderResponseDecode = json_decode($curl_response_order, true);
+            $paymentResponse = $orderResponseDecode['status'];
             $dataPayment = [
                 'jobID'             => $uniqid,
                 'p_id'             => $productID,
@@ -122,13 +123,30 @@ if ($data->productID != "") {
                 'time'              => date('h:i:s'),
             ];
             $builderPayment->upsert($dataPayment);
+            $response = array(
+                "uniqid" => $uniqid,
+                "customer_id" => $customer_id,
+                "product_id" => $productID,
+                "OrderId"       => $orderResponseDecode['id'],
+                "Receipt"       => $orderResponseDecode['receipt'],
+                "Amount"        => $orderResponseDecode['amount_due'],
+                "Name"        => $customerName,
+                "Mobile"        => substr($mobile, 3),
+                "Email"        => "null",
+                "AmountUI"      => number_format($orderResponseDecode['amount_due']),
+                "statusCode"    => 200,
+                "statusPayment"        => $orderResponseDecode['status'],
+                "ProductPriceCommnets" => $product_msg,
+                "status" => "Your Application Is Successfully Submited"
+            );
         } else {
             $orderResponseDecode = json_decode($curl_response_order, true);
+            $paymentResponse = $orderResponseDecode['error']['code'];
             $dataPayment = [
                 'jobID'             => $uniqid,
                 'p_id'             => $productID,
                 'customerID'        => $customer_id,
-                'paymentStatus'     =>  $orderResponseDecode['status'],
+                'paymentStatus'     =>  $orderResponseDecode['error']['code'],
                 'name'           => $customerName,
                 'mobile'           => $mobile,
                 'date'              => date('Y-m-d'),
@@ -139,7 +157,7 @@ if ($data->productID != "") {
                 "uniqid"        => $uniqid,
                 "customer_id"   => $customer_id,
                 "product_id"    => $productID,
-                "statusPayment" => "Payment Failed Due To Internal Error",
+                "statusPayment" => "Payment Failed",
                 "status"        => "Your Application Is Successfully Submited"
             );
         }
@@ -154,25 +172,9 @@ if ($data->productID != "") {
             'trade_name'   => $data->company,
             'company_entity'   => $data->selectRadio,
             'date'   => date('Y-m-d'),
-            'paymentStatus'   => $orderResponseDecode['status'],  //Payment
+            'paymentStatus'   => $paymentResponse,  //Payment
         ];
         $builder->insert($data);
-        $response = array(
-            "uniqid" => $uniqid,
-            "customer_id" => $customer_id,
-            "product_id" => $productID,
-            "OrderId"       => $orderResponseDecode['id'],
-            "Receipt"       => $orderResponseDecode['receipt'],
-            "Amount"        => $orderResponseDecode['amount_due'],
-            "Name"        => $customerName,
-            "Mobile"        => substr($mobile, 3),
-            "Email"        => "null",
-            "AmountUI"      => number_format($orderResponseDecode['amount_due']),
-            "statusCode"    => 200,
-            "statusPayment"        => $orderResponseDecode['status'],
-            "ProductPriceCommnets" => $product_msg,
-            "status" => "Your Application Is Successfully Submited"
-        );
     }
 } else {
     $response = 'INTERNAL FAILLURE';

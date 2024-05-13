@@ -30,7 +30,7 @@ $signature = $data->razorpay_signature_id;
 $applicationId = $data->appId;
 
 if ($order_id != "") {
-    $generateSignature = hash_hmac('sha256', $order_id . "|" . $payment_id, '5Tj6UnAptHc2oB8lNJvdeIf7');
+    $generateSignature = hash_hmac('sha256', $order_id . "|" . $payment_id, 'UAlkDT92HfqVRIiIADQA0d7d');
     $db = db_connect();
     $builder = $db->table('payment');
     if ($generateSignature == $signature) {

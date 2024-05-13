@@ -111,7 +111,7 @@
                                                     <div class="ms-3">
                                                         <div class="small mb-1">Total Payment Received</div>
                                                         <?php
-                                                        $sql = $db->query('SELECT SUM(`price`) AS totalDue FROM `servicesDetails` WHERE `status` = "Payment Success"');
+                                                        $sql = $db->query('SELECT SUM(`amount`) AS totalDue FROM `payment` WHERE `paymentStatus` = "Payment Success"');
                                                         foreach ($sql->getResult() as $rows) {
                                                             $totalDue = $rows->totalDue;
                                                         }
@@ -248,20 +248,22 @@
                                                 <a class="fw-medium" href="javascript:void(0);">View all</a>
                                             </div>
                                             <div class="pt-2">
-                                                <?php $builderSerC = $db->table('servicesDetails');
-                                                $builderSerC->where('status', "Pending Payment");
-                                                $countSerC = $builderSerC->countAllResults();
+                                                <?php
+                                                $sqlCount = $db->query('SELECT COUNT(*) AS totalCount FROM `payment` WHERE `paymentStatus` = "Signature Verification Failed"');
+                                                foreach ($sqlCount->getResult() as $row2Count) {
+                                                    $countSerC = $row2Count->totalCount;
+                                                }
                                                 if ($countSerC > 0) {
                                                 ?>
                                                     <ul class="p-0 m-0">
                                                         <?php
                                                         $builder = $db->table('customerDetails');
                                                         $builder->select('*');
-                                                        $builder->join('servicesDetails', 'servicesDetails.customer_id = customerDetails.uniqid');
-                                                        $builder->where('status', "Pending Payment");
+                                                        $builder->join('payment', 'payment.customerID = customerDetails.uniqid');
+                                                        $builder->where('paymentStatus', "Signature Verification Failed",);
                                                         $query = $builder->get();
                                                         foreach ($query->getResult() as $row) {
-                                                            $product_id = $row->product_id;
+                                                            $product_id = $row->p_id;
                                                             $builder_name = $db->table('product');
                                                             $builder_name->where('id', $product_id);
                                                             $query_name = $builder_name->get();
@@ -276,7 +278,7 @@
                                                                             <h6 class="mb-0"><?php echo $row->name; ?></h6>
                                                                             <small><?php echo $row_name->productName; ?></small>
                                                                         </div>
-                                                                        <h6 class="text-success mb-0">Rs. <?php echo number_format($row->price); ?></h6>
+                                                                        <h6 class="text-success mb-0">Rs. <?php echo number_format($row->amount); ?></h6>
                                                                     </div>
                                                                 </li>
                                                         <?php }
