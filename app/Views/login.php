@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Complyify CRM | TrueTechnologies
+    <title>MFI CRM | TrueTechnologies
     </title>
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,54 +39,83 @@
     <?php } else {
     ?>
         <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
-        <link href="https://resources.freemi.in/mdbtheme/4.8.10/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://resources.freemi.in/mdbtheme/4.8.10/css/mdb.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-        <script type="text/javascript" src="https://resources.freemi.in/mdbtheme/4.8.10/js/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript" src="https://resources.freemi.in/mdbtheme/4.8.10/js/popper.min.js" async="true"></script>
-        <script type="text/javascript" src="https://resources.freemi.in/mdbtheme/4.8.10/js/bootstrap.min.js" async="true"></script>
-        <script type="text/javascript" src="https://resources.freemi.in/mdbtheme/4.8.10/js/mdb.min.js" async="true"></script>
         <!-- STYLES -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/login.css" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="assets/css/app.css" />
+        <link rel="stylesheet" href="assets/css/material-icon/css/material-design-iconic-font.min.css">
 
-        <section class="sign-in my-5">
-            <div class="container">
-                <h2 class="form-title">Sign in</h2>
-                <?php if (session()->getFlashdata('loginmsg')) : ?>
-                    <p class="text-center text-danger"><?= session()->getFlashdata('loginmsg') ?></p>
-                <?php endif;
-                echo $session->get("userId");
-                ?>
+        <main class="d-flex w-100">
+            <div class="container d-flex flex-column">
+                <div class="row vh-100">
+                    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+                        <div class="d-table-cell align-middle">
 
-                <div class="signin-content">
-                    <div class="signin-image d-md-block d-none">
-                        <figure><img src="<?php echo base_url(); ?>/assets/images/signup-image.jpg" alt="sing up image"></figure>
-                    </div>
+                            <div class="text-center mt-4">
+                                <h1 class="h2">Welcome back!</h1>
+                                <p class="lead">
+                                    Sign in to your account to continue
+                                </p>
+                            </div>
 
-                    <div class="signin-form">
-                        <form method="POST" class="register-form" id="login-form" action="<?php echo base_url(); ?>tax/backoffice-user-login">
-                            <div class="form-group">
-                                <label for="your_id"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" maxlength="10" name="userid" required id="userid" placeholder="Your User ID" autocomplete="off" />
+                            <div class="card">
+                                <div class="card-body">
+                                    <?php if (session()->getFlashdata('loginmsg')) : ?>
+                                        <p class="text-center text-danger"><?= session()->getFlashdata('loginmsg') ?></p>
+                                    <?php endif;
+                                    echo $session->get("userId");
+                                    ?>
+                                    <div class="m-sm-3">
+                                        <form action="<?= base_url() ?>backoffice-user-login" method="post">
+                                            <?= csrf_field('auth') ?>
+                                            <div class="mb-3">
+                                                <label class="form-label">UserId</label>
+                                                <input class="form-control form-control-lg" type="text" maxlength="10" name="userId" id="userId" placeholder="Your User ID" autocomplete="off" value="<?= set_value('userId'); ?>" />
+                                                <mute class="text-danger"><?php
+                                                                            if (isset($validation)) {
+                                                                                # code...
+                                                                                if ($validation->hasError("userId")) {
+                                                                                    # code...
+                                                                                    echo $validation->getError("userId");
+                                                                                }
+                                                                            } ?></mute>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Password</label>
+                                                <input class="form-control form-control-lg" type="password" maxlength="8" name="password" id="password" placeholder="Password" />
+                                                <mute class="text-danger"><?php
+                                                                            if (isset($validation)) {
+                                                                                # code...
+                                                                                if ($validation->hasError("password")) {
+                                                                                    # code...
+                                                                                    echo $validation->getError("password");
+                                                                                }
+                                                                            } ?></mute>
+                                            </div>
+
+                                            <div class="d-grid gap-2 mt-3">
+                                                <input type="submit" class="btn btn-lg btn-primary" value="Login">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password" required />
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="w-auto btn btn-withdr btn-hover rounded" value="Log in" />
-                            </div>
-                        </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </main>
 
         <!-- -->
     <?php  }
     ?>
 </body>
+<script src="assets/js/app.js"></script>
 
 </html>

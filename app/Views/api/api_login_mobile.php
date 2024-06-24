@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $data = json_decode(file_get_contents("php://input"));
 $uniqid = $data->uniqid;
 $email = $data->email;
+$mobile = $data->mobile;
+$mobile = preg_replace('/\s+/', '', $mobile);
 
 if ($uniqid != "") {
     $db = db_connect();
@@ -41,7 +43,7 @@ if ($uniqid != "") {
         'loginWith'   => $data->loginWith,
         'email'      => $email,
         'uniqidMobile'            => $data->uniqidMobile,
-        'mobile'            => $data->mobile,
+        'mobile'            => $mobile,
     ];
     $builder->where('uniqid', $uniqid);
     $count = $builder->countAllResults();

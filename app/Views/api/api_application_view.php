@@ -41,7 +41,7 @@ if ($job_id != "") {
         foreach ($query_pay->getResult() as $row_pay) {
             $orderId =  $row_pay->orderID;
             $receipt =  $row_pay->receipt;
-            $amount =  $row_pay->amount;
+            $amount =  $row_pay->amountPay;
             $email =  $row_pay->email;
             $mobile =  $row_pay->mobile;
             $name =  $row_pay->name;
@@ -58,7 +58,7 @@ if ($job_id != "") {
         "email" => $email,
         "mobile" => $mobile,
         "name" => $name,
-        "AmountUI"      => number_format($amount),
+        "AmountUI"      => number_format($amount / 100),
         "dateTime" => $date . " " . $time,
         "status" => "Fetched",
     );
