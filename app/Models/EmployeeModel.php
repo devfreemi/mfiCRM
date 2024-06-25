@@ -12,7 +12,7 @@ class EmployeeModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['name', 'mobile', 'employeeID', 'email'];
 
     // Dates
     protected $useTimestamps = false;

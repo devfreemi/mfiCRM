@@ -1,45 +1,45 @@
 <nav id="sidebar" class="sidebar js-sidebar">
-    <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.html">
-            <span class="align-middle">MFI CRM</span>
-        </a>
+	<div class="sidebar-content js-simplebar">
+		<a class="sidebar-brand" href="index.html">
+			<span class="align-middle">MFI CRM</span>
+		</a>
 
-        <ul class="sidebar-nav">
-            <li class="sidebar-header">
-                Menu
-            </li>
+		<ul class="sidebar-nav">
+			<li class="sidebar-header">
+				Menu
+			</li>
 
-            <li class="sidebar-item active">
-                <a class="sidebar-link" href="index.html">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                </a>
-            </li>
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="<?= base_url() ?>">
+					<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+				</a>
+			</li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-profile.html">
-                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Groups</span>
-                </a>
-            </li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="pages-profile.html">
+					<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Groups</span>
+				</a>
+			</li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-in.html">
-                    <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Members</span>
-                </a>
-            </li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="pages-sign-in.html">
+					<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Members</span>
+				</a>
+			</li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-up.html">
-                    <i class="align-middle" data-feather="user"></i> <span class="user">Employee</span>
-                </a>
-            </li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>employee">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Employee</span>
+				</a>
+			</li>
 
-            <!--<li class="sidebar-item">
+			<!--<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-blank.html">
 							<i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
 						</a>
 					</li> -->
 
-            <!-- <li class="sidebar-header">
+			<!-- <li class="sidebar-header">
 						Tools & Components
 					</li>
 
@@ -91,8 +91,8 @@
 							<i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
 						</a>
 					</li> -->
-        </ul>
+		</ul>
 
 
-    </div>
+	</div>
 </nav>

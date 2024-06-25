@@ -11,6 +11,8 @@ $routes->add('backoffice-user-login', 'Auth::login_validation');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('dashboard', 'Home::dashboard');
+    $routes->add('employee', 'Home::employee');
+    $routes->add('add-employee', 'Employee::add_employee');
     $routes->add('logout', 'Auth::logout');
 });
 
@@ -20,8 +22,10 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 });
 
 // API FOR APP SERVICE
-$routes->add('login-api-v1', 'Home::api_v1_login');
-$routes->add('mobile-login-api-v1', 'Home::api_v1_login_mobile');
+$routes->add('api/login-api-v1', 'Employee::api_login');
+
+
+
 $routes->add('mobile-api-v1', 'Home::api_v1_mobile');
 $routes->add('mobile-count-api-v1', 'Home::api_v1_mobile_count');
 $routes->add('email-count-api-v1', 'Home::api_v1_email_count');

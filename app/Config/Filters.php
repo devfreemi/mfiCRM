@@ -26,6 +26,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'AuthCheck'     => \App\Filters\AuthCheck::class,
         'LoginCheck'     => \App\Filters\LoginCheck::class,
+        'AuthFilterJWT'     => \App\Filters\AuthFilterJWT::class,
     ];
 
     /**

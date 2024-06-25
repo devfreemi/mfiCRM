@@ -17,19 +17,19 @@ class Employee extends BaseController
         //
         $employeeModel = new EmployeeModel();
 
-        $mobile = $this->request->getVar('mobile');
+        $employeeID = $this->request->getVar('employeeID');
 
-        $user = $employeeModel->where('mobile', $mobile)->first();
+        $user = $employeeModel->where('employeeID', $employeeID)->first();
 
         if (is_null($user)) {
-            return $this->respond(['error' => 'Invalid Mobile Number.'], 401);
+            return $this->respond(['error' => 'Invalid Employee ID.'], 401);
         }
 
 
 
         $key = getenv('JWT_SECRET');
         $iat = time(); // current timestamp value
-        $exp = $iat + 3600;
+        $exp = $iat + 3600 * 24;
 
         $payload = array(
             "iss" => "truetechnologies.in",
@@ -37,7 +37,7 @@ class Employee extends BaseController
             "sub" => "API Security",
             "iat" => $iat, //Time the JWT issued at
             "exp" => $exp, // Expiration time of token
-            "email" => $user['email'],
+            // "mobile" => $user['mobile'],
         );
 
         $token = JWT::encode($payload, $key, 'HS256');
@@ -50,32 +50,39 @@ class Employee extends BaseController
         return $this->respond($response, 200);
     }
 
-    public function api_register()
+    public function add_employee()
     {
         $rules = [
-            'email' => ['rules' => 'required|min_length[4]|max_length[255]|valid_email|is_unique[users.email]'],
-            'password' => ['rules' => 'required|min_length[8]|max_length[255]'],
-            'confirm_password'  => ['label' => 'confirm password', 'rules' => 'matches[password]']
+            'email' => ['rules' => 'required|min_length[4]|max_length[255]|valid_email|is_unique[employees.email]'],
+            'mobile' => ['rules' => 'required|min_length[10]|max_length[10]|is_unique[employees.mobile]'],
+            'name' => ['rules' => 'required|min_length[5]|max_length[64]'],
+            'designation' => ['rules' => 'required|min_length[3]|max_length[64]'],
         ];
 
 
         if ($this->validate($rules)) {
             $model = new EmployeeModel();
+            $mobile = $this->request->getVar('mobile');
+            $mobileTwo = substr($mobile, -2);
             $data = [
                 'email'    => $this->request->getVar('email'),
-                'mobile' => $this->request->getVar('password'),
+                'mobile' => $this->request->getVar('mobile'),
                 'name' => $this->request->getVar('name'),
-                'employeeID' => $this->request->getVar('employeeID'),
+                'employeeID' => $this->request->getVar('employeeID') . $mobileTwo,
+                'designation' => $this->request->getVar('designation'),
             ];
-            $model->save($data);
+            // $model->save($data);
 
-            return $this->respond(['message' => 'Registered Successfully'], 200);
+            $query = $model->insert($data);
+            if (!$query) {
+                # code...
+                return redirect()->back()->with('fail', 'Internal Exception');
+            } else {
+                # code...
+                return redirect()->to(base_url() . 'employee');
+            }
         } else {
-            $response = [
-                'errors' => $this->validator->getErrors(),
-                'message' => 'Invalid Inputs'
-            ];
-            return $this->fail($response, 409);
+            return redirect()->back()->with('fail', 'Invalid Inputs');
         }
     }
 }
