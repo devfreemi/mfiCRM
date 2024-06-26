@@ -24,6 +24,11 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 // API FOR APP SERVICE
 $routes->add('api/login-api-v1', 'Employee::api_login');
 
+$routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
+    $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
+});
+// $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee', ['filter' => 'AuthFilterJWT']);
+
 
 
 $routes->add('mobile-api-v1', 'Home::api_v1_mobile');

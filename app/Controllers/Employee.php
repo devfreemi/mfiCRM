@@ -56,7 +56,6 @@ class Employee extends BaseController
             'email' => ['rules' => 'required|min_length[4]|max_length[255]|valid_email|is_unique[employees.email]'],
             'mobile' => ['rules' => 'required|min_length[10]|max_length[10]|is_unique[employees.mobile]'],
             'name' => ['rules' => 'required|min_length[5]|max_length[64]'],
-            'designation' => ['rules' => 'required|min_length[3]|max_length[64]'],
         ];
 
 

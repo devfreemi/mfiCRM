@@ -43,8 +43,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="desig" class="form-label">Employee Designation</label>
-                                        <select class="form-select" aria-label="Employee Designation" required name="designation">
-                                            <option selected disabled>Select Designation</option>
+                                        <select class="form-select" required name="designation">
+                                            <option selected value="" disabled>Select Designation</option>
                                             <option value="Back Office">Back Office</option>
                                             <option value="Field Agent">Field Agent</option>
                                             <!-- <option value="3">Three</option> -->
@@ -87,7 +87,7 @@
                                         <td><?php echo $row->mobile; ?></td>
                                         <td><?php echo $row->email; ?></td>
                                         <td><?php echo $row->created_at; ?></td>
-                                        <td>Field Agent</td>
+                                        <td><?php echo $row->designation; ?></td>
                                         <td>Active</td>
                                     </tr>
                                 <?php } ?>
