@@ -14,9 +14,13 @@
 					<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 				</a>
 			</li>
-
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="pages-profile.html">
+				<a class="sidebar-link" href="<?= base_url() ?>branch">
+					<i class="align-middle" data-feather="book"></i> <span class="align-middle">Branch</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>group">
 					<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Groups</span>
 				</a>
 			</li>
@@ -33,11 +37,7 @@
 				</a>
 			</li>
 
-			<!--<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-blank.html">
-							<i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-						</a>
-					</li> -->
+
 
 			<!-- <li class="sidebar-header">
 						Tools & Components

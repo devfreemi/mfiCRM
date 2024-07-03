@@ -14,4 +14,12 @@ class Home extends BaseController
     {
         return view('employee');
     }
+    public function branch()
+    {
+        return view('branch');
+    }
+    public function group()
+    {
+        return view('group');
+    }
 }

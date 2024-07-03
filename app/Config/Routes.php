@@ -13,6 +13,9 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('dashboard', 'Home::dashboard');
     $routes->add('employee', 'Home::employee');
     $routes->add('add-employee', 'Employee::add_employee');
+    $routes->add('branch', 'Home::branch');
+    $routes->add('add-branch', 'BranchDetails::add_branch');
+    $routes->add('group', 'Home::group');
     $routes->add('logout', 'Auth::logout');
 });
 
@@ -26,8 +29,11 @@ $routes->add('api/login-api-v1', 'Employee::api_login');
 
 $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
+    $routes->add('api/branch-details-api-v1', 'BranchApi::barnch_api');
+    $routes->add('api/branch-list-api-v1', 'BranchListAPI::barnch_list_api');
+    $routes->add('api/creat-group-api-v1', 'GroupApi::add_group');
 });
-// $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee', ['filter' => 'AuthFilterJWT']);
+// $routes->add('api/creat-group-api-v1', 'GroupApi::add_group');
 
 
 
