@@ -1,0 +1,11 @@
+INFO - 2024-07-05 06:32:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-05 06:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-05 06:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-05 06:51:56 --> Firebase\JWT\ExpiredException: Expired token
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 176.
+ 1 APPPATH/Filters/AuthFilterJWT.php(52): Firebase\JWT\JWT::decode()
+ 2 SYSTEMPATH/Filters/Filters.php(182): App\Filters\AuthFilterJWT->before()
+ 3 SYSTEMPATH/CodeIgniter.php(474): CodeIgniter\Filters\Filters->run()
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')

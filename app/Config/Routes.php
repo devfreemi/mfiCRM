@@ -32,8 +32,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/branch-details-api-v1', 'BranchApi::barnch_api');
     $routes->add('api/branch-list-api-v1', 'BranchListAPI::barnch_list_api');
     $routes->add('api/creat-group-api-v1', 'GroupApi::add_group');
+    $routes->add('api/group-list-api-v1', 'GroupListApi::group_list_api');
 });
-// $routes->add('api/creat-group-api-v1', 'GroupApi::add_group');
+// $routes->add('api/group-list-api-v1', 'GroupListApi::group_list_api');
+
 
 
 
