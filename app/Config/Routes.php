@@ -16,6 +16,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('branch', 'Home::branch');
     $routes->add('add-branch', 'BranchDetails::add_branch');
     $routes->add('group', 'Home::group');
+    $routes->add('members', 'Home::members');
     $routes->add('logout', 'Auth::logout');
 });
 
@@ -33,8 +34,12 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/branch-list-api-v1', 'BranchListAPI::barnch_list_api');
     $routes->add('api/creat-group-api-v1', 'GroupApi::add_group');
     $routes->add('api/group-list-api-v1', 'GroupListApi::group_list_api');
+    $routes->add('api/group-details-api-v1', 'GroupDetailsApi::group_details');
+    $routes->add('api/add-member-api-v1', 'MemberController::add_member');
+    $routes->add('api/view-total-member-api-v1', 'MemberController::view_member');
+    $routes->add('api/member-list-api-v1', 'MemberController::member_list_api');
 });
-// $routes->add('api/group-list-api-v1', 'GroupListApi::group_list_api');
+// $routes->add('api/member-list-api-v1', 'MemberController::member_list_api');
 
 
 

@@ -26,7 +26,7 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="pages-sign-in.html">
+				<a class="sidebar-link" href="<?= base_url() ?>members">
 					<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Members</span>
 				</a>
 			</li>

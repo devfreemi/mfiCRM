@@ -22,4 +22,8 @@ class Home extends BaseController
     {
         return view('group');
     }
+    public function members()
+    {
+        return view('members');
+    }
 }
