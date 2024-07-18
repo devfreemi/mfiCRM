@@ -38,8 +38,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/add-member-api-v1', 'MemberController::add_member');
     $routes->add('api/view-total-member-api-v1', 'MemberController::view_member');
     $routes->add('api/member-list-api-v1', 'MemberController::member_list_api');
+    $routes->add('api/member-view-api-v1', 'MemberController::member_view_api');
 });
-// $routes->add('api/member-list-api-v1', 'MemberController::member_list_api');
+// $routes->add('api/member-view-api-v1', 'MemberController::member_view_api');
 
 
 

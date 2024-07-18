@@ -71,4 +71,18 @@ class MemberController extends BaseController
 
         return $this->respond($member, 200);
     }
+    public function member_view_api()
+    {
+        //
+        $model = new MemberModel();
+        $memberID = $this->request->getVar('memberID');
+
+        $member = $model->where('member_id', $memberID)->first();
+
+        if (is_null($member)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond(['member' => $member], 200);
+    }
 }
