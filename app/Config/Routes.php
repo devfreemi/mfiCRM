@@ -39,8 +39,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/view-total-member-api-v1', 'MemberController::view_member');
     $routes->add('api/member-list-api-v1', 'MemberController::member_list_api');
     $routes->add('api/member-view-api-v1', 'MemberController::member_view_api');
+    $routes->add('api/member-loan-api-v1', 'LoanApi::applied_loan');
+    $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
 });
-// $routes->add('api/member-view-api-v1', 'MemberController::member_view_api');
+// $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
 
 
 
