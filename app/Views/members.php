@@ -24,7 +24,7 @@
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Group Name</th>
-                                    <th>Group Name</th>
+                                    <th>Group ID</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
                                     <th>Aadhaar Number</th>

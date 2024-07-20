@@ -17,6 +17,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('add-branch', 'BranchDetails::add_branch');
     $routes->add('group', 'Home::group');
     $routes->add('members', 'Home::members');
+    $routes->add('loan', 'Home::loan');
+    $routes->add('application-view', 'Home::loan_view');
     $routes->add('logout', 'Auth::logout');
 });
 
@@ -41,8 +43,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/member-view-api-v1', 'MemberController::member_view_api');
     $routes->add('api/member-loan-api-v1', 'LoanApi::applied_loan');
     $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
+    $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
 });
-// $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
+// $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
 
 
 

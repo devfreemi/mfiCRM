@@ -46,4 +46,17 @@ class LoanApi extends BaseController
 
         return $this->respond($loan, 200);
     }
+    public function details_of_loan()
+    {
+        $model = new LoanModel();
+        $loanID   = $this->request->getVar('loanID');
+
+        $loan = $model->where('applicationID', $loanID)->first();
+
+        if (!$loan) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond($loan, 200);
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\User_login_model;
+
 
 class Home extends BaseController
 {
@@ -25,5 +25,13 @@ class Home extends BaseController
     public function members()
     {
         return view('members');
+    }
+    public function loan()
+    {
+        return view('loan');
+    }
+    public function loan_view()
+    {
+        return view('loan_view');
     }
 }

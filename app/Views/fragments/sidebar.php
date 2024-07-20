@@ -30,12 +30,17 @@
 					<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Members</span>
 				</a>
 			</li>
-
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>loan">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Loan Applications</span>
+				</a>
+			</li>
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="<?= base_url() ?>employee">
 					<i class="align-middle" data-feather="user"></i> <span class="user">Employee</span>
 				</a>
 			</li>
+
 
 
 
