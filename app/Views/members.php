@@ -1,10 +1,8 @@
 <?php include 'fragments/head.php'; ?>
 <?php include 'fragments/sidebar.php'; ?>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/2.0.8/css/dataTables.foundation.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+<link href="https://cdn.datatables.net/2.1.0/css/dataTables.bootstrap5.css" rel="stylesheet">
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.foundation.js"></script>
+<script src="https://cdn.datatables.net/2.1.0/js/dataTables.bootstrap5.js"></script>
 
 <div class="main">
 
@@ -18,7 +16,7 @@
 
                 <div class="col-xl-12 col-xxl-12 d-flex">
                     <div class="w-100">
-                        <table id="branch" class="display hover">
+                        <table id="branch" class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Id</th>

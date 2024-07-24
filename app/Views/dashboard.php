@@ -26,12 +26,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h1 class=" mt-1 mb-3">8</h1>
-                                        <div class="mb-0">
-                                            <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i>
-                                                -3.65% </span>
-                                            <span class="text-muted">Since last week</span>
-                                        </div>
+                                        <?php
+                                        $db = db_connect();
+                                        $builder = $db->table('groups');
+
+                                        $query = $builder->countAll();
+
+                                        ?>
+                                        <h1 class=" mt-1 mb-3"><?php echo $query; ?></h1>
+
+
                                     </div>
                                 </div>
                                 <div class="card">
@@ -70,12 +74,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h1 class="mt-1 mb-3">118</h1>
-                                        <div class="mb-0">
-                                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65%
-                                            </span>
-                                            <span class="text-muted">Since last week</span>
-                                        </div>
+                                        <?php
+                                        $db = db_connect();
+                                        $builder_mem = $db->table('members');
+
+                                        $query_mem = $builder_mem->countAll();
+
+                                        ?>
+                                        <h1 class="mt-1 mb-3"><?php echo $query_mem; ?></h1>
+
                                     </div>
                                 </div>
                                 <div class="card">

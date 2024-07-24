@@ -59,4 +59,22 @@ class LoanApi extends BaseController
 
         return $this->respond($loan, 200);
     }
+    public function update_of_loan()
+    {
+        // $model = new LoanModel();
+        $db = db_connect();
+        $builder = $db->table('loans');
+        $applicationid   = $this->request->getPost('applicationid');
+        $data = [
+
+            'loan_status'      => $this->request->getPost('status'),
+        ];
+
+        $builder->where('applicationID', $applicationid);
+        $query = $builder->update($data);
+
+        $session = session();
+        $session->setFlashdata('msg', 'Loan Status Updated!');
+        return redirect()->to(base_url() . 'loan');
+    }
 }

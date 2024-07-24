@@ -22,6 +22,7 @@ class GroupApi extends BaseController
             'location'  => $this->request->getVar('location'),
             'pincode'   => $this->request->getVar('pincode'),
             'group_type'  => $this->request->getVar('groupType'),
+            'agent'  => $this->request->getVar('employeeID'),
         ];
 
         // $query = $model->insert($data);

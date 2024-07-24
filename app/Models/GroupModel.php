@@ -12,7 +12,7 @@ class GroupModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['g_name', 'g_id', 'branch', 'location', 'pincode', 'group_type', 'group_leader'];
+    protected $allowedFields    = ['g_name', 'g_id', 'branch', 'location', 'pincode', 'group_type', 'group_leader', 'agent'];
 
     // Dates
     protected $useTimestamps = false;

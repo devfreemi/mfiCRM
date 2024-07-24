@@ -34,4 +34,8 @@ class Home extends BaseController
     {
         return view('loan_view');
     }
+    public function group_view()
+    {
+        return view('group_view');
+    }
 }

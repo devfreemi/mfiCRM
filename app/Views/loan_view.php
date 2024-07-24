@@ -3,6 +3,7 @@
     $builder = $db->table('loans');
     $builder->select('*');
     $builder->join('members', 'members.member_id = loans.member_id');
+    $builder->where('applicationID', $_POST["appli_id"]);
     $query = $builder->get();
     foreach ($query->getResult() as $row) {
         $e_id =  $row->employee_id;
@@ -15,10 +16,11 @@
 
             <div class="modal-body" id="application_detail">
 
-                <form class="row g-3">
+                <form class="row g-3" action="<?= base_url() ?>update-loan" method="post">
+                    <?= csrf_field('auth') ?>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Application ID</label>
-                        <input type="text" class="form-control" id="applicationid" readonly value="<?php echo $_POST["appli_id"]; ?>">
+                        <input type="text" class="form-control" id="applicationid" name="applicationid" readonly value="<?php echo $row->applicationID; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="name" class="form-label">Member Name</label>
@@ -59,16 +61,19 @@
                     </div>
                     <div class="col-md-6">
                         <label for="inputState" class="form-label">Status</label>
-                        <select id="inputState" class="form-select">
+                        <select id="inputState" class="form-select" name="status">
                             <option selected disabled>Choose</option>
-                            <option value="New Customer" <?php if ($row->loan_status === 'Applied') echo 'selected="selected"'; ?>>Applied</option>
-                            <option value="Work Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?>>Approved</option>
-                            <option value="Pending Payment" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?>>Disbursed</option>
+                            <option value="Applied" <?php if ($row->loan_status === 'Applied') echo 'selected="selected"'; ?>>Applied</option>
+                            <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?>>Approved</option>
+                            <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?>>Disbursed</option>
                             <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?>>Completed</option>
                             <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?>>Rejected</option>
                         </select>
                     </div>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
                 </form>
             </div>
 

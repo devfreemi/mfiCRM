@@ -19,6 +19,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('members', 'Home::members');
     $routes->add('loan', 'Home::loan');
     $routes->add('application-view', 'Home::loan_view');
+    $routes->add('group-view', 'Home::group_view');
+    $routes->add('update-loan', 'LoanApi::update_of_loan');
     $routes->add('logout', 'Auth::logout');
 });
 
