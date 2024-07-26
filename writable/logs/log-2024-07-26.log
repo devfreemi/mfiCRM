@@ -1,0 +1,373 @@
+INFO - 2024-07-26 05:52:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 05:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 05:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 05:52:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 05:54:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 05:54:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-26 05:54:11 --> Error: Call to a member function add_field() on null
+in APPPATH/Models/LoanModel.php on line 74.
+ 1 APPPATH/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 06:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:09:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:09:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-26 06:09:11 --> Error: Call to a member function add_field() on null
+in APPPATH/Models/LoanModel.php on line 74.
+ 1 APPPATH/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 06:12:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:12:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:12:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-26 06:12:41 --> Error: Call to a member function add_field() on null
+in APPPATH/Models/LoanModel.php on line 75.
+ 1 APPPATH/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 06:15:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:15:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-07-26 06:15:23 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '3717446469405 (
+            `ledgerId` int(11) NOT NULL AUTO_INCREMENT,
+     ...' at line 1 in /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfi/app/Models/LoanModel.php(89): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfi/app/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+#5 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#7 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#8 /opt/lampp/htdocs/mfi/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 /opt/lampp/htdocs/mfi/system/Commands/Server/rewrite.php(47): require_once('...')
+#10 {main}
+CRITICAL - 2024-07-26 06:15:23 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '3717446469405 (
+            `ledgerId` int(11) NOT NULL AUTO_INCREMENT,
+     ...' at line 1
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 APPPATH/Models/LoanModel.php(89): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 06:15:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '3717446469405 (
+            `ledgerId` int(11) NOT NULL AUTO_INCREMENT,
+     ...' at line 1
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 APPPATH/Models/LoanModel.php(89): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 06:15:23 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '3717446469405 (
+            `ledgerId` int(11) NOT NULL AUTO_INCREMENT,
+     ...' at line 1
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH/Models/LoanModel.php(89): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Controllers/LoanApi.php(72): App\Models\LoanModel->create()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 06:16:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:16:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:16:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:16:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:28:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:34:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:34:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-07-26 06:34:17 --> mysqli_sql_exception: Key column 'ledgerId' doesn't exist in table in /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfi/app/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfi/app/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+#5 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#7 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#8 /opt/lampp/htdocs/mfi/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 /opt/lampp/htdocs/mfi/system/Commands/Server/rewrite.php(47): require_once('...')
+#10 {main}
+CRITICAL - 2024-07-26 06:34:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Key column 'ledgerId' doesn't exist in table
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 06:34:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Key column 'ledgerId' doesn't exist in table
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 06:34:17 --> [Caused by] mysqli_sql_exception: Key column 'ledgerId' doesn't exist in table
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 06:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:34:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:34:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:53:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:53:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-07-26 06:53:44 --> mysqli_sql_exception: Table 'tab_3717446469405' already exists in /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfi/app/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfi/app/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+#5 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#7 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#8 /opt/lampp/htdocs/mfi/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 /opt/lampp/htdocs/mfi/system/Commands/Server/rewrite.php(47): require_once('...')
+#10 {main}
+CRITICAL - 2024-07-26 06:53:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_3717446469405' already exists
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 06:53:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_3717446469405' already exists
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 06:53:44 --> [Caused by] mysqli_sql_exception: Table 'tab_3717446469405' already exists
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Controllers/LoanApi.php(73): App\Models\LoanModel->create()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 06:53:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:55:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 06:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 07:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:17:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-26 09:17:58 --> ErrorException: Undefined property: stdClass::$tenure
+in APPPATH/Views/loan_view.php on line 47.
+ 1 APPPATH/Views/loan_view.php(47): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(228): include('/opt/lampp/htdocs/mfi/app/Views/loan_view.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Home.php(35): view()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->loan_view()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 09:18:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-26 09:18:00 --> ErrorException: Undefined property: stdClass::$tenure
+in APPPATH/Views/loan_view.php on line 47.
+ 1 APPPATH/Views/loan_view.php(47): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(228): include('/opt/lampp/htdocs/mfi/app/Views/loan_view.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Home.php(35): view()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->loan_view()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 09:18:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:18:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:19:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:19:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:19:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:19:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:19:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:35:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:35:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:35:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:35:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:36:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:37:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-07-26 09:37:07 --> mysqli_sql_exception: Table 'tab_7769797944949' already exists in /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfi/app/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfi/app/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+#5 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#7 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#8 /opt/lampp/htdocs/mfi/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 /opt/lampp/htdocs/mfi/system/Commands/Server/rewrite.php(47): require_once('...')
+#10 {main}
+CRITICAL - 2024-07-26 09:37:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_7769797944949' already exists
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 09:37:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_7769797944949' already exists
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 09:37:07 --> [Caused by] mysqli_sql_exception: Table 'tab_7769797944949' already exists
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 09:37:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 09:41:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:35:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:35:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-07-26 11:35:56 --> mysqli_sql_exception: Table 'tab_7769797944949' already exists in /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfi/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfi/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfi/app/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfi/app/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+#5 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#7 /opt/lampp/htdocs/mfi/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#8 /opt/lampp/htdocs/mfi/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 /opt/lampp/htdocs/mfi/system/Commands/Server/rewrite.php(47): require_once('...')
+#10 {main}
+CRITICAL - 2024-07-26 11:35:56 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_7769797944949' already exists
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 11:35:56 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_7769797944949' already exists
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+CRITICAL - 2024-07-26 11:35:56 --> [Caused by] mysqli_sql_exception: Table 'tab_7769797944949' already exists
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 APPPATH/Models/LoanModel.php(64): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Controllers/LoanApi.php(76): App\Models\LoanModel->create()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfi/public/index.php')
+INFO - 2024-07-26 11:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:36:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:38:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:38:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:38:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:38:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:39:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:39:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:39:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:39:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:39:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 11:39:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 14:15:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-26 14:15:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

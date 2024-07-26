@@ -46,4 +46,28 @@ class LoanModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    function create($table)
+    {
+        $db = db_connect();
+
+        if (!$db->tableExists($table)) {
+            // some code...
+
+            $sql = "CREATE TABLE $table (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `reference` varchar(256) DEFAULT NULL,
+          `debit` varchar(18) DEFAULT NULL,
+          `credit` varchar(18) DEFAULT NULL,
+          `balance` varchar(18) NOT NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );";
+
+            $query = $this->db->query($sql);
+            return $query;
+        }
+    }
 }

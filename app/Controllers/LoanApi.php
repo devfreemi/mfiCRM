@@ -16,12 +16,13 @@ class LoanApi extends BaseController
         $model = new LoanModel();
         $data = [
 
-            'groupId'      => $this->request->getVar('groupID'),
-            'member_id'    => $this->request->getVar('memberID'),
-            'loan_amount'  => $this->request->getVar('loanAmount'),
-            'loan_type'   => $this->request->getVar('loanType'),
-            'employee_id'  => $this->request->getVar('employeeID'),
-            'applicationID'  => rand(10000, 99999) . $this->request->getVar('memberID'),
+            'groupId'       => $this->request->getVar('groupID'),
+            'member_id'     => $this->request->getVar('memberID'),
+            'loan_amount'   => $this->request->getVar('loanAmount'),
+            'loan_tenure'        => $this->request->getVar('tenure'),
+            'loan_type'     => $this->request->getVar('loanType'),
+            'employee_id'   => $this->request->getVar('employeeID'),
+            'applicationID' => rand(10000, 99999) . $this->request->getVar('memberID'),
 
         ];
         // $query = $model->insert($data);
@@ -61,20 +62,48 @@ class LoanApi extends BaseController
     }
     public function update_of_loan()
     {
-        // $model = new LoanModel();
+        $model = new LoanModel();
         $db = db_connect();
         $builder = $db->table('loans');
         $applicationid   = $this->request->getPost('applicationid');
-        $data = [
+        $table = "tab_" . $applicationid;
+        $status = $this->request->getPost('status');
+        $loan_amount = $this->request->getPost('lona_amount');
+        $tenure = $this->request->getPost('tenure');
+        $roi = "12";
+        if ($status == "Approved") {
+            # code...
+            $model->create($table);
+            $r = ($roi / 100 / 12);
+            $x = pow(1 + $r, $tenure);
+            $emi = round(($loan_amount * $x * $r) / ($x - 1));
+            $due = round($emi * $tenure);
+            $data = [
 
-            'loan_status'      => $this->request->getPost('status'),
-        ];
+                'loan_status'       => "Approved",
+                'loan_tenure'       => $tenure,
+                'emi'               =>  $emi,
+                'loan_due'          => $due,
+            ];
 
-        $builder->where('applicationID', $applicationid);
-        $query = $builder->update($data);
+            $builder->where('applicationID', $applicationid);
+            $query = $builder->update($data);
 
-        $session = session();
-        $session->setFlashdata('msg', 'Loan Status Updated!');
-        return redirect()->to(base_url() . 'loan');
+            $session = session();
+            $session->setFlashdata('msg', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'loan');
+        } else {
+            # code...
+            $data = [
+
+                'loan_status'      => $this->request->getPost('status'),
+            ];
+
+            $builder->where('applicationID', $applicationid);
+            $query = $builder->update($data);
+            $session = session();
+            $session->setFlashdata('msg', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'loan');
+        }
     }
 }

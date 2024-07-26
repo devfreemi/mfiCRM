@@ -31,7 +31,7 @@
                         <input type="text" class="form-control" id="gender" value="<?php echo $row->gender; ?>" readonly>
                     </div>
                     <div class="col-md-4">
-                        <label for="name" class="form-label">Member Aadhaar No</label>
+                        <label for="name" class="form-label">Aadhaar No</label>
                         <input type="text" class="form-control" id="adhar" value="<?php echo $row->adhar; ?>" readonly>
                     </div>
                     <div class="col-md-4">
@@ -40,7 +40,11 @@
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">Loan Amount</label>
-                        <input type="text" class="form-control" id="lona_amount" value="<?php echo $row->loan_amount; ?>" readonly>
+                        <input type="text" class="form-control" name="lona_amount" id="lona_amount" value="<?php echo $row->loan_amount; ?>" readonly>
+                    </div>
+                    <div class="col-4">
+                        <label for="inputAddress" class="form-label">Loan Tenure</label>
+                        <input type="text" class="form-control" name="tenure" id="tenure" value="<?php echo $row->loan_tenure; ?>">
                     </div>
                     <div class=" col-4">
                         <label for="type" class="form-label">Loan Type</label>
@@ -55,11 +59,11 @@
                         <input type="text" class="form-control" id="pin" value="<?php echo $row->pincode; ?>" readonly>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="inputZip" class="form-label">Agent</label>
                         <input type="text" class="form-control" id="agent" value="<?php echo $row_name->name; ?>" readonly>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="inputState" class="form-label">Status</label>
                         <select id="inputState" class="form-select" name="status">
                             <option selected disabled>Choose</option>
