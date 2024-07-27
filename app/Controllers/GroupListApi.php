@@ -24,4 +24,18 @@ class GroupListApi extends BaseController
 
         return $this->respond($group, 200);
     }
+    public function total_group()
+    {
+        //
+        $model = new GroupModel();
+
+
+        $total_group = $model->countAllResults();
+
+        if (is_null($total_group)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond($total_group, 200);
+    }
 }

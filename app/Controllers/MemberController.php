@@ -85,4 +85,18 @@ class MemberController extends BaseController
 
         return $this->respond(['member' => $member], 200);
     }
+
+    public function total_member()
+    {
+        $model = new MemberModel();
+
+        $totalMember = $model->countAllResults();
+        $totalMemberMale = $model->where('gender', 'Male')->countAllResults();
+        $totalMemberFemale = $model->where('gender', 'Female')->countAllResults();
+
+        if (is_null($totalMember)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+        return $this->respond(['totalMembers' => $totalMember, 'totalMembersMale' => $totalMemberMale, 'totalMemberFemale' => $totalMemberFemale], 200);
+    }
 }

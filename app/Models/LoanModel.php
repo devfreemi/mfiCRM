@@ -18,6 +18,7 @@ class LoanModel extends Model
         'loan_amount',
         'loan_type',
         'loan_status',
+        'loan_tenure',
         'employee_id',
         'applicationID',
         'created_at'

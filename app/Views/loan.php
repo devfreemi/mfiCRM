@@ -29,6 +29,7 @@
                                     <th>Members Name</th>
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>
+                                    <th>Loan Tenure</th>
                                     <th>Loan Type</th>
                                     <th>Loan Status</th>
                                     <th>Application ID</th>
@@ -45,27 +46,34 @@
                                 $builder->join('members', 'members.member_id = loans.member_id');
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
+                                    $e_id =  $row->employee_id;
+                                    $builder_name = $db->table('employees');
+                                    $builder_name->where('employeeID', $e_id);
+                                    $query_name = $builder_name->get();
+                                    foreach ($query_name->getResult() as $row_name) {
                                 ?>
-                                    <tr>
-                                        <td><?php echo $row->id; ?></td>
-                                        <td><?php echo $row->groupName; ?></td>
-                                        <td><?php echo $row->groupId; ?></td>
-                                        <td><?php echo $row->name; ?></td>
-                                        <td><?php echo $row->member_id; ?></td>
-                                        <td><?php echo $row->loan_amount; ?></td>
-                                        <td><?php echo $row->loan_type; ?></td>
-                                        <td><?php echo $row->loan_status; ?></td>
-                                        <td><?php echo $row->applicationID; ?></td>
-                                        <td><?php echo $row->employee_id; ?></td>
-                                        <td><?php echo "E Name"; ?></td>
+                                        <tr>
+                                            <td><?php echo $row->id; ?></td>
+                                            <td><?php echo $row->groupName; ?></td>
+                                            <td><?php echo $row->groupId; ?></td>
+                                            <td><?php echo $row->name; ?></td>
+                                            <td><?php echo $row->member_id; ?></td>
+                                            <td><?php echo $row->loan_amount; ?></td>
+                                            <td><?php echo $row->loan_tenure; ?></td>
+                                            <td><?php echo $row->loan_type; ?></td>
+                                            <td><?php echo $row->loan_status; ?></td>
+                                            <td><?php echo $row->applicationID; ?></td>
+                                            <td><?php echo $row->employee_id; ?></td>
+                                            <td><?php echo $row_name->name; ?></td>
 
-                                        <td>
-                                            <button type="button" class="btn btn-primary view" id="<?php echo $row->applicationID; ?>">
-                                                View
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                            <td>
+                                                <button type="button" class="btn btn-primary view" id="<?php echo $row->applicationID; ?>">
+                                                    View
+                                                </button>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
 
                             </tbody>
                             <tfoot>
@@ -76,6 +84,7 @@
                                     <th>Members Name</th>
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>
+                                    <th>Loan Tenure</th>
                                     <th>Loan Type</th>
                                     <th>Loan Status</th>
                                     <th>Application ID</th>
