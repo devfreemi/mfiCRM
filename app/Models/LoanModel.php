@@ -60,8 +60,9 @@ class LoanModel extends Model
           `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
           `valueDate` varchar(28) NOT NULL,
           `reference` varchar(256) DEFAULT NULL,
-          `debit` varchar(18) DEFAULT NULL,
-          `credit` varchar(18) DEFAULT NULL,
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
           `balance` varchar(18) NOT NULL,
           `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
           PRIMARY KEY (Id)

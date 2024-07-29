@@ -92,6 +92,27 @@ class LoanApi extends BaseController
             $session = session();
             $session->setFlashdata('msg', 'Loan Status Updated!');
             return redirect()->to(base_url() . 'loan');
+        } elseif ($status == "Disbursed") {
+            # code...
+            $today = date('Y-m-d');
+            $r = ($roi / 100 / 12);
+            $x = pow(1 + $r, $tenure);
+            $emi = round(($loan_amount * $x * $r) / ($x - 1));
+            $due = round($emi * $tenure);
+            for ($y = 1; $y <= $tenure; $y++) {
+                $repeat = strtotime("+1 month", strtotime($today));
+                $today = date('Y-m-d', $repeat);
+
+                $builder_app = $db->table($table);
+                $data = [
+
+                    'emi'       => $emi,
+                    'valueDate'       => $today,
+                    'balance'          => $due,
+                ];
+
+                $query = $builder_app->insert($data);
+            }
         } else {
             # code...
             $data = [
@@ -105,5 +126,28 @@ class LoanApi extends BaseController
             $session->setFlashdata('msg', 'Loan Status Updated!');
             return redirect()->to(base_url() . 'loan');
         }
+    }
+
+    public function status_count_of_loan()
+    {
+        $model = new LoanModel();
+        $groupID = $this->request->getVar('groupID');
+
+        $loanCapplied = $model->where('groupId', $groupID)->where('loan_status', 'Applied')->countAllResults();
+        $loanCapproved = $model->where('groupId', $groupID)->where('loan_status', 'Approved')->countAllResults();
+        $loanCdis = $model->where('groupId', $groupID)->where('loan_status', 'Disbursed')->countAllResults();
+
+        if (!$groupID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond(
+            [
+                'totalApplied' => $loanCapplied,
+                'totalApproved' => $loanCapproved,
+                'totalDisbursed' => $loanCdis
+            ],
+            200
+        );
     }
 }

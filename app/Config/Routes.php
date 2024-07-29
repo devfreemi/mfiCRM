@@ -48,8 +48,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
     $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
     $routes->add('api/total-group-api-v1', 'GroupListApi::total_group');
+    $routes->add('api/total-loan-status-count-api-v1', 'LoanApi::status_count_of_loan');
 });
-// $routes->add('api/total-group-api-v1', 'GroupListApi::total_group');
+// $routes->add('api/total-loan-status-count-api-v1', 'LoanApi::status_count_of_loan');
 
 
 
