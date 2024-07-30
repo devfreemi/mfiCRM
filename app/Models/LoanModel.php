@@ -19,6 +19,9 @@ class LoanModel extends Model
         'loan_type',
         'loan_status',
         'loan_tenure',
+        'emi',
+        'pending_emi',
+        'loan_due',
         'employee_id',
         'applicationID',
         'created_at'
@@ -59,7 +62,7 @@ class LoanModel extends Model
             `Id` int(11) NOT NULL AUTO_INCREMENT,
           `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
           `valueDate` varchar(28) NOT NULL,
-          `reference` varchar(256) DEFAULT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT 'N',
           `emi` varchar(18) DEFAULT 0 NULL,
           `debit` varchar(18) DEFAULT 0 NULL,
           `credit` varchar(18) DEFAULT 0 NULL,

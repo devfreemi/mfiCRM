@@ -83,6 +83,7 @@ class LoanApi extends BaseController
                 'loan_status'       => "Approved",
                 'loan_tenure'       => $tenure,
                 'emi'               =>  $emi,
+                'pending_emi'       =>  $tenure,
                 'loan_due'          => $due,
             ];
 
@@ -106,13 +107,22 @@ class LoanApi extends BaseController
                 $builder_app = $db->table($table);
                 $data = [
 
-                    'emi'       => $emi,
-                    'valueDate'       => $today,
-                    'balance'          => $due,
+                    'emi'               => $emi,
+                    'valueDate'         => $today,
+                    'balance'           => $due,
                 ];
 
                 $query = $builder_app->insert($data);
             }
+            $data_loan = [
+
+                'loan_status'      => $this->request->getPost('status'),
+            ];
+            $builder->where('applicationID', $applicationid);
+            $builder->update($data_loan);
+            $session = session();
+            $session->setFlashdata('msg', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'loan');
         } else {
             # code...
             $data = [
