@@ -103,12 +103,13 @@ class LoanApi extends BaseController
             for ($y = 1; $y <= $tenure; $y++) {
                 $repeat = strtotime("+1 month", strtotime($today));
                 $today = date('Y-m-d', $repeat);
-
+                $todayStamp = date('d-M-y D', $repeat);
                 $builder_app = $db->table($table);
                 $data = [
 
                     'emi'               => $emi,
                     'valueDate'         => $today,
+                    'valueDateStamp'    => $todayStamp,
                     'balance'           => $due,
                 ];
 
@@ -159,5 +160,36 @@ class LoanApi extends BaseController
             ],
             200
         );
+    }
+    public function loan_emi()
+    {
+        $loanID = $this->request->getVar('loanAC');
+        $table = "tab_" . $loanID;
+        $db = db_connect();
+
+        if (!$loanID || !$db->tableExists($table)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+
+            $builder_emi = $db->table($table);
+
+            $query = $builder_emi->where('reference', 'N')->get();
+            foreach ($query->getResult() as $row) {
+
+                $response[] = array(
+                    "emi_number" =>  $row->Id,
+                    "emi" => $row->emi,
+                    "valueDate" => $row->valueDate,
+                    "valueDateStamp" => $row->valueDateStamp,
+                    "statusCode" => 200,
+
+
+                );
+            }
+            return $this->respond(
+                $response,
+                200
+            );
+        }
     }
 }

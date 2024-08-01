@@ -62,6 +62,7 @@ class LoanModel extends Model
             `Id` int(11) NOT NULL AUTO_INCREMENT,
           `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
           `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
           `reference` varchar(4) NOT NULL DEFAULT 'N',
           `emi` varchar(18) DEFAULT 0 NULL,
           `debit` varchar(18) DEFAULT 0 NULL,
