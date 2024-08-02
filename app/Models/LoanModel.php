@@ -68,6 +68,8 @@ class LoanModel extends Model
           `debit` varchar(18) DEFAULT 0 NULL,
           `credit` varchar(18) DEFAULT 0 NULL,
           `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
           `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
           PRIMARY KEY (Id)
           );";

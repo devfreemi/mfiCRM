@@ -192,4 +192,45 @@ class LoanApi extends BaseController
             );
         }
     }
+
+    public function loan_emi_payment_status()
+    {
+        $loanID = $this->request->getVar('loanAC');
+        $table = "tab_" . $loanID;
+        $db = db_connect();
+
+        if (!$loanID || !$db->tableExists($table)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+
+            $builder_emi = $db->table($table);
+
+            $queryCount = $builder_emi->where('reference', 'Y')->countAllResults();
+
+            if ($queryCount > 0) {
+                # code...
+                $query = $builder_emi->where('reference', 'Y')->get();
+                foreach ($query->getResult() as $row) {
+
+                    $response[] = array(
+                        "emi_number" =>  $row->Id,
+                        "emi" => $row->emi,
+                        "valueDate" => $row->valueDate,
+                        "transactionDate" => $row->transactionDate,
+                        "transactionId" => $row->transactionId,
+                        "comments" => $row->comments,
+
+
+                    );
+                }
+                return $this->respond(
+                    $response,
+                    200
+                );
+            } else {
+                # code...
+                return $this->respond(['error' => 'Invalid Request.'], 401);
+            }
+        }
+    }
 }

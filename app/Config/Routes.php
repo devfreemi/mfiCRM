@@ -50,8 +50,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/total-group-api-v1', 'GroupListApi::total_group');
     $routes->add('api/total-loan-status-count-api-v1', 'LoanApi::status_count_of_loan');
     $routes->add('api/loan-emi-api-v1', 'LoanApi::loan_emi');
+    $routes->add('api/loan-emi-payment-status-api-v1', 'LoanApi::loan_emi_payment_status');
 });
-// $routes->add('api/loan-emi-api-v1', 'LoanApi::loan_emi');
+// $routes->add('api/loan-emi-payment-status-api-v1', 'LoanApi::loan_emi_payment_status');
 
 
 
