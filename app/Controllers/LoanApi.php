@@ -209,7 +209,7 @@ class LoanApi extends BaseController
 
             if ($queryCount > 0) {
                 # code...
-                $query = $builder_emi->where('reference', 'Y')->get();
+                $query = $builder_emi->where('reference', 'Y')->limit(3)->get();
                 foreach ($query->getResult() as $row) {
 
                     $response[] = array(
