@@ -20,18 +20,25 @@ class MemberController extends BaseController
         $adhar = $this->request->getVar('adhar');
         $adharFour = substr($adhar, -4);;
         $data = [
-            'member_id'    => $mobileFour . $adharFour,
-            'groupName'    => $this->request->getVar('groupName'),
-            'groupId'      => $this->request->getVar('groupId'),
-            'mobile'    => $this->request->getVar('mobile'),
-            'pan'  => $this->request->getVar('pan'),
-            'adhar'   => $this->request->getVar('adhar'),
-            'name'  => $this->request->getVar('name'),
-            'location'  => $this->request->getVar('memberLocation'),
-            'pincode'  => $this->request->getVar('groupPin'),
-            'gender'  => $this->request->getVar('gender'),
-            'marital'  => $this->request->getVar('marital'),
-            'occupation'  => $this->request->getVar('occupation'),
+            'member_id'     => $mobileFour . $adharFour,
+            'groupName'     => $this->request->getVar('groupName'),
+            'groupId'       => $this->request->getVar('groupId'),
+            'mobile'        => $this->request->getVar('mobile'),
+            'pan'           => $this->request->getVar('pan'),
+            'adhar'         => $this->request->getVar('adhar'),
+            'name'          => $this->request->getVar('name'),
+            'location'      => $this->request->getVar('memberLocation'),
+            'pincode'       => $this->request->getVar('groupPin'),
+            'gender'        => $this->request->getVar('gender'),
+            'marital'       => $this->request->getVar('marital'),
+            'occupation'    => $this->request->getVar('occupation'),
+            'bankAccount'   => $this->request->getVar('bankAccount'),
+            'ifsc'          => $this->request->getVar('ifsc'),
+            'bankName'      => $this->request->getVar('bankName'),
+            'bankBranch'    => $this->request->getVar('bankBranch'),
+            'bankCity'      => $this->request->getVar('bankCity'),
+            'bankState'     => $this->request->getVar('bankState'),
+            'bankAddress'   => $this->request->getVar('bankAddress'),
         ];
 
         // $query = $model->insert($data);
@@ -94,9 +101,11 @@ class MemberController extends BaseController
         $totalMemberMale = $model->where('gender', 'Male')->countAllResults();
         $totalMemberFemale = $model->where('gender', 'Female')->countAllResults();
 
-        if (is_null($totalMember)) {
-            return $this->respond(['error' => 'Invalid Request.'], 401);
+        if ($totalMember <= 0) {
+            return $this->respond(['totalMembers' => 0, 'totalMembersMale' => 50, 'totalMemberFemale' => 50], 401);
+            // echo "Empty";
+        } else {
+            return $this->respond(['totalMembers' => $totalMember, 'totalMembersMale' => $totalMemberMale, 'totalMemberFemale' => $totalMemberFemale], 200);
         }
-        return $this->respond(['totalMembers' => $totalMember, 'totalMembersMale' => $totalMemberMale, 'totalMemberFemale' => $totalMemberFemale], 200);
     }
 }

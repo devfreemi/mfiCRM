@@ -25,6 +25,13 @@ class MemberModel extends Model
         'gender',
         'marital',
         'occupation',
+        'bankAccount',
+        'ifsc',
+        'bankName',
+        'bankBranch',
+        'bankCity',
+        'bankState',
+        'bankAddress',
         'created_at'
     ];
 
