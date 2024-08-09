@@ -233,4 +233,21 @@ class LoanApi extends BaseController
             }
         }
     }
+
+    public function disbursement_status()
+    {
+        $model = new LoanModel();
+
+        $loanCapproved = $model->where('loan_status', 'Approved')->countAllResults();
+
+        if ($loanCapproved > 0) {
+
+            $loanGroupList = $model->join('groups', 'groups.g_id = loans.groupId')
+                ->where('loan_status', 'Approved')->findAll();
+
+            return $this->respond($loanGroupList, 200);
+        } else {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+    }
 }
