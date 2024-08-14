@@ -52,8 +52,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/loan-emi-api-v1', 'LoanApi::loan_emi');
     $routes->add('api/loan-emi-payment-status-api-v1', 'LoanApi::loan_emi_payment_status');
     $routes->add('api/loan-disbursement-status', 'LoanApi::disbursement_status');
+    $routes->add('api/loan-disbursement-member-status', 'LoanApi::disbursement_status_member');
+    $routes->add('api/loan-disbursement-member-details', 'LoanApi::disbursement_details_member');
 });
-// $routes->add('api/loan-disbursement-status', 'LoanApi::disbursement_status');
+// $routes->add('api/loan-disbursement-member-details', 'LoanApi::disbursement_details_member');
 
 
 
