@@ -284,4 +284,24 @@ class LoanApi extends BaseController
             return $this->respond(['error' => 'Invalid Request.'], 401);
         }
     }
+    public function disbursement_verification()
+    {
+        $model = new LoanModel();
+        // $memberID = $this->request->getVar('memberID');
+        $loanID = $this->request->getVar('loanIDV');
+        $otpVerified = $this->request->getVar('otpS');
+        $db = db_connect();
+        $builder = $db->table('loans');
+        if ($otpVerified === 'Y') {
+            $data = [
+                'loan_status' => 'Disbursed Verified',
+                'otpVerify'    => $otpVerified,
+            ];
+            $builder->where('applicationID', $loanID)->update($data);
+
+            return $this->respond(['status' => 'Disbursed Verified.'], 200);
+        } else {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+    }
 }
