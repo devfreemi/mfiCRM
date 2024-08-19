@@ -70,6 +70,7 @@
                             <option value="Applied" <?php if ($row->loan_status === 'Applied') echo 'selected="selected"'; ?>>Applied</option>
                             <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?>>Approved</option>
                             <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?>>Disbursed</option>
+                            <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?>>Disbursed Verified</option>
                             <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?>>Completed</option>
                             <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?>>Rejected</option>
                         </select>
