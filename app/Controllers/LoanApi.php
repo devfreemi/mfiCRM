@@ -304,4 +304,37 @@ class LoanApi extends BaseController
             return $this->respond(['error' => 'Invalid Request.'], 401);
         }
     }
+
+    // Collection
+    public function collection_status()
+    {
+        $model = new LoanModel();
+
+        $loanCdisbursed = $model->where('loan_status', 'Disbursed')->countAllResults();
+
+        if ($loanCdisbursed > 0) {
+
+            $loanMemberList = $model->join('members', 'members.member_id = loans.member_id')
+                ->where('loans.loan_status', 'Disbursed')->findAll();
+
+            return $this->respond($loanMemberList, 200);
+        } else {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+    }
+    public function collection_details_member()
+    {
+        $model = new LoanModel();
+        $memberID = $this->request->getVar('memberID');
+
+        if ($memberID) {
+
+            $loanMemberDetail = $model->join('members', 'members.member_id = loans.member_id')
+                ->where('members.member_id', $memberID)->first();
+
+            return $this->respond($loanMemberDetail, 200);
+        } else {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+    }
 }

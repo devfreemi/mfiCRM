@@ -55,8 +55,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/loan-disbursement-member-status', 'LoanApi::disbursement_status_member');
     $routes->add('api/loan-disbursement-member-details', 'LoanApi::disbursement_details_member');
     $routes->add('api/loan-disbursement-verification', 'LoanApi::disbursement_verification');
+    $routes->add('api/loan-collection-status', 'LoanApi::collection_status');
+    $routes->add('api/loan-collection-member-details', 'LoanApi::collection_details_member');
 });
-// $routes->add('api/loan-disbursement-verification', 'LoanApi::disbursement_verification');
+// $routes->add('api/loan-collection-status', 'LoanApi::collection_status');
 
 
 
