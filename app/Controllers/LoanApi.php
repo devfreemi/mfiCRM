@@ -100,7 +100,21 @@ class LoanApi extends BaseController
             $x = pow(1 + $r, $tenure);
             $emi = round(($loan_amount * $x * $r) / ($x - 1));
             $due = round($emi * $tenure);
-            for ($y = 1; $y <= $tenure; $y++) {
+            $repeat = strtotime("+1 month", strtotime($today));
+            $today = date('Y-m-d', $repeat);
+            $todayStamp = date('d-M-y D', $repeat);
+            $dataFirst = [
+
+                'emi'               => $emi,
+                'valueDate'         => $today,
+                'valueDateStamp'    => $todayStamp,
+                'balance'           => $due,
+                'reference'         => 'Due'
+            ];
+            $builder_app_f = $db->table($table);
+            $builder_app_f->insert($dataFirst);
+
+            for ($y = 2; $y <= $tenure; $y++) {
                 $repeat = strtotime("+1 month", strtotime($today));
                 $today = date('Y-m-d', $repeat);
                 $todayStamp = date('d-M-y D', $repeat);
@@ -173,7 +187,7 @@ class LoanApi extends BaseController
 
             $builder_emi = $db->table($table);
 
-            $query = $builder_emi->where('reference', 'N')->get();
+            $query = $builder_emi->where('reference', 'N')->orWhere('reference', 'Due')->get();
             foreach ($query->getResult() as $row) {
 
                 $response[] = array(
@@ -336,5 +350,23 @@ class LoanApi extends BaseController
         } else {
             return $this->respond(['error' => 'Invalid Request.'], 401);
         }
+    }
+
+    public function collection_details_submit()
+    {
+        $model = new LoanModel();
+        $memberID = $this->request->getVar('memberID');
+        $loanID = $this->request->getVar('loanID');
+        $db = db_connect();
+        $builder = $db->table('tab_' . $loanID);
+        $data = [
+            'credit'   => $this->request->getVar('paymentReceived'),
+            'balance'     => $this->request->getVar('loanBalance'),
+            'reference'   => $this->request->getVar('ref'),
+            'transationId' => uniqid() . $this->request->getVar('memberID'),
+            'transactionDate' => date('Y-m-d H:i:s')
+
+        ];
+        $builder->where('reference', 'Due')->insert($data);
     }
 }
