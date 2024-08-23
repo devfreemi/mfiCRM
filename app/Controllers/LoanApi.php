@@ -354,19 +354,48 @@ class LoanApi extends BaseController
 
     public function collection_details_submit()
     {
-        $model = new LoanModel();
-        $memberID = $this->request->getVar('memberID');
-        $loanID = $this->request->getVar('loanID');
+        // $model = new LoanModel();
+        // $memberID = $this->request->getVar('memberID');
+        $loanID = $this->request->getVar('loanIDV');
+        $emiPending = $this->request->getVar('pendingEmi');
         $db = db_connect();
         $builder = $db->table('tab_' . $loanID);
         $data = [
-            'credit'   => $this->request->getVar('paymentReceived'),
-            'balance'     => $this->request->getVar('loanBalance'),
-            'reference'   => $this->request->getVar('ref'),
-            'transationId' => uniqid() . $this->request->getVar('memberID'),
-            'transactionDate' => date('Y-m-d H:i:s')
+            'credit'            => $this->request->getVar('paymentReceive'),
+            'balance'           => $this->request->getVar('loanDueApi'),
+            'reference'         => $this->request->getVar('ref'),
+            'comments'          => $this->request->getVar('selectRadio'),
+            'transactionId'     => uniqid() . $this->request->getVar('memberID'),
+            'transactionDate'   => date('Y-m-d H:i:s'),
+            'updated_on'        => date('Y-m-d H:i:s')
 
         ];
-        $builder->where('reference', 'Due')->insert($data);
+        $q = $builder->where('reference', 'Due')->update($data);
+        $dataFirst = [
+
+            'reference'         => 'Due'
+        ];
+        $p = $builder->where('reference', 'N')->limit(1)->update($dataFirst);
+
+        for ($y = 2; $y <= $emiPending; $y++) {
+            $dataLoop = [
+                'balance'           => $this->request->getVar('loanDueApi'),
+            ];
+
+            $query = $builder->update($dataLoop);
+        }
+        // Data Set For Loan Master Table
+        $builderMaster = $db->table('loans');
+        $dataMaster = [
+
+            'loan_due'           => $this->request->getVar('loanDueApi'),
+            'pending_emi'         => round($emiPending - 1),
+            'updated_at'        => date('Y-m-d H:i:s')
+
+        ];
+        $builderMaster->where('applicationID', $loanID)->update($dataMaster);
+
+
+        return $this->respond(['status' => 'Collection Status Updated.'], 200);
     }
 }
