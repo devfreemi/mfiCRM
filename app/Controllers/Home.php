@@ -38,4 +38,8 @@ class Home extends BaseController
     {
         return view('group_view');
     }
+    public function loan_details()
+    {
+        return view('loan_details');
+    }
 }

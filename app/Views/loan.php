@@ -30,6 +30,7 @@
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>
                                     <th>Loan Tenure</th>
+                                    <th>Pending EMI</th>
                                     <th>Loan Type</th>
                                     <th>Loan Status</th>
                                     <th>Application ID</th>
@@ -60,6 +61,7 @@
                                             <td><?php echo $row->member_id; ?></td>
                                             <td><?php echo $row->loan_amount; ?></td>
                                             <td><?php echo $row->loan_tenure; ?></td>
+                                            <td><?php echo $row->pending_emi; ?></td>
                                             <td><?php echo $row->loan_type; ?></td>
                                             <td><?php echo $row->loan_status; ?></td>
                                             <td><?php echo $row->applicationID; ?></td>
@@ -67,9 +69,17 @@
                                             <td><?php echo $row_name->name; ?></td>
 
                                             <td>
-                                                <button type="button" class="btn btn-primary view" id="<?php echo $row->applicationID; ?>">
-                                                    View
-                                                </button>
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <button type="button" class="btn btn-primary  view" id="<?php echo $row->applicationID; ?>">
+                                                        <i class="align-middle" data-feather="edit"></i>
+                                                    </button>
+                                                    <?php
+                                                    if ($row->loan_status === "Disbursed") { ?>
+                                                        <button type="button" class="btn btn-danger details" id="<?php echo $row->applicationID; ?>">
+                                                            <i class="align-middle" data-feather="eye"></i>
+                                                        </button>
+                                                    <?php } ?>
+                                                </div>
                                             </td>
                                         </tr>
                                 <?php }
@@ -85,6 +95,7 @@
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>
                                     <th>Loan Tenure</th>
+                                    <th>Pending EMI</th>
                                     <th>Loan Type</th>
                                     <th>Loan Status</th>
                                     <th>Application ID</th>
@@ -111,6 +122,24 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Loan Details model -->
+                <div class="modal fade" id="dataModalLoan">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Loan Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="loan_detail">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
 
@@ -143,6 +172,33 @@
                 success: function(data) {
                     $('#application_detail').html(data);
                     $('#dataModal').modal("show");
+
+                    console.log(appli_id);
+                    return false;
+                }
+            });
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#branch").on("click", ".details", function() {
+            var appli_id = $(this).attr("id");
+
+            $.ajax({
+                url: "<?php echo base_url(); ?>loan-details-view",
+                method: "POST",
+                data: {
+                    appli_id: appli_id
+                },
+                // beforeSend: function() {
+                //     $('#dataModal').modal("show");
+                // },
+                success: function(data) {
+                    $('#loan_detail').html(data);
+                    $('#dataModalLoan').modal("show");
 
                     console.log(appli_id);
                     return false;

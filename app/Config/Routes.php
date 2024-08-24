@@ -22,6 +22,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('group-view', 'Home::group_view');
     $routes->add('update-loan', 'LoanApi::update_of_loan');
     $routes->add('logout', 'Auth::logout');
+    $routes->add('loan-details-view', 'Home::loan_details');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -60,30 +61,3 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/loan-collection-update', 'LoanApi::collection_details_submit');
 });
 // $routes->add('api/loan-collection-update', 'LoanApi::collection_details_submit');
-
-
-
-
-$routes->add('mobile-api-v1', 'Home::api_v1_mobile');
-$routes->add('mobile-count-api-v1', 'Home::api_v1_mobile_count');
-$routes->add('email-count-api-v1', 'Home::api_v1_email_count');
-$routes->add('mobile-api-update-v1', 'Home::api_v1_update_mobile');
-$routes->add('service-api-v1', 'Home::api_v1_service');
-$routes->add('service-api-gst-v1', 'Home::api_v1_service_gst');
-$routes->add('service-api-dsc-v1', 'Home::api_v1_service_dsc');
-$routes->add('service-api-company-v1', 'Home::api_v1_service_company');
-$routes->add('service-api-compliance-v1', 'Home::api_v1_service_compliance');
-// License
-$routes->add('license-api-gst-v1', 'Home::api_v1_license_gst');
-$routes->add('license-api-trade-v1', 'Home::api_v1_license_trade');
-$routes->add('registration-api-trademark-v1', 'Home::api_v1_license_trademark');
-// Others
-$routes->add('dashboard-api-v1', 'Home::api_v1_dashboard');
-$routes->add('dashboard-api-service-list-v1', 'Home::api_v1_dashboard_ser_list');
-$routes->add('application-api-view-v1', 'Home::api_v1_application_view');
-$routes->add('profile-api-v1', 'Home::api_v1_profile');
-$routes->add('partner-api-v1', 'Home::api_v1_partner');
-$routes->add('image-api-v1', 'Home::api_v1_image');
-// Payment
-$routes->add('payment-api-v1', 'Home::api_v1_payment');
-$routes->add('payment-response-api-v1', 'Home::api_v1_payment_response');

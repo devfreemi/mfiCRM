@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">Loan Tenure</label>
-                        <input type="text" class="form-control" name="tenure" id="tenure" value="<?php echo $row->loan_tenure; ?>">
+                        <input type="text" class="form-control" name="tenure" id="tenure" value="<?php echo $row->loan_tenure; ?>" <?php if ($row->loan_status === 'Disbursed') echo 'disabled'; ?>>
                     </div>
                     <div class=" col-4">
                         <label for="type" class="form-label">Loan Type</label>
@@ -65,14 +65,14 @@
                     </div>
                     <div class="col-md-4">
                         <label for="inputState" class="form-label">Status</label>
-                        <select id="inputState" class="form-select" name="status">
+                        <select id="inputState" class="form-select" name="status" required>
                             <option selected disabled>Choose</option>
-                            <option value="Applied" <?php if ($row->loan_status === 'Applied') echo 'selected="selected"'; ?>>Applied</option>
-                            <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?>>Approved</option>
-                            <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?>>Disbursed</option>
-                            <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?>>Disbursed Verified</option>
-                            <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?>>Completed</option>
-                            <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?>>Rejected</option>
+                            <option value="Applied" <?php if ($row->loan_status === 'Applied') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Approved' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'Disbursed Verified') echo 'disabled'; ?>>Applied</option>
+                            <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'Disbursed Verified') echo 'disabled'; ?>>Approved</option>
+                            <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed Verified</option>
+                            <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed</option>
+                            <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Rejected') echo 'disabled'; ?>>Completed</option>
+                            <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Rejected' || $row->loan_status === 'Completed') echo 'disabled'; ?>>Rejected</option>
                         </select>
                     </div>
                     <div class="modal-footer">

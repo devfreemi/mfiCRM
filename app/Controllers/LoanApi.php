@@ -95,46 +95,51 @@ class LoanApi extends BaseController
             return redirect()->to(base_url() . 'loan');
         } elseif ($status == "Disbursed") {
             # code...
-            $today = date('Y-m-d');
-            $r = ($roi / 100 / 12);
-            $x = pow(1 + $r, $tenure);
-            $emi = round(($loan_amount * $x * $r) / ($x - 1));
-            $due = round($emi * $tenure);
-            $repeat = strtotime("+1 month", strtotime($today));
-            $today = date('Y-m-d', $repeat);
-            $todayStamp = date('d-M-y D', $repeat);
-            $dataFirst = [
-
-                'emi'               => $emi,
-                'valueDate'         => $today,
-                'valueDateStamp'    => $todayStamp,
-                'balance'           => $due,
-                'reference'         => 'Due'
-            ];
-            $builder_app_f = $db->table($table);
-            $builder_app_f->insert($dataFirst);
-
-            for ($y = 2; $y <= $tenure; $y++) {
+            $builder_app = $db->table($table);
+            $count = $builder_app->countAll();
+            if ($count < $tenure) {
+                $today = date('Y-m-d');
+                $r = ($roi / 100 / 12);
+                $x = pow(1 + $r, $tenure);
+                $emi = round(($loan_amount * $x * $r) / ($x - 1));
+                $due = round($emi * $tenure);
                 $repeat = strtotime("+1 month", strtotime($today));
                 $today = date('Y-m-d', $repeat);
                 $todayStamp = date('d-M-y D', $repeat);
-                $builder_app = $db->table($table);
-                $data = [
+                $dataFirst = [
 
                     'emi'               => $emi,
                     'valueDate'         => $today,
                     'valueDateStamp'    => $todayStamp,
                     'balance'           => $due,
+                    'reference'         => 'Due'
                 ];
+                $builder_app_f = $db->table($table);
+                $builder_app_f->insert($dataFirst);
+                # code...
+                for ($y = 2; $y <= $tenure; $y++) {
+                    $repeat = strtotime("+1 month", strtotime($today));
+                    $today = date('Y-m-d', $repeat);
+                    $todayStamp = date('d-M-y D', $repeat);
 
-                $query = $builder_app->insert($data);
+                    $data = [
+
+                        'emi'               => $emi,
+                        'valueDate'         => $today,
+                        'valueDateStamp'    => $todayStamp,
+                        'balance'           => $due,
+                    ];
+
+                    $query = $builder_app->insert($data);
+                }
+                $data_loan = [
+
+                    'loan_status'      => $this->request->getPost('status'),
+                ];
+                $builder->where('applicationID', $applicationid);
+                $builder->update($data_loan);
             }
-            $data_loan = [
 
-                'loan_status'      => $this->request->getPost('status'),
-            ];
-            $builder->where('applicationID', $applicationid);
-            $builder->update($data_loan);
             $session = session();
             $session->setFlashdata('msg', 'Loan Status Updated!');
             return redirect()->to(base_url() . 'loan');
