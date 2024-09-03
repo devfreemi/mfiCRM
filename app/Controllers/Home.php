@@ -42,4 +42,8 @@ class Home extends BaseController
     {
         return view('loan_details');
     }
+    public function bank()
+    {
+        return view('bank');
+    }
 }

@@ -23,6 +23,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('update-loan', 'LoanApi::update_of_loan');
     $routes->add('logout', 'Auth::logout');
     $routes->add('loan-details-view', 'Home::loan_details');
+    $routes->add('bank', 'Home::bank');
+    $routes->add('add-bank', 'BankController::add_bank');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -59,5 +61,8 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/loan-collection-status', 'LoanApi::collection_status');
     $routes->add('api/loan-collection-member-details', 'LoanApi::collection_details_member');
     $routes->add('api/loan-collection-update', 'LoanApi::collection_details_submit');
+    $routes->add('api/group-total-stats-disbursed', 'LoanApi::total_gr_disbursed');
+    $routes->add('api/group-total-stats-outstanding', 'LoanApi::total_gr_outstanding');
+    $routes->add('api/bank-list', 'BankController::bank_list_api');
 });
-// $routes->add('api/loan-collection-update', 'LoanApi::collection_details_submit');
+// $routes->add('api/bank-list', 'BankController::bank_list_api');

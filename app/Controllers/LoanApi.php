@@ -403,4 +403,37 @@ class LoanApi extends BaseController
 
         return $this->respond(['status' => 'Collection Status Updated.'], 200);
     }
+
+    public function total_gr_disbursed()
+    {
+        $model = new LoanModel();
+        $groupID = $this->request->getVar('groupID');
+        if (!$groupID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            $totalDisbursed = $model->selectSum('loan_amount')->where('groupId', $groupID)->where('loan_status', 'Disbursed')->get();
+            foreach ($totalDisbursed->getResult() as $rowD) {
+                return $this->respond(
+                    $rowD,
+                    200
+                );
+            }
+        }
+    }
+    public function total_gr_outstanding()
+    {
+        $model = new LoanModel();
+        $groupID = $this->request->getVar('groupID');
+        if (!$groupID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            $totalDue = $model->selectSum('loan_due')->where('groupId', $groupID)->where('loan_status', 'Disbursed')->get();
+            foreach ($totalDue->getResult() as $rowDue) {
+                return $this->respond(
+                    $rowDue,
+                    200
+                );
+            }
+        }
+    }
 }
