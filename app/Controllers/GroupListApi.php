@@ -14,9 +14,9 @@ class GroupListApi extends BaseController
     {
         //
         $model = new GroupModel();
+        $agentID   = $this->request->getVar('employeeID');
 
-
-        $group = $model->findAll();
+        $group = $model->where('agent', $agentID)->findAll();
 
         if (is_null($group)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);

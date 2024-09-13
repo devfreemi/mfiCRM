@@ -64,5 +64,6 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/group-total-stats-disbursed', 'LoanApi::total_gr_disbursed');
     $routes->add('api/group-total-stats-outstanding', 'LoanApi::total_gr_outstanding');
     $routes->add('api/bank-list', 'BankController::bank_list_api');
+    $routes->add('api/diposite-member-details', 'LoanApi::diposite_details_member');
 });
 // $routes->add('api/bank-list', 'BankController::bank_list_api');

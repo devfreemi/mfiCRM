@@ -256,13 +256,18 @@ class LoanApi extends BaseController
     public function disbursement_status()
     {
         $model = new LoanModel();
+        $agentID   = $this->request->getVar('employeeID');
 
-        $loanCapproved = $model->where('loan_status', 'Approved')->countAllResults();
+        $loanCapproved = $model->where('loan_status', 'Approved')
+            ->where('employee_id', $agentID)
+            ->countAllResults();
 
         if ($loanCapproved > 0) {
 
             $loanGroupList = $model->join('groups', 'groups.g_id = loans.groupId')
-                ->where('loan_status', 'Approved')->findAll();
+                ->where('loan_status', 'Approved')
+                ->where('employee_id', $agentID)->findAll();
+
 
             return $this->respond($loanGroupList, 200);
         } else {
@@ -328,13 +333,17 @@ class LoanApi extends BaseController
     public function collection_status()
     {
         $model = new LoanModel();
+        $agentID   = $this->request->getVar('employeeID');
 
-        $loanCdisbursed = $model->where('loan_status', 'Disbursed')->countAllResults();
+        $loanCdisbursed = $model->where('loan_status', 'Disbursed')
+            ->where('employee_id', $agentID)
+            ->countAllResults();
 
         if ($loanCdisbursed > 0) {
 
             $loanMemberList = $model->join('members', 'members.member_id = loans.member_id')
-                ->where('loans.loan_status', 'Disbursed')->findAll();
+                ->where('loans.loan_status', 'Disbursed')
+                ->where('employee_id', $agentID)->findAll();
 
             return $this->respond($loanMemberList, 200);
         } else {
@@ -434,6 +443,21 @@ class LoanApi extends BaseController
                     200
                 );
             }
+        }
+    }
+    public function diposite_details_member()
+    {
+        $model = new LoanModel();
+        $memberID = $this->request->getVar('memberID');
+
+        if ($memberID) {
+
+            $loanMemberDetail = $model->join('members', 'members.member_id = loans.member_id')
+                ->where('members.member_id', $memberID)->first();
+
+            return $this->respond($loanMemberDetail, 200);
+        } else {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
         }
     }
 }
