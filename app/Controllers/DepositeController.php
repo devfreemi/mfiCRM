@@ -48,4 +48,32 @@ class DepositeController extends BaseController
             return $this->respond($temp, 200);
         }
     }
+    public function deposite_verification_total()
+    {
+        $model = new DepositeModel();
+        $agentID   = $this->request->getVar('employeeIdValid');
+
+        // COUNT FOR CURRENT DATE
+        $saveDataCount = $model->where('created_at', date('Y-m-d'))
+            ->where('agent', $agentID)
+            ->countAllResults();
+
+        if ($saveDataCount > 0) {
+            # code...
+            $tempTotal = $model->selectSum('collected_amount')
+                ->where('agent', $agentID)
+                ->where('created_at', date('Y-m-d'))
+                ->where('submitted', 'N')->get();
+
+            foreach ($tempTotal->getResult() as $rowSum) {
+                return $this->respond(
+                    $rowSum,
+                    200
+                );
+            }
+        } else {
+            # code...
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+    }
 }

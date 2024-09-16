@@ -67,5 +67,6 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/diposite-member-details', 'LoanApi::diposite_details_member');
     $routes->add('api/bank-deposite', 'DepositeController::add_deposite');
     $routes->add('api/today-deposite-data', 'DepositeController::temp_data');
+    $routes->add('api/today-deposite-data-total', 'DepositeController::deposite_verification_total');
 });
 // $routes->add('api/today-deposite-data', 'DepositeController::temp_data');
