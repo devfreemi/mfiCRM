@@ -4,21 +4,22 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class DepositeModel extends Model
+class DepositeMasterModel extends Model
 {
-    protected $table            = 'bank_deposites';
+    protected $table            = 'bank_deposites_master';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'member_id',
-        'group_id',
-        'collected_amount',
-        'collection_date',
         'agent',
-        'uniqid',
+        'group_id',
+        'deposited_amount',
+        'deposited_date',
+        'bank_name',
+        'bank_account_number',
+        'receipt_url',
         'created_at',
         'updated_at'
     ];

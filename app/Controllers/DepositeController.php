@@ -13,12 +13,18 @@ class DepositeController extends BaseController
     public function add_deposite()
     {
         //
+
+        $uniqId = $this->request->getVar('employeeId') . "-" . $this->request->getVar('collectionDateApi');
+        $uniqId = str_replace(' ', '', $uniqId);
+        $uniqId = str_replace('-', '', $uniqId);
+        $uniqId = str_replace(':', '', $uniqId);
         $model = new DepositeModel();
         $data = [
             'member_id'             => $this->request->getVar('memberId'),
             'group_id'              => $this->request->getVar('groupId'),
             'collected_amount'       => $this->request->getVar('collectionAmt'),
             'collection_date'        => $this->request->getVar('collectionDateApi'),
+            'uniqid'                 => $uniqId,
             'agent'                 => $this->request->getVar('employeeId'),
             'created_at'           => date('Y-m-d'),
 
