@@ -16,16 +16,17 @@ class DepositeMaster extends BaseController
         //
         $model = new DepositeMasterModel();
         $data = [
-            'deposited_amount'              => $this->request->getVar('collectionAmt'),
-            'deposited_date'                => $this->request->getVar('collectionDateApi'),
-            'bank_name'                     => $this->request->getVar('collectionDateApi'),
-            'bank_account_number'           => $this->request->getVar('collectionDateApi'),
-            'receipt_url'                   => $this->request->getVar('employeeId'),
-            'agent'                         => $this->request->getVar('employeeId'),
+
+            'agent'                         => $this->request->getVar('employeeUpload'),
+            'deposited_amount'              => $this->request->getVar('totalDeposite'),
+            'bank_name'                     => $this->request->getVar('bank'),
+            'bank_account_number'           => $this->request->getVar('bank'),
+            'deposited_date'                => $this->request->getVar('depositeDateApi'),
+            'receipt_url'                   => $this->request->getVar('downloadURLP1'),
 
         ];
 
-        // $query = $model->insert($data);
+
         $query = $model->save($data);
         if (!$query) {
             return $this->respond(['error' => 'Invalid Request.' . $query], 401);
