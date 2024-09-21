@@ -21,7 +21,8 @@ class DepositeMasterModel extends Model
         'bank_account_number',
         'receipt_url',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'uniqId'
     ];
 
     // Dates
