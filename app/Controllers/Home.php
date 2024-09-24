@@ -46,4 +46,8 @@ class Home extends BaseController
     {
         return view('bank');
     }
+    public function bank_deposite()
+    {
+        return view('bank_deposite');
+    }
 }

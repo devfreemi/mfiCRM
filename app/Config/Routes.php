@@ -24,6 +24,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('logout', 'Auth::logout');
     $routes->add('loan-details-view', 'Home::loan_details');
     $routes->add('bank', 'Home::bank');
+    $routes->add('bank-deposite', 'Home::bank_deposite');
     $routes->add('add-bank', 'BankController::add_bank');
 });
 

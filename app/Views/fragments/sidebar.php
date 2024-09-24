@@ -41,6 +41,11 @@
 				</a>
 			</li>
 			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>bank-deposite">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Bank Deposite</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
 				<a class="sidebar-link" href="<?= base_url() ?>employee">
 					<i class="align-middle" data-feather="user"></i> <span class="user">Employee</span>
 				</a>
