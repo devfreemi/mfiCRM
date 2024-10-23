@@ -70,5 +70,6 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/today-deposite-data', 'DepositeController::temp_data');
     $routes->add('api/today-deposite-data-total', 'DepositeController::deposite_verification_total');
     $routes->add('api/deposite-verification', 'DepositeMaster::submit_deposite_master');
+    $routes->add('api/geo-tag', 'GeoTag::getData');
 });
 // $routes->add('api/today-deposite-data', 'DepositeController::temp_data');
