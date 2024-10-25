@@ -25,7 +25,7 @@ class GeoTag extends BaseController
             'pincode'                 => $this->request->getVar('pin'),
             'state'                 => $this->request->getVar('state'),
             'country'                 => $this->request->getVar('country'),
-            'reference'                 => $this->request->getVar('reference'),
+            'reference'                 => $this->request->getVar('downloadURLP1'),
             'created_at'           => date('Y-m-d H:i:s'),
         ];
         $query = $model->save($data);
