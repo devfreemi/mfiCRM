@@ -36,4 +36,21 @@ class GeoTag extends BaseController
             return $this->respond(['tag' => $data], 200);
         }
     }
+
+    public function listData()
+    {
+        //
+
+        $model = new GeoTagModel();
+        $eIdTag = $this->request->getVar('eIdTag');
+
+        $tag_list = $model->where('agent_id', $eIdTag)->findAll();
+
+        if (is_null($tag_list)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            # code...
+            return $this->respond($tag_list, 200);
+        }
+    }
 }
