@@ -72,5 +72,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/deposite-verification', 'DepositeMaster::submit_deposite_master');
     $routes->add('api/geo-tag', 'GeoTag::getData');
     $routes->add('api/geo-tag-list', 'GeoTag::listData');
+    $routes->add('api/total-outstanding', 'LoanApi::total_outstanding');
+    $routes->add('api/total-disbursed', 'LoanApi::total_disbursed');
+    $routes->add('api/total-outstanding-month', 'LoanApi::total_outstanding_month');
+    $routes->add('api/total-disbursed-month', 'LoanApi::total_disbursed_month');
 });
 // $routes->add('api/today-deposite-data', 'DepositeController::temp_data');

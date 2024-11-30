@@ -85,6 +85,7 @@ class LoanApi extends BaseController
                 'emi'               =>  $emi,
                 'pending_emi'       =>  $tenure,
                 'loan_due'          => $due,
+                'total_amount'          => $due,
             ];
 
             $builder->where('applicationID', $applicationid);
@@ -458,6 +459,77 @@ class LoanApi extends BaseController
             return $this->respond($loanMemberDetail, 200);
         } else {
             return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+    }
+
+    public function total_outstanding()
+    {
+        $model = new LoanModel();
+        $empID = $this->request->getVar('employeeID');
+        if (!$empID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            $totalDue = $model->selectSum('loan_due')->where('employee_id', $empID)->where('loan_status', 'Disbursed')->get();
+            foreach ($totalDue->getResult() as $rowDue) {
+                return $this->respond(
+                    $rowDue,
+                    200
+                );
+            }
+        }
+    }
+    public function total_disbursed()
+    {
+        $model = new LoanModel();
+        $empID = $this->request->getVar('employeeID');
+        if (!$empID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            $totalDisbursed = $model->selectSum('total_amount')->where('employee_id', $empID)->where('loan_status', 'Disbursed')->get();
+            foreach ($totalDisbursed->getResult() as $rowD) {
+                return $this->respond(
+                    $rowD,
+                    200
+                );
+            }
+        }
+    }
+    public function total_outstanding_month()
+    {
+        $model = new LoanModel();
+        $empID = $this->request->getVar('employeeID');
+        if (!$empID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            $totalDue = $model->selectSum('loan_due')->where('employee_id', $empID)
+                ->where('loan_status', 'Disbursed')
+                ->where('MONTH(created_at)', date('m'))
+                ->get();
+            foreach ($totalDue->getResult() as $rowDue) {
+                return $this->respond(
+                    $rowDue,
+                    200
+                );
+            }
+        }
+    }
+    public function total_disbursed_month()
+    {
+        $model = new LoanModel();
+        $empID = $this->request->getVar('employeeID');
+        if (!$empID) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            $totalDisbursed = $model->selectSum('total_amount')->where('employee_id', $empID)
+                ->where('loan_status', 'Disbursed')
+                ->where('MONTH(created_at)', date('m'))
+                ->get();
+            foreach ($totalDisbursed->getResult() as $rowD) {
+                return $this->respond(
+                    $rowD,
+                    200
+                );
+            }
         }
     }
 }
