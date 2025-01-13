@@ -32,7 +32,16 @@ class MemberModel extends Model
         'bankCity',
         'bankState',
         'bankAddress',
-        'created_at'
+        'created_at',
+        'businessType',
+        'businessName',
+        'footFall',
+        'stock',
+        'outstanding',
+        'estab',
+        'dailySales',
+        'image',
+
     ];
 
     // Dates
