@@ -26,6 +26,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('bank', 'Home::bank');
     $routes->add('bank-deposite', 'Home::bank_deposite');
     $routes->add('add-bank', 'BankController::add_bank');
+    $routes->add('geo-tag', 'Home::geo_tag');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {

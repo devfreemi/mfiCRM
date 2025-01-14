@@ -50,7 +50,11 @@
 					<i class="align-middle" data-feather="user"></i> <span class="user">Employee</span>
 				</a>
 			</li>
-
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>geo-tag">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Geo Tagging</span>
+				</a>
+			</li>
 
 
 

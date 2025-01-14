@@ -16,22 +16,22 @@
 
                 <div class="col-xl-12 col-xxl-12 d-flex">
                     <div class="w-100">
-                        <table id="branch" class="table table-striped">
+                        <table id="branch" class="table table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Group Name</th>
-                                    <th>Group ID</th>
+
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
-                                    <th>Aadhaar Number</th>
-                                    <th>Name</th>
+                                    <th>Business Name</th>
+                                    <th>Owner Name</th>
                                     <th>Location</th>
                                     <th>Pincode</th>
-                                    <th>Gender</th>
-                                    <th>Occupation</th>
-                                    <th>Marital Status</th>
+                                    <th>Daily Sales</th>
+                                    <th>Current Stock</th>
+                                    <th>Daily Footfall</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -46,16 +46,16 @@
                                         <td><?php echo $row->id; ?></td>
                                         <td><?php echo $row->member_id; ?></td>
                                         <td><?php echo $row->groupName; ?></td>
-                                        <td><?php echo $row->groupId; ?></td>
+
                                         <td><?php echo $row->mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
-                                        <td><?php echo $row->adhar; ?></td>
+                                        <td><?php echo $row->businessName; ?></td>
                                         <td><?php echo $row->name; ?></td>
                                         <td><?php echo $row->location; ?></td>
                                         <td><?php echo $row->pincode; ?></td>
-                                        <td><?php echo $row->gender; ?></td>
-                                        <td><?php echo $row->occupation; ?></td>
-                                        <td><?php echo $row->marital; ?></td>
+                                        <td><?php echo $row->dailySales; ?></td>
+                                        <td><?php echo $row->stock; ?></td>
+                                        <td><?php echo $row->footFall; ?></td>
                                         <td>
                                             <button type="button" class="btn btn-primary rounded">View</button>
                                         </td>
@@ -68,16 +68,16 @@
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Group Name</th>
-                                    <th>Group ID</th>
+
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
-                                    <th>Aadhaar Number</th>
-                                    <th>Name</th>
+                                    <th>Business Name</th>
+                                    <th>Owner Name</th>
                                     <th>Location</th>
                                     <th>Pincode</th>
-                                    <th>Gender</th>
-                                    <th>Occupation</th>
-                                    <th>Marital Status</th>
+                                    <th>Daily Sales</th>
+                                    <th>Current Stock</th>
+                                    <th>Daily Footfall</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

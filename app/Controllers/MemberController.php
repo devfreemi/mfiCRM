@@ -17,15 +17,33 @@ class MemberController extends BaseController
 
         $mobile = $this->request->getVar('mobile');
         $mobileFour = substr($mobile, -4);
-        $adhar = $this->request->getVar('adhar');
-        $adharFour = substr($adhar, -4);;
+        $name_str = strtoupper($this->request->getVar('businessName'));
+        $name_str = substr($name_str, 0, 4);
+
+
+        if ($this->request->getVar('pan') != '') {
+            # code...
+            $pan = $this->request->getVar('pan');
+        } else {
+            # code...
+            $pan = $this->request->getVar('mobile') . "/NA";
+        }
+        if ($this->request->getVar('adhar') != '') {
+            # code...
+            $adhar = $this->request->getVar('adhar');
+        } else {
+            # code...
+            $adhar = $this->request->getVar('mobile') . "/N";
+        }
+
+
         $data = [
-            'member_id'     => $mobileFour . $adharFour,
+            'member_id'     =>  $name_str . $mobileFour,
             'groupName'     => $this->request->getVar('groupName'),
             'groupId'       => $this->request->getVar('groupId'),
             'mobile'        => $this->request->getVar('mobile'),
-            'pan'           => $this->request->getVar('pan'),
-            'adhar'         => $this->request->getVar('adhar'),
+            'pan'           => $pan,
+            'adhar'         => $adhar,
             'name'          => $this->request->getVar('name'),
             'location'      => $this->request->getVar('memberLocation'),
             'pincode'       => $this->request->getVar('groupPin'),

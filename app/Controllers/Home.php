@@ -50,4 +50,8 @@ class Home extends BaseController
     {
         return view('bank_deposite');
     }
+    public function geo_tag()
+    {
+        return view('geo_tag');
+    }
 }
