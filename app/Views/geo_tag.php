@@ -25,7 +25,9 @@
                                     <th>Location</th>
                                     <th>City</th>
                                     <th>Pincode</th>
-                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Sign In Date</th>
+                                    <th>Sign In Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +45,9 @@
                                         <td><?php echo $row->location; ?></td>
                                         <td><?php echo $row->city; ?></td>
                                         <td><?php echo $row->pincode; ?></td>
-                                        <td><?php echo $row->created_at; ?></td>
+                                        <td><?php echo $row->status; ?></td>
+                                        <td><?php echo $row->date; ?></td>
+                                        <td><?php echo $row->sign_in_time; ?></td>
                                     </tr>
                                 <?php } ?>
 

@@ -77,5 +77,6 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/total-disbursed', 'LoanApi::total_disbursed');
     $routes->add('api/total-outstanding-month', 'LoanApi::total_outstanding_month');
     $routes->add('api/total-disbursed-month', 'LoanApi::total_disbursed_month');
+    $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
 // $routes->add('api/today-deposite-data', 'DepositeController::temp_data');

@@ -24,6 +24,9 @@ class GeoTagModel extends Model
         'country',
         'reference',
         'created_at',
+        'date',
+        'created_at',
+        'sign_in_time',
         'updated_at'
     ];
 
