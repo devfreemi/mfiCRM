@@ -1,0 +1,16 @@
+INFO - 2025-01-16 06:15:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 06:15:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-01-16 06:15:37 --> Error: Undefined constant "CodeIgniter\Database\MySQLi\MYSQLI_STORE_RESULT"
+in SYSTEMPATH/Database/Database.php on line 137.
+ 1 SYSTEMPATH/Database/Database.php(55): CodeIgniter\Database\Database->initDriver()
+ 2 SYSTEMPATH/Database/Config.php(82): CodeIgniter\Database\Database->load()
+ 3 SYSTEMPATH/Validation/StrictRules/Rules.php(153): CodeIgniter\Database\Config::connect()
+ 4 SYSTEMPATH/Validation/Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(200): CodeIgniter\Validation\Validation->processRules()
+ 6 SYSTEMPATH/Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 7 APPPATH/Controllers/Auth.php(72): CodeIgniter\Controller->validate()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfiCRM/public/index.php')

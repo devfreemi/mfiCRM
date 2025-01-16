@@ -27,7 +27,8 @@ class GeoTagModel extends Model
         'date',
         'created_at',
         'sign_in_time',
-        'updated_at'
+        'updated_at',
+        'status'
     ];
 
     // Dates

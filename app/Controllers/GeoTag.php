@@ -35,8 +35,65 @@ class GeoTag extends BaseController
             'date'              => $signDate,
             'created_at'        => $date,
             'sign_in_time'      => $signIn,
+            'status'            => $this->request->getVar('statusAgent'),
         ];
-        $query = $model->save($data);
+        // FOR ATTENDENCE
+        $dataAtten = [
+            'agent_id'          => $this->request->getVar('employeeId'),
+            'date'              => $signDate,
+            'created_at'        => $date,
+            'sign_in_time'      => $signIn,
+        ];
+        // Check Same date for attendence
+        $queryCheck = $model->where('agent_id', $employee)
+            ->orderBy('created_at', 'DESC')
+            ->limit(1)
+            ->first();
+
+        // $dateCheck = $queryCheck['date'];
+        if ($queryCheck != null) {
+            # code...
+            $dateCheck = $queryCheck['date'];
+            if ($dateCheck == $signDate) {
+                # code...
+                $query = $model->save($data);
+                if (!$query) {
+                    return $this->respond(['error' => 'Invalid Request.'], 401);
+                } else {
+                    # code...
+                    return $this->respond(['tag' => $data], 200);
+                }
+            } else {
+                # code...
+                $query = $model->save($data);
+                $queryAtten = $atten->save($dataAtten);
+                if (!$query && !$queryAtten) {
+                    return $this->respond(['error' => 'Invalid Request.'], 401);
+                } else {
+                    # code...
+                    return $this->respond(['tag' => $data], 200);
+                }
+            }
+        } else {
+            # code...
+            $query = $model->save($data);
+            $queryAtten = $atten->save($dataAtten);
+            if (!$query && !$queryAtten) {
+                return $this->respond(['error' => 'Invalid Request.'], 401);
+            } else {
+                # code...
+                return $this->respond(['tag' => $data], 200);
+            }
+        }
+
+
+        // if ($queryCheck != Null) {
+        //     # code...
+        //     return $this->respond(['tag' => $queryCheck], 200);
+        // } else {
+        //     # code...
+        //     return $this->respond(['error' => $queryCheck], 401);
+        // }
 
         // $lastRecord = $atten
         //     ->where('agent_id', $employee) // Your WHERE condition
@@ -48,7 +105,7 @@ class GeoTag extends BaseController
         //     return $this->respond(['tag' => $lastRecord], 200);
         // } else {
         //     # code...
-        //     return $this->respond(['error' => 'Invalid Request.' . $lastRecord], 401);
+        //     return $this->respond(['error' => $lastRecord], 401);
         // }
 
         // if (!$query) {
