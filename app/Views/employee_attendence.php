@@ -10,7 +10,7 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            <h1 class="h3 mb-3"><strong>Employees'</strong> Geo Tags</h1>
+            <h1 class="h3 mb-3"><strong>Employees'</strong> Attendence</h1>
 
             <div class="row">
                 <div class="col-xl-12 col-xxl-12 d-flex">
@@ -18,47 +18,41 @@
                         <table id="branch" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Agent</th>
-                                    <th>Latitude</th>
-                                    <th>Longitude</th>
-                                    <th>Location</th>
-                                    <th>City</th>
-                                    <th>Pincode</th>
+                                    <th>Sl</th>
+                                    <th>Employee</th>
                                     <th>Status</th>
                                     <th>Sign In Date</th>
-
+                                    <th>Sign In Time</th>
+                                    <th>Sign Out Time</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                $i = 1;
                                 $db = db_connect();
-                                $builder = $db->table('geotags');
-                                $query = $builder->get();
+                                $builder = $db->table('agentattendences');
+                                $query = $builder->join('employees', 'employees.employeeID = agentattendences.agent_id')->get();
                                 foreach ($query->getResult() as $row) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $row->id; ?></td>
-                                        <td><?php echo $row->agent; ?></td>
-                                        <td><?php echo $row->latitude; ?></td>
-                                        <td><?php echo $row->longitude; ?></td>
-                                        <td><?php echo $row->location; ?></td>
-                                        <td><?php echo $row->city; ?></td>
-                                        <td><?php echo $row->pincode; ?></td>
-                                        <td><?php echo $row->status; ?></td>
+                                        <td><?php echo $i++; ?></td>
+                                        <td><?php echo $row->name; ?></td>
+                                        <td>Active</td>
                                         <td><?php echo $row->date; ?></td>
-
+                                        <td><?php echo $row->sign_in_time; ?></td>
+                                        <td><?php echo $row->sign_out_time; ?></td>
                                     </tr>
                                 <?php } ?>
 
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Branch Name</th>
-                                    <th>Location</th>
-                                    <th>Pincode</th>
-                                    <th>Start date</th>
+                                    <th>Sl</th>
+                                    <th>Employee</th>
+                                    <th>Status</th>
+                                    <th>Sign In Date</th>
+                                    <th>Sign In Time</th>
+                                    <th>Sign Out Time</th>
                                 </tr>
                             </tfoot>
                         </table>

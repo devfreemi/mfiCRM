@@ -28,9 +28,9 @@ class GroupListApi extends BaseController
     {
         //
         $model = new GroupModel();
+        $employeeIDG = $this->request->getVar('employeeIDG');
 
-
-        $total_group = $model->countAllResults();
+        $total_group = $model->where('agent', $employeeIDG)->countAllResults();
 
         if (is_null($total_group)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);

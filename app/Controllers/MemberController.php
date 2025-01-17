@@ -65,6 +65,7 @@ class MemberController extends BaseController
             'bankCity'      => $this->request->getVar('bankCity'),
             'bankState'     => $this->request->getVar('bankState'),
             'bankAddress'   => $this->request->getVar('bankAddress'),
+            'agent'         => $this->request->getVar('agent'),
         ];
 
         // $query = $model->insert($data);
@@ -122,8 +123,8 @@ class MemberController extends BaseController
     public function total_member()
     {
         $model = new MemberModel();
-
-        $totalMember = $model->countAllResults();
+        $employeeIDM = $this->request->getVar('employeeIDM');
+        $totalMember = $model->where('agent', $employeeIDM)->countAllResults();
         $totalMemberMale = $model->where('gender', 'Male')->countAllResults();
         $totalMemberFemale = $model->where('gender', 'Female')->countAllResults();
 

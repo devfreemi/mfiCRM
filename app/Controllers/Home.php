@@ -54,4 +54,8 @@ class Home extends BaseController
     {
         return view('geo_tag');
     }
+    public function e_attendence()
+    {
+        return view('employee_attendence');
+    }
 }

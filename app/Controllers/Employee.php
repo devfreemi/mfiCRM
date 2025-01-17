@@ -53,7 +53,6 @@ class Employee extends BaseController
     public function add_employee()
     {
         $rules = [
-            'email' => ['rules' => 'required|min_length[4]|max_length[255]|valid_email|is_unique[employees.email]'],
             'mobile' => ['rules' => 'required|min_length[10]|max_length[10]|is_unique[employees.mobile]'],
             'name' => ['rules' => 'required|min_length[5]|max_length[64]'],
         ];
@@ -61,13 +60,11 @@ class Employee extends BaseController
 
         if ($this->validate($rules)) {
             $model = new EmployeeModel();
-            $mobile = $this->request->getVar('mobile');
-            $mobileTwo = substr($mobile, -2);
             $data = [
                 'email'    => $this->request->getVar('email'),
                 'mobile' => $this->request->getVar('mobile'),
                 'name' => $this->request->getVar('name'),
-                'employeeID' => $this->request->getVar('employeeID') . $mobileTwo,
+                'employeeID' => $this->request->getVar('employeeID'),
                 'designation' => $this->request->getVar('designation'),
             ];
             // $model->save($data);

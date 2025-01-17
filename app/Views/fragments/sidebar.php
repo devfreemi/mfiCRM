@@ -51,6 +51,11 @@
 				</a>
 			</li>
 			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>employee-attendence">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Attendence</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
 				<a class="sidebar-link" href="<?= base_url() ?>geo-tag">
 					<i class="align-middle" data-feather="user"></i> <span class="user">Geo Tagging</span>
 				</a>

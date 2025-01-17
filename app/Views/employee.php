@@ -30,6 +30,10 @@
                                 <div class="modal-body">
                                     <?= csrf_field('auth') ?>
                                     <div class="mb-3">
+                                        <label for="name" class="form-label">Employee Id</label>
+                                        <input type="text" lass="form-control" id="employeeID" name="employeeID" required>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="name" class="form-label">Employee Name</label>
                                         <input type="text" class="form-control" id="name" name="name" required>
                                     </div>
@@ -47,11 +51,11 @@
                                             <option selected value="" disabled>Select Designation</option>
                                             <option value="Back Office">Back Office</option>
                                             <option value="Field Agent">Field Agent</option>
+                                            <option value="Relationship Manager">Relationship Manager</option>
                                             <!-- <option value="3">Three</option> -->
                                         </select>
                                     </div>
                                 </div>
-                                <input type="hidden" name="employeeID" value="<?php echo rand(100, 999); ?>">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>

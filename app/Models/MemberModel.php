@@ -41,6 +41,7 @@ class MemberModel extends Model
         'estab',
         'dailySales',
         'image',
+        'agent'
 
     ];
 
