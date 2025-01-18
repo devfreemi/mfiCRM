@@ -18,7 +18,10 @@ class MemberController extends BaseController
         $mobile = $this->request->getVar('mobile');
         $mobileFour = substr($mobile, -4);
         $name_str = strtoupper($this->request->getVar('businessName'));
+        $name_str = str_replace(" ", "", $name_str);
         $name_str = substr($name_str, 0, 4);
+
+
 
 
         if ($this->request->getVar('pan') != '') {

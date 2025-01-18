@@ -26,6 +26,7 @@
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
                                     <th>Business Name</th>
+                                    <th>Business Type</th>
                                     <th>Owner Name</th>
                                     <th>Location</th>
                                     <th>Pincode</th>
@@ -50,6 +51,7 @@
                                         <td><?php echo $row->mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
                                         <td><?php echo $row->businessName; ?></td>
+                                        <td><?php echo $row->businessType; ?></td>
                                         <td><?php echo $row->name; ?></td>
                                         <td><?php echo $row->location; ?></td>
                                         <td><?php echo $row->pincode; ?></td>
