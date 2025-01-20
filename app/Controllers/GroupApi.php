@@ -25,7 +25,7 @@ class GroupApi extends BaseController
             'pincode'       => $this->request->getVar('pincode'),
             'group_type'    => $this->request->getVar('groupType'),
             'agent'         => $this->request->getVar('employeeID'),
-            'group_leader'  => $this->request->getVar('employeeID'),
+            'group_leader'  => $this->request->getVar('employeeName'),
             'date'          => date('Y-m-d'),
             'created_at'    => date('Y-m-d H:i:s')
         ];

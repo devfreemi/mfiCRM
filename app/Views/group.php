@@ -36,7 +36,7 @@
                             <tbody>
                                 <?php
                                 $db = db_connect();
-                                $builder = $db->table('groups');
+                                $builder = $db->table('groups')->orderBy('created_at', 'ASC');
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
                                     $e_id =  $row->agent;
