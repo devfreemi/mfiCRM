@@ -10,19 +10,19 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            <h1 class="h3 mb-3">List of <strong>Members</strong></h1>
+            <h1 class="h3 mb-3">List of <strong>Retailers</strong></h1>
 
             <div class="row">
 
                 <div class="col-xl-12 col-xxl-12 d-flex">
-                    <div class="w-100">
-                        <table id="branch" class="table table-striped table-responsive">
+                    <div class="w-100 table-responsive">
+                        <table id="branch" class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Group Name</th>
-
+                                    <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
                                     <th>Business Name</th>
@@ -33,34 +33,45 @@
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
-                                    <th>Action</th>
+                                    <th>Images</th>
+                                    <th>Date</th>
+                                    <!-- <th>Action</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                $i = 1;
                                 $db = db_connect();
-                                $builder = $db->table('members');
+                                $builder = $db->table('members')->select('*, members.name as owner,members.created_at as r_created_at')
+                                    ->join('employees', 'employees.employeeID = members.agent');
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $row->id; ?></td>
+                                        <td><?php echo $i++; ?></td>
                                         <td><?php echo $row->member_id; ?></td>
                                         <td><?php echo $row->groupName; ?></td>
-
+                                        <td><?php echo $row->name; ?></td>
                                         <td><?php echo $row->mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
                                         <td><?php echo $row->businessName; ?></td>
                                         <td><?php echo $row->businessType; ?></td>
-                                        <td><?php echo $row->name; ?></td>
+                                        <td><?php echo $row->owner; ?></td>
                                         <td><?php echo $row->location; ?></td>
                                         <td><?php echo $row->pincode; ?></td>
                                         <td><?php echo $row->dailySales; ?></td>
                                         <td><?php echo $row->stock; ?></td>
                                         <td><?php echo $row->footFall; ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary rounded">View</button>
+                                            <a href="<?php echo $row->image; ?>" target="_blank" rel="noopener noreferrer">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+
                                         </td>
+                                        <td><?php echo $row->r_created_at; ?></td>
+                                        <!-- <td>
+                                            <button type="button" class="btn btn-primary rounded">View</button>
+                                        </td> -->
                                     </tr>
                                 <?php } ?>
 
@@ -70,16 +81,18 @@
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Group Name</th>
-
+                                    <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
                                     <th>Business Name</th>
+                                    <th>Business Type</th>
                                     <th>Owner Name</th>
                                     <th>Location</th>
                                     <th>Pincode</th>
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
+                                    <th>Images</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -101,5 +114,8 @@
 </div>
 </div>
 <script>
-    new DataTable('#branch');
+    // new DataTable('#branch');
+    $('#branch').DataTable({
+        responsive: true
+    });
 </script>

@@ -163,10 +163,13 @@ class LoanApi extends BaseController
     {
         $model = new LoanModel();
         $groupID = $this->request->getVar('groupID');
-
-        $loanCapplied = $model->where('groupId', $groupID)->where('loan_status', 'Applied')->countAllResults();
-        $loanCapproved = $model->where('groupId', $groupID)->where('loan_status', 'Approved')->countAllResults();
-        $loanCdis = $model->where('groupId', $groupID)->where('loan_status', 'Disbursed')->countAllResults();
+        $employeeIDlos = $this->request->getVar('employeeIDlos');
+        $loanCapplied = $model->where('groupId', $groupID)->where('loan_status', 'Applied')
+            ->where('employee_id', $employeeIDlos)->countAllResults();
+        $loanCapproved = $model->where('groupId', $groupID)->where('loan_status', 'Approved')
+            ->where('employee_id', $employeeIDlos)->countAllResults();
+        $loanCdis = $model->where('groupId', $groupID)->where('loan_status', 'Disbursed')
+            ->where('employee_id', $employeeIDlos)->countAllResults();
 
         if (!$groupID) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
@@ -418,10 +421,11 @@ class LoanApi extends BaseController
     {
         $model = new LoanModel();
         $groupID = $this->request->getVar('groupID');
+        $employeeIDis = $this->request->getVar('employeeIDis');
         if (!$groupID) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
         } else {
-            $totalDisbursed = $model->selectSum('loan_amount')->where('groupId', $groupID)->where('loan_status', 'Disbursed')->get();
+            $totalDisbursed = $model->selectSum('loan_amount')->where('groupId', $groupID)->where('employee_id', $employeeIDis)->where('loan_status', 'Disbursed')->get();
             foreach ($totalDisbursed->getResult() as $rowD) {
                 return $this->respond(
                     $rowD,
@@ -434,10 +438,11 @@ class LoanApi extends BaseController
     {
         $model = new LoanModel();
         $groupID = $this->request->getVar('groupID');
+        $employeeIOut = $this->request->getVar('employeeIOut');
         if (!$groupID) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
         } else {
-            $totalDue = $model->selectSum('loan_due')->where('groupId', $groupID)->where('loan_status', 'Disbursed')->get();
+            $totalDue = $model->selectSum('loan_due')->where('groupId', $groupID)->where('employee_id', $employeeIOut)->where('loan_status', 'Disbursed')->get();
             foreach ($totalDue->getResult() as $rowDue) {
                 return $this->respond(
                     $rowDue,

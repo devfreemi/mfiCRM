@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\MemberModel;
+use App\Models\GeoTagModel;
+use App\Models\AgentAttendenceModel;
 use CodeIgniter\API\ResponseTrait;
 
 class MemberController extends BaseController
@@ -13,16 +15,19 @@ class MemberController extends BaseController
     public function add_member()
     {
         //
+        date_default_timezone_set('Asia/Kolkata');
         $model = new MemberModel();
-
+        $modelGeo = new GeoTagModel();
+        $atten = new AgentAttendenceModel();
         $mobile = $this->request->getVar('mobile');
         $mobileFour = substr($mobile, -4);
         $name_str = strtoupper($this->request->getVar('businessName'));
         $name_str = str_replace(" ", "", $name_str);
         $name_str = substr($name_str, 0, 4);
-
-
-
+        $signDate = date('Y-m-d');
+        $date = date('Y-m-d H:i:s');
+        $signIn = date('H:i:s');
+        $employee = $this->request->getVar('agent');
 
         if ($this->request->getVar('pan') != '') {
             # code...
@@ -69,9 +74,62 @@ class MemberController extends BaseController
             'bankState'     => $this->request->getVar('bankState'),
             'bankAddress'   => $this->request->getVar('bankAddress'),
             'agent'         => $this->request->getVar('agent'),
+            'created_at'    => $date,
         ];
 
-        // $query = $model->insert($data);
+        // // // FOR ATTENDENCE
+        // $dataAtten = [
+        //     'agent_id'          => $this->request->getVar('agent'),
+        //     'date'              => $signDate,
+        //     'created_at'        => $date,
+        //     'sign_in_time'      => $signIn,
+        // ];
+        // // Check Same date for attendence
+        // $queryCheck = $modelGeo->where('agent_id', $employee)
+        //     ->orderBy('created_at', 'DESC')
+        //     ->limit(1)
+        //     ->first();
+
+        // if ($queryCheck != null) {
+        //     # code...
+        //     $dateCheck = $queryCheck['date'];
+        //     if ($dateCheck == $signDate) {
+        //         # code...
+        //         $queryMem = $model->save($data);
+        //         if (!$queryMem) {
+        //             return $this->respond(['error' => 'Invalid Request.'], 401);
+        //         } else {
+        //             # code...
+        //             // return $this->respond(['tag' => $data], 200);
+        //             return $this->respond(['members' => $data], 200);
+        //         }
+        //     } else {
+        //         # code...
+
+        //         $queryAtten = $atten->save($dataAtten);
+        //         $queryMem = $model->save($data);
+        //         if (!$queryAtten && !$queryMem) {
+        //             return $this->respond(['error' => 'Invalid Request.'], 401);
+        //         } else {
+        //             # code...
+        //             // return $this->respond(['tag' => $data], 200);
+        //             return $this->respond(['members' => $data], 200);
+        //         }
+        //     }
+        // } else {
+        //     # code...
+        //     $queryMem = $model->save($data);
+        //     $queryAtten = $atten->save($dataAtten);
+        //     if (!$queryAtten && !$queryMem) {
+        //         return $this->respond(['error' => 'Invalid Request.'], 401);
+        //     } else {
+        //         # code...
+        //         // return $this->respond(['tag' => $data], 200);
+        //         return $this->respond(['members' => $data], 200);
+        //     }
+        // }
+
+
         $query = $model->save($data);
         if (!$query) {
             return $this->respond(['error' => 'Invalid Request.' . $query], 401);
@@ -84,8 +142,8 @@ class MemberController extends BaseController
     {
         $model = new MemberModel();
         $groupID = $this->request->getVar('groupID');
-
-        $groupMembers = $model->where('groupId', $groupID)->countAllResults();
+        $employeeIDTotal = $this->request->getVar('employeeIDTotal');
+        $groupMembers = $model->where('groupId', $groupID)->where('agent', $employeeIDTotal)->countAllResults();
 
         if (is_null($groupMembers)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
@@ -99,8 +157,9 @@ class MemberController extends BaseController
         //
         $model = new MemberModel();
         $groupID = $this->request->getVar('groupID');
-
-        $member = $model->where('groupId', $groupID)->findAll();
+        $employeeIDG = $this->request->getVar('employeeIDG');
+        $member = $model->where('groupId', $groupID)
+            ->where('agent', $employeeIDG)->findAll();
 
         if (is_null($member)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);

@@ -32,7 +32,7 @@
 
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="<?= base_url() ?>members">
-					<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Members</span>
+					<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Retailers</span>
 				</a>
 			</li>
 			<li class="sidebar-item">

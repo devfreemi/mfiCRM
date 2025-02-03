@@ -25,15 +25,15 @@
                                     <th>Location</th>
                                     <th>City</th>
                                     <th>Pincode</th>
+                                    <th>Reference</th>
                                     <th>Status</th>
                                     <th>Sign In Date</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $db = db_connect();
-                                $builder = $db->table('geotags');
+                                $builder = $db->table('geotags')->orderBy('date', 'DESC');
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
                                 ?>
@@ -45,7 +45,13 @@
                                         <td><?php echo $row->location; ?></td>
                                         <td><?php echo $row->city; ?></td>
                                         <td><?php echo $row->pincode; ?></td>
+                                        <td>
+                                            <a href="<?php echo $row->reference; ?>" target="_blank" rel="noopener noreferrer">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                        </td>
                                         <td><?php echo $row->status; ?></td>
+
                                         <td><?php echo $row->date; ?></td>
 
                                     </tr>
@@ -55,10 +61,15 @@
                             <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Branch Name</th>
+                                    <th>Agent</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
                                     <th>Location</th>
+                                    <th>City</th>
                                     <th>Pincode</th>
-                                    <th>Start date</th>
+                                    <th>Reference</th>
+                                    <th>Status</th>
+                                    <th>Sign In Date</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -85,29 +85,7 @@ class GeoTag extends BaseController
                 return $this->respond(['tag' => $data], 200);
             }
         }
-
-
-        // if ($queryCheck != Null) {
-        //     # code...
-        //     return $this->respond(['tag' => $queryCheck], 200);
-        // } else {
-        //     # code...
-        //     return $this->respond(['error' => $queryCheck], 401);
-        // }
-
-        // $lastRecord = $atten
-        //     ->where('agent_id', $employee) // Your WHERE condition
-        //     ->orderBy('created_at', 'DESC') // Order by created_at in descending order
-        //     ->limit(1)
-        //     ->first();
-        // if ($lastRecord != Null) {
-        //     # code...
-        //     return $this->respond(['tag' => $lastRecord], 200);
-        // } else {
-        //     # code...
-        //     return $this->respond(['error' => $lastRecord], 401);
-        // }
-
+        // $query = $model->save($data);
         // if (!$query) {
         //     return $this->respond(['error' => 'Invalid Request.' . $query], 401);
         // } else {

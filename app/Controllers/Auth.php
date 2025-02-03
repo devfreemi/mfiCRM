@@ -15,7 +15,15 @@ class Auth extends BaseController
     public function index()
     {
         //
+        // $ipAddress = $this->request->getIPAddress();
+        // if ($ipAddress == '2401:4900:882b:1b10:c351:94a9:a573:8e9f') {
+        //     # code...
         return view('login');
+        // } else {
+        //     $this->response->setStatusCode(403);
+        //     return view('errors/cli/error_404');
+        // }
+
     }
     public function signup()
     {
