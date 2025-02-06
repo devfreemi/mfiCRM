@@ -26,7 +26,7 @@
 			</li>
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="<?= base_url() ?>group">
-					<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Groups</span>
+					<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Markets</span>
 				</a>
 			</li>
 

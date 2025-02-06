@@ -142,7 +142,7 @@
 
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12 col-lg-8 col-xxl-9 d-flex">
                     <div class="card flex-fill">
                         <div class="card-header">
@@ -233,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </main>
