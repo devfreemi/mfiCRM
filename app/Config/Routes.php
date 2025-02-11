@@ -80,7 +80,8 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/total-disbursed-month', 'LoanApi::total_disbursed_month');
     // KYC Verification
     $routes->add('api/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp');
-    // KYC Verification
+    $routes->add('api/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp');
+    // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
 // $routes->add('api/today-deposite-data', 'DepositeController::temp_data');

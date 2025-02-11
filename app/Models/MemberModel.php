@@ -41,7 +41,9 @@ class MemberModel extends Model
         'estab',
         'dailySales',
         'image',
-        'agent'
+        'agent',
+        'aadhaarData',
+        'aadhaarVerified'
 
     ];
 
