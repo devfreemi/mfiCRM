@@ -81,6 +81,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // KYC Verification
     $routes->add('api/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp');
     $routes->add('api/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp');
+    $routes->add('api/kyc-pan-verify', 'AadhaarKycController::verify_pan');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });

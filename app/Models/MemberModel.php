@@ -43,7 +43,9 @@ class MemberModel extends Model
         'image',
         'agent',
         'aadhaarData',
-        'aadhaarVerified'
+        'aadhaarVerified',
+        'panName',
+        'authenticatePAN'
 
     ];
 

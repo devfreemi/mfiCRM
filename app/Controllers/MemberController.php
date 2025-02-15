@@ -76,6 +76,8 @@ class MemberController extends BaseController
             'agent'             => $this->request->getVar('agent'),
             'aadhaarVerified'   => $this->request->getVar('authenticate'),
             'aadhaarData'       => $this->request->getVar('kycLocalValueSubmit'),
+            'authenticatePAN'   => $this->request->getVar('authenticatePAN'),
+            'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
         ];
 
