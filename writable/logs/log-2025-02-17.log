@@ -1,0 +1,31 @@
+ERROR - 2025-02-17 10:05:30 --> mysqli_sql_exception: Table 'employees' already exists in /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfiCRM/system/Database/Forge.php(546): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfiCRM/app/Database/Migrations/2024-06-24-174334_AddEmployee.php(48): CodeIgniter\Database\Forge->createTable()
+#5 /opt/lampp/htdocs/mfiCRM/system/Database/MigrationRunner.php(865): App\Database\Migrations\AddEmployee->up()
+#6 /opt/lampp/htdocs/mfiCRM/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /opt/lampp/htdocs/mfiCRM/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest()
+#8 /opt/lampp/htdocs/mfiCRM/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run()
+#9 /opt/lampp/htdocs/mfiCRM/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run()
+#10 /opt/lampp/htdocs/mfiCRM/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2025-02-17 10:06:16 --> mysqli_sql_exception: Table 'employees' already exists in /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /opt/lampp/htdocs/mfiCRM/system/Database/Forge.php(546): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfiCRM/app/Database/Migrations/2024-06-24-174334_AddEmployee.php(48): CodeIgniter\Database\Forge->createTable()
+#5 /opt/lampp/htdocs/mfiCRM/system/Database/MigrationRunner.php(865): App\Database\Migrations\AddEmployee->up()
+#6 /opt/lampp/htdocs/mfiCRM/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /opt/lampp/htdocs/mfiCRM/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest()
+#8 /opt/lampp/htdocs/mfiCRM/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run()
+#9 /opt/lampp/htdocs/mfiCRM/system/CLI/BaseCommand.php(115): CodeIgniter\CLI\Commands->run()
+#10 /opt/lampp/htdocs/mfiCRM/system/Commands/Database/MigrateRefresh.php(85): CodeIgniter\CLI\BaseCommand->call()
+#11 /opt/lampp/htdocs/mfiCRM/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRefresh->run()
+#12 /opt/lampp/htdocs/mfiCRM/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run()
+#13 /opt/lampp/htdocs/mfiCRM/spark(102): CodeIgniter\CLI\Console->run()
+#14 {main}

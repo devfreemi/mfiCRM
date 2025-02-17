@@ -29,9 +29,9 @@ class MemberController extends BaseController
         $signIn = date('H:i:s');
         $employee = $this->request->getVar('agent');
 
-        if ($this->request->getVar('pan') != '') {
+        if ($this->request->getVar('panNo') != '') {
             # code...
-            $pan = $this->request->getVar('pan');
+            $pan = $this->request->getVar('panNo');
         } else {
             # code...
             $pan = $this->request->getVar('mobile') . "/NA";

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddMasterDeposite extends Migration
+class AddPanAndGst extends Migration
 {
     public function up()
     {
@@ -16,29 +16,20 @@ class AddMasterDeposite extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'agent' => [
+            'agent_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '64',
             ],
-            'deposited_amount' => [
-                'type' => 'VARCHAR',
-                'constraint' => '64',
+            'date' => [
+                'type' => 'DATE',
+
             ],
-            'deposited_date' => [
+            'pan' => [
                 'type' => 'VARCHAR',
-                'constraint' => '64',
+                'constraint' => '32',
             ],
-            'bank_name' => [
-                'type' => 'VARCHAR',
-                'constraint' => '64',
-            ],
-            'bank_account_number' => [
-                'type' => 'VARCHAR',
-                'constraint' => '64',
-            ],
-            'receipt_url' => [
-                'type' => 'VARCHAR',
-                'constraint' => '2048',
+            'gst' => [
+                'type' => 'LONGTEXT',
             ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
@@ -50,12 +41,12 @@ class AddMasterDeposite extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('bank_deposites_master');
+        $this->forge->createTable('pan_gst_master');
     }
 
     public function down()
     {
         //
-        $this->forge->dropTable('bank_deposites_master');
+        $this->forge->dropTable('pan_gst_master');
     }
 }

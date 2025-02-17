@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\API\ResponseTrait;
+use App\Models\PanMasterModel;
 
 date_default_timezone_set('Asia/Kolkata');
 
@@ -193,6 +194,39 @@ class AadhaarKycController extends BaseController
                 $statusCode = $response_decode['statusCode'];
                 if ($statusCode === 101) {
                     $nameResponse = $response_decode['result']['name'];
+                    // GST Number Search  
+                    $dataApiGst = array(
+                        'pan'              => $panNumber,
+                        'consent'          => $consent,
+                        'clientData' => array(
+                            'caseId'          => $caseId,
+                        ),
+                    );
+                    $data_json_gst = json_encode($dataApiGst);
+
+                    $curlGst = curl_init();
+
+                    curl_setopt_array($curlGst, array(
+                        CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/pan-profile-detailed",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => $data_json_gst,
+                        CURLOPT_HTTPHEADER => array(
+                            "content-type: application/json",
+                            "x-auth-key: jTk670PBaHVP5kD5"
+                        ),
+                    ));
+
+                    $response_gst = curl_exec($curlGst);
+                    $err_gst = curl_error($curlGst);
+                    $response_decode_gst = json_decode($response, true);
+
+                    curl_close($curlGst);
+                    // End GST Number Search
                     # code...
                     if ($name === $nameResponse) {
                         # code...
