@@ -193,12 +193,13 @@ class AadhaarKycController extends BaseController
                 // return $response;
                 $statusCode = $response_decode['statusCode'];
                 if ($statusCode === 101) {
-                    $nameResponse = $response_decode['result']['name'];
+
                     // GST Number Search  
                     $dataApiGst = array(
                         'pan'              => $panNumber,
                         'consent'          => $consent,
-                        'clientData' => array(
+                        "stateCode"         => '19',
+                        'clientData'        => array(
                             'caseId'          => $caseId,
                         ),
                     );
@@ -207,7 +208,7 @@ class AadhaarKycController extends BaseController
                     $curlGst = curl_init();
 
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/pan-profile-detailed",
+                        CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gst-advanced",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -223,17 +224,50 @@ class AadhaarKycController extends BaseController
 
                     $response_gst = curl_exec($curlGst);
                     $err_gst = curl_error($curlGst);
-                    $response_decode_gst = json_decode($response, true);
+                    $response_decode_gst = json_decode($response_gst, true);
 
                     curl_close($curlGst);
+                    if ($err_gst) {
+                        # code...
+                        // $gst_ref = "GST Searcging Failed!";
+                        return $this->respond(['error' => 'Internal Exception!'], 502);
+                    } else {
+                        # code...
+                        $statusCodeGst = $response_decode_gst['statusCode'];
+                        if ($statusCodeGst === 101) {
+                            # code...
+                            $gst_ref = "GST Found!";
+                            $gst = $response_decode_gst['result'][0]['gstinId'];
+                        } else {
+                            # code...
+                            $gst_ref = "GST Not Found for this PAN!";
+                            $gst = "N/A";
+                        }
+                    }
+
+                    $nameResponse = $response_decode['result']['name'];
                     // End GST Number Search
                     # code...
                     if ($name === $nameResponse) {
                         # code...
-                        return $this->respond(['panVerify' => 'PAN Verified'], 200);
+                        $dataOutput = array(
+                            'pan'               => $panNumber,
+                            'gst'               => $gst,
+                            'msgGst'            => $gst_ref,
+                            'name'              => $nameResponse,
+                            'msgPan'            => 'PAN Verified'
+                        );
+                        return $this->respond(['panVerify' => $dataOutput], 200);
                     } else {
                         # code...
-                        return $this->respond(['panDetails' => $nameResponse], 403);
+                        $dataOutput = array(
+                            'pan'               => $panNumber,
+                            'gst'               => $gst,
+                            'msgGst'            => $gst_ref,
+                            'name'              => $nameResponse,
+                            'msgPan'            => 'PAN Verified but Name does not match!'
+                        );
+                        return $this->respond(['panDetails' => $dataOutput], 403);
                     }
                 } else {
                     # code...
