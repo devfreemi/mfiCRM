@@ -6,8 +6,6 @@
 <script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
 
 
@@ -29,7 +27,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
-                                    <th>Group Name</th>
+                                    <th>Market Name</th>
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
@@ -50,7 +48,7 @@
                                 <?php
                                 $i = 1;
                                 $db = db_connect();
-                                $builder = $db->table('members')->select('*, members.name as owner,members.created_at as r_created_at')
+                                $builder = $db->table('members')->select('*, members.name as owner,members.mobile as r_mobile,members.created_at as r_created_at')
                                     ->join('employees', 'employees.employeeID = members.agent');
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
@@ -60,7 +58,7 @@
                                         <td><?php echo $row->member_id; ?></td>
                                         <td><?php echo $row->groupName; ?></td>
                                         <td><?php echo $row->name; ?></td>
-                                        <td><?php echo $row->mobile; ?></td>
+                                        <td><?php echo $row->r_mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
                                         <td><?php echo $row->businessName; ?></td>
                                         <td><?php echo $row->businessType; ?></td>
@@ -127,7 +125,7 @@
         responsive: true,
         layout: {
             topStart: {
-                buttons: ['excelHtml5', 'pdfHtml5']
+                buttons: ['excelHtml5']
             }
         }
     });

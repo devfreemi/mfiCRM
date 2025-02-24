@@ -238,6 +238,9 @@ class AadhaarKycController extends BaseController
                             # code...
                             $gst_ref = "GST Found!";
                             $gst = $response_decode_gst['result'][0]['gstinId'];
+                            // $result = json_decode($result[0], true);
+                            // $gst = "N/A";
+
                         } else {
                             # code...
                             $gst_ref = "GST Not Found for this PAN!";
@@ -277,6 +280,54 @@ class AadhaarKycController extends BaseController
         } else {
             # code...
             return $this->respond(['error' => 'Internal Error'], 502);
+        }
+    }
+    public function verify_gst()
+    {
+        $gstNumber = $this->request->getVar('gstin');
+        $caseId = rand(1000, 9999);
+        $employeeIDgst = $this->request->getVar('employeeIDGst');
+        $consent = "Y";
+        $dataApi = array(
+            'gstin'              => $gstNumber,
+            'consent'          => $consent,
+            'clientData' => array(
+                'caseId'          => $caseId,
+            ),
+        );
+        $data_json = json_encode($dataApi);
+
+        if ($gstNumber != '') {
+            # code...
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gstdetailed-additional",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => $data_json,
+                CURLOPT_HTTPHEADER => array(
+                    "content-type: application/json",
+                    "x-auth-key: jTk670PBaHVP5kD5"
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            $response_decode = json_decode($response, true);
+
+            curl_close($curl);
+            if ($err) {
+                // echo "cURL Error #:" . $err;
+                return $this->respond(['error' => 'Invalid Request.' . $err], 401);
+            } else {
+                // echo $response;
+                return $this->respond(['gst' => $response_decode], 200);
+            }
         }
     }
 }

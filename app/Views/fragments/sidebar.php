@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar js-sidebar">
 	<div class="sidebar-content js-simplebar">
 		<a class="sidebar-brand" href="index.html">
-			<span class="align-middle">MFI CRM</span>
+			<span class="align-middle">Retail Pe CRM</span>
 		</a>
 
 		<ul class="sidebar-nav">

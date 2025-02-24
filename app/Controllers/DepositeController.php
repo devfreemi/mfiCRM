@@ -27,6 +27,7 @@ class DepositeController extends BaseController
             'uniqid'                 => $uniqId,
             'agent'                 => $this->request->getVar('employeeId'),
             'created_at'           => date('Y-m-d'),
+
         ];
 
         // $query = $model->insert($data);

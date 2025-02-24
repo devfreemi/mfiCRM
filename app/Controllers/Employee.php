@@ -32,8 +32,8 @@ class Employee extends BaseController
         $exp = $iat + 3600 * 24;
 
         $payload = array(
-            "iss" => "retailpe.in",
-            "aud" => "retailpe.in",
+            "iss" => "truetechnologies.in",
+            "aud" => "truetechnologies.in",
             "sub" => "API Security",
             "iat" => $iat, //Time the JWT issued at
             "exp" => $exp, // Expiration time of token
