@@ -1,0 +1,183 @@
+INFO - 2025-02-26 07:52:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:52:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-02-26 07:52:30 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php(185): mysqli->real_connect()
+#1 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /opt/lampp/htdocs/mfiCRM/system/Database/BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfiCRM/system/Validation/StrictRules/Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+#5 /opt/lampp/htdocs/mfiCRM/system/Validation/Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique()
+#6 /opt/lampp/htdocs/mfiCRM/system/Validation/Validation.php(200): CodeIgniter\Validation\Validation->processRules()
+#7 /opt/lampp/htdocs/mfiCRM/system/Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 /opt/lampp/htdocs/mfiCRM/app/Controllers/Auth.php(80): CodeIgniter\Controller->validate()
+#9 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+#10 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#11 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#12 /opt/lampp/htdocs/mfiCRM/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#13 /opt/lampp/htdocs/mfiCRM/system/Commands/Server/rewrite.php(47): require_once('...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /opt/lampp/htdocs/mfiCRM/system/Database/BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query()
+#3 /opt/lampp/htdocs/mfiCRM/system/Validation/StrictRules/Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+#4 /opt/lampp/htdocs/mfiCRM/system/Validation/Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique()
+#5 /opt/lampp/htdocs/mfiCRM/system/Validation/Validation.php(200): CodeIgniter\Validation\Validation->processRules()
+#6 /opt/lampp/htdocs/mfiCRM/system/Controller.php(152): CodeIgniter\Validation\Validation->run()
+#7 /opt/lampp/htdocs/mfiCRM/app/Controllers/Auth.php(80): CodeIgniter\Controller->validate()
+#8 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+#9 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#10 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#11 /opt/lampp/htdocs/mfiCRM/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#12 /opt/lampp/htdocs/mfiCRM/system/Commands/Server/rewrite.php(47): require_once('...')
+#13 {main}
+CRITICAL - 2025-02-26 07:52:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Validation/StrictRules/Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/Validation/Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique()
+ 5 SYSTEMPATH/Validation/Validation.php(200): CodeIgniter\Validation\Validation->processRules()
+ 6 SYSTEMPATH/Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 7 APPPATH/Controllers/Auth.php(80): CodeIgniter\Controller->validate()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfiCRM/public/index.php')
+INFO - 2025-02-26 07:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 07:54:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-02-26 08:17:38 --> ErrorException: Undefined property: stdClass::$applicationID
+in APPPATH/Views/members.php on line 80.
+ 1 APPPATH/Views/members.php(80): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(228): include('/opt/lampp/htdocs/mfiCRM/app/Views/members.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Home.php(27): view()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->members()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfiCRM/public/index.php')
+INFO - 2025-02-26 08:17:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-02-26 08:17:53 --> ErrorException: Undefined property: stdClass::$applicationID
+in APPPATH/Views/members.php on line 80.
+ 1 APPPATH/Views/members.php(80): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(228): include('/opt/lampp/htdocs/mfiCRM/app/Views/members.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Home.php(27): view()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->members()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfiCRM/public/index.php')
+INFO - 2025-02-26 08:18:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:18:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:18:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:27:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:27:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:27:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:27:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:35:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:35:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:35:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:35:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:48:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:49:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:50:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 08:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:00:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:02:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:07:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:07:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:08:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:08:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:09:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:11:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 09:12:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:32:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:32:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:32:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:32:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:36:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:55:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:55:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 11:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-02-26 11:59:15 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php(185): mysqli->real_connect()
+#1 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /opt/lampp/htdocs/mfiCRM/system/Database/BaseBuilder.php(1642): CodeIgniter\Database\BaseConnection->query()
+#4 /opt/lampp/htdocs/mfiCRM/app/Views/dashboard.php(33): CodeIgniter\Database\BaseBuilder->countAll()
+#5 /opt/lampp/htdocs/mfiCRM/system/View/View.php(228): include('...')
+#6 /opt/lampp/htdocs/mfiCRM/system/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 /opt/lampp/htdocs/mfiCRM/system/Common.php(1178): CodeIgniter\View\View->render()
+#8 /opt/lampp/htdocs/mfiCRM/app/Controllers/Home.php(11): view()
+#9 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(941): App\Controllers\Home->dashboard()
+#10 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#11 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#12 /opt/lampp/htdocs/mfiCRM/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#13 /opt/lampp/htdocs/mfiCRM/system/Commands/Server/rewrite.php(47): require_once('...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /opt/lampp/htdocs/mfiCRM/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /opt/lampp/htdocs/mfiCRM/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /opt/lampp/htdocs/mfiCRM/system/Database/BaseBuilder.php(1642): CodeIgniter\Database\BaseConnection->query()
+#3 /opt/lampp/htdocs/mfiCRM/app/Views/dashboard.php(33): CodeIgniter\Database\BaseBuilder->countAll()
+#4 /opt/lampp/htdocs/mfiCRM/system/View/View.php(228): include('...')
+#5 /opt/lampp/htdocs/mfiCRM/system/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 /opt/lampp/htdocs/mfiCRM/system/Common.php(1178): CodeIgniter\View\View->render()
+#7 /opt/lampp/htdocs/mfiCRM/app/Controllers/Home.php(11): view()
+#8 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(941): App\Controllers\Home->dashboard()
+#9 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+#10 /opt/lampp/htdocs/mfiCRM/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+#11 /opt/lampp/htdocs/mfiCRM/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#12 /opt/lampp/htdocs/mfiCRM/system/Commands/Server/rewrite.php(47): require_once('...')
+#13 {main}
+CRITICAL - 2025-02-26 11:59:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1642): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Views/dashboard.php(33): CodeIgniter\Database\BaseBuilder->countAll()
+ 4 SYSTEMPATH/View/View.php(228): include('/opt/lampp/htdocs/mfiCRM/app/Views/dashboard.php')
+ 5 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render()
+ 7 APPPATH/Controllers/Home.php(11): view()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->dashboard()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest()
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/opt/lampp/htdocs/mfiCRM/public/index.php')
+INFO - 2025-02-26 12:00:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:00:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:00:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:03:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:04:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:04:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:05:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:24:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-02-26 12:30:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

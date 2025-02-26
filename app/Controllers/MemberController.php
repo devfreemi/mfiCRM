@@ -32,7 +32,12 @@ class MemberController extends BaseController
         if ($this->request->getVar('panNo') != '') {
             # code...
             $pan = $this->request->getVar('panNo');
-        } else {
+        } 
+        elseif ($this->request->getVar('pan') != '') {
+            # code...
+            $pan = $this->request->getVar('pan');
+        }
+        else {
             # code...
             $pan = $this->request->getVar('mobile') . "/NA";
         }

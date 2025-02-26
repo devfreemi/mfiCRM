@@ -26,6 +26,10 @@ class Home extends BaseController
     {
         return view('members');
     }
+    public function member_edit()
+    {
+        return view('member_edit');
+    }
     public function loan()
     {
         return view('loan');

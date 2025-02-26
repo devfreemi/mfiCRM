@@ -41,7 +41,7 @@
                                     <th>Daily Footfall</th>
                                     <th>Images</th>
                                     <th>Date</th>
-                                    <!-- <th>Action</th> -->
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,9 +75,17 @@
 
                                         </td>
                                         <td><?php echo $row->r_created_at; ?></td>
-                                        <!-- <td>
-                                            <button type="button" class="btn btn-primary rounded">View</button>
-                                        </td> -->
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <button type="button" class="btn btn-primary  view" id="<?php echo $row->member_id; ?>">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <!-- <button type="button" class="btn btn-danger details" id="<?php //echo $row->applicationID; ?>">
+                                                    <i class="align-middle" data-feather="eye"></i>
+                                                </button> -->
+                                               
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php } ?>
 
@@ -106,13 +114,21 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="dataModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Member Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="member_detail">
 
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-
-
         </div>
     </main>
 
@@ -128,5 +144,31 @@
                 buttons: ['excelHtml5']
             }
         }
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#branch").on("click", ".view", function() {
+            var member_id = $(this).attr("id");
+
+            $.ajax({
+                url: "<?php echo base_url(); ?>member-edit",
+                method: "POST",
+                data: {
+                    member_id: member_id
+                },
+                // beforeSend: function() {
+                //     $('#dataModal').modal("show");
+                // },
+                success: function(data) {
+                    $('#member_detail').html(data);
+                    $('#dataModal').modal("show");
+
+                    console.log(member_id);
+                    return false;
+                }
+            });
+
+        });
     });
 </script>

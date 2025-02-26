@@ -17,6 +17,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('add-branch', 'BranchDetails::add_branch');
     $routes->add('group', 'Home::group');
     $routes->add('members', 'Home::members');
+    $routes->add('member-edit', 'Home::member_edit');
     $routes->add('loan', 'Home::loan');
     $routes->add('application-view', 'Home::loan_view');
     $routes->add('group-view', 'Home::group_view');
