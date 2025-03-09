@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
 	<div class="sidebar-content js-simplebar">
-		<a class="sidebar-brand" href="index.html">
+		<a class="sidebar-brand" href="<?= base_url() ?>">
 			<span class="align-middle">Retail Pe CRM</span>
 		</a>
 

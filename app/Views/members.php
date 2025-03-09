@@ -28,6 +28,7 @@
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Market Name</th>
+                                    <th>Market Type</th>
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
@@ -49,7 +50,7 @@
                                 $i = 1;
                                 $db = db_connect();
                                 $builder = $db->table('members')->select('*, members.name as owner,members.mobile as r_mobile,members.created_at as r_created_at')
-                                    ->join('employees', 'employees.employeeID = members.agent');
+                                    ->join('employees', 'employees.employeeID = members.agent')->join('groups', 'groups.g_id  = members.groupId');
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
                                 ?>
@@ -57,6 +58,7 @@
                                         <td><?php echo $i++; ?></td>
                                         <td><?php echo $row->member_id; ?></td>
                                         <td><?php echo $row->groupName; ?></td>
+                                        <td><?php echo $row->group_type; ?></td>
                                         <td><?php echo $row->name; ?></td>
                                         <td><?php echo $row->r_mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
@@ -80,10 +82,11 @@
                                                 <button type="button" class="btn btn-primary  view" id="<?php echo $row->member_id; ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
-                                                <!-- <button type="button" class="btn btn-danger details" id="<?php //echo $row->applicationID; ?>">
+                                                <!-- <button type="button" class="btn btn-danger details" id="<?php //echo $row->applicationID; 
+                                                                                                                ?>">
                                                     <i class="align-middle" data-feather="eye"></i>
                                                 </button> -->
-                                               
+
                                             </div>
                                         </td>
                                     </tr>
@@ -94,7 +97,8 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
-                                    <th>Group Name</th>
+                                    <th>Market Name</th>
+                                    <th>Market Type</th>
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
