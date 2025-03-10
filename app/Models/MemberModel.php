@@ -18,6 +18,7 @@ class MemberModel extends Model
         'groupId',
         'mobile',
         'pan',
+        'gst',
         'adhar',
         'name',
         'location',

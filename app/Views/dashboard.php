@@ -118,9 +118,7 @@
                             <h5 class="card-title mb-0">Recent Movement</h5>
                         </div>
                         <div class="card-body py-3">
-                            <div class="chart chart-sm">
-                                <canvas id="chartjs-dashboard-line"></canvas>
-                            </div>
+                            <?php include 'fragments/chart.php'; ?>
                         </div>
                     </div>
                 </div>
@@ -135,7 +133,7 @@
                             <h5 class="card-title mb-0">Real-Time</h5>
                         </div>
                         <div class="card-body px-4">
-                            <div id="world_map" style="height:350px;"></div>
+                            <?php include 'fragments/map.php'; ?>
                         </div>
                     </div>
                 </div>

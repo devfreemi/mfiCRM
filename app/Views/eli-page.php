@@ -1,38 +1,6 @@
 <?php include 'fragments/head.php'; ?>
 <?php include 'fragments/sidebar.php'; ?>
 
-<style>
-    #loading {
-        font-size: 20px;
-        font-weight: bold;
-        color: #007bff;
-    }
-
-    #loading img {
-        width: 250px;
-        margin-top: 20px;
-    }
-
-    .result-box {
-        display: none;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 20px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        background-color: rgba(193, 165, 239, 0.35);
-    }
-
-    .result-box h3 {
-        color: #6819e6;
-    }
-
-    .result-box p {
-        font-size: 18px;
-        color: #6819e6;
-    }
-</style>
-
-
 
 <div class="main">
 
@@ -53,7 +21,7 @@
                 <p><strong>Location:</strong> <?= esc($location) ?></p>
                 <p><strong>Business Type:</strong> <?= esc($business_type) ?></p>
                 <p><strong>Previous EMI:</strong> <?= esc($previous_emi) ?></p>
-
+                <hr>
                 <h3>Loan Eligibility Result</h3>
                 <?php
                 if (esc($result['Eligibility']) === "Eligible") { ?>

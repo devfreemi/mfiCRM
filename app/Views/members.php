@@ -32,6 +32,7 @@
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
+                                    <th>GST Number</th>
                                     <th>Business Name</th>
                                     <th>Business Type</th>
                                     <th>Owner Name</th>
@@ -40,6 +41,7 @@
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
+                                    <th>Established Year</th>
                                     <th>Images</th>
                                     <th>Date</th>
                                     <th>Action</th>
@@ -62,6 +64,7 @@
                                         <td><?php echo $row->name; ?></td>
                                         <td><?php echo $row->r_mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
+                                        <td><?php echo $row->gst; ?></td>
                                         <td><?php echo $row->businessName; ?></td>
                                         <td><?php echo $row->businessType; ?></td>
                                         <td><?php echo $row->owner; ?></td>
@@ -70,6 +73,7 @@
                                         <td><?php echo $row->dailySales; ?></td>
                                         <td><?php echo $row->stock; ?></td>
                                         <td><?php echo $row->footFall; ?></td>
+                                        <td><?php echo $row->estab; ?></td>
                                         <td>
                                             <a href="<?php echo $row->image; ?>" target="_blank" rel="noopener noreferrer">
                                                 <i class="far fa-eye"></i>
@@ -102,6 +106,7 @@
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
+                                    <th>GST Number</th>
                                     <th>Business Name</th>
                                     <th>Business Type</th>
                                     <th>Owner Name</th>
@@ -110,7 +115,9 @@
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
+                                    <th>Established Year</th>
                                     <th>Images</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -119,10 +126,10 @@
                 </div>
 
                 <div class="modal fade" id="dataModal">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-xl">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Member Details</h5>
+                            <div class="modal-header bg-grad">
+                                <h5 class="modal-title text-white fw-bold" id="exampleModalLabel">Member Details</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body" id="member_detail">
@@ -139,6 +146,7 @@
     <?php include 'fragments/footer.php'; ?>
 </div>
 </div>
+
 <script>
     // new DataTable('#branch');
     $('#branch').DataTable({

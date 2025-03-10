@@ -26,7 +26,8 @@ class LoanEligibilityController extends BaseController
             $business_time = 0;
         } else {
             # code...
-            $business_time = $request->getVar('business_time');
+            $current_year = date('Y');
+            $business_time = round($current_year - $request->getVar('business_time'));
         }
 
         $data = [

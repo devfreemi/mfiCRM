@@ -133,13 +133,15 @@ class LoanEligibilityModel extends Model
             if (in_array($this->business_type, $types)) {
                 if ($category == "essential") {
                     if ($this->business_time < 5 || $this->stock < 500000) {
-                        return [
-                            "Eligibility" => "Not Eligible",
-                            "ROI" => "N/A",
-                            "Loan Amount" => 0,
-                            "Score" => $score,
-                            "Reason" => "Business does not meet the minimum criteria (5+ years and ₹5L+ stock)."
-                        ];
+                        // return [
+                        //     "Eligibility" => "Not Eligible",
+                        //     "ROI" => "N/A",
+                        //     "Loan Amount" => 0,
+                        //     "Score" => $score,
+                        //     "Reason" => "Business does not meet the minimum criteria (5+ years and ₹5L+ stock)."
+                        // ];
+                        $score -= 3;
+                        $roi += 3;
                     }
                     $score += 2;
                     $roi -= 1;
@@ -154,7 +156,7 @@ class LoanEligibilityModel extends Model
         }
 
         // New Loan Calculation Formula
-        $base_loan = $score * 5000;
+        $base_loan = $score * 1000;
         $stock_contribution = $this->stock * 0.5;
         $daily_sales_contribution = $this->daily_sales * 15;
 
