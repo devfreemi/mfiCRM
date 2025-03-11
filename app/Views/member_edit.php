@@ -75,11 +75,15 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Previous EMI</label>
-                        <input type="text" class="form-control bg-model" required id="applicationid" name="previous_emi" value="<?php echo $row->outstanding; ?>">
+                        <input type="text" class="form-control bg-model" required id="applicationid" value="0" name="previous_emi" value="<?php echo $row->outstanding; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Established Year</label>
-                        <input type="text" class="form-control bg-model datepicker" required id="applicationid" name="business_time" value="<?php echo $row->estab; ?>">
+                        <input type="text" class="form-control bg-model " required id="applicationid" name="business_time" value="<?php echo $row->estab; ?>">
+                    </div>
+                    <input type="hidden" class="form-control bg-model " id="applicationid" name="image_profile" value="<?php echo $row->image; ?>">
+                    <div class="col-md-4">
+                        <img src="<?php echo $row->image; ?>" alt="shop image" class="input-image">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

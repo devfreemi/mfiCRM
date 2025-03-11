@@ -38,7 +38,8 @@ class LoanEligibilityController extends BaseController
             'location' => $request->getVar('location'),
             'business_type' => $request->getVar('business_type'),
             'previous_emi' => $previous_emi,
-            'memberId' => $request->getVar('memberID')
+            'memberId' => $request->getVar('memberID'),
+            'image_profile' => $request->getVar('image_profile')
         ];
 
         // Load the LoanEligibilityModel and pass input data

@@ -27,31 +27,179 @@
 .bg-model{
     background: #e3d2ff83;
 }
-        #loading {
-            font-size: 20px;
-            font-weight: bold;
-            color: #007bff;
-        }
-    
-        #loading img {
-            width: 200px;
-            margin-top: 20px;
-        }
-    
-        .result-box {
-            display: none;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            background-color: rgba(193, 165, 239, 0.35);
-        }
-    
-        .result-box h3 {
-            color: #6819e6;
-        }
-    
-        .result-box p {
-            font-size: 18px;
-            color: #6819e6;
-        }
+/* Stepwise Process */
+.step {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.step i {
+    font-size: 20px;
+    color: #007bff;
+}
+
+/* Loading Animation */
+.loading-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.loading-section img {
+    width: 250px;
+}
+
+.loading-text {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    background: #ddd;
+    border-radius: 10px;
+    margin: 20px 0;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 10px;
+    background: #007bff;
+    border-radius: 10px;
+}
+
+/* Result Section */
+.result-box {
+    display: none;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    animation: fadeIn 1s ease-in-out;
+    text-align: center;
+}
+
+/* Success / Error Icons */
+.result-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.success {
+    color: #28a745;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.result-text {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.details-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.details-box {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    width: 45%;
+}
+
+.details-box i {
+    font-size: 25px;
+    color: #007bff;
+}
+/* Fancy Step UI */
+.step-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 20px 0; */
+}
+
+.step {
+    display: none;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+}
+
+.step .step-circle {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #007bff, #00bcd4);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 10px;
+    animation: bounceIn 1s ease-in-out;
+}
+
+.step i {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.step p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Step Connector Line */
+.step+.step::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(45deg, #007bff, #00bcd4);
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+}
+
+/* Step Animation */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.input-image{
+    height: 120px;
+    width: 120px;
+    border-radius: 10px;
+}
