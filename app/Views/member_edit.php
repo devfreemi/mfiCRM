@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Type</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="business_type" value="<?php echo $row->businessType; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" readonly name="business_type" value="<?php echo $row->businessType; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Market</label>

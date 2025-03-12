@@ -51,12 +51,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h1 class="mt-1 mb-3">₹ 14 L</h1>
-                                        <div class="mb-0">
+                                        <h1 class="mt-1 mb-3">₹ 0</h1>
+                                        <!-- <div class="mb-0">
                                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25%
                                             </span>
                                             <span class="text-muted">Since last month</span>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -98,12 +98,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h1 class="mt-1 mb-3">₹ 64 L</h1>
-                                        <div class="mb-0">
+                                        <h1 class="mt-1 mb-3">₹ 0</h1>
+                                        <!-- <div class="mb-0">
                                             <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25%
                                             </span>
                                             <span class="text-muted">Since last month</span>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

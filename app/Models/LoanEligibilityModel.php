@@ -44,10 +44,10 @@ class LoanEligibilityModel extends Model
         } elseif ($this->cibil_score >= 700) {
             $score += 1.5;
             $roi -= 1.5;
-        } elseif ($this->cibil_score >= 650) {
+        } elseif ($this->cibil_score >= 675) {
             $score += 1;
             $roi -= 1;
-        } elseif ($this->cibil_score <= 650 && $this->cibil_score > 0) {
+        } elseif ($this->cibil_score <= 675 && $this->cibil_score > 0) {
             $score -= 4;
             $roi += 4;
             $reason .= "Low CIBIL score. ";

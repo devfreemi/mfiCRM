@@ -62,7 +62,7 @@
                         <p id="loanInterest"></p>
                     </div>
                     <div class="details-box">
-                        <i class="fas fa-percentage"></i>
+                        <i class="fas fa-star"></i>
                         <p><strong>Score By NFSPL</strong></p>
                         <p id="score"></p>
                     </div>
@@ -84,7 +84,7 @@
                             <div class="modal-body">
                                 <div class="d-flex align-items-center">
                                     <!-- <i class="fas fa-user-circle fa-3x me-3 brand-color-text"></i> -->
-                                    <img src="<?= esc($image_profile) ?>" alt="" height="32" width="32">
+                                    <img src="<?= esc($image_profile) ?>" alt="" height="45" width="45">
                                     <h5 class="px-3 mb-0 fs-4 fw-bold">User ID : <span class="brand-color-text"><?= $memberId ?></span></h5>
                                 </div>
                                 <ul class="list-group mt-3">

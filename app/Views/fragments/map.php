@@ -32,7 +32,7 @@
             markers: [
                 <?php
                 $db = db_connect();
-                $builder = $db->table('geotags')->where('date', '2025-02-17')->orderBy('date', 'DESC');
+                $builder = $db->table('geotags')->where('date', date('Y-m-d'))->orderBy('date', 'DESC');
                 $query = $builder->get();
                 foreach ($query->getResult() as $row) {
                 ?> {
