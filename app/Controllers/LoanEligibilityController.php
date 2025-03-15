@@ -13,6 +13,7 @@ class LoanEligibilityController extends BaseController
     {
         $request = service('request');
         $cibil = rand(0, 900);
+        // 
         // Get input data from the form
         if ($request->getVar('previous_emi') === "") {
             # code...
@@ -52,6 +53,7 @@ class LoanEligibilityController extends BaseController
 
         return view('eli-page', $data);
         // print_r($result);
+        // echo ("<br>");
         // print_r($data);
     }
 }
