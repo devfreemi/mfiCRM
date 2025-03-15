@@ -169,25 +169,45 @@ class LoanEligibilityModel extends Model
         // Ensure the loan amount is within limits
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
+        // Determine Fixed ROI & Tenure Based on Loan Amount
+        $fixed_roi = "N/A";
+        $tenure = "N/A";
+
+        if ($eligibility_amount > 200000) {
+            $fixed_roi = 24;
+            $tenure = 36;
+        } elseif ($eligibility_amount > 50000) {
+            $fixed_roi = 26;
+            $tenure = 24;
+        } else {
+            $fixed_roi = 28;
+            $tenure = 12;
+        }
+
         // Ensure ROI stays between 24% and 28%
         $roi = max(24, min($roi, 28));
 
         // Determine final eligibility
+        // Determine final eligibility
         if ($score >= 5) {
             return [
                 "Eligibility" => "Eligible",
-                "ROI" => $roi,
+                "Calculated ROI" => $roi,
                 "Loan Amount" => $eligibility_amount,
                 "Score" => $score,
-                "Reason" => "Eligible for the loan."
+                "Reason" => "Eligible for the loan.",
+                "Fixed ROI (if applicable)" => $fixed_roi,
+                "Fixed Tenure (months)" => $tenure
             ];
         } else {
             return [
                 "Eligibility" => "Not Eligible",
-                "ROI" => "N/A",
+                "Calculated ROI" => "N/A",
                 "Loan Amount" => 0,
                 "Score" => $score,
-                "Reason" => trim($reason)
+                "Reason" => trim($reason),
+                "Fixed ROI (if applicable)" => "N/A",
+                "Fixed Tenure (months)" => "N/A"
             ];
         }
     }

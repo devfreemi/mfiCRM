@@ -58,8 +58,18 @@
                     </div>
                     <div class="details-box">
                         <i class="fas fa-percentage"></i>
-                        <p><strong>Interest Rate</strong></p>
+                        <p><strong>Calculated Interest Rate</strong></p>
                         <p id="loanInterest"></p>
+                    </div>
+                    <div class="details-box">
+                        <i class="fas fa-percentage"></i>
+                        <p><strong>Fixed Interest Rate</strong></p>
+                        <p id="loanInterestfixed"></p>
+                    </div>
+                    <div class="details-box">
+                        <i class="fas fa-percentage"></i>
+                        <p><strong>Tenure (Month)</strong></p>
+                        <p id="tenure"></p>
                     </div>
                     <div class="details-box">
                         <i class="fas fa-star"></i>
@@ -182,7 +192,9 @@
                     $("#resultIcon").addClass("fas fa-check-circle success");
                     $("#resultText").text("Retailer is eligible for a loan.");
                     $("#loanAmount").text("<?= esc(number_format($result['Loan Amount'], 2)) ?>");
-                    $("#loanInterest").text("<?= esc($result['ROI']) ?>");
+                    $("#loanInterest").text("<?= esc($result['Calculated ROI']) ?>");
+                    $("#loanInterestfixed").text("<?= esc($result['Fixed ROI (if applicable)']) ?>");
+                    $("#tenure").text("<?= esc($result['Fixed Tenure (months)']) ?>");
                     $("#score").text("<?= esc($result['Score']) ?>");
                     $("#loanDetails").show();
                     $(".step").hide();
