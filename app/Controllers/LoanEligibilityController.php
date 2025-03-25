@@ -12,8 +12,8 @@ class LoanEligibilityController extends BaseController
     public function checkEligibility()
     {
         $request = service('request');
-        $cibil = rand(0, 900);
-        // 
+        // $cibil = rand(0, 900);
+        $cibil = 780;
         // Get input data from the form
         if ($request->getVar('previous_emi') === "") {
             # code...
@@ -51,8 +51,30 @@ class LoanEligibilityController extends BaseController
         // Merge input data with result for passing to view
         $data['result'] = $result;
 
+        // member data update
+        $data_update = [
+            'location'          => $this->request->getVar('memberLocation'),
+            'pincode'           => $this->request->getVar('groupPin'),
+            'mobile'            => $this->request->getVar('mobile'),
+            'pan'               => $this->request->getVar('pan'),
+            'gst'               => $this->request->getVar('gst'),
+            'adhar'             => $this->request->getVar('adhar'),
+            'footFall'          => $this->request->getVar('footFall'),
+            'stock'             => $this->request->getVar('stock'),
+            'outstanding'       => $this->request->getVar('previous_emi'),
+            'estab'             => $this->request->getVar('business_time'),
+            'dailySales'        => $this->request->getVar('daily_sales'),
+            'name'              => $this->request->getVar('name'),
+        ];
+        $db = db_connect();
+        $builder = $db->table('members');
+        $builder->where('member_id', $request->getVar('memberID'));
+        $query = $builder->update($data_update);
+
+
+
         return view('eli-page', $data);
-        // print_r($result);
+        // print_r($query);
         // echo ("<br>");
         // print_r($data);
     }

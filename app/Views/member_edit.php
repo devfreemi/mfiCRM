@@ -23,23 +23,23 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Member Name</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->name; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="name" value="<?php echo $row->name; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Mobile</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->mobile; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="mobile" value="<?php echo $row->mobile; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">PAN Number</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->pan; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="pan" value="<?php echo $row->pan; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Aadhaar Number</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->adhar; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="adhar" value="<?php echo $row->adhar; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Name</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->businessName; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" readonly name="applicationid" value="<?php echo $row->businessName; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Type</label>
@@ -47,19 +47,19 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Market</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->groupName; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" readonly name="applicationid" value="<?php echo $row->groupName; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Market Type</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="location" value="<?php echo $row->group_type; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" readonly name="location" value="<?php echo $row->group_type; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Location</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->location; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="memberLocation" value="<?php echo $row->location; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Pincode</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->pincode; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="groupPin" value="<?php echo $row->pincode; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Current Stock</label>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Daily Footfall</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->footFall; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="footFall" value="<?php echo $row->footFall; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Previous EMI</label>
