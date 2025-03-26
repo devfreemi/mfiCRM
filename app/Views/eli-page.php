@@ -192,7 +192,7 @@
                     $("#resultIcon").addClass("fas fa-check-circle success");
                     $("#resultText").text("Retailer is eligible for a loan.");
                     $("#loanAmount").text("<?= esc(number_format($result['Loan Amount'], 2)) ?>");
-                    $("#loanInterest").text("<?= esc($result['ROI']) ?>");
+                    $("#loanInterest").text("<?= esc($result['ROI']) ?>"); //FINAL ROI
                     $("#calroi").text("<?= esc($result['roi']) ?>");
                     $("#tenure").text("<?= esc($result['Tenure']) ?>");
                     $("#score").text("<?= esc($result['Score']) ?>");

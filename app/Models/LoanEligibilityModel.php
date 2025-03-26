@@ -189,25 +189,25 @@ class LoanEligibilityModel extends Model
         // Determine final eligibility
         if ($score >= 5) {
             return [
-                "Eligibility" => "Eligible",
-                "ROI" => $final_roi,  // Final ROI applied
+                "Eligibility" => "Eligible", //applied API OUTPUT
+                "ROI" => $final_roi,  // Final ROI applied API OUTPUT
                 "Fixed ROI" => $fixed_roi,
-                "Tenure" => $tenure . " months",
-                "Loan Amount" => $eligibility_amount,
+                "Tenure" => $tenure . " months", //applied API OUTPUT
+                "Loan Amount" => $eligibility_amount, //applied API OUTPUT
                 "Score" => $score,
-                "Reason" => "Eligible for the loan.",
+                "Reason" => "Eligible for the loan.", // applied API OUTPUT
                 "roi" => $roi
             ];
         } else {
             return [
                 "roi" => $roi,
-                "Eligibility" => "Not Eligible",
-                "ROI" => "N/A",
+                "Eligibility" => "Not Eligible", // Final ROI applied API OUTPUT
+                "ROI" => "N/A", // Final ROI applied API OUTPUT
                 "Fixed ROI" =>  "N/A",
-                "Tenure" =>  "N/A",
-                "Loan Amount" => 0,
+                "Tenure" =>  "N/A", // Final ROI applied API OUTPUT
+                "Loan Amount" => 0, // Final ROI applied API OUTPUT
                 "Score" => $score,
-                "Reason" => trim($reason)
+                "Reason" => trim($reason) // Final ROI applied API OUTPUT
             ];
         }
     }

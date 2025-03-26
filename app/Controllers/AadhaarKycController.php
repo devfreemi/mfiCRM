@@ -229,7 +229,7 @@ class AadhaarKycController extends BaseController
                     curl_close($curlGst);
                     if ($err_gst) {
                         # code...
-                        // $gst_ref = "GST Searcging Failed!";
+                        // $gst_ref = "GST Searching Failed!";
                         return $this->respond(['error' => 'Internal Exception!'], 502);
                     } else {
                         # code...
