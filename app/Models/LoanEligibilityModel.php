@@ -191,9 +191,9 @@ class LoanEligibilityModel extends Model
             return [
                 "Eligibility" => "Eligible", //applied API OUTPUT
                 "ROI" => $final_roi,  // Final ROI applied API OUTPUT
-                "Fixed ROI" => $fixed_roi,
+                "FixedROI" => $fixed_roi,
                 "Tenure" => $tenure . " months", //applied API OUTPUT
-                "Loan Amount" => $eligibility_amount, //applied API OUTPUT
+                "LoanAmount" => $eligibility_amount, //applied API OUTPUT
                 "Score" => $score,
                 "Reason" => "Eligible for the loan.", // applied API OUTPUT
                 "roi" => $roi
@@ -203,9 +203,9 @@ class LoanEligibilityModel extends Model
                 "roi" => $roi,
                 "Eligibility" => "Not Eligible", // Final ROI applied API OUTPUT
                 "ROI" => "N/A", // Final ROI applied API OUTPUT
-                "Fixed ROI" =>  "N/A",
+                "FixedROI" =>  "N/A",
                 "Tenure" =>  "N/A", // Final ROI applied API OUTPUT
-                "Loan Amount" => 0, // Final ROI applied API OUTPUT
+                "LoanAmount" => 0, // Final ROI applied API OUTPUT
                 "Score" => $score,
                 "Reason" => trim($reason) // Final ROI applied API OUTPUT
             ];

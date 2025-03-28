@@ -77,7 +77,7 @@ class LoanEligibilityController extends BaseController
             'cibil' => $cibil,
             'member_id' => $request->getVar('memberID'),
             'first_date' => date('Y-m-d'),
-            'loan_amount' => $result['Loan Amount'],
+            'loan_amount' => $result['LoanAmount'],
             'roi' => $result['ROI'],
             'tenure' => $result['Tenure'],
             'score' => $result['Score'],
@@ -98,36 +98,35 @@ class LoanEligibilityController extends BaseController
     // API
     public function checkEligibilityAPI()
     {
-        $request = service('request');
-        // $cibil = rand(0, 900);
-        $cibil = 780;
+        // $request = service('request');
+        $cibil = rand(0, 900);
+        // $cibil = 780;
         // Get input data from the form
-        if ($request->getVar('previous_emi') === "") {
+        if ($this->request->getVar('previous_emi') === "") {
             # code...
             $previous_emi = 0;
         } else {
             # code...
-            $previous_emi = $request->getVar('previous_emi');
+            $previous_emi =  $this->request->getVar('previous_emi');
         }
-        if ($request->getVar('business_time') === "") {
+        if ($this->request->getVar('business_time') === "") {
             # code...
             $business_time = 0;
         } else {
             # code...
             $current_year = date('Y');
-            $business_time = round($current_year - $request->getVar('business_time'));
+            $business_time = round($current_year -  $this->request->getVar('business_time'));
         }
 
         $data = [
-            'stock' => $request->getVar('stock'),
-            'daily_sales' => $request->getVar('daily_sales'),
+            'stock' =>  $this->request->getVar('stock'),
+            'daily_sales' =>  $this->request->getVar('daily_sales'),
             'cibil_score' => $cibil,
             'business_time' => $business_time,
-            'location' => $request->getVar('location'),
-            'business_type' => $request->getVar('business_type'),
+            'location' =>  $this->request->getVar('location'),
+            'business_type' =>  $this->request->getVar('business_type'),
             'previous_emi' => $previous_emi,
-            'memberId' => $request->getVar('memberID'),
-            'image_profile' => $request->getVar('image_profile')
+            'memberId' => $this->request->getVar('memberId_api'),
         ];
 
         // Load the LoanEligibilityModel and pass input data
