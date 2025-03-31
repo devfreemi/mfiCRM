@@ -6,6 +6,14 @@ use CodeIgniter\Model;
 
 class LoanEligibilityModel extends Model
 {
+    protected $table            = 'initial_eli_run';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'created_at', 'updated_at'];
+
     protected $stock;
     protected $daily_sales;
     protected $cibil_score;

@@ -86,6 +86,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/kyc-pan-verify', 'AadhaarKycController::verify_pan');
     $routes->add('api/gst-verify', 'AadhaarKycController::verify_gst');
     $routes->add('api/check-eli-api-v1', 'LoanEligibilityController::checkEligibilityAPI');
+    $routes->add('api/get-eli-loan-api-v1', 'LoanEligibilityController::get_approval');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });

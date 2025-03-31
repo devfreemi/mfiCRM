@@ -136,7 +136,19 @@ class LoanEligibilityController extends BaseController
         $result = $loanModel->calculateLoanEligibility();
         // Merge input data with result for passing to view
         $data['result'] = $result;
-
+        // member data update
+        $data_eli_run = [
+            'cibil' => $cibil,
+            'member_id' => $this->request->getVar('memberId_api'),
+            'first_date' => date('Y-m-d'),
+            'loan_amount' => $result['LoanAmount'],
+            'roi' => $result['ROI'],
+            'tenure' => $result['Tenure'],
+            'score' => $result['Score'],
+        ];
+        $db = db_connect();
+        $builder = $db->table('initial_eli_run');
+        $builder->upsert($data_eli_run);
         // return view('eli-page', $data);
         if (is_null($data)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
@@ -146,5 +158,19 @@ class LoanEligibilityController extends BaseController
         // print_r($query);
         // echo ("<br>");
         // print_r($data);
+    }
+
+    public function get_approval()
+    {
+
+        $memberId = $this->request->getVar('memberEliID');
+        $loanModel = new LoanEligibilityModel();
+        $data = $loanModel->where('member_id', $memberId)->first();
+
+        if (is_null($data)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond(['data_loan' => $data], 200);
     }
 }
