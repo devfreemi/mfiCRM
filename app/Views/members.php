@@ -27,6 +27,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
+                                    <th>Eligibility</th>
                                     <th>Market Name</th>
                                     <th>Market Type</th>
                                     <th>Agent Name</th>
@@ -59,6 +60,26 @@
                                     <tr>
                                         <td><?php echo $i++; ?></td>
                                         <td><?php echo $row->member_id; ?></td>
+                                        <?php
+
+                                        if ($row->eli_run === "Y") {
+                                            $builderB = $db->table('initial_eli_run');
+                                            $builderB->select('*');
+                                            $builderB->where('member_id ', $row->member_id);
+                                            $queryB = $builderB->get();
+                                            // $countEli = $builderB->countAllResults();
+                                            foreach ($queryB->getResult() as $rowB) {
+                                                $eli = $rowB->eligibility;
+                                            }
+                                        ?>
+
+                                            <td class="text-success fw-bold"><?php echo $eli; ?></td>
+                                        <?php
+                                        } else {
+                                            # code...
+                                        ?>
+                                            <td class="text-danger">Not Checked</td>
+                                        <?php  } ?>
                                         <td><?php echo $row->groupName; ?></td>
                                         <td><?php echo $row->group_type; ?></td>
                                         <td><?php echo $row->name; ?></td>
@@ -101,6 +122,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
+                                    <th>Eligibility</th>
                                     <th>Market Name</th>
                                     <th>Market Type</th>
                                     <th>Agent Name</th>

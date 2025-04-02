@@ -46,7 +46,8 @@ class MemberModel extends Model
         'aadhaarData',
         'aadhaarVerified',
         'panName',
-        'authenticatePAN'
+        'authenticatePAN',
+        'eli_run'
 
     ];
 

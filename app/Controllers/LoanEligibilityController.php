@@ -66,6 +66,7 @@ class LoanEligibilityController extends BaseController
             'estab'             => $this->request->getVar('business_time'),
             'dailySales'        => $this->request->getVar('daily_sales'),
             'name'              => $this->request->getVar('name'),
+            'eli_run'           => "Y",
         ];
         $db = db_connect();
         $builder = $db->table('members');
@@ -81,6 +82,8 @@ class LoanEligibilityController extends BaseController
             'roi' => $result['ROI'],
             'tenure' => $result['Tenure'],
             'score' => $result['Score'],
+            'eligibility' => $result['Eligibility'],
+            'reason' => $result['Reason'],
         ];
         $db = db_connect();
         $builder = $db->table('initial_eli_run');
@@ -145,6 +148,8 @@ class LoanEligibilityController extends BaseController
             'roi' => $result['ROI'],
             'tenure' => $result['Tenure'],
             'score' => $result['Score'],
+            'eligibility' => $result['Eligibility'],
+            'reason' => $result['Reason'],
         ];
         $db = db_connect();
         $builder = $db->table('initial_eli_run');
@@ -172,5 +177,37 @@ class LoanEligibilityController extends BaseController
         }
 
         return $this->respond(['data_loan' => $data], 200);
+    }
+    public function approved_retailer()
+    {
+
+        $empID = $this->request->getVar('employeeID');
+        $loanModel = new LoanEligibilityModel();
+        $data = $loanModel->join('members', 'members.member_id  = initial_eli_run.member_id')
+            ->where('agent', $empID)->findAll();
+
+
+        if (is_null($data)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            # code...
+            return $this->respond($data, 200);
+        }
+    }
+    public function approved_retailer_data()
+    {
+
+        $memID = $this->request->getVar('memberID');
+        $loanModel = new LoanEligibilityModel();
+        $data = $loanModel->join('members', 'members.member_id  = initial_eli_run.member_id')
+            ->where('initial_eli_run.member_id ', $memID)->first();
+
+
+        if (is_null($data)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        } else {
+            # code...
+            return $this->respond($data, 200);
+        }
     }
 }

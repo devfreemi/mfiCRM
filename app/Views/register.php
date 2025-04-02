@@ -94,7 +94,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Password</label>
-                                                <input class="form-control form-control-lg" maxlength="8" max="8" type="password" name="password" placeholder="Enter password" autocomplete="off" />
+                                                <input class="form-control form-control-lg" maxlength="16" max="16" type="password" name="password" placeholder="Enter password" autocomplete="off" />
                                                 <mute class="text-danger"><?php
                                                                             if (isset($validation)) {
                                                                                 # code...

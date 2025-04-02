@@ -83,6 +83,7 @@ class MemberController extends BaseController
             'authenticatePAN'   => $this->request->getVar('authenticatePAN'),
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
+            'eli_run'           => "Y",
         ];
 
         // // // FOR ATTENDENCE

@@ -36,7 +36,7 @@ class Auth extends BaseController
             $rules = [
                 'name' => 'required',
                 'userId' => 'required|is_unique[userBackOffice.userId]',
-                'password' => 'required|min_length[8]|max_length[8]',
+                'password' => 'required|min_length[8]|max_length[16]',
             ];
             if (!$this->validate($rules)) {
                 # code...
@@ -75,7 +75,7 @@ class Auth extends BaseController
             # code...
             $rules = [
                 'userId' => 'required|is_not_unique[userBackOffice.userId]',
-                'password' => 'required|min_length[8]|max_length[8]',
+                'password' => 'required|min_length[8]|max_length[16]',
             ];
             if (!$this->validate($rules)) {
                 # code...

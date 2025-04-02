@@ -75,7 +75,7 @@
                                             <?= csrf_field('auth') ?>
                                             <div class="mb-3">
                                                 <label class="form-label">UserId</label>
-                                                <input class="form-control form-control-lg" type="text" maxlength="10" name="userId" id="userId" placeholder="Your User ID" autocomplete="off" value="<?= set_value('userId'); ?>" />
+                                                <input class="form-control form-control-lg" type="text" maxlength="24" name="userId" id="userId" placeholder="Your User ID" autocomplete="off" value="<?= set_value('userId'); ?>" />
                                                 <mute class="text-danger"><?php
                                                                             if (isset($validation)) {
                                                                                 # code...
@@ -87,7 +87,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Password</label>
-                                                <input class="form-control form-control-lg" type="password" maxlength="8" name="password" id="password" placeholder="Password" />
+                                                <input class="form-control form-control-lg" type="password" maxlength="16" name="password" id="password" placeholder="Password" />
                                                 <mute class="text-danger"><?php
                                                                             if (isset($validation)) {
                                                                                 # code...

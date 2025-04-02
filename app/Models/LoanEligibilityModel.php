@@ -12,7 +12,7 @@ class LoanEligibilityModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'created_at', 'updated_at'];
 
     protected $stock;
     protected $daily_sales;
@@ -200,7 +200,7 @@ class LoanEligibilityModel extends Model
                 "Eligibility" => "Eligible", //applied API OUTPUT
                 "ROI" => $final_roi,  // Final ROI applied API OUTPUT
                 "FixedROI" => $fixed_roi,
-                "Tenure" => $tenure . " months", //applied API OUTPUT
+                "Tenure" => $tenure, //applied API OUTPUT
                 "LoanAmount" => $eligibility_amount, //applied API OUTPUT
                 "Score" => $score,
                 "Reason" => "Eligible for the loan.", // applied API OUTPUT
