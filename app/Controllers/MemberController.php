@@ -84,6 +84,7 @@ class MemberController extends BaseController
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
             'eli_run'           => "Y",
+            'month_purchase'    => $this->request->getVar('month_purchase')
         ];
 
         // // // FOR ATTENDENCE
@@ -205,5 +206,17 @@ class MemberController extends BaseController
         } else {
             return $this->respond(['totalMembers' => $totalMember, 'totalMembersMale' => $totalMemberMale, 'totalMemberFemale' => $totalMemberFemale], 200);
         }
+    }
+
+    public function retailer_profile($memberID)
+    {
+        // $session = session();
+        $model = new MemberModel();
+        $data['retailers'] = $model->where('member_id', $memberID)->first();
+
+
+        return view('retailer_profile', $data);
+        // print_r($data);
+        // echo $memberID;
     }
 }

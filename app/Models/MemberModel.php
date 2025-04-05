@@ -47,7 +47,8 @@ class MemberModel extends Model
         'aadhaarVerified',
         'panName',
         'authenticatePAN',
-        'eli_run'
+        'eli_run',
+        'month_purchase'
 
     ];
 

@@ -67,6 +67,7 @@ class LoanEligibilityController extends BaseController
             'dailySales'        => $this->request->getVar('daily_sales'),
             'name'              => $this->request->getVar('name'),
             'eli_run'           => "Y",
+            'month_purchase'    => $this->request->getVar('month_purchase')
         ];
         $db = db_connect();
         $builder = $db->table('members');

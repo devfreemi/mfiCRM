@@ -30,6 +30,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('geo-tag', 'Home::geo_tag');
     $routes->add('employee-attendence', 'Home::e_attendence');
     $routes->post('loan/check', 'LoanEligibilityController::checkEligibility');
+    $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {

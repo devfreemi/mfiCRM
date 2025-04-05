@@ -107,10 +107,10 @@
                                                 <button type="button" class="btn btn-primary  view" id="<?php echo $row->member_id; ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
-                                                <!-- <button type="button" class="btn btn-danger details" id="<?php //echo $row->applicationID; 
-                                                                                                                ?>">
-                                                    <i class="align-middle" data-feather="eye"></i>
-                                                </button> -->
+                                                <a href="<?php echo base_url() . 'retailers/details/' . $row->member_id;
+                                                            ?>" class="btn btn-danger details" id="" target="_blank">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
 
                                             </div>
                                         </td>

@@ -70,6 +70,10 @@
                         <input type="text" class="form-control bg-model" required id="applicationid" name="daily_sales" value="<?php echo $row->dailySales; ?>">
                     </div>
                     <div class="col-md-4">
+                        <label for="loan" class="form-label">Monthly Purchase</label>
+                        <input type="text" class="form-control bg-model" required id="applicationid" name="month_purchase" value="<?php echo $row->month_purchase; ?>">
+                    </div>
+                    <div class="col-md-4">
                         <label for="loan" class="form-label">Daily Footfall</label>
                         <input type="text" class="form-control bg-model" id="applicationid" name="footFall" value="<?php echo $row->footFall; ?>">
                     </div>
