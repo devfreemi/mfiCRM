@@ -14,7 +14,7 @@ class LoanEligibilityController extends BaseController
     {
         $request = service('request');
         // $cibil = rand(0, 900);
-        $cibil = 780;
+        $cibil = 680;
         // Get input data from the form
         if ($request->getVar('previous_emi') === "") {
             # code...
@@ -103,8 +103,8 @@ class LoanEligibilityController extends BaseController
     public function checkEligibilityAPI()
     {
         // $request = service('request');
-        $cibil = rand(0, 900);
-        // $cibil = 780;
+        // $cibil = rand(0, 900);
+        $cibil = 680;
         // Get input data from the form
         if ($this->request->getVar('previous_emi') === "") {
             # code...

@@ -23,7 +23,40 @@
             <!-- Retailer Info Card -->
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <h3 class="mb-3 fw-bold"><?= esc($retailers['name']) ?></h3>
+                    <?php
+
+                    if ($retailers['eli_run'] === "Y") {
+                        $db = db_connect();
+                        $builderB = $db->table('initial_eli_run');
+                        $builderB->select('*');
+                        $builderB->where('member_id ', $retailers['member_id']);
+                        $queryB = $builderB->get();
+                        // $countEli = $builderB->countAllResults();
+                        foreach ($queryB->getResult() as $rowB) {
+                            $eli = $rowB->eligibility;
+                            if ($eli === 'Not Eligible') {
+                                # code...
+
+                                echo '<h3 class=" fw-bold">' . esc($retailers["name"]) . '</h3>
+                                        <span class="badge bg-danger my-3">' . $eli . '</span>';
+                            } else {
+                                # code...
+
+                                echo '<h3 class=" fw-bold">' . esc($retailers["name"]) . '</h3>
+                                <span class="badge bg-success my-3">' . $eli . '</span>';
+                            }
+                        }
+                    ?>
+
+                    <?php
+                    } else {
+                        # code...
+                    ?>
+                        <h3 class="fw-bold"><?= esc($retailers['name']) ?></h3>
+                        <span class="badge bg-warning my-3">Not Checked</span>
+
+
+                    <?php  } ?>
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <p class="mb-1"><strong>Shop Name:</strong> <?= esc($retailers['businessName']) ?></p>
@@ -49,10 +82,10 @@
                 <!-- Document Card (1) -->
                 <div class="col-md-3 col-sm-6">
                     <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x150?text=Document+1" class="card-img-top" alt="Document 1">
+                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 1">
                         <div class="card-body text-center">
                             <h6 class="card-title">Document 1</h6>
-                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
                         </div>
                     </div>
                 </div>
@@ -60,10 +93,10 @@
                 <!-- Document Card (2) -->
                 <div class="col-md-3 col-sm-6">
                     <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x150?text=Document+2" class="card-img-top" alt="Document 2">
+                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 2">
                         <div class="card-body text-center">
                             <h6 class="card-title">Document 2</h6>
-                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
                         </div>
                     </div>
                 </div>
@@ -71,14 +104,24 @@
                 <!-- Document Card (3) -->
                 <div class="col-md-3 col-sm-6">
                     <div class="card h-100 shadow-sm">
-                        <img src="https://via.placeholder.com/300x150?text=Document+3" class="card-img-top" alt="Document 3">
+                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 3">
                         <div class="card-body text-center">
                             <h6 class="card-title">Document 3</h6>
-                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Document Card (3) -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 3">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Document 3</h6>
+                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
             </div>
     </main>
 
