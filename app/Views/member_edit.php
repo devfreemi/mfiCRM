@@ -34,6 +34,21 @@
                         <input type="text" class="form-control bg-model" id="applicationid" name="pan" value="<?php echo $row->pan; ?>">
                     </div>
                     <div class="col-md-4">
+                        <label for="loan" class="form-label">CIBIL Score</label>
+                        <?php
+
+                        $builderB = $db->table('initial_eli_run');
+                        $builderB->select('*');
+                        $builderB->where('member_id ', $row->member_id);
+                        $queryB = $builderB->get();
+                        // $countEli = $builderB->countAllResults();
+                        foreach ($queryB->getResult() as $rowB) {
+                            $cibil = $rowB->cibil;
+                        }
+                        ?>
+                        <input type="number" class="form-control bg-model" id="applicationid" name="cibil" value="<?php echo  $cibil; ?>">
+                    </div>
+                    <div class="col-md-4">
                         <label for="loan" class="form-label">Aadhaar Number</label>
                         <input type="text" class="form-control bg-model" id="applicationid" name="adhar" value="<?php echo $row->adhar; ?>">
                     </div>
@@ -79,11 +94,19 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Previous EMI</label>
-                        <input type="text" class="form-control bg-model" required id="applicationid" value="0" name="previous_emi" value="<?php echo $row->outstanding; ?>">
+                        <input type="text" class="form-control bg-model" required id="applicationid" name="previous_emi" value="<?php echo $row->outstanding; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Established Year</label>
                         <input type="text" class="form-control bg-model " required id="applicationid" name="business_time" value="<?php echo $row->estab; ?>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="loan" class="form-label">Remarks</label>
+                        <select id="inputState" class="form-control bg-model" name="remarks" required>
+                            <option selected disabled>Choose</option>
+                            <option value="Ok">Ok</option>
+                            <option value="Reject">Reject</option>
+                        </select>
                     </div>
                     <input type="hidden" class="form-control bg-model " id="applicationid" name="image_profile" value="<?php echo $row->image; ?>">
                     <div class="col-md-4">

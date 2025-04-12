@@ -8,9 +8,13 @@ use App\Models\MemberModel;
 use App\Models\GeoTagModel;
 use App\Models\AgentAttendenceModel;
 use CodeIgniter\API\ResponseTrait;
+use Google\Cloud\Storage\StorageClient;
 
 class MemberController extends BaseController
 {
+    private $bucketName = 'microfinanceinstitution0.appspot.com'; // 🔁 Replace with your Firebase bucket
+    private $serviceAccountPath = APPPATH . 'Config/firebase_service.json';
+
     use ResponseTrait;
     public function add_member()
     {
@@ -218,5 +222,33 @@ class MemberController extends BaseController
         return view('retailer_profile', $data);
         // print_r($data);
         // echo $memberID;
+    }
+    public function storage_data()
+    {
+        $folder = 'Retailer_document'; // 🔁 Replace with your folder name in Firebase
+
+        $storage = new StorageClient([
+            'keyFilePath' => $this->serviceAccountPath,
+        ]);
+
+        $bucket = $storage->bucket($this->bucketName);
+        $objects = $bucket->objects([
+            'prefix' => rtrim($folder, '/') . '/',
+        ]);
+
+        $files = [];
+
+        foreach ($objects as $object) {
+            if (substr($object->name(), -1) !== '/') {
+                $files[] = [
+                    'name' => $object->name(),
+                    'url' => 'https://firebasestorage.googleapis.com/v0/b/' .
+                        $this->bucketName . '/o/' . urlencode($object->name()) . '?alt=media',
+                ];
+            }
+        }
+
+        // return view('file_list', ['files' => $files]);
+        var_dump($files);
     }
 }

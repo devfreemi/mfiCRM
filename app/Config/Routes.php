@@ -31,6 +31,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('employee-attendence', 'Home::e_attendence');
     $routes->post('loan/check', 'LoanEligibilityController::checkEligibility');
     $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
+    $routes->add('retailers/storage', 'MemberController::storage_data');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {

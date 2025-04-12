@@ -80,7 +80,18 @@ class LoanEligibilityModel extends Model
         }
 
         // Daily Sales Evaluation
-        if ($this->daily_sales >= 10000) {
+        if ($this->daily_sales == 0) {
+            return [
+                "Eligibility" => "Not Eligible", // Final ROI applied API OUTPUT
+                "ROI" => "N/A", // Final ROI applied API OUTPUT
+                "FixedROI" =>  "N/A",
+                "Tenure" =>  "N/A", // Final ROI applied API OUTPUT
+                "LoanAmount" => 0, // Final ROI applied API OUTPUT
+                "Score" => $score,
+                "Reason" => "Daily Sales is Zero.", // applied API OUTPUT
+                "roi" => 0
+            ];
+        } elseif ($this->daily_sales >= 10000) {
             $score += 3;
             $roi -= 2;
         } elseif ($this->daily_sales >= 5000) {

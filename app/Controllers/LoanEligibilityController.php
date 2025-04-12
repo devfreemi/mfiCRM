@@ -14,7 +14,7 @@ class LoanEligibilityController extends BaseController
     {
         $request = service('request');
         // $cibil = rand(0, 900);
-        $cibil = 680;
+        $cibil = $request->getVar('cibil');
         // Get input data from the form
         if ($request->getVar('previous_emi') === "") {
             # code...
@@ -67,7 +67,8 @@ class LoanEligibilityController extends BaseController
             'dailySales'        => $this->request->getVar('daily_sales'),
             'name'              => $this->request->getVar('name'),
             'eli_run'           => "Y",
-            'month_purchase'    => $this->request->getVar('month_purchase')
+            'month_purchase'    => $this->request->getVar('month_purchase'),
+            'remarks'    => $this->request->getVar('remarks')
         ];
         $db = db_connect();
         $builder = $db->table('members');
