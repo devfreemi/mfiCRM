@@ -62,11 +62,11 @@
                         <p><strong>Final ROI</strong></p>
                         <p id="loanInterest"></p>
                     </div>
-                    <div class="details-box">
+                    <!-- <div class="details-box">
                         <i class="fas fa-percentage"></i>
                         <p><strong>Calculated ROI</strong></p>
                         <p id="calroi"></p>
-                    </div>
+                    </div> -->
                     <div class="details-box">
                         <i class="fas fa-calendar-alt"></i>
                         <p><strong>Tenure (Month)</strong></p>

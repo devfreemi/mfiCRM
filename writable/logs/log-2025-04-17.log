@@ -1,0 +1,25 @@
+INFO - 2025-04-17 10:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:20:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:20:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:21:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:21:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:21:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:21:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:21:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:25:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-17 10:27:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-17 11:29:21 --> mysqli_sql_exception: Table 'initial_eli_run' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `i...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `i...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `i...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `i...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Database\Migrations\2025-03-26-075139_EligibiltyRun.php(62): CodeIgniter\Database\Forge->createTable('initial_eli_run')
+#5 C:\xampp\htdocs\www\mfiCRM\system\Database\MigrationRunner.php(865): App\Database\Migrations\EligibiltyRun->up()
+#6 C:\xampp\htdocs\www\mfiCRM\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\www\mfiCRM\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\www\mfiCRM\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\www\mfiCRM\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}

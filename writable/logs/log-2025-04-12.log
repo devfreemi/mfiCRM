@@ -91,3 +91,70 @@ INFO - 2025-04-12 12:09:45 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2025-04-12 12:11:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-04-12 12:11:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2025-04-12 12:12:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:37:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:37:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-12 18:37:15 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:184
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(184): mysqli->real_connect('127.0.0.1', 'root', Object(SensitiveParameterValue), 'mfi', 3306, '', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Validation\StrictRules\Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique('Admin@mfi', 'userId', Array, NULL, 'userId')
+#6 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(200): CodeIgniter\Validation\Validation->processRules('userId', 'userId', 'Admin@mfi', Array, Array)
+#7 C:\xampp\htdocs\www\mfiCRM\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Auth.php(80): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\www\mfiCRM\system\Validation\StrictRules\Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique('Admin@mfi', 'userId', Array, NULL, 'userId')
+#5 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(200): CodeIgniter\Validation\Validation->processRules('userId', 'userId', 'Admin@mfi', Array, Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#7 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Auth.php(80): CodeIgniter\Controller->validate(Array)
+#8 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-04-12 18:37:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `userBackOffice`
+WHERE `userId` = :userId:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Validation\StrictRules\Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\Validation\Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique('Admin@mfi', 'userId', [...], null, 'userId')
+ 5 SYSTEMPATH\Validation\Validation.php(200): CodeIgniter\Validation\Validation->processRules('userId', 'userId', 'Admin@mfi', [...], [...])
+ 6 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 7 APPPATH\Controllers\Auth.php(80): CodeIgniter\Controller->validate([...])
+ 8 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+ 9 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-12 18:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:37:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:38:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:41:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:41:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:42:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:42:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:42:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:44:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:45:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:45:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:48:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-12 18:48:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

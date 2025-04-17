@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Name</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" readonly name="applicationid" value="<?php echo $row->businessName; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->businessName; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Type</label>
@@ -104,9 +104,13 @@
                         <label for="loan" class="form-label">Remarks</label>
                         <select id="inputState" class="form-control bg-model" name="remarks" required>
                             <option selected disabled>Choose</option>
-                            <option value="Ok">Ok</option>
-                            <option value="Reject">Reject</option>
+                            <option value="Ok" <?php if ($row->remarks === 'Ok') echo 'selected="selected"'; ?>>Ok</option>
+                            <option value="Reject" <?php if ($row->remarks === 'Reject') echo 'selected="selected"'; ?>>Reject</option>
                         </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="loan" class="form-label">Reason <small>(if any)</small></label>
+                        <input type="text" class="form-control bg-model " required id="applicationid" name="comments" value="<?php echo $row->comments; ?>">
                     </div>
                     <input type="hidden" class="form-control bg-model " id="applicationid" name="image_profile" value="<?php echo $row->image; ?>">
                     <div class="col-md-4">

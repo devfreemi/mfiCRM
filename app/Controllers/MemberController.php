@@ -226,6 +226,7 @@ class MemberController extends BaseController
     public function storage_data()
     {
         $folder = 'Retailer_document'; // 🔁 Replace with your folder name in Firebase
+var_dump(trait_exists(\Google\Cloud\Core\ArrayTrait::class));
 
         $storage = new StorageClient([
             'keyFilePath' => $this->serviceAccountPath,
@@ -250,5 +251,6 @@ class MemberController extends BaseController
 
         // return view('file_list', ['files' => $files]);
         var_dump($files);
+        // echo "Test";
     }
 }

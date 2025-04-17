@@ -58,9 +58,16 @@ class LoanEligibilityModel extends Model
             $score += 1;
             $roi -= 1;
         } elseif ($this->cibil_score <= 675 && $this->cibil_score > 0) {
-            $score -= 4;
-            $roi += 4;
-            $reason .= "Low CIBIL score. ";
+             return [
+                "Eligibility" => "Not Eligible", // Final ROI applied API OUTPUT
+                "ROI" => "N/A", // Final ROI applied API OUTPUT
+                "FixedROI" =>  "N/A",
+                "Tenure" =>  "N/A", // Final ROI applied API OUTPUT
+                "LoanAmount" => 0, // Final ROI applied API OUTPUT
+                "Score" => $score,
+                "Reason" => "Low Cibil Score", // applied API OUTPUT
+                "roi" => 0
+            ];
         } else {
             $score -= 1;
             $roi += 2;
@@ -133,16 +140,37 @@ class LoanEligibilityModel extends Model
         $roi -= ($location_factors[$this->location] ?? 0);
 
         // Previous EMI consideration
+        // if ($this->previous_emi == 0) {
+        //     $score += 2;
+        //     $roi -= 1;
+        // } elseif ($this->previous_emi <= 2) {
+        //     $score += 1;
+        // } else {
+        //     $roi += 2;
+        //     $reason .= "High previous EMI burden. ";
+        // }
+        // Previous EMI (Total EMI Amount Burden) consideration
         if ($this->previous_emi == 0) {
             $score += 2;
             $roi -= 1;
-        } elseif ($this->previous_emi <= 2) {
+        } elseif ($this->previous_emi <= 5000) {
             $score += 1;
+            $roi -= 0.5;
+        } elseif ($this->previous_emi <= 10000) {
+            $roi += 1;
+            $score -= 2;
         } else {
-            $roi += 2;
-            $reason .= "High previous EMI burden. ";
+            return [
+                "Eligibility" => "Not Eligible", // Final ROI applied API OUTPUT
+                "ROI" => "N/A", // Final ROI applied API OUTPUT
+                "FixedROI" =>  "N/A",
+                "Tenure" =>  "N/A", // Final ROI applied API OUTPUT
+                "LoanAmount" => 0, // Final ROI applied API OUTPUT
+                "Score" => $score,
+                "Reason" => "Heavy EMI burden (above ₹10,000)", // applied API OUTPUT
+                "roi" => 0
+            ];
         }
-
         // Business Type Rules
         $business_categories = [
             "essential" => ["Grocery", "Pharmacy"],

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddPanAndGst extends Migration
+class RetailerDocumentsMigration extends Migration
 {
     public function up()
     {
@@ -16,20 +16,16 @@ class AddPanAndGst extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'agent_id' => [
+            'member_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '64',
+                'unique' => true,
             ],
-            'date' => [
-                'type' => 'DATE',
-
-            ],
-            'pan' => [
-                'type' => 'VARCHAR',
-                'constraint' => '32',
-            ],
-            'gst' => [
+            'document_path' => [
                 'type' => 'LONGTEXT',
+                'null' => true,
+                'default' => null,
+                // 'constraint' => '2064',
             ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
@@ -41,12 +37,13 @@ class AddPanAndGst extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('pan_gst_master');
+        $this->forge->createTable('retailerdocuments');
     }
 
     public function down()
     {
         //
-        $this->forge->dropTable('pan_gst_master');
+        //
+        $this->forge->dropTable('retailerdocuments');
     }
 }

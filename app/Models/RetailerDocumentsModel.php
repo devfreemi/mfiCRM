@@ -4,54 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MemberModel extends Model
+class RetailerDocumentsModel extends Model
 {
-    protected $table            = 'members';
+    protected $table            = 'retailerdocuments';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id',
         'member_id',
-        'groupName',
-        'groupId',
-        'mobile',
-        'pan',
-        'gst',
-        'adhar',
-        'name',
-        'location',
-        'pincode',
-        'gender',
-        'marital',
-        'occupation',
-        'bankAccount',
-        'ifsc',
-        'bankName',
-        'bankBranch',
-        'bankCity',
-        'bankState',
-        'bankAddress',
+        'document_path',
         'created_at',
-        'businessType',
-        'businessName',
-        'footFall',
-        'stock',
-        'outstanding',
-        'estab',
-        'dailySales',
-        'image',
-        'agent',
-        'aadhaarData',
-        'aadhaarVerified',
-        'panName',
-        'authenticatePAN',
-        'eli_run',
-        'month_purchase',
-        'comments',
-        'remarks'
-
+        'updated_at',
     ];
 
     // Dates
