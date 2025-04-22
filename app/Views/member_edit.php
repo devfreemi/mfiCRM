@@ -4,8 +4,10 @@
     $builder->select('*');
     $builder->where('member_id', $_POST["member_id"])->join('groups', 'groups.g_id  = members.groupId');
     $query = $builder->get();
+
     foreach ($query->getResult() as $row) {
         $e_id =  $row->agent;
+        $elirun = $row->eli_run;
         $builder_name = $db->table('employees');
         $builder_name->where('employeeID', $e_id);
         $query_name = $builder_name->get();
@@ -36,15 +38,23 @@
                     <div class="col-md-4">
                         <label for="loan" class="form-label">CIBIL Score</label>
                         <?php
-
-                        $builderB = $db->table('initial_eli_run');
-                        $builderB->select('*');
-                        $builderB->where('member_id ', $row->member_id);
-                        $queryB = $builderB->get();
-                        // $countEli = $builderB->countAllResults();
-                        foreach ($queryB->getResult() as $rowB) {
-                            $cibil = $rowB->cibil;
+                        if ($elirun === 'Y') {
+                            # code...
+                            $builderB = $db->table('initial_eli_run');
+                            $builderB->select('*');
+                            $builderB->where('member_id ', $row->member_id);
+                            $queryB = $builderB->get();
+                            // $countEli = $builderB->countAllResults();
+                            foreach ($queryB->getResult() as $rowB) {
+                                $cibil = $rowB->cibil;
+                            }
+                            # code...
+                        } else {
+                            # code...
+                            $cibil = 0;
                         }
+
+
                         ?>
                         <input type="number" class="form-control bg-model" id="applicationid" name="cibil" value="<?php echo  $cibil; ?>">
                     </div>
@@ -102,7 +112,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Remarks</label>
-                        <select id="inputState" class="form-control bg-model" name="remarks" required>
+                        <select id="remarks" class="form-control bg-model" name="remarks" required>
                             <option selected disabled>Choose</option>
                             <option value="Ok" <?php if ($row->remarks === 'Ok') echo 'selected="selected"'; ?>>Ok</option>
                             <option value="Reject" <?php if ($row->remarks === 'Reject') echo 'selected="selected"'; ?>>Reject</option>
@@ -118,7 +128,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Check Eligibility</button>
+                        <button type="submit" class="btn btn-primary" id="actionBtn">Check Eligibility</button>
                     </div>
                 </form>
             </div>
@@ -126,3 +136,19 @@
 <?php }
     }
 } ?>
+
+<!-- <script>
+    $('#remarks').on('change', function() {
+        let selected = $(this).val();
+
+        // Change button text
+        $('#actionBtn').text(selected);
+
+        // Remove btn-primary and add btn-dang/er
+        $('#actionBtn').removeClass('btn-primary').addClass('btn-danger');
+        // Optional: Change button click behavior
+        // $('#actionBtn').off('click').on('click', function() {
+        //     alert('Button clicked: ' + selected);
+        // });
+    });
+</script> -->

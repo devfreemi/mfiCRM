@@ -73,55 +73,49 @@
             </div>
 
             <!-- Documents Section -->
-            <h5 class="mb-3">Uploaded Documents</h5>
+            <h4 class="mb-3 fw-bold">Uploaded Documents</h4>
             <div class="row g-3">
 
                 <!-- Example: Repeat this block up to 20 times -->
                 <!-- You can use PHP to loop through documents -->
 
                 <!-- Document Card (1) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 1">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 1</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $db = db_connect();
+                $builder = $db->table('retailerdocuments');
+                $builder->select('*');
+                $builder->where('member_id ', $retailers['member_id']);
+                $query = $builder->get();
 
-                <!-- Document Card (2) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 2">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 2</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                foreach ($query->getResult() as $row) {
+                    $doc = $row->document_path;
+                    $cleanedJson = trim(str_replace('Json object:', '', $doc));
 
-                <!-- Document Card (3) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 3">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 3</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                    // Decode it into associative array
+                    $data = json_decode($cleanedJson, true);
 
-                <!-- Document Card (3) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 3">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 3</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                    // Example: Output values
+                    foreach ($data as $key => $urls) {
+                        foreach ($urls as $url) {
+                            // echo "- $url<br>";
+
+                ?>
+                            <div class="col-md-2 col-sm-6">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="<?= $url ?>" class="card-img-top" alt="<?= $key ?>">
+                                    <div class="card-body text-center">
+                                        <h6 class="card-title">Documents</h6>
+                                        <a href="<?= $url ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                <?php }
+                    }
+                } ?>
+            </div>
+
+            <div class="col-6 mx-auto text-center">
+                <a href="<?= base_url('retailer_documents') ?>" class="btn btn-primary mt-3">Initiate Field Inspection</a>
             </div>
     </main>
 
