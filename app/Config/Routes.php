@@ -95,4 +95,4 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
-// $routes->add('api/today-deposite-data', 'DepositeController::temp_data');
+$routes->add('api/verification-api', 'ApiController::index');
