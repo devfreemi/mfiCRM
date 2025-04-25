@@ -1,0 +1,1205 @@
+INFO - 2025-04-25 07:06:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:06:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:06:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:06:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:08:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:08:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:08:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:08:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:08:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:17:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:20:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:20:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 07:20:08 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 07:20:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 07:20:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 07:20:08 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 07:20:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 07:20:22 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 07:20:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 07:20:22 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 07:20:22 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 07:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:20:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 07:20:37 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 07:20:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 07:20:37 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 07:20:37 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 07:20:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:20:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:31:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:31:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:32:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:37:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:37:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:37:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:37:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 07:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 09:59:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 10:06:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 10:06:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 10:06:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 10:07:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 10:41:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:02:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:03:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:03:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:50:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 11:50:49 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 11:50:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:50:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:50:49 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 11:50:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:50:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:50:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:50:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:51:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:51:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 11:51:47 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 11:51:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:51:47 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:51:47 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 11:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:51:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:52:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 11:52:50 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 11:52:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:52:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:52:50 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 11:52:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:52:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:52:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:53:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:53:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:53:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:58:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:59:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:59:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 11:59:27 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 11:59:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:59:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 11:59:27 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 11:59:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 11:59:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:04:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:04:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 12:04:31 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 12:04:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 12:04:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 12:04:31 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(25): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:04:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:04:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:05:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:06:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:06:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:10:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:10:14 --> ErrorException: Undefined variable $row
+in APPPATH\Views\loan_details.php on line 49.
+ 1 APPPATH\Views\loan_details.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php', 49)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 5 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:10:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:10:15 --> ErrorException: Undefined variable $row
+in APPPATH\Views\loan_details.php on line 49.
+ 1 APPPATH\Views\loan_details.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php', 49)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 5 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:10:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:10:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:10:19 --> ErrorException: Undefined variable $row
+in APPPATH\Views\loan_details.php on line 49.
+ 1 APPPATH\Views\loan_details.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php', 49)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 5 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:10:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:10:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:10:30 --> ErrorException: Undefined variable $row
+in APPPATH\Views\loan_details.php on line 52.
+ 1 APPPATH\Views\loan_details.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php', 52)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 5 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:10:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:10:31 --> ErrorException: Undefined variable $row
+in APPPATH\Views\loan_details.php on line 52.
+ 1 APPPATH\Views\loan_details.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php', 52)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 5 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:10:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:10:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:11:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:11:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:12:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:15:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:15:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 12:15:16 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-04-25 12:15:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 12:15:16 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 12:15:16 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:15:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:15:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:16:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:16:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:16:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:18:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:18:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:22:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:22:04 --> ErrorException: Undefined property: stdClass::$roi
+in APPPATH\Views\loan_view.php on line 47.
+ 1 APPPATH\Views\loan_view.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$roi', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_view.php', 47)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_view.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_view', [], true)
+ 5 APPPATH\Controllers\Home.php(39): view('loan_view')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_view()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:22:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:22:07 --> ErrorException: Undefined property: stdClass::$roi
+in APPPATH\Views\loan_view.php on line 47.
+ 1 APPPATH\Views\loan_view.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$roi', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_view.php', 47)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_view.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_view', [], true)
+ 5 APPPATH\Controllers\Home.php(39): view('loan_view')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_view()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:22:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:22:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:26:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:34:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:34:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:34:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:34:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:39:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:42:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:46:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:46:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:46:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-25 12:46:06 --> TypeError: Unsupported operand types: string / int
+in APPPATH\Controllers\LoanApi.php on line 111.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:46:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:46:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-25 12:46:45 --> mysqli_sql_exception: Table 'tab_65277test5860' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE ta...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE ta...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE ta...')
+#3 C:\xampp\htdocs\www\mfiCRM\app\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE ta...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST58...')
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-04-25 12:46:45 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 12:46:45 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-25 12:46:45 --> [Caused by] mysqli_sql_exception: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 5 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-25 12:47:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:47:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:47:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:47:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-25 12:47:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

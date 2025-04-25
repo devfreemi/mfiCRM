@@ -76,9 +76,15 @@
                                                     <?php
                                                     if ($row->loan_status === "Disbursed") { ?>
                                                         <button type="button" class="btn btn-danger details" id="<?php echo $row->applicationID; ?>">
-                                                            <i class="align-middle" data-feather="eye"></i>
+                                                            <i class="align-middle" data-feather="file-text"></i>
                                                         </button>
                                                     <?php } ?>
+                                                    <a href="<?php echo base_url() . 'retailers/details/' . $row->member_id;
+                                                                ?>" class="btn btn-success details" id="">
+                                                        <!-- <i class="fas fa-eye"></i> -->
+                                                        <i class="align-middle" data-feather="user"></i>
+                                                    </a>
+
                                                 </div>
                                             </td>
                                         </tr>

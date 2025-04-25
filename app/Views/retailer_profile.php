@@ -115,7 +115,30 @@
             </div>
 
             <div class="col-6 mx-auto text-center">
-                <a href="<?= base_url('retailer_documents') ?>" class="btn btn-primary mt-3">Initiate Field Inspection</a>
+                <?php
+
+                if ($retailers['eli_run'] === "Y") {
+                    $db = db_connect();
+                    $builderB = $db->table('initial_eli_run');
+                    $builderB->select('*');
+                    $builderB->where('member_id ', $retailers['member_id']);
+                    $queryB = $builderB->get();
+                    // $countEli = $builderB->countAllResults();
+                    foreach ($queryB->getResult() as $rowB) {
+                        $eli = $rowB->eligibility;
+                        if ($eli === 'Eligible') {
+                            # code...
+                            echo '<a href="' . base_url() . 'retailers/fi/' . $retailers['member_id'] . '" class="btn btn-primary mt-3">Initiate Field Inspection</a>';
+                        } else {
+                            # code...
+                            echo '<a href="/" class="btn btn-primary mt-3">Back</a>';
+                        }
+                    }
+                ?>
+
+                <?php
+                } ?>
+
             </div>
     </main>
 

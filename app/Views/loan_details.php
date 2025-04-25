@@ -12,6 +12,7 @@
                 <th>Status</th>
                 <th>Transaction Id</th>
                 <th>Transaction Date</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +45,17 @@
                     </td>
                     <td><?php echo $rowLoan->transactionId; ?></td>
                     <td><?php echo $rowLoan->transactionDate; ?></td>
+                    <td>
+                        <button type="button" class="btn btn-primary  view" id="">
+                            Pay Now
+                            <i class="far fa-credit-card"></i>
+                        </button>
+                        <!-- <a href="<?php //echo base_url() . 'retailers/details/' . $row->member_id;
+                                        ?>" class="btn btn-success details" id="">
+                                <i class="align-middle" data-feather="user"></i>
+                            </a> -->
+
+                    </td>
                 </tr>
             <?php }
             ?>
@@ -59,6 +71,7 @@
                 <th>Status</th>
                 <th>Transaction Id</th>
                 <th>Transaction Date</th>
+                <th>Action</th>
             </tr>
         </tfoot>
     </table>

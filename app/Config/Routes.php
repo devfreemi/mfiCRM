@@ -31,7 +31,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('employee-attendence', 'Home::e_attendence');
     $routes->post('loan/check', 'LoanEligibilityController::checkEligibility');
     $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
-    $routes->add('retailers/storage', 'MemberController::storage_data');
+    $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
+    // $routes->add('retailers/storage', 'MemberController::storage_data');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -95,4 +96,4 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
-$routes->add('api/verification-api', 'ApiController::index');
+// $routes->add('api/verification-api', 'ApiController::index');
