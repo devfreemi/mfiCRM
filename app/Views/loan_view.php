@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">ROI</label>
-                        <input type="text" class="form-control" name="roi" id="roi" value="">
+                        <input type="text" class="form-control" name="roi" id="roi" value="<?php echo $row->roi; ?>">
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">Loan Tenure</label>

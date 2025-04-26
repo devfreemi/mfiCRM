@@ -78,7 +78,7 @@ class LoanApi extends BaseController
 
 
         // $day_tenure = $tenure * 30;
-        $roi = $this->request->getPost('roi');
+        $roi = $this->request->getVar('roi');
         if ($status == "Approved") {
             # code...
             $model->create($table);
@@ -93,7 +93,8 @@ class LoanApi extends BaseController
                 'emi'               =>  $emi,
                 'pending_emi'       =>  $tenure,
                 'loan_due'          => $due,
-                'total_amount'          => $due,
+                'roi'               => $roi,
+                'total_amount'      => $due,
             ];
 
             $builder->where('applicationID', $applicationid);
@@ -111,9 +112,10 @@ class LoanApi extends BaseController
                 $r = ($roi / 100 / 12);
                 $x = pow(1 + $r, $tenure);
                 $emi = round(($loan_amount * $x * $r) / ($x - 1));
-                $final_emi = round($emi / $day_tenure);
-                $due = round($emi * $day_tenure);
-                $repeat = strtotime("+1 month", strtotime($today));
+
+                $due = round($emi * $tenure);
+                $final_emi = round($due / $day_tenure);
+                $repeat = strtotime("+1 day", strtotime($today));
                 $today = date('Y-m-d', $repeat);
                 $todayStamp = date('d-M-y D', $repeat);
                 $dataFirst = [
@@ -127,8 +129,8 @@ class LoanApi extends BaseController
                 $builder_app_f = $db->table($table);
                 $builder_app_f->insert($dataFirst);
                 # code...
-                for ($y = 2; $y <= $tenure; $y++) {
-                    $repeat = strtotime("+1 month", strtotime($today));
+                for ($y = 2; $y <= $day_tenure; $y++) {
+                    $repeat = strtotime("+1 day", strtotime($today));
                     $today = date('Y-m-d', $repeat);
                     $todayStamp = date('d-M-y D', $repeat);
 
