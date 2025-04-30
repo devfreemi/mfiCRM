@@ -206,3 +206,78 @@
 .bg-shop{
     height: 350px;
 }
+
+:root {
+    --brand-color: #6819e6;
+}
+
+/* body {
+    background-color: #f4f6fb;
+    font-family: 'Segoe UI', sans-serif;
+} */
+  .payment-card,
+  .details-card {
+      background: #ffffff;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+  }
+
+  .payment-header {
+      background: var(--brand-color);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+  }
+
+  .form-label {
+      font-weight: 500;
+  }
+
+  .form-control:focus {
+      border-color: var(--brand-color);
+      box-shadow: 0 0 0 0.2rem rgba(104, 25, 230, 0.2);
+  }
+
+  .input-group-text {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+  }
+
+  .btn-pay {
+      background-color: var(--brand-color);
+      border: none;
+  }
+
+  .btn-pay:hover {
+      background-color: #5012b6;
+  }
+
+  .secure-note {
+      font-size: 0.875rem;
+      color: #777;
+      text-align: center;
+      margin-top: 1rem;
+  }
+
+  .footer-text {
+      font-size: 0.85rem;
+      color: #999;
+      text-align: center;
+      padding: 1rem;
+  }
+
+  .details-label {
+      font-weight: 600;
+      color: #555;
+  }
+
+  .details-value {
+      color: #333;
+  }
+
+  .details-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #ccc;
+  }

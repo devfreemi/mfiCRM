@@ -44,7 +44,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
+                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -54,7 +54,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    "x-auth-key: jTk670PBaHVP5kD5"
                 ),
             ));
 
@@ -110,7 +110,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
+                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -120,7 +120,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    "x-auth-key: jTk670PBaHVP5kD5"
                 ),
             ));
 
@@ -166,7 +166,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/pan-profile-detailed",
+                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/pan-profile-detailed",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -176,7 +176,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    "x-auth-key: jTk670PBaHVP5kD5"
                 ),
             ));
 
@@ -208,7 +208,7 @@ class AadhaarKycController extends BaseController
                     $curlGst = curl_init();
 
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gst-advanced",
+                        CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gst-advanced",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -218,7 +218,7 @@ class AadhaarKycController extends BaseController
                         CURLOPT_POSTFIELDS => $data_json_gst,
                         CURLOPT_HTTPHEADER => array(
                             "content-type: application/json",
-                            "x-auth-key: KzKQbi9Tw8OokmY"
+                            "x-auth-key: jTk670PBaHVP5kD5"
                         ),
                     ));
 
@@ -302,7 +302,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gstdetailed-additional",
+                CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gstdetailed-additional",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -312,7 +312,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    "x-auth-key: jTk670PBaHVP5kD5"
                 ),
             ));
 

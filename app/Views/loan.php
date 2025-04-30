@@ -3,7 +3,7 @@
 <link href="https://cdn.datatables.net/2.1.0/css/dataTables.bootstrap5.css" rel="stylesheet">
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.0/js/dataTables.bootstrap5.js"></script>
-
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 <div class="main">
 
     <?php include 'fragments/nav.php'; ?>

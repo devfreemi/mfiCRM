@@ -1,6 +1,7 @@
 <?php if (isset($_POST["appli_id"])) {
-
+    $apli_id = $_POST["appli_id"];
 ?>
+
     <table class="table table-hover">
         <thead>
             <tr class="table-primary">
@@ -46,10 +47,10 @@
                     <td><?php echo $rowLoan->transactionId; ?></td>
                     <td><?php echo $rowLoan->transactionDate; ?></td>
                     <td>
-                        <button type="button" class="btn btn-primary  view" id="">
+                        <a href="<?php echo base_url() ?>payment/details?id=<?php echo $_POST["appli_id"]; ?>" class="btn btn-primary view">
                             Pay Now
                             <i class="far fa-credit-card"></i>
-                        </button>
+                        </a>
                         <!-- <a href="<?php //echo base_url() . 'retailers/details/' . $row->member_id;
                                         ?>" class="btn btn-success details" id="">
                                 <i class="align-middle" data-feather="user"></i>
@@ -75,7 +76,29 @@
             </tr>
         </tfoot>
     </table>
+    <script>
+        $('#payData').click(function() {
+            var amount = <?php echo number_format($rowLoan->emi); ?>;
+            var appli_id = "<?php echo $apli_id; ?>";
 
+            $.ajax({
+                url: "<?php echo base_url(); ?>emi/payment", // Route to your CI4 controller
+                type: "POST",
+                data: {
+                    amount: amount,
+                    loan_id: appli_id
+                },
+                // dataType: "json",
+                success: function(response) {
+                    console.log("Response from server: " + response);
+                    $('#responseContainer').html(response);
+                },
+                error: function(xhr) {
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        });
+    </script>
 
 <?php
 }
