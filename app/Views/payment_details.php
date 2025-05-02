@@ -20,6 +20,7 @@
                 <div class="col-12 col-md-12 mx-auto">
 
                     <?php
+                    $session->set('loan_id', esc($loanID));
                     $db = db_connect();
                     $builderLoan = $db->table('tab_' . esc($loanID));
                     $builderLoan->select('*');
@@ -46,18 +47,8 @@
                                     'customer_phone'      => $row->mobile,
                                 ),
                                 'order_meta' => array(
-                                    'return_url'          => base_url() . 'payment/details?id=' . $loanID,
+                                    'return_url'          => base_url() . 'payment/conformation',
                                     'payment_methods'       => "nb,dc,upi"
-                                    // 'payment_methods_filters'          => array(
-                                    //     'method'          => array(
-                                    //         'action'          => "ALLOW",
-                                    //         'values'          =>  array(
-                                    //             "debit_card",
-                                    //             "netbanking",
-                                    //             "upi"
-                                    //         ),
-                                    //     ),
-                                    // ),
                                 ),
                             );
                         }
@@ -74,21 +65,29 @@
                             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                             CURLOPT_CUSTOMREQUEST => "POST",
                             CURLOPT_POSTFIELDS => $data_json,
-                            CURLOPT_HTTPHEADER => array(
-                                "content-type: application/json",
-                                
-                            ),
+                            CURLOPT_HTTPHEADER => array(),
                         ));
 
                         $response = curl_exec($curl);
                         $response_decode = json_decode($response, true);
                         $err = curl_error($curl);
                         // print_r($err);
-                        // var_dump($response_decode);
+                        var_dump($response_decode);
                         // echo $response_decode['order_id'];
                         // echo $response_decode['payment_session_id'];
-
+                        $session->set('payment_order_id', $response_decode['order_id']);
                         curl_close($curl);
+                        // UPDATE EMI TABLE AFTER PAYMENT
+                        $builderEmi = $db->table('tab_' . esc($loanID));
+                        $data = [
+                            'paymentSession'            => $response_decode['payment_session_id'],
+                            'orderId'                   => $response_decode['order_id'],
+                            'paymentStatus'             => $response_decode['order_status'],
+                            'updated_on'                => date('Y-m-d H:i:s')
+
+                        ];
+                        $q = $builderEmi->where('reference', 'Due')->update($data);
+
                     ?>
                         <div class="row g-4 justify-content-center align-items-stretch">
                             <div class="col-md-6 col-12">
@@ -233,6 +232,7 @@
                     // This will be called whenever the payment is completed irrespective of transaction status
                     console.log("Payment has been completed, Check for Payment Status");
                     console.log(result.paymentDetails.paymentMessage);
+                    window.location.href = "<?= base_url() ?>payment/conformation";
                 }
             });
         });

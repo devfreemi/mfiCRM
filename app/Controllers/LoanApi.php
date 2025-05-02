@@ -91,7 +91,7 @@ class LoanApi extends BaseController
                 'loan_status'       => "Approved",
                 'loan_tenure'       => $tenure,
                 'emi'               =>  $emi,
-                'pending_emi'       =>  $tenure,
+                'pending_emi'       =>  $day_tenure,
                 'loan_due'          => $due,
                 'roi'               => $roi,
                 'total_amount'      => $due,

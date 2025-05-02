@@ -60,11 +60,7 @@ class PaymentController extends BaseController
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => $data_json,
-            CURLOPT_HTTPHEADER => array(
-                "content-type: application/json",
-                "x-api-version: 2025-01-01",
-
-            ),
+            CURLOPT_HTTPHEADER => array(),
         ));
 
         $response = curl_exec($curl);
@@ -88,5 +84,9 @@ class PaymentController extends BaseController
     {
         $loanId = $this->request->getGet('id'); // Get from query string
         return view('payment_details', ['loanID' => $loanId]);
+    }
+    public function pay_conf()
+    {
+        return view('payment_conf');
     }
 }

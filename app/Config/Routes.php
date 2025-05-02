@@ -34,6 +34,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
     $routes->get('payment/details', 'PaymentController::details');
+    $routes->get('payment/conformation', 'PaymentController::pay_conf');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
