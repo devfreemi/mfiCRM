@@ -12,12 +12,12 @@
                 <div class="col-12 col-md-12 mx-auto">
 
                     <?php
-                    echo $orderId = session('payment_order_id');
-                    echo $loanID = session('loan_id');
+                    $orderId = session('payment_order_id');
+                    $loanID = session('loan_id');
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://sandbox.cashfree.com/pg/orders/" . $orderId,
+                        CURLOPT_URL => "https://sandbox.cashfree.com/pg/orders/" . $orderId . "/payments",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -33,7 +33,7 @@
                     // print_r($err);
                     // var_dump($response_decode);
                     // echo $response_decode['order_id'];
-                    // echo $response_decode['payment_session_id'];
+                    // echo $response_decode[0]['payment_amount'];
 
                     curl_close($curl);
                     // // UPDATE EMI TABLE AFTER PAYMENT
@@ -51,8 +51,10 @@
                     $builder = $db->table('tab_' . $loanID);
                     $data = [
                         'reference'         => 'Y',
-                        'paymentStatus'             => $response_decode['order_status'],
-                        'updated_on'                => date('Y-m-d H:i:s')
+                        'paymentStatus'             => $response_decode[0]['payment_status'],
+                        'updated_on'                => date('Y-m-d H:i:s'),
+                        'transactionDate'           => date('Y-m-d H:i:s'),
+                        'transactionId'           => ("TXN_" . $response_decode[0]['cf_payment_id']),
 
                     ];
                     $q = $builder->where('reference', 'Due')->update($data);
@@ -64,7 +66,7 @@
 
                     for ($y = 2; $y <= $emiPending; $y++) {
                         $dataLoop = [
-                            'balance'           => round($loanDue - $response_decode['order_amount']),
+                            'balance'           => round($loanDue - $response_decode[0]['payment_amount']),
                         ];
 
                         $query = $builder->update($dataLoop);
@@ -73,7 +75,7 @@
                     $builderMaster = $db->table('loans');
                     $dataMaster = [
 
-                        'loan_due'           =>  round($loanDue - $response_decode['order_amount']),
+                        'loan_due'           =>  round($loanDue - $response_decode[0]['payment_amount']),
                         'pending_emi'         => round($emiPending - 1),
                         'updated_at'        => date('Y-m-d H:i:s')
 
@@ -84,7 +86,7 @@
                     <div class="row g-4 justify-content-center align-items-stretch">
                         <div class="col-md-6 col-12">
                             <?php
-                            if ($response_decode['order_status'] == "PAID") { ?>
+                            if ($response_decode[0]['payment_status'] == "SUCCESS") { ?>
 
                                 <div class="col-12">
                                     <div class="status-card bg-white">
@@ -97,7 +99,7 @@
                                     </div>
                                 </div>
 
-                            <?php  } elseif ($response_decode['order_status'] == "ACTIVE") { ?>
+                            <?php  } elseif ($response_decode[0]['payment_status'] == "PENDING") { ?>
 
 
                                 <div class="col-12">

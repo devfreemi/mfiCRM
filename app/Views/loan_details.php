@@ -5,7 +5,7 @@
     <table class="table table-hover">
         <thead>
             <tr class="table-primary">
-                <th>Loan Id</th>
+
                 <th>Installment No.</th>
                 <th>EMI Date</th>
                 <th>EMI</th>
@@ -28,7 +28,7 @@
             foreach ($queryLoan->getResult() as $rowLoan) {
             ?>
                 <tr>
-                    <td><?php echo $_POST["appli_id"]; ?></td>
+
                     <td><?php echo $rowLoan->Id; ?></td>
                     <td><?php echo $rowLoan->valueDateStamp; ?></td>
                     <td><?php echo number_format($rowLoan->emi); ?></td>
@@ -46,11 +46,18 @@
                     </td>
                     <td><?php echo $rowLoan->transactionId; ?></td>
                     <td><?php echo $rowLoan->transactionDate; ?></td>
-                    <td>
-                        <a href="<?php echo base_url() ?>payment/details?id=<?php echo $_POST["appli_id"]; ?>" class="btn btn-primary view">
-                            Pay Now
-                            <i class="far fa-credit-card"></i>
-                        </a>
+                    <td class="text-center">
+                        <?php
+                        if ($rowLoan->reference === "Y") {
+                            # code...
+                            echo "<strong class='text-success'>EMI Paid</strong>";
+                        } else { ?>
+                            <a href="<?php echo base_url() ?>payment/details?id=<?php echo $_POST["appli_id"]; ?>" class="btn btn-primary view">
+                                Pay <i class="far fa-credit-card"></i>
+                            </a>
+                        <?php }
+                        ?>
+
                         <!-- <a href="<?php //echo base_url() . 'retailers/details/' . $row->member_id;
                                         ?>" class="btn btn-success details" id="">
                                 <i class="align-middle" data-feather="user"></i>
@@ -64,7 +71,7 @@
         </tbody>
         <tfoot>
             <tr class="table-primary">
-                <th>Loan Id</th>
+
                 <th>Installment No.</th>
                 <th>EMI Date</th>
                 <th>EMI</th>

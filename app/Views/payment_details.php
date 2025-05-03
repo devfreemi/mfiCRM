@@ -72,7 +72,7 @@
                         $response_decode = json_decode($response, true);
                         $err = curl_error($curl);
                         // print_r($err);
-                        var_dump($response_decode);
+                        // var_dump($response_decode);
                         // echo $response_decode['order_id'];
                         // echo $response_decode['payment_session_id'];
                         $session->set('payment_order_id', $response_decode['order_id']);
