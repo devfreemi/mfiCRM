@@ -44,7 +44,7 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 
 // API FOR APP SERVICE
 $routes->add('api/login-api-v1', 'Employee::api_login');
-
+$routes->add('api/member/login-v1', 'MemberLoginController::member_application_login');
 $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
     $routes->add('api/branch-details-api-v1', 'BranchApi::barnch_api');
@@ -98,4 +98,15 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
+
+$routes->group(
+    '',
+    ['filter' => 'MemberAuthFilter'],
+    function ($routes) {
+        $routes->add('api/member/member-details-v1', 'MemberLoginController::member_details');
+    }
+);
+
+
+
 $routes->add('api/emi/create-order', 'PaymentController::initiate_payment');

@@ -19,14 +19,15 @@ class Filters extends BaseConfig
      *                                                     or [filter_name => [classname1, classname2, ...]]
      */
     public array $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
-        'secureheaders' => SecureHeaders::class,
-        'AuthCheck'     => \App\Filters\AuthCheck::class,
-        'LoginCheck'     => \App\Filters\LoginCheck::class,
-        'AuthFilterJWT'     => \App\Filters\AuthFilterJWT::class,
+        'csrf'                      => CSRF::class,
+        'toolbar'                   => DebugToolbar::class,
+        'honeypot'                  => Honeypot::class,
+        'invalidchars'              => InvalidChars::class,
+        'secureheaders'             => SecureHeaders::class,
+        'AuthCheck'                 => \App\Filters\AuthCheck::class,
+        'LoginCheck'                => \App\Filters\LoginCheck::class,
+        'AuthFilterJWT'             => \App\Filters\AuthFilterJWT::class,
+        'MemberAuthFilter'          => \App\Filters\MemberAuthFilter::class,
     ];
 
     /**
