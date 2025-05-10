@@ -12,58 +12,85 @@ class ApiController extends BaseController
     public function index()
     {
         //
-        $url = 'https://api.risewithprotean.io/v1/oauth/token';
-        $username = 'PGI9xIw9g0ADlUODfTjNG9wA8bOjmi40Vjr7ePZKdhyrS0A1';
-        $password = 'iQ2JY50gbNWY80TLw2AJAllJw7dVhRXkhmf87ts0vIuQKDnDdOFStna0FmTz4OIp';
+        $url = 'https://uat.risewithprotean.io/v1/oauth/token';
 
-        $curl = curl_init();
+        // Your API credentials
+        $apiKey = "PGI9xIw9g0ADlUODfTjNG9wA8bOjmi40Vjr7ePZKdhyrS0A1";       // Username
+        $secretKey = "iQ2JY50gbNWY80TLw2AJAllJw7dVhRXkhmf87ts0vIuQKDnDdOFStna0FmTz4OIp"; // Password
 
-        // curl_setopt($ch, CURLOPT_URL, $url);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Base64 encode for Basic Auth
+        $auth = base64_encode("$apiKey:$secretKey");
 
-        // // Basic Authentication
-        // curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+        // Payload
+        $data = http_build_query([
+            'grant_type' => 'client_credentials'
+        ]);
+        // cURL setup
+        $ch = curl_init($url);
 
-        // // Optional: set method to POST or GET
-        // curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-        // // Optional: set content type if needed
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        //     'Content-Type: application/x-www-form-urlencoded'
-        // ]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Authorization: Basic $auth",
+            "Content-Type: application/x-www-form-urlencoded"
+        ]);
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_USERPWD => "$username:$password",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            // CURLOPT_POSTFIELDS => $data_json,
-            CURLOPT_HTTPHEADER => array(
-                "content-type: application/x-www-form-urlencoded",
-            ),
-        ));
+        // Execute request
+        $response = curl_exec($ch);
 
+        // Error handling
+        // if (curl_errno($ch)) {
+        //     echo 'Error: ' . curl_error($ch);
+        // } else {
+        //     echo "Response:\n";
+        //     echo $response;
+        // }
+        $error = curl_error($ch);
 
+        curl_close($ch);
 
-        $response = curl_exec($curl);
-        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        $err = curl_error($curl);
-
-
-        if (curl_errno($curl)) {
-            // echo 'Curl error: ' . curl_error($curl);
-            // echo "HTTP Status Code: $httpCode\n";
-            // echo $err;
+        if ($error) {
+            return $this->respond(['error' => 'Internal Exception!' . $error], 502);
         } else {
-            // echo 'Response: ' . $response;
-            print_r($response);
-            // echo "HTTP Status Code: $httpCode\n";
-            // echo $err;
-        }
+            $response = json_decode($response, true);
+            $accessToken = $response['access_token'];
+            echo "Access Token:\n";
+            echo $accessToken;
+            echo "\n";
+            // return $this->respond(['success' => 'Success! ' . $response], 200);
+            $dataApi = array(
+                'vehicleNumber'              => 'WB24BA4308',
 
-        curl_close($curl);
+            );
+            $data_json = json_encode($dataApi);
+
+            $curlData = curl_init();
+
+            curl_setopt_array($curlData, array(
+                CURLOPT_URL => "https://uat.risewithprotean.io/api/v1/protean/vehicle-detailed-advanced",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => $data_json,
+                CURLOPT_HTTPHEADER => array(
+                    "content-type: application/json",
+                    "Authorization: Bearer " . $accessToken,
+                    "apikey: " . $apiKey,
+                ),
+            ));
+
+
+            $responseFinal = curl_exec($curlData);
+            // Error handling
+            if (curl_errno($curlData)) {
+                echo 'Error: ' . curl_error($curlData);
+            } else {
+                echo "Response Final API:\n";
+                echo $responseFinal;
+            }
+            curl_close($curlData);
+        }
     }
 }

@@ -35,6 +35,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
+    $routes->get('member/kyc', 'AadhaarKycController::kyc');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -44,6 +45,7 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 
 // API FOR APP SERVICE
 $routes->add('api/login-api-v1', 'Employee::api_login');
+$routes->add('api/member/login-v1', 'MemberLoginController::member_application_login');
 
 $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
@@ -98,4 +100,19 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
+
+$routes->group(
+    '',
+    ['filter' => 'MemberAuthFilter'],
+    function ($routes) {
+        $routes->add('api/member/member-details-v1', 'MemberLoginController::member_details');
+    }
+);
+
+
+// Test API
+$routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
+$routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
+
+$routes->add('api/protean', 'ApiController::index');
 $routes->add('api/emi/create-order', 'PaymentController::initiate_payment');

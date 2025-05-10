@@ -1,1 +1,5 @@
 app/Config/firebase_service.json
+app/Controllers/PaymentController.php
+app/Controllers/PaymentController.php
+app/Views/payment_conf.php
+app/Views/payment_details.php

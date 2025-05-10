@@ -89,8 +89,8 @@
 
                 foreach ($query->getResult() as $row) {
                     $doc = $row->document_path;
-                    $cleanedJson = trim(str_replace('Json object:', '', $doc));
-
+                    // $cleanedJson = trim(str_replace('Json object:', '', $doc));
+                    $cleanedJson = $doc;
                     // Decode it into associative array
                     $data = json_decode($cleanedJson, true);
 
