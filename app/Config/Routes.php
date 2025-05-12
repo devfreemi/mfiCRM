@@ -46,10 +46,6 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 // API FOR APP SERVICE
 $routes->add('api/login-api-v1', 'Employee::api_login');
 $routes->add('api/member/login-v1', 'MemberLoginController::member_application_login');
-<<<<<<< HEAD
-
-=======
->>>>>>> 94aaa321e42fbc380fb431df562d9f4bf1466635
 $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
     $routes->add('api/branch-details-api-v1', 'BranchApi::barnch_api');
@@ -113,13 +109,13 @@ $routes->group(
 );
 
 
-<<<<<<< HEAD
+
 // Test API
+$routes->add('api/kyc/pan-validation-v1', 'AadhaarKycController::verify_pan_user');
 $routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
+
 $routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
 
 $routes->add('api/protean', 'ApiController::index');
-=======
 
->>>>>>> 94aaa321e42fbc380fb431df562d9f4bf1466635
 $routes->add('api/emi/create-order', 'PaymentController::initiate_payment');

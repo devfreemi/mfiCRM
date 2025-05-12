@@ -27,8 +27,8 @@ class RetailerDocumentsController extends BaseController
         // $query = $model->save($data);
         $db = db_connect();
         $builder = $db->table('retailerdocuments');
-        $builder->where('member_id', $this->request->getVar('member_id'));
-        $builder->upsert($data);
+        // $builder->where('member_id', $this->request->getVar('member_id'));
+        $builder->insert($data);
         $query = $builder->get();
         if (!$query) {
             return $this->respond(['error' => 'Invalid Request.' . $query], 401);

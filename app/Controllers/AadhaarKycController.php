@@ -49,7 +49,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -59,7 +59,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -113,7 +113,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -123,7 +123,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -192,7 +192,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -202,7 +202,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -251,7 +251,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -261,7 +261,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -307,7 +307,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/pan-profile-detailed",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/pan-profile-detailed",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -317,7 +317,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -349,7 +349,7 @@ class AadhaarKycController extends BaseController
                     $curlGst = curl_init();
 
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gst-advanced",
+                        CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gst-advanced",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -359,7 +359,7 @@ class AadhaarKycController extends BaseController
                         CURLOPT_POSTFIELDS => $data_json_gst,
                         CURLOPT_HTTPHEADER => array(
                             "content-type: application/json",
-                            "x-auth-key: jTk670PBaHVP5kD5"
+                            "x-auth-key: KzKQbi9Tw8OokmY"
                         ),
                     ));
 
@@ -447,7 +447,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gstdetailed-additional",
+                CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gstdetailed-additional",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -457,7 +457,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -483,9 +483,7 @@ class AadhaarKycController extends BaseController
         // Data Input
         $panNumber = $this->request->getVar('pan');
         $memberID = $this->request->getVar('memberID');
-        $name = $this->request->getVar('userName');
-        $name = strtoupper($name);
-        $caseId = $this->request->getVar('caseId');
+        $caseId = rand(100000, 999999);
         $consent = "Y";
 
         $dataApi = array(
@@ -502,7 +500,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://uat-hub.perfios.com/api/kyc/v3/pan-profile-detailed",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/pan-profile-detailed",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -512,7 +510,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: jTk670PBaHVP5kD5"
+                    "x-auth-key: KzKQbi9Tw8OokmY"
                 ),
             ));
 
@@ -589,29 +587,28 @@ class AadhaarKycController extends BaseController
 
                     // End GST Number Search
                     # code...
-                    if ($name === $nameResponse) {
-                        # code...
-                        $dataOutput = array(
-                            'pan'               => $panNumber,
-                            'gst'               => $gst,
-                            'msgGst'            => $gst_ref,
-                            'name'              => $nameResponse,
-                            'userDOB'           => $userDOB,
-                            'msgPan'            => 'PAN Verified'
-                        );
-                        return $this->respond(['panVerify' => $dataOutput], 200);
-                    } else {
-                        # code...
-                        $dataOutput = array(
-                            'pan'               => $panNumber,
-                            'gst'               => $gst,
-                            'msgGst'            => $gst_ref,
-                            'name'              => $nameResponse,
-                            'userDOB'           => $userDOB,
-                            'msgPan'            => 'PAN Verified but Name does not match!'
-                        );
-                        return $this->respond(['panDetails' => $dataOutput], 403);
-                    }
+                    $db = db_connect();
+                    $builderMaster = $db->table('members');
+
+                    # code...
+                    $dataOutput = array(
+                        'pan'               => $panNumber,
+                        'gst'               => $gst,
+                        'msgGst'            => $gst_ref,
+                        'name'              => $nameResponse,
+                        'userDOB'           => $userDOB,
+                        'msgPan'            => 'PAN Verified'
+                    );
+                    $dataDB = [
+                        'pan'               => $panNumber,
+                        'authenticatePAN'   => 'Y',
+                        'gst'               => $gst,
+                        'panName'        => $nameResponse,
+                        'name'            => $nameResponse,
+
+                    ];
+                    $builderMaster->where('member_id', $memberID)->update($dataDB);
+                    return $this->respond(['panVerify' => $dataOutput], 200);
                 } else {
                     # code...
                     return $this->respond(['panVerify' => 'Invalid PAN Number'], 406);

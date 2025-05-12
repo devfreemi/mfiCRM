@@ -3,3 +3,6 @@ app/Controllers/PaymentController.php
 app/Controllers/PaymentController.php
 app/Views/payment_conf.php
 app/Views/payment_details.php
+app/Controllers/PaymentController.php
+app/Views/payment_conf.php
+app/Views/payment_details.php
