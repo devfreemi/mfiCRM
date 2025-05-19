@@ -471,6 +471,7 @@ class AadhaarKycController extends BaseController
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
                 // echo $response;
+
                 return $this->respond(['gst' => $response_decode], 200);
             }
         }
@@ -542,7 +543,7 @@ class AadhaarKycController extends BaseController
                     $curlGst = curl_init();
 
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => "https://uat-hub.perfios.com/api/gst/v2/gst-advanced",
+                        CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gst-advanced",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -552,7 +553,7 @@ class AadhaarKycController extends BaseController
                         CURLOPT_POSTFIELDS => $data_json_gst,
                         CURLOPT_HTTPHEADER => array(
                             "content-type: application/json",
-                            "x-auth-key: jTk670PBaHVP5kD5"
+                            "x-auth-key: KzKQbi9Tw8OokmY"
                         ),
                     ));
 
@@ -597,14 +598,17 @@ class AadhaarKycController extends BaseController
                         'msgGst'            => $gst_ref,
                         'name'              => $nameResponse,
                         'userDOB'           => $userDOB,
-                        'msgPan'            => 'PAN Verified'
+                        'msgPan'            => 'PAN Verified',
+                        'authenticateGST'     => 'N',
                     );
                     $dataDB = [
                         'pan'               => $panNumber,
                         'authenticatePAN'   => 'Y',
                         'gst'               => $gst,
+                        'userDOB'           => $userDOB,
                         'panName'        => $nameResponse,
                         'name'            => $nameResponse,
+                        'gstValidation'     => 'N',
 
                     ];
                     $builderMaster->where('member_id', $memberID)->update($dataDB);
@@ -617,6 +621,86 @@ class AadhaarKycController extends BaseController
         } else {
             # code...
             return $this->respond(['error' => 'Enter Valid PAN Number'], 401);
+        }
+    }
+
+    public function verify_gst_user()
+    {
+        $gstNumber = $this->request->getVar('gstin');
+        $memberID = $this->request->getVar('memberIDgst');
+        $caseId = rand(1000, 9999);
+        $consent = "Y";
+        $dataApi = array(
+            'gstin'              => $gstNumber,
+            'consent'          => $consent,
+            'clientData' => array(
+                'caseId'          => $caseId,
+            ),
+        );
+        $data_json = json_encode($dataApi);
+
+        if ($gstNumber != '') {
+            # code...
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gstdetailed-additional",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => $data_json,
+                CURLOPT_HTTPHEADER => array(
+                    "content-type: application/json",
+                    "x-auth-key: KzKQbi9Tw8OokmY"
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            $response_decode = json_decode($response, true);
+
+
+            $db = db_connect();
+            $builderUpdate = $db->table('members');
+
+
+            curl_close($curl);
+            if ($err) {
+                // echo "cURL Error #:" . $err;
+                return $this->respond(['error' => 'Invalid Request.' . $err], 401);
+            } else {
+                // echo $response;
+                $dataDB = [
+
+                    'gstValidation'   => 'Y',
+                    'gst'   => $response_decode['result']['gstin'],
+                    'businessName'  => $response_decode['result']['tradeNam'],
+
+                ];
+                $builderUpdate->where('member_id', $memberID)->update($dataDB);
+                $dataInsert = [
+                    'status'     => $response_decode['result']['sts'],
+                    'memberID'               => $memberID,
+                    'gst'         => $response_decode['result']['gstin'],
+                    'gstType'      => $response_decode['result']['dty'],
+                    'holderEmail'   => $response_decode['result']['contacted']['email'],
+                    'holderMobile'  => $response_decode['result']['contacted']['mobNum'],
+                    'holderName'    => $response_decode['result']['contacted']['name'],
+                    'tradeName'   => $response_decode['result']['tradeNam'],
+                    'regDate'       => $response_decode['result']['rgdt'],
+                    'businessAddress' => $response_decode['result']['pradr']['adr'],
+                    'turnOver' => $response_decode['result']['aggreTurnOver'],
+                    'turnOveryear' => $response_decode['result']['aggreTurnOverFY'],
+                ];
+                $builderMaster = $db->table('gstmaster');
+                $builderMaster->upsert($dataInsert);
+
+                // return $this->respond(['gst' => $response_decode], 200);
+                return $this->respond($dataInsert, 200);
+            }
         }
     }
 }

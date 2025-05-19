@@ -105,17 +105,22 @@ $routes->group(
     ['filter' => 'MemberAuthFilter'],
     function ($routes) {
         $routes->add('api/member/member-details-v1', 'MemberLoginController::member_details');
+        $routes->add('api/member/kyc/pan-validation-v1', 'AadhaarKycController::verify_pan_user');
+        $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
     }
 );
 
 
 
 // Test API
-$routes->add('api/kyc/pan-validation-v1', 'AadhaarKycController::verify_pan_user');
+// $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
+
+
 $routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
 
 $routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
 
 $routes->add('api/protean', 'ApiController::index');
+$routes->add('api/ip/check', 'IpCheckController::index');
 
 $routes->add('api/emi/create-order', 'PaymentController::initiate_payment');

@@ -50,7 +50,8 @@ class MemberModel extends Model
         'eli_run',
         'month_purchase',
         'comments',
-        'remarks'
+        'remarks',
+        'userDOB'
 
     ];
 
