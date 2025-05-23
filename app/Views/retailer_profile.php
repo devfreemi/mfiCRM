@@ -92,25 +92,20 @@
                     // $cleanedJson = trim(str_replace('Json object:', '', $doc));
                     $cleanedJson = $doc;
                     // Decode it into associative array
-                    $data = json_decode($cleanedJson, true);
 
-                    // Example: Output values
-                    foreach ($data as $key => $urls) {
-                        foreach ($urls as $url) {
-                            // echo "- $url<br>";
+                    // echo "- $url<br>";
 
                 ?>
-                            <div class="col-md-2 col-sm-6">
-                                <div class="card h-100 shadow-sm">
-                                    <img src="<?= $url ?>" class="card-img-top" alt="<?= $key ?>">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">Documents</h6>
-                                        <a href="<?= $url ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                                    </div>
-                                </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card h-100 shadow-sm">
+                            <img src="<?= $doc ?>" class="card-img-top" alt="Document Image">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Documents</h6>
+                                <a href="<?= $doc ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
                             </div>
-                <?php }
-                    }
+                        </div>
+                    </div>
+                <?php
                 } ?>
             </div>
 

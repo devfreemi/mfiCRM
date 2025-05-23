@@ -20,7 +20,8 @@ class RetailerDocumentsController extends BaseController
 
         $data = [
             'member_id'         => $this->request->getVar('member_id'),
-            'document_path'     => json_encode($this->request->getVar('document_path')),
+            'document_path'     => $this->request->getVar('document_path'),
+            'document_type'     => $this->request->getVar('doc_type'),
             'created_at'        => date('Y-m-d H:i:s')
         ];
 

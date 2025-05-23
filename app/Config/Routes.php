@@ -121,6 +121,7 @@ $routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page')
 $routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
 
 $routes->add('api/protean', 'ApiController::index');
+$routes->add('api/protean/decrypt', 'ProteanDataDecryptController::index');
 $routes->add('api/ip/check', 'IpCheckController::index');
 
 $routes->add('api/emi/create-order', 'PaymentController::initiate_payment');
