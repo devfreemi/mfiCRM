@@ -35,7 +35,6 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
-    $routes->get('member/kyc', 'AadhaarKycController::kyc');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -107,6 +106,8 @@ $routes->group(
         $routes->add('api/member/member-details-v1', 'MemberLoginController::member_details');
         $routes->add('api/member/kyc/pan-validation-v1', 'AadhaarKycController::verify_pan_user');
         $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
+        $routes->add('api/member/emi/get-today-emi-v1', 'PaymentController::get_today_emi');
+        $routes->add('api/member/order/create-emi-order-v1', 'PaymentController::generate_order');
     }
 );
 
@@ -114,14 +115,11 @@ $routes->group(
 
 // Test API
 // $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
-
-
+$routes->add('api/member/order/create-emi-order-v1', 'PaymentController::generate_order');
+$routes->get('member/kyc', 'AadhaarKycController::kyc');
 $routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
-
 $routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
 
 $routes->add('api/protean', 'ApiController::index');
 $routes->add('api/protean/decrypt', 'ProteanDataDecryptController::index');
 $routes->add('api/ip/check', 'IpCheckController::index');
-
-$routes->add('api/emi/create-order', 'PaymentController::initiate_payment');

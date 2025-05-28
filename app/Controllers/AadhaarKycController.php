@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\PanMasterModel;
+use CodeIgniter\I18n\Time;
 
 date_default_timezone_set('Asia/Kolkata');
 
@@ -23,8 +24,8 @@ class AadhaarKycController extends BaseController
         //Data Input
         $employeeIDkyc = $this->request->getVar('employeeIDkyc');
         $aadhaarNo = $this->request->getVar('aadhaarNo');
-        $aadhaarFour = substr($aadhaarNo, -4);
-        $caseId = $aadhaarFour . rand(10, 99);
+        $aadhaarSix = substr($aadhaarNo, -6);
+        $caseId = $aadhaarSix;
         $consent = "Y";
 
         // $query = $model->save($data);
@@ -36,7 +37,11 @@ class AadhaarKycController extends BaseController
         //     'timestamp'       => date('Y-m-d H:i:s'),
         // ];
         $dataApi = array(
-            'aadhaarNo'        => $aadhaarNo,
+
+            "ipAddress"  =>      "192.168.1.27",
+            "name"    =>      "Subhajit Paul",
+            "consentTime"   => time(),
+            "consentText"   => "I hereby give my consent to Retail Pe to use my Aadhaar number for KYC verification.",
             'consent'        => $consent,
             'clientData' => array(
                 'caseId'          => $caseId,
@@ -49,7 +54,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-consent",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -73,12 +78,60 @@ class AadhaarKycController extends BaseController
                 // echo "cURL Error #:" . $err;
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
-                // echo $response;
+                echo $data_json;
+                echo "<br>";
+                echo $response;
+                echo "<br>";
+                echo "OTP DATA: <br>";
                 // return $this->respond(['kyc' => $response_decode], 200);
-                $session = session();
-                $session->setFlashdata('msg', $response_decode['requestId']);
+                // $session = session();
+                // $session->setFlashdata('msg', $response_decode['requestId']);
                 // return redirect()->to(base_url() . 'member/kyc');
-                return view('check_user_kyc', ['kyc' => $response_decode]);
+                // return view('check_user_kyc', ['kyc' => $response_decode]);
+                // SEND OTP
+
+                $dataApi_otp = array(
+                    'aadhaarNo'    => $aadhaarNo,
+                    "accessKey" => $response_decode['result']['accessKey'],
+                    'consent'        => $consent,
+                    'clientData' => array(
+                        'caseId'          => $caseId,
+                    ),
+                );
+                $data_json_otp = json_encode($dataApi_otp);
+                $curl_otp = curl_init();
+
+                curl_setopt_array($curl_otp, array(
+                    CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/get-aadhaar-otp",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => $data_json_otp,
+                    CURLOPT_HTTPHEADER => array(
+                        "content-type: application/json",
+                        "x-auth-key: KzKQbi9Tw8OokmY"
+                    ),
+                ));
+
+                $response_otp = curl_exec($curl_otp);
+                $err_otp = curl_error($curl_otp);
+                $response_decode_otp = json_decode($response_otp, true);
+
+                curl_close($curl_otp);
+                if ($err_otp) {
+                    // echo "cURL Error #:" . $err;
+                    return $this->respond(['error' => 'Invalid Request.' . $err_otp], 401);
+                } else {
+                    // var_dump($response_decode_otp);
+                    return $this->respond(['aadhar' => $response_decode], 200);
+                    // $session = session();
+                    // $session->setFlashdata('msg', $response_decode_otp['result']['accessKey']);
+                    // return redirect()->to(base_url() . 'member/kyc');
+                    // return view('check_user_kyc', ['kyc' => $response_decode]);
+                }
             }
         } else {
             # code...
@@ -92,17 +145,20 @@ class AadhaarKycController extends BaseController
         $otpAadhaar = $this->request->getVar('otp');
         $employeeIDkycVer = $this->request->getVar('employeeIDkycVer');
         $aadhaarNo = $this->request->getVar('aadhaarNo');
-        $caseId = $this->request->getVar('caseId');
+        $aadhaarSix = substr($aadhaarNo, -6);
+        $shareCode = rand(1000, 9999);
+        $caseId = $aadhaarSix;
         $requestId = $this->request->getVar('requestId');
         $consent = "Y";
 
         $dataApi = array(
-            'otp'              => $otpAadhaar,
-            'aadhaarNo'        => $aadhaarNo,
-            'requestId'        => $requestId,
-            'consent'          => $consent,
-            'shareCode'        => $caseId,
-            'clientData' => array(
+            'otp'                       => $otpAadhaar,
+            'aadhaarNo'                 => $aadhaarNo,
+            "aadhaarUpdateHistory"      => "Y",
+            'accessKey'                 => $requestId,
+            'consent'                   => $consent,
+            'shareCode'                 => $shareCode,
+            'clientData'                => array(
                 'caseId'          => $caseId,
             ),
         );
@@ -113,7 +169,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
+                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/get-aadhaar-file",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -137,6 +193,9 @@ class AadhaarKycController extends BaseController
                 // echo "cURL Error #:" . $err;
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
+                // echo $data_json;
+                // echo "<br>";
+                // echo $response;
                 // return $response;
                 return $this->respond(['aadhaar' => $response_decode], 200);
             }
@@ -166,8 +225,8 @@ class AadhaarKycController extends BaseController
         //Data Input
         $employeeIDkyc = $this->request->getVar('employeeIDkyc');
         $aadhaarNo = $this->request->getVar('aadhaarNo');
-        $aadhaarFour = substr($aadhaarNo, -4);
-        $caseId = $aadhaarFour . rand(10, 99);
+        $aadhaarFour = substr($aadhaarNo, -6);
+        $caseId = $aadhaarFour;
         $consent = "Y";
 
         // $query = $model->save($data);
@@ -230,7 +289,10 @@ class AadhaarKycController extends BaseController
         $otpAadhaar = $this->request->getVar('otp');
         $employeeIDkycVer = $this->request->getVar('employeeIDkycVer');
         $aadhaarNo = $this->request->getVar('aadhaarNo');
-        $caseId = $this->request->getVar('caseId');
+
+        $shareCode = rand(1000, 9999);
+        $aadhaarFour = substr($aadhaarNo, -6);
+        $caseId = $aadhaarFour;
         $requestId = $this->request->getVar('requestId');
         $consent = "Y";
 
@@ -239,7 +301,7 @@ class AadhaarKycController extends BaseController
             'aadhaarNo'        => $aadhaarNo,
             'requestId'        => $requestId,
             'consent'          => $consent,
-            'shareCode'        => $caseId,
+            'shareCode'        => $shareCode,
             'clientData' => array(
                 'caseId'          => $caseId,
             ),

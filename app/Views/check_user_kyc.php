@@ -45,6 +45,24 @@
                         <div class="input-group mb-3">
                             <input type="number" id="" name="otp" value="" placeholder="Enter OTP " class="form-control" />
                         </div>
+                        <?php
+                        // function getUserIP()
+                        // {
+                        //     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                        //         // Shared internet
+                        //         return $_SERVER['HTTP_CLIENT_IP'];
+                        //     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                        //         // Behind a proxy
+                        //         return $_SERVER['HTTP_X_FORWARDED_FOR'];
+                        //     } else {
+                        //         // Default
+                        //         return $_SERVER['REMOTE_ADDR'];
+                        //     }
+                        // }
+
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                        echo "User IP Address: " . $ip;
+                        ?>
                         <input type="text" id="" name="requestId" value="<?= session()->getFlashdata('msg') ?>" />
                         <button type="submit">Verify Otp</button>
                     </form>
