@@ -115,7 +115,7 @@ $routes->group(
 
 // Test API
 // $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
-$routes->add('api/member/order/create-emi-order-v1', 'PaymentController::generate_order');
+$routes->add('api/member/payment/payment-status-emi-v1', 'PaymentController::conformation');
 $routes->get('member/kyc', 'AadhaarKycController::kyc');
 $routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
 $routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
