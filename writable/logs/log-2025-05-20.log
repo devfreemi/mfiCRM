@@ -1,0 +1,49 @@
+INFO - 2025-05-20 11:08:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-20 11:11:38 --> TypeError: Cannot access offset of type string on string
+in APPPATH\Controllers\ApiController.php on line 140.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-20 11:13:26 --> TypeError: Cannot access offset of type string on string
+in APPPATH\Controllers\ApiController.php on line 149.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+WARNING - 2025-05-20 12:16:41 --> [DEPRECATED] openssl_decrypt(): Passing null to parameter #3 ($passphrase) of type string is deprecated in APPPATH\Controllers\ApiController.php on line 155.
+ 1 APPPATH\Controllers\ApiController.php(155): openssl_decrypt('ì¯_ŒïhOèP’ê¾~%ûÒ9EÈˆ‘r,Ââ8Ïáö< ÜCnë_¦;pA\'äü;e‡“7êk½]îIêŠ.Øş¢…ÄÄušƒÕß·+oy1_?*S›Fÿ>AÓ„‡', 'AES-256-CBC', Object(SensitiveParameterValue), 1, 'Î‚+…Qe`:Ys¡0Œ³')
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-20 12:16:41 --> ErrorException: Undefined variable $totalTime
+in SYSTEMPATH\Debug\Toolbar\Views\toolbar.tpl.php on line 46.
+ 1 SYSTEMPATH\Debug\Toolbar\Views\toolbar.tpl.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $totalTime', 'C:\\xampp\\htdocs\\www\\mfiCRM\\system\\Debug\\Toolbar\\Views\\toolbar.tpl.php', 46)
+ 2 SYSTEMPATH\Debug\Toolbar.php(512): include('C:\\xampp\\htdocs\\www\\mfiCRM\\system\\Debug\\Toolbar\\Views\\toolbar.tpl.php')
+ 3 SYSTEMPATH\Debug\Toolbar.php(475): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 4 APPPATH\Config\Events.php(47): CodeIgniter\Debug\Toolbar->respond()
+ 5 SYSTEMPATH\Events\Events.php(154): CodeIgniter\Events\Events::Config\{closure}()
+ 6 SYSTEMPATH\CodeIgniter.php(442): CodeIgniter\Events\Events::trigger('pre_system')
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2025-05-20 12:21:04 --> [DEPRECATED] openssl_decrypt(): Passing null to parameter #3 ($passphrase) of type string is deprecated in APPPATH\Controllers\ApiController.php on line 155.
+ 1 APPPATH\Controllers\ApiController.php(155): openssl_decrypt('©÷gı²)Ö!¬Ù¨‚×ŸS/ƒö(ŠpFSóÚMàÍ~B¤åwcâ‹ô²ë1å<L¯Â•—8áBF^ĞpµÖÄÉ;>°?µàå__ã9ÀĞæFK™V?\\ÁLTa', 'AES-256-CBC', Object(SensitiveParameterValue), 1, 'ly,b­)Y`nx¶' . "\0" . 'Ğ|')
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-20 12:21:04 --> ErrorException: Undefined variable $totalTime
+in SYSTEMPATH\Debug\Toolbar\Views\toolbar.tpl.php on line 46.
+ 1 SYSTEMPATH\Debug\Toolbar\Views\toolbar.tpl.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $totalTime', 'C:\\xampp\\htdocs\\www\\mfiCRM\\system\\Debug\\Toolbar\\Views\\toolbar.tpl.php', 46)
+ 2 SYSTEMPATH\Debug\Toolbar.php(512): include('C:\\xampp\\htdocs\\www\\mfiCRM\\system\\Debug\\Toolbar\\Views\\toolbar.tpl.php')
+ 3 SYSTEMPATH\Debug\Toolbar.php(475): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 4 APPPATH\Config\Events.php(47): CodeIgniter\Debug\Toolbar->respond()
+ 5 SYSTEMPATH\Events\Events.php(154): CodeIgniter\Events\Events::Config\{closure}()
+ 6 SYSTEMPATH\CodeIgniter.php(442): CodeIgniter\Events\Events::trigger('pre_system')
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

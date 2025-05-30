@@ -40,7 +40,11 @@
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">Loan Amount</label>
-                        <input type="text" class="form-control" name="lona_amount" id="lona_amount" value="<?php echo $row->loan_amount; ?>" readonly>
+                        <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="<?php echo $row->loan_amount; ?>" readonly>
+                    </div>
+                    <div class="col-4">
+                        <label for="inputAddress" class="form-label">ROI</label>
+                        <input type="text" class="form-control" name="roi" id="roi" value="<?php echo $row->roi; ?>">
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">Loan Tenure</label>

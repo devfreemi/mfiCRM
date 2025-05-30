@@ -1,0 +1,113 @@
+INFO - 2025-05-23 07:41:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-23 07:41:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-23 07:41:52 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:184
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(184): mysqli->real_connect('127.0.0.1', 'root', Object(SensitiveParameterValue), 'mfi', 3306, '', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Validation\StrictRules\Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique('Admin@mfi', 'userId', Array, NULL, 'userId')
+#6 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(200): CodeIgniter\Validation\Validation->processRules('userId', 'userId', 'Admin@mfi', Array, Array)
+#7 C:\xampp\htdocs\www\mfiCRM\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Auth.php(80): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\www\mfiCRM\system\Validation\StrictRules\Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique('Admin@mfi', 'userId', Array, NULL, 'userId')
+#5 C:\xampp\htdocs\www\mfiCRM\system\Validation\Validation.php(200): CodeIgniter\Validation\Validation->processRules('userId', 'userId', 'Admin@mfi', Array, Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#7 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Auth.php(80): CodeIgniter\Controller->validate(Array)
+#8 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2025-05-23 07:41:52 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 428.
+ 1 SYSTEMPATH\Database\BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `userBackOffice`
+WHERE `userId` = :userId:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Validation\StrictRules\Rules.php(167): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\Validation\Validation.php(328): CodeIgniter\Validation\StrictRules\Rules->is_not_unique('Admin@mfi', 'userId', [...], null, 'userId')
+ 5 SYSTEMPATH\Validation\Validation.php(200): CodeIgniter\Validation\Validation->processRules('userId', 'userId', 'Admin@mfi', [...], [...])
+ 6 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 7 APPPATH\Controllers\Auth.php(80): CodeIgniter\Controller->validate([...])
+ 8 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Auth->login_validation()
+ 9 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-23 07:46:27 --> ArgumentCountError: openssl_private_decrypt() expects at least 3 arguments, 2 given
+in APPPATH\Controllers\ApiController.php on line 160.
+ 1 APPPATH\Controllers\ApiController.php(160): openssl_private_decrypt('Œ¼nˆ¾2dŽ;âà€êÙ”‚J_£“×æž]ƒÅJ·)Ô3Ú•P\'‹¸0òAKƒ]¿{Ÿ
+	¹œ¸†,‹LÓ° ±jÅ`¨uÍU„æU25ÕÂÅão"RsgHÙì‘˜$£Ê2¨Ã&)ŠÏ2‘]å,E½hÈºþÓ}i hZ¾þ†M|j1ú‡ÁjËŸ²Ÿºõ^”÷Jéú§tõ!™>©"_.Ï4cfÇQ' . "\0" . 'ÓfîËýB¿6™ÝOZÌƒ†³ì™' . "\0" . 'w¤3šsY[ß†6ò¯å1N=µçŒ$rÅhV/$ÿ@p¨ŸõkNÊ× Ú!ÙèÃª"—ú¢é©23§/', Object(SensitiveParameterValue))
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-23 07:53:55 --> ErrorException: Constant WRITEPATH already defined
+in APPPATH\Controllers\IpCheckController.php on line 16.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'Constant WRITEPATH already defined', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\IpCheckController.php', 16)
+ 2 APPPATH\Controllers\IpCheckController.php(16): define('WRITEPATH', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers/')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\IpCheckController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\IpCheckController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+WARNING - 2025-05-23 08:02:18 --> [DEPRECATED] bin2hex(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\ApiController.php on line 122.
+ 1 APPPATH\Controllers\ApiController.php(122): bin2hex(null)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+WARNING - 2025-05-23 08:02:18 --> [DEPRECATED] strlen(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Controllers\ApiController.php on line 123.
+ 1 APPPATH\Controllers\ApiController.php(123): strlen(null)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-23 08:04:28 --> ErrorException: Undefined variable $encryptedKey
+in APPPATH\Controllers\ApiController.php on line 119.
+ 1 APPPATH\Controllers\ApiController.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $encryptedKey', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\ApiController.php', 119)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-23 09:41:57 --> ErrorException: file_get_contents(C:\xampp\htdocs\www\mfiCRM\writable\certs/rp_private_key.pem): Failed to open stream: No such file or directory
+in APPPATH\Controllers\ApiController.php on line 114.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\xampp\\htdocs\\www\\mfiCRM\\writable\\certs/rp_private_key.pem): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\ApiController.php', 114)
+ 2 APPPATH\Controllers\ApiController.php(114): file_get_contents('C:\\xampp\\htdocs\\www\\mfiCRM\\writable\\certs/rp_private_key.pem')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-23 10:04:04 --> ErrorException: file_get_contents(C:\xampp\htdocs\www\mfiCRM\writable\certs/privaye_key.pem): Failed to open stream: No such file or directory
+in APPPATH\Controllers\ApiController.php on line 114.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\xampp\\htdocs\\www\\mfiCRM\\writable\\certs/privaye_key.pem): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\ApiController.php', 114)
+ 2 APPPATH\Controllers\ApiController.php(114): file_get_contents('C:\\xampp\\htdocs\\www\\mfiCRM\\writable\\certs/privaye_key.pem')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-05-23 12:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

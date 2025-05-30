@@ -1,0 +1,75 @@
+INFO - 2025-05-18 04:50:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-18 05:10:53 --> ErrorException: file_get_contents(C:\xampp\htdocs\www\mfiCRM\writable\certs/private_key.pem): Failed to open stream: No such file or directory
+in APPPATH\Controllers\ApiController.php on line 137.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\xampp\\htdocs\\www\\mfiCRM\\writable\\certs/private_key.pem): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\ApiController.php', 137)
+ 2 APPPATH\Controllers\ApiController.php(137): file_get_contents('C:\\xampp\\htdocs\\www\\mfiCRM\\writable\\certs/private_key.pem')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-18 05:12:11 --> TypeError: Cannot access offset of type string on string
+in APPPATH\Controllers\ApiController.php on line 140.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-18 05:13:48 --> ErrorException: openssl_private_decrypt(): key parameter is not a valid private key
+in APPPATH\Controllers\ApiController.php on line 141.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'openssl_private_decrypt(): key parameter is not a valid private key', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\ApiController.php', 141)
+ 2 APPPATH\Controllers\ApiController.php(141): openssl_private_decrypt('y›ŒM9oqà	²‰Lrf¸OFò&D¡Ô_ÔôµSËJD?<’À)W	÷,V‚+ …¶YÄ&F©Ê5%†“*ËıÕnÄL
+û“&ˆ>vÊBíÅ:·ÅuK"Sq~G‚»à¿8Ûù•ymc¥¤¦=ÂH™;!Ä23”oÓSÈ“«ÆG/Çƒ±kx~=½¸S©Ê‡ßò®ÃåßŠ! 
+…áñå\\ˆæ2µVÎpñ}àËaæ¥Îƒyñ‰\\Ç÷Ù³]ûÛô%' . "\0" . 'J„?\\FG#l¢ó™M‹ÉæÀğF*oLÀw‹,Ab*Jâ˜pTØÜ§œu7—òsçÃU' . "\0" . '‘¢pi€sAë!Ö+X`Áj¼‘¯Rv³q":BuÒ•>[Š–†ãxèh»ç`$"õìÔë¢³ûššÆKrWì0aºúv¸Pp
+‹wXÌÂLOÖm˜ÄØ­$#¤C{7¬~Û™N¿Ì¨×uêÿAP¤W\'t‰ş¬´ú}¹-½hÎÖªZx¨ÖµÄ0ep®n]ÿüc31;°XŞ0äG>Á%Ò÷·¸ c—æ­ÌB„B…ÓÊš¢[ì¿sîdwn¢	xyïéåy»6,}ÇÎ	O#õÌš§)0ÉpÀªµ2•à.RÖ‚¿rB@2@÷ÙuMå', Object(SensitiveParameterValue), Object(SensitiveParameterValue))
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-18 14:39:32 --> TypeError: json_decode(): Argument #1 ($json) must be of type string, array given
+in APPPATH\Controllers\ApiController.php on line 128.
+ 1 APPPATH\Controllers\ApiController.php(128): json_decode([...], true)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-18 18:43:44 --> ErrorException: openssl_public_decrypt(): key parameter is not a valid public key
+in APPPATH\Controllers\ApiController.php on line 141.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'openssl_public_decrypt(): key parameter is not a valid public key', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\ApiController.php', 141)
+ 2 APPPATH\Controllers\ApiController.php(141): openssl_public_decrypt('ÎO¹‹=[úb9”or*ûHŞ?L†±\\ágì¦Â»r­¹’Šô‰ŸjmÂ#7ğ…Í¹8' . "\0" . 'ÏÎº¹8ÛSÓ_ón@µÚyZæBˆªw//Ö6±é(Ë4¤Tc8œö@.ªFNªË„ZAeÃñYÊk¡‚oø˜ó’IX—g3ÍgOŸ%ÙqIœ~å¯áj‰ÓıöE8v³+-ñÌRŞj}®KPèò¤…	\\p;µæÈL=åáJ.*IÖm·Ä\\?Ş­Kß\'S×šóæ7L£vŒ‰Ì‰ÉÈø.·´OT#à_Zè€Â9–Xù1AŠ ~™a¿Ë„vÓiS
+’	~ñ†ª*[Ä¹rÈ›w¨âº¬J›:ĞdGaßóüKlf“­•£òX¡—FŞÎ › ktõ¢‡û4|„è¨œªÄ!iP[&{MGzækæîïX-E·JjSÚˆ!£P>Zê^ñaÎÃ¤^låİA3£…(l;`X–s8+”F×O”Ïó]]6w,¯Y' . "\0" . ';{æPke´3¶±ª|=cf™a1_\'(èBà"\\1M•fÖÙoXLqq–eòF<]å±ÎZnyaÊÔ¬t¼œCàŞÓ²i®(§¼d_ß-Z?@Åƒ²|C‚Ã„ #r#rªBÊ‡Ix', Object(SensitiveParameterValue), '-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDUQnEcGEc5bXNq
+CfKsoww0/8kLB9nSOJtj+6cLExSOozaq3tmPaupCBU5EO07lVWK8l+LWMaK4Cnar
+aWLaDPb/08TEOkOhQJL3zT00PcaH4KQEEA09hQQ3QcRB01CQY5RKAXzHkBlVVRzZ
+B7GXGvjEYk1t2JXwLjxlb4lG2A7x3lF/fxPLr37+RbgN8BChOW0sWPxZmjuXEPKC
+MjKEwNYAdLJLnbczoNFUz8YoKtkNtx0lSEHAgGfOJFj6HYHhrS9YZfXJFhJzo1mi
+XbmXSt0O/lLc86HRz7ETCvAQS9ksxXuJaJGUD4FIHAEC65zY40xoxS6jYC4xUr8D
+DrlGNxKVAgMBAAECggEATxF1Cw8sMQNJk/2irZaLLI7/+CDzjjDSCburrR9tb/jy
+m1IqXxdnrjJFxnsFV76n6jL2J+4TfFVBgXbfgPSFaiUbzjEaEk54sOB+ZSCB/Qm8
+b1r/Y6RSPrc8AX1TLIY7rhnBvqE6HqR2+423JN/CPX2U9E9TA0Zl7y9ORtqjLouB
+mHMmZFLBB7JEp5Eh9JXhOXwMkGi00kZHBSofrFe3Rlm6O2KwDvMw9jTLNLYyxCyn
+rdke0CFw33XOWZN5BFYmHeQItGMK+YHIfTWuD9NP5n0DPyMDP4Zsn2f4IX0PPS5k
+UCNoMsRV4Nw/x6Ud6d/HThV/usEilAzBBvYar0+QXQKBgQD0elrm1PbjtNPs+4NS
+IhePSZpPxS1rtCosbJ/d0/EUn2MxYxOySgzxoPZveCHMfCtqQB09AKgabOW0r6El
+OifrcJ2FAcE7L7fU9SLeIJcO9/x4jOtcj1qnGghXYO1N6iW8WCHP4B4bzWrFF2/Y
+XEpMdopR+qwvbEuWLay7iTQ9xwKBgQDeQ16DGmIaIkktLBjmvuPlK3lu4nM82UuI
+YPSb/fcNHtOxEgNRr5C1Oqw+WrRrmejGqAvF7zACSgK3C/q0QhtMGu7jIwvny9r4
+l2VVh0bzVBnRCo7zk6p29S0s4cZJd5qv81D3eXH7a2xNK7kd1FFt8rQwfl8l0YDJ
+z3eYswPcwwKBgBQ+qZZh3kv+5mnCbh54CkFoU+n1Jwy7L57cI+TnrxgJFtq5HKFv
+9mBv9thGN25KfgHfa0xo6IK/r8nlnU+K4FFj0vd3rLus+Oken5OLWVb4/CQzby4M
+BPK/eh9aPGxuTk+pcKtZIMUmnofRqAZfphts2YluW6HVsvCtuZcSBoxzAoGBALnr
+ttKKLkfYKEguHAJg6beYvzJ/IJBk4CcLm3IlZhRGliQHgllBOBYxJ0XdkBB2JV6P
+0ZFX/Fvd1xmRXryMk9L8sJm1hk72movZ8L0ztKj0z8eqQlwESNLLUme50KlB8FaA
+fVkV8L+0Y1rGWUpXgWosXIg4HZVAA7BM6KkGDhQLAoGAI+NOPEMctq78AdzYaoH9
+v4jZYBbr2Ti8DOniAzg5cNFzfuJY2gjUx11J6rkyGikRIlva/1n9kKmWDjkBUmLx
+oeoaQpnIkPnlm3AkcMPNSYCgEW9UnnsYYI4pGmlhRxANn2AaGllY4mpGZiUrlXCX
+T7IoVAEXlh8OHFB595lLWp8=
+-----END PRIVATE KEY-----
+')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\ApiController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ApiController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')

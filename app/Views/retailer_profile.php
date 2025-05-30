@@ -73,47 +73,68 @@
             </div>
 
             <!-- Documents Section -->
-            <h5 class="mb-3">Uploaded Documents</h5>
+            <h4 class="mb-3 fw-bold">Uploaded Documents</h4>
             <div class="row g-3">
 
                 <!-- Example: Repeat this block up to 20 times -->
                 <!-- You can use PHP to loop through documents -->
+
+                <!-- Document Card (1) -->
                 <?php
                 $db = db_connect();
                 $builder = $db->table('retailerdocuments');
-                $builder->where('member_id', $retailers['member_id']);
+                $builder->select('*');
+                $builder->where('member_id ', $retailers['member_id']);
                 $query = $builder->get();
-                foreach ($query->getResult() as $row) {
-                    $documentPath = $row->document_path;
-                    if ($documentPath !== null) {
-                        # code...
 
-                        $cleanedJson = trim(str_replace('Json object:', '', $documentPath));
-                        $data = json_decode($cleanedJson, true);
-                        // Example: Output values
-                        foreach ($data as $key => $urls) {
-                            foreach ($urls as $url) {
+                foreach ($query->getResult() as $row) {
+                    $doc = $row->document_path;
+                    // $cleanedJson = trim(str_replace('Json object:', '', $doc));
+                    $cleanedJson = $doc;
+                    // Decode it into associative array
+
+                    // echo "- $url<br>";
 
                 ?>
-                                <!-- Document Card (1) -->
-                                <div class="col-md-2">
-                                    <div class="card h-100 shadow-sm">
-                                        <img src="<?= $url ?>" class="card-img-top" alt="Document 1">
-                                        <div class="card-body text-center">
-                                            <h6 class="card-title">Document 1</h6>
-                                            <a href="<?= $url ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
+                    <div class="col-md-2 col-sm-6">
+                        <div class="card h-100 shadow-sm">
+                            <img src="<?= $doc ?>" class="card-img-top" alt="Document Image">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Documents</h6>
+                                <a href="<?= $doc ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
                 <?php
-                            }
+                } ?>
+            </div>
+
+            <div class="col-6 mx-auto text-center">
+                <?php
+
+                if ($retailers['eli_run'] === "Y") {
+                    $db = db_connect();
+                    $builderB = $db->table('initial_eli_run');
+                    $builderB->select('*');
+                    $builderB->where('member_id ', $retailers['member_id']);
+                    $queryB = $builderB->get();
+                    // $countEli = $builderB->countAllResults();
+                    foreach ($queryB->getResult() as $rowB) {
+                        $eli = $rowB->eligibility;
+                        if ($eli === 'Eligible') {
+                            # code...
+                            echo '<a href="' . base_url() . 'retailers/fi/' . $retailers['member_id'] . '" class="btn btn-primary mt-3">Initiate Field Inspection</a>';
+                        } else {
+                            # code...
+                            echo '<a href="/" class="btn btn-primary mt-3">Back</a>';
                         }
                     }
+                ?>
+
+                <?php
                 } ?>
 
             </div>
-        </div>
     </main>
 
     <?php include 'fragments/footer.php'; ?>

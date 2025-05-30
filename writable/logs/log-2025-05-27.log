@@ -1,0 +1,598 @@
+INFO - 2025-05-27 10:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:52:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-27 10:57:39 --> mysqli_sql_exception: Table 'mfi.tab_' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan_details.php(27): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan_details', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(47): view('loan_details')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-05-27 10:57:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Views\loan_details.php(27): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 6 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 10:57:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Views\loan_details.php(27): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 8 APPPATH\Controllers\Home.php(47): view('loan_details')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 10:57:39 --> [Caused by] mysqli_sql_exception: Table 'mfi.tab_' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tab_`
+WHERE `reference` = \'Due\'
+OR `reference` = \'Y\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tab_`
+WHERE `reference` = :reference:
+OR `reference` = :reference.1:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Views\loan_details.php(27): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan_details.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan_details', [], true)
+ 9 APPPATH\Controllers\Home.php(47): view('loan_details')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan_details()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-05-27 10:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 10:57:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 11:27:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-27 11:27:05 --> mysqli_sql_exception: Unknown column 'status' in 'where clause' in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-27 11:27:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'status' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = :status:
+AND `emi_date` = :emi_date:', [...], false)
+ 2 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:27:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'status' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = \'active\'
+AND `emi_date` = \'2025-05-27\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = \'active\'
+AND `emi_date` = \'2025-05-27\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = :status:
+AND `emi_date` = :emi_date:', [...], false)
+ 4 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:27:05 --> [Caused by] mysqli_sql_exception: Unknown column 'status' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = \'active\'
+AND `emi_date` = \'2025-05-27\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = \'active\'
+AND `emi_date` = \'2025-05-27\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = \'active\'
+AND `emi_date` = \'2025-05-27\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `status` = :status:
+AND `emi_date` = :emi_date:', [...], false)
+ 5 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-05-27 11:45:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-27 11:45:11 --> mysqli_sql_exception: Column 'member_id' in where clause is ambiguous in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-27 11:45:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL', [], false)
+ 2 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:45:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL', [], false)
+ 4 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:45:11 --> [Caused by] mysqli_sql_exception: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` IS NULL', [], false)
+ 5 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-05-27 11:46:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-27 11:46:32 --> mysqli_sql_exception: Column 'member_id' in where clause is ambiguous in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-27 11:46:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = :member_id:', [...], false)
+ 2 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:46:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = :member_id:', [...], false)
+ 4 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:46:32 --> [Caused by] mysqli_sql_exception: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = :member_id:', [...], false)
+ 5 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+ERROR - 2025-05-27 11:47:33 --> mysqli_sql_exception: Column 'member_id' in where clause is ambiguous in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-27 11:47:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = :member_id:', [...], false)
+ 2 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:47:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = :member_id:', [...], false)
+ 4 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:47:33 --> [Caused by] mysqli_sql_exception: Column 'member_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = \'FUND1496\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `loans`
+JOIN `members` ON `members`.`member_id` = `loans`.`member_id`
+WHERE `member_id` = :member_id:', [...], false)
+ 5 APPPATH\Controllers\PaymentController.php(23): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 11:48:19 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "payment.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('payment.php')
+ 2 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('payment', [], true)
+ 3 APPPATH\Controllers\PaymentController.php(25): view('payment', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:07:30 --> ErrorException: Undefined array key "loan_id"
+in APPPATH\Controllers\PaymentController.php on line 39.
+ 1 APPPATH\Controllers\PaymentController.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "loan_id"', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\PaymentController.php', 39)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+ERROR - 2025-05-27 12:16:19 --> mysqli_sql_exception: Unknown column 'amount' in 'field list' in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT SUM(`amo...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(`amo...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(`amo...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`amo...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\PaymentController.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-27 12:16:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'amount' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = :reference:
+AND `valuedate` <= :valuedate:', [...], false)
+ 2 APPPATH\Controllers\PaymentController.php(56): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:16:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = \'Due\'
+AND `valuedate` <= \'2025-05-27\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = \'Due\'
+AND `valuedate` <= \'2025-05-27\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = :reference:
+AND `valuedate` <= :valuedate:', [...], false)
+ 4 APPPATH\Controllers\PaymentController.php(56): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:16:19 --> [Caused by] mysqli_sql_exception: Unknown column 'amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = \'Due\'
+AND `valuedate` <= \'2025-05-27\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = \'Due\'
+AND `valuedate` <= \'2025-05-27\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = \'Due\'
+AND `valuedate` <= \'2025-05-27\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`amount`) AS `amount`
+FROM `tab_63112FUND1496`
+WHERE `reference` = :reference:
+AND `valuedate` <= :valuedate:', [...], false)
+ 5 APPPATH\Controllers\PaymentController.php(56): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:22:42 --> Error: Cannot use object of type stdClass as array
+in APPPATH\Controllers\PaymentController.php on line 39.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:22:55 --> Error: Cannot use object of type stdClass as array
+in APPPATH\Controllers\PaymentController.php on line 39.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:23:13 --> ErrorException: Undefined array key "applicationID"
+in APPPATH\Controllers\PaymentController.php on line 39.
+ 1 APPPATH\Controllers\PaymentController.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "applicationID"', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\PaymentController.php', 39)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+ERROR - 2025-05-27 12:30:27 --> mysqli_sql_exception: Illegal parameter data types varchar and row for operation '=' in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT SUM(`emi...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(`emi...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(`emi...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`emi...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\PaymentController.php(47): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-27 12:30:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Illegal parameter data types varchar and row for operation '='
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = :reference:
+AND `valueDate` <= :valueDate:
+ORDER BY `Id` DESC', [...], false)
+ 2 APPPATH\Controllers\PaymentController.php(47): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:30:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Illegal parameter data types varchar and row for operation '='
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = (\'Due\',\'N\')
+AND `valueDate` <= \'2025-05-27\'
+ORDER BY `Id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = (\'Due\',\'N\')
+AND `valueDate` <= \'2025-05-27\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = :reference:
+AND `valueDate` <= :valueDate:
+ORDER BY `Id` DESC', [...], false)
+ 4 APPPATH\Controllers\PaymentController.php(47): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:30:27 --> [Caused by] mysqli_sql_exception: Illegal parameter data types varchar and row for operation '='
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = (\'Due\',\'N\')
+AND `valueDate` <= \'2025-05-27\'
+ORDER BY `Id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = (\'Due\',\'N\')
+AND `valueDate` <= \'2025-05-27\'
+ORDER BY `Id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = (\'Due\',\'N\')
+AND `valueDate` <= \'2025-05-27\'
+ORDER BY `Id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT SUM(`emi`) AS `total_emi`
+FROM `tab_63112FUND1496`
+WHERE `reference` = :reference:
+AND `valueDate` <= :valueDate:
+ORDER BY `Id` DESC', [...], false)
+ 5 APPPATH\Controllers\PaymentController.php(47): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:32:46 --> ErrorException: Array to string conversion
+in APPPATH\Controllers\PaymentController.php on line 50.
+ 1 APPPATH\Controllers\PaymentController.php(50): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\PaymentController.php', 50)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-27 12:44:50 --> ErrorException: Undefined variable $loanData
+in APPPATH\Controllers\PaymentController.php on line 65.
+ 1 APPPATH\Controllers\PaymentController.php(65): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $loanData', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\PaymentController.php', 65)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\PaymentController->get_today_emi()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-05-27 13:03:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:03:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:03:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:03:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-27 13:03:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

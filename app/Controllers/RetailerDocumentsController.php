@@ -21,14 +21,15 @@ class RetailerDocumentsController extends BaseController
         $data = [
             'member_id'         => $this->request->getVar('member_id'),
             'document_path'     => $this->request->getVar('document_path'),
+            'document_type'     => $this->request->getVar('doc_type'),
             'created_at'        => date('Y-m-d H:i:s')
         ];
 
         // $query = $model->save($data);
         $db = db_connect();
         $builder = $db->table('retailerdocuments');
-        $builder->where('member_id', $this->request->getVar('member_id'));
-        $builder->upsert($data);
+        // $builder->where('member_id', $this->request->getVar('member_id'));
+        $builder->insert($data);
         $query = $builder->get();
         if (!$query) {
             return $this->respond(['error' => 'Invalid Request.' . $query], 401);

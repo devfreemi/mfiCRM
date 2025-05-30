@@ -19,7 +19,11 @@
             <h1 class="h3 mb-3">List of <strong>Retailers</strong></h1>
 
             <div class="row">
-
+                <?php if (session()->getFlashdata('success')) : ?>
+                    <div class="col-xl-12 col-xxl-12 my-5">
+                        <p class="text-center text-success fw-bold"><?= session()->getFlashdata('success') ?></p>
+                    </div>
+                <?php endif; ?>
                 <div class="col-xl-12 col-xxl-12 d-flex">
                     <div class="w-100 table-responsive">
                         <table id="branch" class="table table-striped">
@@ -28,6 +32,7 @@
                                     <th>Id</th>
                                     <th>Members Id</th>
                                     <th>Eligibility</th>
+                                    <th>Remarks</th>
                                     <th>Market Name</th>
                                     <th>Market Type</th>
                                     <th>Agent Name</th>
@@ -43,7 +48,6 @@
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
                                     <th>Established Year</th>
-                                    <th>Remarks</th>
                                     <th>Images</th>
                                     <th>Date</th>
                                     <th>Action</th>
@@ -81,6 +85,17 @@
                                         ?>
                                             <td class="text-danger">Not Checked</td>
                                         <?php  } ?>
+
+                                        <?php
+                                        if ($row->remarks === 'Reject') { ?>
+
+                                            <td class="text-danger fw-bold">Rejected</td>
+                                        <?php } else { ?>
+                                            <td class="text-success fw-bold"><?php echo $row->remarks; ?></td>
+                                        <?php }
+
+                                        ?>
+
                                         <td><?php echo $row->groupName; ?></td>
                                         <td><?php echo $row->group_type; ?></td>
                                         <td><?php echo $row->name; ?></td>
@@ -96,7 +111,7 @@
                                         <td><?php echo $row->stock; ?></td>
                                         <td><?php echo $row->footFall; ?></td>
                                         <td><?php echo $row->estab; ?></td>
-                                        <td><?php echo $row->remarks; ?></td>
+
                                         <td>
                                             <a href="<?php echo $row->image; ?>" target="_blank" rel="noopener noreferrer">
                                                 <i class="far fa-eye"></i>

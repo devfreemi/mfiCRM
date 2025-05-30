@@ -1,0 +1,58 @@
+INFO - 2025-05-19 06:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-19 06:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-19 06:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-19 14:33:38 --> mysqli_sql_exception: Column 'memberID' cannot be null in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `gs...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `gs...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `gs...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `gs...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\AadhaarKycController.php(688): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\AadhaarKycController->verify_gst_user()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AadhaarKycController))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-05-19 14:33:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'memberID' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (:memberID:, :gst:)', [...], false)
+ 2 APPPATH\Controllers\AadhaarKycController.php(688): CodeIgniter\Database\BaseBuilder->insert([...])
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AadhaarKycController->verify_gst_user()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AadhaarKycController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-19 14:33:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'memberID' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (NULL, \'19ABKPN7108B1ZQ\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (NULL, \'19ABKPN7108B1ZQ\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (:memberID:, :gst:)', [...], false)
+ 4 APPPATH\Controllers\AadhaarKycController.php(688): CodeIgniter\Database\BaseBuilder->insert([...])
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AadhaarKycController->verify_gst_user()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AadhaarKycController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-19 14:33:39 --> [Caused by] mysqli_sql_exception: Column 'memberID' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (NULL, \'19ABKPN7108B1ZQ\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (NULL, \'19ABKPN7108B1ZQ\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (NULL, \'19ABKPN7108B1ZQ\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `gstmaster` (`memberID`, `gst`) VALUES (:memberID:, :gst:)', [...], false)
+ 5 APPPATH\Controllers\AadhaarKycController.php(688): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AadhaarKycController->verify_gst_user()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AadhaarKycController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-05-19 15:14:09 --> ErrorException: Undefined array key "mobile"
+in APPPATH\Controllers\AadhaarKycController.php on line 688.
+ 1 APPPATH\Controllers\AadhaarKycController.php(688): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "mobile"', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Controllers\\AadhaarKycController.php', 688)
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AadhaarKycController->verify_gst_user()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AadhaarKycController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-05-19 12:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-05-19 12:48:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

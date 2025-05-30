@@ -31,7 +31,10 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('employee-attendence', 'Home::e_attendence');
     $routes->post('loan/check', 'LoanEligibilityController::checkEligibility');
     $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
-    $routes->add('retailers/storage', 'MemberController::storage_data');
+    $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
+    $routes->add('emi/payment', 'PaymentController::initiate_payment');
+    $routes->get('payment/details', 'PaymentController::details');
+    $routes->get('payment/conformation', 'PaymentController::pay_conf');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -41,7 +44,7 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 
 // API FOR APP SERVICE
 $routes->add('api/login-api-v1', 'Employee::api_login');
-
+$routes->add('api/member/login-v1', 'MemberLoginController::member_application_login');
 $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
     $routes->add('api/branch-details-api-v1', 'BranchApi::barnch_api');
@@ -95,4 +98,28 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
 });
-// $routes->add('api/today-deposite-data', 'DepositeController::temp_data');
+
+$routes->group(
+    '',
+    ['filter' => 'MemberAuthFilter'],
+    function ($routes) {
+        $routes->add('api/member/member-details-v1', 'MemberLoginController::member_details');
+        $routes->add('api/member/kyc/pan-validation-v1', 'AadhaarKycController::verify_pan_user');
+        $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
+        $routes->add('api/member/emi/get-today-emi-v1', 'PaymentController::get_today_emi');
+        $routes->add('api/member/order/create-emi-order-v1', 'PaymentController::generate_order');
+    }
+);
+
+
+
+// Test API
+// $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
+$routes->add('api/member/payment/payment-status-emi-v1', 'PaymentController::conformation');
+$routes->get('member/kyc', 'AadhaarKycController::kyc');
+$routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
+$routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
+
+$routes->add('api/protean', 'ApiController::index');
+$routes->add('api/protean/decrypt', 'ProteanDataDecryptController::index');
+$routes->add('api/ip/check', 'IpCheckController::index');

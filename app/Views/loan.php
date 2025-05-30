@@ -3,7 +3,7 @@
 <link href="https://cdn.datatables.net/2.1.0/css/dataTables.bootstrap5.css" rel="stylesheet">
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.0/js/dataTables.bootstrap5.js"></script>
-
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 <div class="main">
 
     <?php include 'fragments/nav.php'; ?>
@@ -76,9 +76,15 @@
                                                     <?php
                                                     if ($row->loan_status === "Disbursed") { ?>
                                                         <button type="button" class="btn btn-danger details" id="<?php echo $row->applicationID; ?>">
-                                                            <i class="align-middle" data-feather="eye"></i>
+                                                            <i class="align-middle" data-feather="file-text"></i>
                                                         </button>
                                                     <?php } ?>
+                                                    <a href="<?php echo base_url() . 'retailers/details/' . $row->member_id;
+                                                                ?>" class="btn btn-success details" id="">
+                                                        <!-- <i class="fas fa-eye"></i> -->
+                                                        <i class="align-middle" data-feather="user"></i>
+                                                    </a>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -128,7 +134,7 @@
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Loan Details</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Loan Details of : <strong><?php echo $row->applicationID; ?></strong></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body" id="loan_detail">

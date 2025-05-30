@@ -223,34 +223,15 @@ class MemberController extends BaseController
         // print_r($data);
         // echo $memberID;
     }
-    public function storage_data()
+    public function retailer_fi($memberID)
     {
-        $folder = 'Retailer_document'; // 🔁 Replace with your folder name in Firebase
-var_dump(trait_exists(\Google\Cloud\Core\ArrayTrait::class));
+        // $session = session();
+        $model = new MemberModel();
+        $data['retailers'] = $model->where('member_id', $memberID)->first();
 
-        $storage = new StorageClient([
-            'keyFilePath' => $this->serviceAccountPath,
-        ]);
 
-        $bucket = $storage->bucket($this->bucketName);
-        $objects = $bucket->objects([
-            'prefix' => rtrim($folder, '/') . '/',
-        ]);
-
-        $files = [];
-
-        foreach ($objects as $object) {
-            if (substr($object->name(), -1) !== '/') {
-                $files[] = [
-                    'name' => $object->name(),
-                    'url' => 'https://firebasestorage.googleapis.com/v0/b/' .
-                        $this->bucketName . '/o/' . urlencode($object->name()) . '?alt=media',
-                ];
-            }
-        }
-
-        // return view('file_list', ['files' => $files]);
-        var_dump($files);
-        // echo "Test";
+        return view('field', $data);
+        // print_r($data);
+        // echo $memberID;
     }
 }

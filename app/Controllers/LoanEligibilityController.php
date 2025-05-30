@@ -93,8 +93,18 @@ class LoanEligibilityController extends BaseController
         // $builder->where('member_id', $request->getVar('memberID'));
         $builder->upsert($data_eli_run);
 
-
+        // if ($this->request->getVar('remarks') === "Reject") {
+        //     # code...
+        //     $session = session();
+        //     $session->setFlashdata('success', 'Retailers Details Updated!');
+        //     return redirect()->to(base_url() . 'members');
+        //     // return view('members');
+        // } else {
+        # code...
         return view('eli-page', $data);
+        // }
+
+
         // print_r($query);
         // echo ("<br>");
         // print_r($data);

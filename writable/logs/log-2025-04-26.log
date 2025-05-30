@@ -1,0 +1,828 @@
+INFO - 2025-04-26 06:42:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 06:42:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 06:42:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 06:42:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 06:42:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 06:42:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:42:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 11:42:43 --> mysqli_sql_exception: Table 'tab_65277test5860' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE ta...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE ta...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE ta...')
+#3 C:\xampp\htdocs\www\mfiCRM\app\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE ta...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST58...')
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-04-26 11:42:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:42:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:42:43 --> [Caused by] mysqli_sql_exception: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 5 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-26 11:43:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 11:43:38 --> mysqli_sql_exception: Table 'tab_65277test5860' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE ta...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE ta...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE ta...')
+#3 C:\xampp\htdocs\www\mfiCRM\app\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE ta...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST58...')
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-04-26 11:43:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:43:38 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:43:38 --> [Caused by] mysqli_sql_exception: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 5 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-26 11:43:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:43:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:43:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:43:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:44:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 11:44:37 --> mysqli_sql_exception: Table 'tab_65277test5860' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE ta...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE ta...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE ta...')
+#3 C:\xampp\htdocs\www\mfiCRM\app\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE ta...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST58...')
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-04-26 11:44:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:44:37 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:44:37 --> [Caused by] mysqli_sql_exception: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 5 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-26 11:45:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:45:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:45:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:45:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 11:45:29 --> mysqli_sql_exception: Table 'tab_65277test5860' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE ta...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE ta...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE ta...')
+#3 C:\xampp\htdocs\www\mfiCRM\app\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE ta...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST58...')
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-04-26 11:45:29 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:45:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:45:29 --> [Caused by] mysqli_sql_exception: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 5 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-26 11:45:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:45:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:45:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:47:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:47:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:47:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:47:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:47:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:48:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 11:48:09 --> mysqli_sql_exception: Table 'tab_65277test5860' already exists in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE ta...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE ta...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE ta...')
+#3 C:\xampp\htdocs\www\mfiCRM\app\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE ta...')
+#4 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST58...')
+#5 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-04-26 11:48:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:48:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-04-26 11:48:09 --> [Caused by] mysqli_sql_exception: Table 'tab_65277test5860' already exists
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 4 APPPATH\Models\LoanModel.php(77): CodeIgniter\Database\BaseConnection->query('CREATE TABLE tab_65277TEST5860 (
+            `Id` int(11) NOT NULL AUTO_INCREMENT,
+          `transactionDate` timestamp NOT NULL DEFAULT current_timestamp(),
+          `valueDate` varchar(28) NOT NULL,
+          `valueDateStamp` varchar(28) NOT NULL,
+          `reference` varchar(4) NOT NULL DEFAULT \'N\',
+          `emi` varchar(18) DEFAULT 0 NULL,
+          `debit` varchar(18) DEFAULT 0 NULL,
+          `credit` varchar(18) DEFAULT 0 NULL,
+          `balance` varchar(18) NOT NULL,
+          `transactionId` varchar(64) NULL,
+          `comments` varchar(64) NULL,
+          `updated_on` timestamp NOT NULL DEFAULT current_timestamp(),
+          PRIMARY KEY (Id)
+          );')
+ 5 APPPATH\Controllers\LoanApi.php(84): App\Models\LoanModel->create('tab_65277TEST5860')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanApi->update_of_loan()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanApi))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-04-26 11:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:57:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:57:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 11:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 12:22:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-04-26 12:22:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
