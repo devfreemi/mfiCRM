@@ -78,51 +78,42 @@
 
                 <!-- Example: Repeat this block up to 20 times -->
                 <!-- You can use PHP to loop through documents -->
+                <?php
+                $db = db_connect();
+                $builder = $db->table('retailerdocuments');
+                $builder->where('member_id', $retailers['member_id']);
+                $query = $builder->get();
+                foreach ($query->getResult() as $row) {
+                    $documentPath = $row->document_path;
+                    if ($documentPath !== null) {
+                        # code...
 
-                <!-- Document Card (1) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 1">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 1</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                        $cleanedJson = trim(str_replace('Json object:', '', $documentPath));
+                        $data = json_decode($cleanedJson, true);
+                        // Example: Output values
+                        foreach ($data as $key => $urls) {
+                            foreach ($urls as $url) {
 
-                <!-- Document Card (2) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 2">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 2</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                ?>
+                                <!-- Document Card (1) -->
+                                <div class="col-md-2">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="<?= $url ?>" class="card-img-top" alt="Document 1">
+                                        <div class="card-body text-center">
+                                            <h6 class="card-title">Document 1</h6>
+                                            <a href="<?= $url ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <!-- Document Card (3) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 3">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 3</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                            }
+                        }
+                    }
+                } ?>
 
-                <!-- Document Card (3) -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?= base_url() ?>assets/img/elements/dummy.png" class="card-img-top" alt="Document 3">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Document 3</h6>
-                            <a href="<?= base_url() ?>assets/img/elements/dummy.png" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </div>
     </main>
 
     <?php include 'fragments/footer.php'; ?>
