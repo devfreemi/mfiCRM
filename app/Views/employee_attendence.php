@@ -31,7 +31,7 @@
                                 $i = 1;
                                 $db = db_connect();
                                 $builder = $db->table('agentattendences');
-                                $query = $builder->join('employees', 'employees.employeeID = agentattendences.agent_id')->get();
+                                $query = $builder->join('employees', 'employees.employeeID = agentattendences.agent_id')->orderBy('date', 'DESC')->get();
                                 foreach ($query->getResult() as $row) {
                                 ?>
                                     <tr>

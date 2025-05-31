@@ -57,7 +57,7 @@ class ApiController extends BaseController
         if ($publicKeyResource === false) {
             echo "Error loading public key: " . openssl_error_string() . "\n";
         } else {
-            echo "Public key loaded successfully.\n <br>";
+            echo "Public key loaded successfully.\n";
         }
         // Generate AES key and IV
         $aesKey = openssl_random_pseudo_bytes(32);
@@ -108,7 +108,7 @@ class ApiController extends BaseController
         }
         curl_close($ch);
 
-        echo "🔐 Encrypted Response:\n <pre>$response_op</pre>\n <br>";
+        echo "🔐 Encrypted Response:\n$response_op\n";
 
         // Step 4: Decrypt the Response
         $responseData = json_decode($response_op, true);
@@ -123,7 +123,7 @@ class ApiController extends BaseController
         if ($privateKeyResource === false) {
             echo "Error loading private key: " . openssl_error_string() . "\n";
         } else {
-            echo "Private key loaded successfully.\n <br>";
+            echo "Private key loaded successfully.\n";
         }
         if (!$privateKey) {
             die("Private key not found.");
@@ -131,25 +131,25 @@ class ApiController extends BaseController
         // Step 1: Load encrypted symmetric key from response
         $encryptedSymmetricKeyBase64 = $responseData['symmetricKey'] ?? null;
         if (!$encryptedSymmetricKeyBase64) {
-            die(" <br>❌ symmetricKey not found in response.\n");
+            die("❌ symmetricKey not found in response.\n");
         }
         $encryptedKey = base64_decode($encryptedSymmetricKeyBase64);
         if (!$encryptedKey) {
-            die(" <br>❌ Failed to base64-decode symmetricKey.\n");
+            die("❌ Failed to base64-decode symmetricKey.\n");
         }
 
         // Step 3: Load private key
         $privateKeyPath = WRITEPATH . 'certs/private_key.pem';
         $privateKey = file_get_contents($privateKeyPath);
         if (!$privateKey) {
-            die(" <br>❌ Failed to read private key.\n");
+            die("❌ Failed to read private key.\n");
         }
 
         // Step 4: Decrypt the AES key
         $decryptedAESKey = null;
         if (!openssl_private_decrypt($encryptedKey, $decryptedAESKey, $privateKey)) {
-            echo " <br>❌ OpenSSL error: " . openssl_error_string() . "\n";
-            die(" <br>❌ Failed to decrypt AES symmetric key.\n");
+            echo "❌ OpenSSL error: " . openssl_error_string() . "\n";
+            die("❌ Failed to decrypt AES symmetric key.\n");
         }
 
         // Debug: Check AES key

@@ -125,12 +125,12 @@ class AadhaarKycController extends BaseController
                     // echo "cURL Error #:" . $err;
                     return $this->respond(['error' => 'Invalid Request.' . $err_otp], 401);
                 } else {
-                    // var_dump($response_decode_otp);
-                    return $this->respond(['aadhar' => $response_decode], 200);
-                    // $session = session();
-                    // $session->setFlashdata('msg', $response_decode_otp['result']['accessKey']);
-                    // return redirect()->to(base_url() . 'member/kyc');
-                    // return view('check_user_kyc', ['kyc' => $response_decode]);
+                    var_dump($response_decode_otp);
+                    // return $this->respond(['kyc' => $response_decode], 200);
+                    $session = session();
+                    $session->setFlashdata('msg', $response_decode_otp['result']['accessKey']);
+                    return redirect()->to(base_url() . 'member/kyc');
+                    return view('check_user_kyc', ['kyc' => $response_decode]);
                 }
             }
         } else {
@@ -193,11 +193,11 @@ class AadhaarKycController extends BaseController
                 // echo "cURL Error #:" . $err;
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
-                // echo $data_json;
-                // echo "<br>";
-                // echo $response;
+                echo $data_json;
+                echo "<br>";
+                echo $response;
                 // return $response;
-                return $this->respond(['aadhaar' => $response_decode], 200);
+                // return $this->respond(['aadhaar' => $response_decode], 200);
             }
         } else {
             # code...
