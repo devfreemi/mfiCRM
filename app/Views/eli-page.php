@@ -62,21 +62,21 @@
                         <p><strong>Final ROI</strong></p>
                         <p id="loanInterest"></p>
                     </div>
-                    <!-- <div class="details-box">
+                    <div class="details-box">
                         <i class="fas fa-percentage"></i>
-                        <p><strong>Calculated ROI</strong></p>
+                        <p><strong>Calculated EMI (per Month)</strong></p>
                         <p id="calroi"></p>
-                    </div> -->
+                    </div>
                     <div class="details-box">
                         <i class="fas fa-calendar-alt"></i>
                         <p><strong>Tenure (Month)</strong></p>
                         <p id="tenure"></p>
                     </div>
-                    <div class="details-box">
+                    <!-- <div class="details-box">
                         <i class="fas fa-star"></i>
                         <p><strong>Score By NFSPL</strong></p>
                         <p id="score"></p>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- View Details Button -->
@@ -192,8 +192,8 @@
                     $("#resultIcon").addClass("fas fa-check-circle success");
                     $("#resultText").text("Retailer is eligible for a loan.");
                     $("#loanAmount").text("<?= esc(number_format($result['LoanAmount'], 2)) ?>");
-                    $("#loanInterest").text("<?= esc($result['ROI']) ?>"); //FINAL ROI
-                    $("#calroi").text("<?= esc($result['roi']) ?>");
+                    $("#loanInterest").text("<?= esc($result['FixedROI']) ?>"); //FINAL ROI
+                    $("#calroi").text("<?= esc($result['EMI']) ?>");
                     $("#tenure").text("<?= esc($result['Tenure']) ?>");
                     $("#score").text("<?= esc($result['Score']) ?>");
                     $("#loanDetails").show();
