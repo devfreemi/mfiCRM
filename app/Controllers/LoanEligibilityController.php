@@ -68,6 +68,7 @@ class LoanEligibilityController extends BaseController
             'estab'             => $this->request->getVar('business_time'),
             'dailySales'        => $this->request->getVar('daily_sales'),
             'name'              => $this->request->getVar('name'),
+            'businessName'              => $this->request->getVar('businessName'),
             'eli_run'           => "Y",
             'month_purchase'    => $this->request->getVar('month_purchase'),
             'remarks'    => $this->request->getVar('remarks'),

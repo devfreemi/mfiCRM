@@ -230,7 +230,12 @@ class LoanEligibilityModel extends Model
             return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         }
 
-        // $loan_amount = $this->stock * 0.5;
+        $min_loan = 50000;
+        $max_roi = 30; // Maximum ROI for ₹50K plan
+        $max_tenure = 36;
+        // Calculate EMI for ₹50,000 at 30% ROI for 36 months
+        $min_emi = $this->calculateEMI($min_loan, $max_roi, $max_tenure);
+        $loan_amount = $eligibility_amount;
         $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
 
         if ($calculated_emi > $eligible_emi) {
@@ -240,18 +245,32 @@ class LoanEligibilityModel extends Model
             $calculated_emi = $eligible_emi;
             $reason .= "Adjusted to match FOIR. ";
         }
-
-        return [
-            "Eligibility" => "Eligible",
-            "LoanAmount" => round($eligibility_amount),
-            // "AdjustedLoanAmount" => round($loan_amount),
-            "ROI" => round($roi, 2),
-            "FixedROI" => round($final_roi, 2),
-            "Tenure" => $tenure,
-            "Score" => round($score, 2),
-            "EMI" => round($calculated_emi, 2),
-            "Reason" => trim($reason),
-            "FOIR" => $foir,
-        ];
+        // If customer can afford that EMI, give ₹50k with higher ROI and tenure
+        if ($loan_amount < $min_loan) {
+            return [
+                "Eligibility" => "Eligible (Minimum ₹50K Plan)",
+                "LoanAmount" => $min_loan,
+                "ROI" => $max_roi,
+                "FixedROI" => $max_roi,
+                "Tenure" => $max_tenure,
+                "Score" => round($score, 2),
+                "EMI" => round($min_emi, 2),
+                "Reason" => "Upgraded to minimum ₹50K plan with higher ROI and longer tenure.",
+                "FOIR" => $foir,
+            ];
+        } else {
+            return [
+                "Eligibility" => "Eligible",
+                "LoanAmount" => round($loan_amount),
+                "calculatedLoanAmount" => round($eligibility_amount),
+                "ROI" => round($roi, 2),
+                "FixedROI" => round($final_roi, 2),
+                "Tenure" => $tenure,
+                "Score" => round($score, 2),
+                "EMI" => round($calculated_emi, 2),
+                "Reason" => trim($reason),
+                "FOIR" => $foir,
+            ];
+        }
     }
 }

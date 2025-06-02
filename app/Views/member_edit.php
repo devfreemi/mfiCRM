@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Name</label>
-                        <input type="text" class="form-control bg-model" id="applicationid" name="applicationid" value="<?php echo $row->businessName; ?>">
+                        <input type="text" class="form-control bg-model" id="applicationid" name="businessName" value="<?php echo $row->businessName; ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="loan" class="form-label">Business Type</label>
