@@ -59,7 +59,7 @@ class LoanEligibilityModel extends Model
 
         $monthly_sales = $daily_sales * 30;
         $gross_income = $monthly_sales * $margin;
-        $foir_limit = $gross_income * 0.4;
+        $foir_limit = $gross_income * 0.5;
         $net_affordable_emi = $foir_limit - $existing_emi;
 
         if ($gross_income >= 0 && $gross_income <= 33000) {

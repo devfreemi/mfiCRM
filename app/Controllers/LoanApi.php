@@ -311,12 +311,12 @@ class LoanApi extends BaseController
     public function disbursement_details_member()
     {
         $model = new LoanModel();
-        $memberID = $this->request->getVar('memberID');
+        $loanAppId = $this->request->getVar('loanAppId');
 
-        if ($memberID) {
+        if ($loanAppId) {
 
             $loanMemberDetail = $model->join('members', 'members.member_id = loans.member_id')
-                ->where('members.member_id', $memberID)->first();
+                ->where('loans.applicationID', $loanAppId)->first();
 
             return $this->respond($loanMemberDetail, 200);
         } else {
