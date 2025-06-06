@@ -311,16 +311,14 @@ class LoanApi extends BaseController
     public function disbursement_details_member()
     {
         $model = new LoanModel();
-        $loanAppId = $this->request->getVar('loanAppId');
+        $member_id = $this->request->getVar('memberID');
 
-        if ($loanAppId) {
-
+        if ($member_id) {
             $loanMemberDetail = $model->join('members', 'members.member_id = loans.member_id')
-                ->where('loans.applicationID', $loanAppId)->first();
-
+                ->where('members.member_id', $member_id)->first();
             return $this->respond($loanMemberDetail, 200);
         } else {
-            return $this->respond(['error' => 'Invalid Request.'], 401);
+            return $this->respond(['error' => 'Invalid Request Member Id.'], 401);
         }
     }
     public function disbursement_verification()

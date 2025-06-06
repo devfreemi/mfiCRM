@@ -97,6 +97,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/retailer-doc-upload-v1', 'RetailerDocumentsController::add_doc');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
+    // Collection in LOS
+    $routes->add('api/los/emi/get-today-emi-v1', 'PaymentController::get_today_emi');
+    $routes->add('api/los/order/create-emi-order-v1', 'PaymentController::generate_order');
 });
 
 $routes->group(
@@ -111,7 +114,7 @@ $routes->group(
         $routes->add('api/member/payment/payment-conformation-v1', 'PaymentController::conformation');
     }
 );
-
+$routes->add('payment/redirect/gateway', 'PaymentController::app_payment_collection');
 
 
 // Test API
