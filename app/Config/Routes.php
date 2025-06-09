@@ -115,7 +115,7 @@ $routes->group(
     }
 );
 $routes->add('payment/redirect/gateway', 'PaymentController::app_payment_collection');
-
+$routes->get('payment/conformation/gateway', 'PaymentController::app_pay_conf');
 
 // Test API
 // $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
