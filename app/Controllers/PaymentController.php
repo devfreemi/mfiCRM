@@ -88,7 +88,7 @@ class PaymentController extends BaseController
         $member_mobile = $this->request->getVar('member_mobile') ?? 'Unknown Member';
         $loanID = $this->request->getVar('loanIDs');
         $dataApi = array(
-            'order_amount'              => number_format($amount),
+            'order_amount'              => $amount,
             'order_currency'          => "INR",
             'customer_details' => array(
                 'customer_id'          => $member_id,
@@ -114,12 +114,7 @@ class PaymentController extends BaseController
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => $data_json,
-            CURLOPT_HTTPHEADER => array(
-
-                'x-api-version: 2025-01-01',
-                'Content-Type: application/json',
-                'Accept: application/json',
-            ),
+            CURLOPT_HTTPHEADER => array(),
         ));
 
         $response = curl_exec($curl);
@@ -144,7 +139,7 @@ class PaymentController extends BaseController
             // Generic failure response
             $errors = $response_decode['message'] ?? 'Failed to create order. Please try again.';
             // $this->respond($errors, 400);
-            return $this->respond(['error' => $response_decode], $httpcode);
+            return $this->respond(['error' => $errors], $httpcode);
         }
 
 
@@ -159,9 +154,9 @@ class PaymentController extends BaseController
     public function conformation()
     {
 
-        $orderId = $this->request->getPost('order_id');
-        $loanID = $this->request->getPost('loan_id');
-        $paymentAmount  = $this->request->getPost('order_amount');
+        $orderId = $this->request->getVar('order_id');
+        $loanID = $this->request->getVar('loan_id');
+        $paymentAmount  = $this->request->getVar('order_amount');
         $payment_session_id = $this->request->getPost('payment_session_id');
 
 
@@ -176,104 +171,61 @@ class PaymentController extends BaseController
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-
-                'x-api-version: 2025-01-01',
-                'Content-Type: application/json',
-                'Accept: application/json',
-            ),
+            CURLOPT_HTTPHEADER => array(),
         ));
 
         $response = curl_exec($curl);
         $response_decode = json_decode($response, true);
         $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         $err = curl_error($curl);
+        // return $this->respond(['payment_created' => $response_decode], $httpcode);
         // print_r($err);
         // var_dump($response_decode);
         // echo $response_decode['order_id'];
         // echo $response_decode[0]['payment_status'];
         // return $this->respond(['payment_created' => $response_decode], $httpcode);
-        curl_close($curl);
 
-        if ($response_decode[0]['payment_status'] === 'SUCCESS') {
-            # code...
-            $db = db_connect();
-            $loanID = $loanID; // From context
-            $emiTable = 'tab_' . esc($loanID);
+        if ($httpcode === 200) {
+
+            if ($response_decode[0]['payment_status'] === 'SUCCESS') {
+                # code...
+                $db = db_connect();
+                $loanID = $loanID; // From context
+                $emiTable = 'tab_' . esc($loanID);
 
 
-            $paymentAmount = (float) $response_decode[0]['payment_amount'];
-            $paymentStatus = $response_decode[0]['payment_status'];
-            $txnID = 'TXN_' . $response_decode[0]['cf_payment_id'];
-            $now = date('Y-m-d H:i:s');
+                $paymentAmount = (float) $response_decode[0]['payment_amount'];
+                $paymentStatus = $response_decode[0]['payment_status'];
+                $txnID = 'TXN_' . $response_decode[0]['cf_payment_id'];
+                $now = date('Y-m-d H:i:s');
 
-            // Get loan details
-            $loan = $db->table('loans')->where('applicationID', $loanID)->get()->getRow();
-            if (!$loan) {
-                return $this->failNotFound('Loan not found');
-            }
-
-            $emiPending = (int) $loan->pending_emi;
-            $loanDue = (float) $loan->loan_due;
-
-            $totalEmiPaid = 0;
-            $emiCountPaid = 0;
-
-            // Step 1: Pay active EMIs ("Due")
-            $emiRows = $db->table($emiTable)
-                ->where('reference', 'Due')
-                ->orderBy('Id', 'ASC')
-                ->get()
-                ->getResult();
-
-            foreach ($emiRows as $emi) {
-                if ($paymentAmount >= $emi->emi) {
-                    $db->table($emiTable)->where('Id', $emi->Id)->update([
-                        'reference'       => 'Y',
-                        'paymentStatus'   => $paymentStatus,
-                        'transactionDate' => $now,
-                        'updated_on'      => $now,
-                        'transactionId'   => $txnID,
-                        'balance'         => 0,
-                    ]);
-                    $paymentAmount -= $emi->emi;
-                    $totalEmiPaid += $emi->emi;
-                    $emiCountPaid += 1;
-                } else {
-                    // Partial payment
-                    if ($paymentAmount > 0) {
-                        $balance = $emi->balance - $paymentAmount;
-
-                        $db->table($emiTable)->where('Id', $emi->Id)->update([
-                            'paymentStatus'   => $paymentStatus,
-                            'transactionDate' => $now,
-                            'updated_on'      => $now,
-                            'transactionId'   => $txnID,
-                            'balance'         => $balance,
-                        ]);
-
-                        $totalEmiPaid += $paymentAmount;
-                        $paymentAmount = 0;
-                    }
-                    break;
+                // Get loan details
+                $loan = $db->table('loans')->where('applicationID', $loanID)->get()->getRow();
+                if (!$loan) {
+                    return $this->failNotFound('Loan not found');
                 }
-            }
 
-            // Step 2: If still amount left, pay future EMIs ("N")
-            if ($paymentAmount > 0) {
-                $upcomingEMIs = $db->table($emiTable)
-                    ->where('reference', 'N')
+                $emiPending = (int) $loan->pending_emi;
+                $loanDue = (float) $loan->loan_due;
+
+                $totalEmiPaid = 0;
+                $emiCountPaid = 0;
+
+                // Step 1: Pay active EMIs ("Due")
+                $emiRows = $db->table($emiTable)
+                    ->where('reference', 'Due')
                     ->orderBy('Id', 'ASC')
                     ->get()
                     ->getResult();
 
-                foreach ($upcomingEMIs as $emi) {
+                foreach ($emiRows as $emi) {
                     if ($paymentAmount >= $emi->emi) {
                         $db->table($emiTable)->where('Id', $emi->Id)->update([
                             'reference'       => 'Y',
                             'paymentStatus'   => $paymentStatus,
                             'transactionDate' => $now,
                             'updated_on'      => $now,
+                            'orderId'         => $orderId,
                             'transactionId'   => $txnID,
                             'balance'         => 0,
                         ]);
@@ -281,11 +233,11 @@ class PaymentController extends BaseController
                         $totalEmiPaid += $emi->emi;
                         $emiCountPaid += 1;
                     } else {
+                        // Partial payment
                         if ($paymentAmount > 0) {
                             $balance = $emi->balance - $paymentAmount;
 
                             $db->table($emiTable)->where('Id', $emi->Id)->update([
-                                'reference'       => 'Due', // this becomes next active EMI
                                 'paymentStatus'   => $paymentStatus,
                                 'transactionDate' => $now,
                                 'updated_on'      => $now,
@@ -299,36 +251,83 @@ class PaymentController extends BaseController
                         break;
                     }
                 }
+
+                // Step 2: If still amount left, pay future EMIs ("N")
+                if ($paymentAmount > 0) {
+                    $upcomingEMIs = $db->table($emiTable)
+                        ->where('reference', 'N')
+                        ->orderBy('Id', 'ASC')
+                        ->get()
+                        ->getResult();
+
+                    foreach ($upcomingEMIs as $emi) {
+                        if ($paymentAmount >= $emi->emi) {
+                            $db->table($emiTable)->where('Id', $emi->Id)->update([
+                                'reference'       => 'Y',
+                                'paymentStatus'   => $paymentStatus,
+                                'transactionDate' => $now,
+                                'updated_on'      => $now,
+                                'orderId'         => $orderId,
+                                'transactionId'   => $txnID,
+                                'balance'         => 0,
+                            ]);
+                            $paymentAmount -= $emi->emi;
+                            $totalEmiPaid += $emi->emi;
+                            $emiCountPaid += 1;
+                        } else {
+                            if ($paymentAmount > 0) {
+                                $balance = $emi->balance - $paymentAmount;
+
+                                $db->table($emiTable)->where('Id', $emi->Id)->update([
+                                    'reference'       => 'Due', // this becomes next active EMI
+                                    'paymentStatus'   => $paymentStatus,
+                                    'transactionDate' => $now,
+                                    'updated_on'      => $now,
+                                    'transactionId'   => $txnID,
+                                    'balance'         => $balance,
+                                ]);
+
+                                $totalEmiPaid += $paymentAmount;
+                                $paymentAmount = 0;
+                            }
+                            break;
+                        }
+                    }
+                }
+                curl_close($curl);
+                // Step 3: Set next EMI as "Due"
+                $nextEmi = $db->table($emiTable)
+                    ->where('reference', 'N')
+                    ->orderBy('Id', 'ASC')
+                    ->limit(1)
+                    ->get()
+                    ->getRow();
+
+                if ($nextEmi) {
+                    $db->table($emiTable)
+                        ->where('Id', $nextEmi->Id)
+                        ->update(['reference' => 'Due']);
+                }
+
+                // Step 4: Update loan master table
+                $db->table('loans')->where('applicationID', $loanID)->update([
+                    'loan_due'    => $loanDue - $totalEmiPaid,
+                    'pending_emi' => $emiPending - $emiCountPaid,
+                    'updated_at'  => $now,
+                ]);
+
+                return $this->respond([
+                    'message'        => 'Payment Success',
+                    'emis_paid'      => $emiCountPaid,
+                    'total_emi_paid' => $paymentAmount,
+                    'payment_method' => $response_decode[0]['payment_group']
+                ]);
+            } else {
+                # code...
             }
-
-            // Step 3: Set next EMI as "Due"
-            $nextEmi = $db->table($emiTable)
-                ->where('reference', 'N')
-                ->orderBy('Id', 'ASC')
-                ->limit(1)
-                ->get()
-                ->getRow();
-
-            if ($nextEmi) {
-                $db->table($emiTable)
-                    ->where('Id', $nextEmi->Id)
-                    ->update(['reference' => 'Due']);
-            }
-
-            // Step 4: Update loan master table
-            $db->table('loans')->where('applicationID', $loanID)->update([
-                'loan_due'    => $loanDue - $totalEmiPaid,
-                'pending_emi' => $emiPending - $emiCountPaid,
-                'updated_at'  => $now,
-            ]);
-
-            return $this->respond([
-                'message'        => 'Payment applied successfully.',
-                'emis_paid'      => $emiCountPaid,
-                'total_emi_paid' => $totalEmiPaid,
-            ]);
+            // return $this->respond(['payment_success' => ], 200);
         } else {
-            # code...
+            return $this->respond(['payment_failed' => $err], $httpcode);
         }
     }
 
@@ -399,12 +398,7 @@ class PaymentController extends BaseController
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => $data_json,
-            CURLOPT_HTTPHEADER => array(
-
-                'x-api-version: 2025-01-01',
-                'Content-Type: application/json',
-                'Accept: application/json',
-            ),
+            CURLOPT_HTTPHEADER => array(),
         ));
 
         $response = curl_exec($curl);
@@ -432,5 +426,34 @@ class PaymentController extends BaseController
     public function pay_conf()
     {
         return view('payment_conf');
+    }
+
+    // Redirect from app of retailer to payment page
+    public function app_payment_collection()
+    {
+        $loanId = $this->request->getGet('loanID'); // Get from query string
+        $name = $this->request->getGet('name');
+        $amount = $this->request->getGet('amount');
+        $orderID = $this->request->getGet('orderID');
+        $paymentSessionId = $this->request->getGet('paymentSessionId');
+        return view('payment_redirect', [
+            'loanID' => $loanId,
+            'orderID' => $orderID,
+            'name' => $name,
+            'amount' => $amount,
+            'paymentSessionId' => $paymentSessionId
+        ]);
+    }
+    public function app_pay_conf()
+    {
+        $loanId = $this->request->getGet('loanID'); // Get from query string
+        $orderID = $this->request->getGet('orderID');
+        $order_amount = $this->request->getGet('order_amount');
+
+        return view('payment_conf_app', [
+            'orderID' => $orderID,
+            'loanId' => $loanId,
+            'order_amount' => $order_amount
+        ]);
     }
 }

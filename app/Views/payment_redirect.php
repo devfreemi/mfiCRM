@@ -9,14 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- JQ -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <!-- Cashfree PG -->
     <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
 </head>
 
 <body class="bg-light">
 
-    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class="w-100" style="max-width: 420px;">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        <div class="w-100">
 
             <!-- Logo and Secure Label -->
             <div class="text-center mb-3">
@@ -28,23 +32,44 @@
             </div>
 
             <div class="p-3 bg-white shadow rounded-4 mx-2">
-                <!-- Icons Row -->
-                <div class="d-flex justify-content-around text-center mb-4">
-                    <div>
-                        <i class="bi bi-credit-card-2-front-fill text-info fs-4"></i><br>
-                        <span class="small text-muted">Card</span>
-                    </div>
-                    <div>
-                        <i class="bi bi-upc-scan text-warning fs-4"></i><br>
-                        <span class="small text-muted">UPI</span>
-                    </div>
-                    <div>
-                        <i class="bi bi-bank text-danger fs-4"></i><br>
-                        <span class="small text-muted">Bank</span>
-                    </div>
-                </div>
+
 
                 <div>
+                    <div class="container">
+                        <!-- QR Code Section -->
+
+                        <div class="mx-auto text-center mt-5">
+                            <div class="row mx-auto">
+                                <div class="col-2"></div>
+                                <div class="col-8 px-0">
+                                    <div class=" " style="width: 245px;">
+                                        <div class="card">
+                                            <div class="card-body pb-0">
+                                                <h5 class="card-title">
+                                                    QR for Rs. <?= number_format($amount) ?>.00
+                                                </h5>
+
+                                                <div class="">
+                                                    <div class="" bfor="qr">
+                                                        <div id="qr" class="icon qrmount"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="alert" id="paymentMessage">
+
+                            </p>
+
+
+
+                        </div>
+                        <!-- QR -->
+                    </div>
                     <div class="mb-3">
                         <label for="name" class="form-label small text-muted">Full Name</label>
                         <input type="text" class="form-control form-control-lg rounded-3" id="name" value="<?= esc($name) ?>" required readonly>
@@ -62,10 +87,10 @@
                         <label for="amount" class="form-label small text-muted">Amount (₹)</label>
                         <input type="number" class="form-control form-control-lg rounded-3" id="amount" value="<?= esc($amount) ?>" required readonly>
                     </div>
-                    <div class="mb-3">
-                        <label for="amount" class="form-label small text-muted">Payment Session (₹)</label>
-                        <input type="text" class="form-control form-control-lg rounded-3" id="paymentSessionId" value="<?= esc($paymentSessionId) ?>" required readonly>
-                    </div>
+
+                    <input type="hidden" class="form-control form-control-lg rounded-3" id="paymentSessionId" value="<?= esc($paymentSessionId) ?>" required readonly>
+
+                    <input type="hidden" id="returnUrl" value="<?= base_url() ?>payment/conformation/gateway?orderID=<?= esc($orderID) ?>&loanId=<?= esc($loanID) ?>&order_amount=<?= esc($amount) ?>" />
                     <div class="d-grid">
                         <button type="button" class="btn btn-primary btn-lg rounded-3" id="renderBtn">
                             <i class="bi bi-lock-fill me-1"></i> Generate QR Code
@@ -74,19 +99,23 @@
                 </div>
             </div>
         </div>
+
     </div>
-    <div class="" bfor="qr">
-        <div id="qr" class="icon qrmount"></div>
-    </div>
+
+
+
+
+
     <script>
         const paymentBtn = document.getElementById("renderBtn");
+
         const cashfree = Cashfree({
             mode: "sandbox"
         });
         const paymentMessage = document.getElementById("paymentMessage");
         let qr = cashfree.create("upiQr", {
             values: {
-                size: "220px",
+                size: "200px",
             }
         });
         qr.mount("#qr");
@@ -94,6 +123,7 @@
             paymentBtn.disabled = true
         })
         paymentBtn.addEventListener("click", function(e) {
+
             paymentMessage.innerText = "";
 
             paymentMessage.classList.remove("alert-danger");
