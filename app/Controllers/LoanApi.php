@@ -82,10 +82,21 @@ class LoanApi extends BaseController
         if ($status == "Approved") {
             # code...
             $model->create($table);
+            // $r = ($roi / 100 / 12);
+            // $x = pow(1 + $r, $tenure);
+            // $emi = round(($loan_amount * $x * $r) / ($x - 1));
+            // $due = round($emi * $tenure);
+            // Monthly interest rate is not needed in flat interest, but keeping variable structure
             $r = ($roi / 100 / 12);
-            $x = pow(1 + $r, $tenure);
-            $emi = round(($loan_amount * $x * $r) / ($x - 1));
-            $due = round($emi * $tenure);
+
+            // Total interest (Flat): (P × R × N years)
+            $interest = ($loan_amount * $roi * ($tenure / 12)) / 100;
+
+            // Total amount payable
+            $due = round($loan_amount + $interest);
+
+            // Flat EMI: Total payable / total months
+            $emi = round($due / $tenure);
             $data = [
 
                 'loan_status'       => "Approved",
@@ -109,11 +120,21 @@ class LoanApi extends BaseController
             $count = $builder_app->countAll();
             if ($count < $day_tenure) {
                 $today = date('Y-m-d');
+                // $r = ($roi / 100 / 12);
+                // $x = pow(1 + $r, $tenure);
+                // $emi = round(($loan_amount * $x * $r) / ($x - 1));
+                // $due = round($emi * $tenure);
+                // Monthly interest rate is not needed in flat interest, but keeping variable structure
                 $r = ($roi / 100 / 12);
-                $x = pow(1 + $r, $tenure);
-                $emi = round(($loan_amount * $x * $r) / ($x - 1));
 
-                $due = round($emi * $tenure);
+                // Total interest (Flat): (P × R × N years)
+                $interest = ($loan_amount * $roi * ($tenure / 12)) / 100;
+
+                // Total amount payable
+                $due = round($loan_amount + $interest);
+
+                // Flat EMI: Total payable / total months
+                $emi = round($due / $tenure);
                 $final_emi = round($due / $day_tenure);
                 $repeat = strtotime("+1 day", strtotime($today));
                 $today = date('Y-m-d', $repeat);

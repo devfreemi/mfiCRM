@@ -345,103 +345,6 @@ class AadhaarKycController extends BaseController
             return $this->respond(['error' => 'Internal Error'], 502);
         }
     }
-    // --------------------------------------------
-    // --------------------------------------------
-    // GET PAN FROM NAME AND MOBILE NUMBER
-    public function get_pan()
-    {
-        // Data Input
-        $name = $this->request->getVar('member_name');
-        $mobile = $this->request->getVar('member_mobile');
-
-
-        $dataApi = array(
-            'name'              => strtoupper($name),
-            'mobile_no'            => $mobile,
-
-        );
-        $data_json = json_encode($dataApi);
-
-        if ($name != '' && $mobile != '') {
-            # code...
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/mobile-to-pan',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => $data_json,
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer . ' . getenv('SUREPASS_API_KEY'),
-                    // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
-                    'Content-Type: application/json'
-                ),
-            ));
-
-            $response = curl_exec($curl);
-
-
-            $err = curl_error($curl);
-            $response_decode = json_decode($response, true);
-
-            curl_close($curl);
-
-            if ($err) {
-                // echo "cURL Error #:" . $err;
-                return $this->respond(['error' => 'Invalid Request.' . $err], 401);
-            } else {
-                // return $response;
-                // return $this->respond(['pan' => $response_decode], 200);
-                if ($response_decode['status_code'] === 200) {
-                    # code...
-                    $dataApiPan = array(
-                        'id_number'              => strtoupper($name),
-                        'get_address'            => true,
-
-                    );
-                    $data_json_pan = json_encode($dataApiPan);
-                    $curlInter = curl_init();
-
-                    curl_setopt_array($curlInter, array(
-                        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/mobile-to-pan',
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => '',
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 0,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => 'POST',
-                        CURLOPT_POSTFIELDS => $data_json_pan,
-                        CURLOPT_HTTPHEADER => array(
-                            'Authorization: Bearer . ' . getenv('SUREPASS_API_KEY'),
-                            // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
-                            'Content-Type: application/json'
-                        ),
-                    ));
-
-                    $responsePan = curl_exec($curlInter);
-
-
-                    $err = curl_error($curlInter);
-                    $response_decode_pan = json_decode($responsePan, true);
-
-                    curl_close($curlInter);
-                    return $this->respond(['pan' => $response_decode_pan], 200);
-                } else {
-                    # code...
-                    return $this->respond(['pan' => $err], 200);
-                }
-            }
-        } else {
-            # code...
-            return $this->respond(['error' => 'Internal Error'], 502);
-        }
-    }
     public function verify_pan()
     {
         // Data Input
@@ -636,9 +539,6 @@ class AadhaarKycController extends BaseController
         }
     }
 
-    // --------------------------------------------
-
-    // --------------------------------------------
 
     // PAN VERIFICATION FOR CUSTOMER APPLICATION
     public function verify_pan_user()
