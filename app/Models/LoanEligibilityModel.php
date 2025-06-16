@@ -82,8 +82,13 @@ class LoanEligibilityModel extends Model
     public function calculateEMI($principal, $annual_rate, $tenure_months)
     {
         if ($tenure_months == 0) return 0;
-        $monthly_rate = $annual_rate / (12 * 100);
-        return ($principal * $monthly_rate * pow(1 + $monthly_rate, $tenure_months)) / (pow(1 + $monthly_rate, $tenure_months) - 1);
+
+        // Flat interest calculation
+        $interest = ($principal * $annual_rate * ($tenure_months / 12)) / 100;
+        $total_payable = $principal + $interest;
+
+        // EMI = Total Payable / Tenure
+        return $total_payable / $tenure_months;
     }
 
     public function calculateLoanEligibility()
@@ -239,8 +244,14 @@ class LoanEligibilityModel extends Model
         $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
 
         if ($calculated_emi > $eligible_emi) {
+            // Convert to monthly flat rate
             $monthly_rate = $final_roi / (12 * 100);
-            $adjusted_loan = $eligible_emi * (pow(1 + $monthly_rate, $tenure) - 1) / ($monthly_rate * pow(1 + $monthly_rate, $tenure));
+
+            // Flat interest: Loan = (EMI × Tenure) / (1 + (Rate × Tenure in years))
+            $total_interest_factor = ($final_roi * $tenure / 12) / 100;
+            $adjusted_loan = ($eligible_emi * $tenure) / (1 + $total_interest_factor);
+
+            // Update loan and EMI to FOIR-adjusted values
             $loan_amount = $adjusted_loan;
             $calculated_emi = $eligible_emi;
             $reason .= "Adjusted to match FOIR. ";

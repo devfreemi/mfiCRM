@@ -377,7 +377,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer . ' . getenv('SUREPASS_API_KEY'),
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
                     // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
                     'Content-Type: application/json'
                 ),
@@ -400,7 +400,7 @@ class AadhaarKycController extends BaseController
                 if ($response_decode['status_code'] === 200) {
                     # code...
                     $dataApiPan = array(
-                        'id_number'              => strtoupper($name),
+                        'id_number'              => $response_decode['data']['pan_number'],
                         'get_address'            => true,
 
                     );
@@ -408,7 +408,7 @@ class AadhaarKycController extends BaseController
                     $curlInter = curl_init();
 
                     curl_setopt_array($curlInter, array(
-                        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/mobile-to-pan',
+                        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/pan-comprehensive',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
@@ -418,7 +418,7 @@ class AadhaarKycController extends BaseController
                         CURLOPT_CUSTOMREQUEST => 'POST',
                         CURLOPT_POSTFIELDS => $data_json_pan,
                         CURLOPT_HTTPHEADER => array(
-                            'Authorization: Bearer . ' . getenv('SUREPASS_API_KEY'),
+                            'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
                             // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
                             'Content-Type: application/json'
                         ),
@@ -431,10 +431,58 @@ class AadhaarKycController extends BaseController
                     $response_decode_pan = json_decode($responsePan, true);
 
                     curl_close($curlInter);
-                    return $this->respond(['pan' => $response_decode_pan], 200);
+                    if ($err) {
+                        // echo "cURL Error #:" . $err;
+                        return $this->respond(['error' => 'Internal Exception!' . $err], 502);
+                    } else {
+                        // return $responsePan;
+                        // return $this->respond(['pan' => $response_decode_pan], 200);
+                        if ($response_decode_pan['status_code'] === 200) {
+                            # code... get gst from pan
+                            $dataApiGst = array(
+                                'id_number'              => $response_decode_pan['data']['pan_number'],
+
+                            );
+                            $data_json_gst = json_encode($dataApiGst);
+                            $curlGst = curl_init();
+                            curl_setopt_array($curlGst, array(
+                                CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/corporate/gstin-by-pan',
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => '',
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 0,
+                                CURLOPT_FOLLOWLOCATION => true,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => 'POST',
+                                CURLOPT_POSTFIELDS => $data_json_gst,
+                                CURLOPT_HTTPHEADER => array(
+                                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                                    'Content-Type: application/json'
+                                ),
+                            ));
+                            $response_gst = curl_exec($curlGst);
+                            $err_gst = curl_error($curlGst);
+                            curl_close($curlGst);
+                            if ($err_gst) {
+                                // echo "cURL Error #:" . $err;
+                                return $this->respond(['error' => 'Internal Exception!' . $err_gst], 502);
+                            } else {
+
+                                $response_decode_gst = json_decode($response_gst, true);
+                                // return $this->respond(['pan' => $response_decode_pan], 200);
+                                return $this->respond([
+                                    'pan' => $response_decode_pan,
+                                    'gst' => $response_decode_gst
+                                ], 200);
+                            }
+                        } else {
+                            # code...
+                            return $this->respond(['error' => 'Server Error'], 500);
+                        }
+                    }
                 } else {
                     # code...
-                    return $this->respond(['pan' => $err], 200);
+                    return $this->respond(['pan' => $err], 401);
                 }
             }
         } else {
@@ -446,18 +494,11 @@ class AadhaarKycController extends BaseController
     {
         // Data Input
         $panNumber = $this->request->getVar('pan');
-        $employeeIDkycVer = $this->request->getVar('employeeIDPan');
-        $name = $this->request->getVar('userName');
-        $name = strtoupper($name);
-        $caseId = $this->request->getVar('caseId');
-        $consent = "Y";
+
 
         $dataApi = array(
-            'pan'              => $panNumber,
-            'consent'          => $consent,
-            'clientData' => array(
-                'caseId'          => $caseId,
-            ),
+            'id_number'              => $panNumber,
+            'get_address'            => true,
         );
         $data_json = json_encode($dataApi);
 
@@ -466,17 +507,19 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/pan-profile-detailed",
+                CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/pan-comprehensive',
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
+                CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
-                    "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                    // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
+                    'Content-Type: application/json'
                 ),
             ));
 
@@ -491,94 +534,49 @@ class AadhaarKycController extends BaseController
                 return $this->respond(['error' => 'Internal Exception!' . $err], 502);
             } else {
                 // return $response;
-                $statusCode = $response_decode['statusCode'];
-                if ($statusCode === 101) {
 
-                    // GST Number Search  
+                if ($response_decode['status_code'] === 200) {
+                    # code... get gst from pan
                     $dataApiGst = array(
-                        'pan'              => $panNumber,
-                        'consent'          => $consent,
-                        "stateCode"         => '19',
-                        'clientData'        => array(
-                            'caseId'          => $caseId,
-                        ),
+                        'id_number'              => $response_decode['data']['pan_number'],
+
                     );
                     $data_json_gst = json_encode($dataApiGst);
-
                     $curlGst = curl_init();
-
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gst-advanced",
+                        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/corporate/gstin-by-pan',
                         CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => "",
+                        CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_CUSTOMREQUEST => 'POST',
                         CURLOPT_POSTFIELDS => $data_json_gst,
                         CURLOPT_HTTPHEADER => array(
-                            "content-type: application/json",
-                            "x-auth-key: KzKQbi9Tw8OokmY"
+                            'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                            'Content-Type: application/json'
                         ),
                     ));
-
                     $response_gst = curl_exec($curlGst);
                     $err_gst = curl_error($curlGst);
-                    $response_decode_gst = json_decode($response_gst, true);
-
                     curl_close($curlGst);
                     if ($err_gst) {
-                        # code...
-                        // $gst_ref = "GST Searching Failed!";
-                        return $this->respond(['error' => 'Internal Exception!'], 502);
+                        // echo "cURL Error #:" . $err;
+                        return $this->respond(['error' => 'Internal Exception!' . $err_gst], 502);
                     } else {
-                        # code...
-                        $statusCodeGst = $response_decode_gst['statusCode'];
-                        if ($statusCodeGst === 101) {
-                            # code...
-                            $gst_ref = "GST Found!";
-                            $gst = $response_decode_gst['result'][0]['gstinId'];
-                            // $result = json_decode($result[0], true);
-                            // $gst = "N/A";
-
-                        } else {
-                            # code...
-                            $gst_ref = "GST Not Found for this PAN!";
-                            $gst = "N/A";
-                        }
-                    }
-
-                    $nameResponse = $response_decode['result']['name'];
-                    $userDOB = $response_decode['result']['dob'];
-
-                    // End GST Number Search
-                    # code...
-                    if ($name === $nameResponse) {
-                        # code...
-                        $dataOutput = array(
-                            'pan'               => $panNumber,
-                            'gst'               => $gst,
-                            'msgGst'            => $gst_ref,
-                            'name'              => $nameResponse,
-                            'userDOB'           => $userDOB,
-                            'msgPan'            => 'PAN Verified'
-                        );
-                        return $this->respond(['panVerify' => $dataOutput], 200);
-                    } else {
-                        # code...
-                        $dataOutput = array(
-                            'pan'               => $panNumber,
-                            'gst'               => $gst,
-                            'msgGst'            => $gst_ref,
-                            'name'              => $nameResponse,
-                            'userDOB'           => $userDOB,
-                            'msgPan'            => 'PAN Verified but Name does not match!'
-                        );
-                        return $this->respond(['panDetails' => $dataOutput], 403);
+                        // return $response_gst;
+                        // return $this->respond(['gst' => $response_decode_gst], 200);
+                        $response_decode_gst = json_decode($response_gst, true);
+                        // return $this->respond(['panVerify' => $response_decode], 200);
+                        return $this->respond([
+                            'panVerify' => $response_decode,
+                            'gst' => $response_decode_gst
+                        ], 200);
                     }
                 } else {
                     # code...
-                    return $this->respond(['panVerify' => 'Invalid PAN Number'], 406);
+                    return $this->respond(['error' => 'Server Error'], 500);
                 }
             }
         } else {
@@ -589,15 +587,10 @@ class AadhaarKycController extends BaseController
     public function verify_gst()
     {
         $gstNumber = $this->request->getVar('gstin');
-        $caseId = rand(1000, 9999);
-        $employeeIDgst = $this->request->getVar('employeeIDGst');
-        $consent = "Y";
+
         $dataApi = array(
-            'gstin'              => $gstNumber,
-            'consent'          => $consent,
-            'clientData' => array(
-                'caseId'          => $caseId,
-            ),
+            'id_number'              => $gstNumber,
+
         );
         $data_json = json_encode($dataApi);
 
@@ -606,17 +599,18 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/gst/v2/gstdetailed-additional",
+                CURLOPT_URL => "https://sandbox.surepass.io/api/v1/corporate/gstin-advanced",
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
+                CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
-                    "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                    'Content-Type: application/json'
                 ),
             ));
 
