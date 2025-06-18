@@ -587,6 +587,8 @@ class AadhaarKycController extends BaseController
     public function verify_gst()
     {
         $gstNumber = $this->request->getVar('gstin');
+        $mobile = $this->request->getVar('mobile');
+        $mobileFour = substr($mobile, -4);
 
         $dataApi = array(
             'id_number'              => $gstNumber,
@@ -624,7 +626,26 @@ class AadhaarKycController extends BaseController
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
                 // echo $response;
-
+                $name_str = strtoupper($response_decode['data']['business_name']);
+                $name_str = str_replace(" ", "", $name_str);
+                $name_str = substr($name_str, 0, 4);
+                $db = db_connect();
+                $dataInsert = [
+                    'status'            => $response_decode['data']['gstin_status'],
+                    'memberID'          => $name_str . $mobileFour,
+                    'gst'               => $gstNumber,
+                    'gstType'           => $response_decode['data']['taxpayer_type'],
+                    'holderEmail'       => $response_decode['data']['contact_details']['principal']['email'],
+                    'holderMobile'      => $response_decode['data']['contact_details']['principal']['mobile'],
+                    'holderName'        => $response_decode['data']['promoters'][0],
+                    'tradeName'         => $response_decode['data']['business_name'],
+                    'regDate'           => $response_decode['data']['date_of_registration'],
+                    'businessAddress'   => $response_decode['data']['contact_details']['principal']['address'],
+                    'turnOver'          => $response_decode['data']['annual_turnover'],
+                    'turnOveryear'      => $response_decode['data']['annual_turnover_fy'],
+                ];
+                $builderMaster = $db->table('gstmaster');
+                $builderMaster->upsert($dataInsert);
                 return $this->respond(['gst' => $response_decode], 200);
             }
         }

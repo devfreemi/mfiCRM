@@ -259,7 +259,7 @@ class LoanEligibilityModel extends Model
         // If customer can afford that EMI, give ₹50k with higher ROI and tenure
         if ($loan_amount < $min_loan) {
             return [
-                "Eligibility" => "Eligible (Minimum ₹50K Plan)",
+                "Eligibility" => "Eligible",
                 "LoanAmount" => $min_loan,
                 "ROI" => $max_roi,
                 "FixedROI" => $max_roi,

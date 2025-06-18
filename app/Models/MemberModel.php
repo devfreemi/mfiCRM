@@ -51,7 +51,8 @@ class MemberModel extends Model
         'month_purchase',
         'comments',
         'remarks',
-        'userDOB'
+        'userDOB',
+        'gstData'
 
     ];
 

@@ -50,6 +50,14 @@ class MemberController extends BaseController
             # code...
             $adhar = $this->request->getVar('mobile') . "/N";
         }
+        if ($this->request->getVar('gstNo') != '') {
+            # code...
+            $gst = $this->request->getVar('gstNo');
+        } else {
+            # code...
+            $gst = $this->request->getVar('panNo') . "/NA";
+        }
+
 
 
         $data = [
@@ -58,7 +66,7 @@ class MemberController extends BaseController
             'groupId'           => $this->request->getVar('groupId'),
             'mobile'            => $this->request->getVar('mobile'),
             'pan'               => $pan,
-            'gst'               => $this->request->getVar('gstNo'),
+            'gst'               => $gst,
             'adhar'             => $adhar,
             'name'              => $this->request->getVar('panName'),
             'location'          => $this->request->getVar('memberLocation'),
@@ -84,64 +92,13 @@ class MemberController extends BaseController
             'agent'             => $this->request->getVar('agent'),
             'aadhaarVerified'   => $this->request->getVar('authenticate'),
             'aadhaarData'       => $this->request->getVar('kycLocalValueSubmit'),
-            'authenticatePAN'   => $this->request->getVar('authenticatePAN'),
+            'gstData'           => $this->request->getVar('gstLocalValueSubmit'),
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
             'eli_run'           => "Y",
             'month_purchase'    => $this->request->getVar('month_purchase')
         ];
 
-        // // // FOR ATTENDENCE
-        // $dataAtten = [
-        //     'agent_id'          => $this->request->getVar('agent'),
-        //     'date'              => $signDate,
-        //     'created_at'        => $date,
-        //     'sign_in_time'      => $signIn,
-        // ];
-        // // Check Same date for attendence
-        // $queryCheck = $modelGeo->where('agent_id', $employee)
-        //     ->orderBy('created_at', 'DESC')
-        //     ->limit(1)
-        //     ->first();
-
-        // if ($queryCheck != null) {
-        //     # code...
-        //     $dateCheck = $queryCheck['date'];
-        //     if ($dateCheck == $signDate) {
-        //         # code...
-        //         $queryMem = $model->save($data);
-        //         if (!$queryMem) {
-        //             return $this->respond(['error' => 'Invalid Request.'], 401);
-        //         } else {
-        //             # code...
-        //             // return $this->respond(['tag' => $data], 200);
-        //             return $this->respond(['members' => $data], 200);
-        //         }
-        //     } else {
-        //         # code...
-
-        //         $queryAtten = $atten->save($dataAtten);
-        //         $queryMem = $model->save($data);
-        //         if (!$queryAtten && !$queryMem) {
-        //             return $this->respond(['error' => 'Invalid Request.'], 401);
-        //         } else {
-        //             # code...
-        //             // return $this->respond(['tag' => $data], 200);
-        //             return $this->respond(['members' => $data], 200);
-        //         }
-        //     }
-        // } else {
-        //     # code...
-        //     $queryMem = $model->save($data);
-        //     $queryAtten = $atten->save($dataAtten);
-        //     if (!$queryAtten && !$queryMem) {
-        //         return $this->respond(['error' => 'Invalid Request.'], 401);
-        //     } else {
-        //         # code...
-        //         // return $this->respond(['tag' => $data], 200);
-        //         return $this->respond(['members' => $data], 200);
-        //     }
-        // }
 
 
         $query = $model->save($data);
