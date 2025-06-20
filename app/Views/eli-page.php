@@ -132,6 +132,7 @@
             location: "<?= esc($location) ?>",
             eligibility: "<?php echo esc($result['Eligibility']); ?>"
 
+
         };
 
         // Populate Modal Data on Click
@@ -143,7 +144,7 @@
             $("#modal-business-type").text(loanData.business_type);
             $("#modal-location").text(loanData.location);
             $("#modal-loan-amount").text(loanData.loan_amount);
-            $("#modal-roi").text(loanData.roi);
+            // $("#modal-roi").text(loanData.roi);
             $("#modal-eligibility").text(loanData.eligibility);
 
             // Color Indicator for Eligibility Status

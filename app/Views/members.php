@@ -17,14 +17,24 @@
         <div class="container-fluid p-0">
 
             <h1 class="h3 mb-3">List of <strong>Retailers</strong></h1>
-
+            <div class="row mx-auto">
+                <div class="col-7"></div>
+                <div class="col-5 text-end">
+                    <!-- <a class="col-md-4 btn btn-success">Add Retailer</a> -->
+                    <a href="<?php echo base_url() ?>member-add" class="col-md-4 btn btn-success "> Add Retailer
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+            </div>
             <div class="row">
                 <?php if (session()->getFlashdata('success')) : ?>
                     <div class="col-xl-12 col-xxl-12 my-5">
                         <p class="text-center text-success fw-bold"><?= session()->getFlashdata('success') ?></p>
                     </div>
                 <?php endif; ?>
+
                 <div class="col-xl-12 col-xxl-12 d-flex">
+
                     <div class="w-100 table-responsive">
                         <table id="branch" class="table table-striped">
                             <thead>

@@ -1,0 +1,181 @@
+INFO - 2025-06-20 06:17:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:17:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:18:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:19:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-20 06:19:43 --> mysqli_sql_exception: Unknown column 'emi' in 'field list' in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', NULL, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+#5 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+#8 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2025-06-20 06:19:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'emi' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', null, false)
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+ 3 APPPATH\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-20 06:19:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'emi' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', null, false)
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+ 5 APPPATH\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-20 06:19:43 --> [Caused by] mysqli_sql_exception: Unknown column 'emi' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'809\',\'Not Eligible\',0,\'2025-06-20\',0,\'NEWB5022\',\'Customer has no EMI capacity after existing obligations.\',0,0,0)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', null, false)
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+ 6 APPPATH\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-20 06:20:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:21:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:21:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:27:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:27:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:31:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:31:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:31:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:33:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:33:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:46:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:47:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 06:50:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 12:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 12:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 12:58:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 12:58:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-20 12:58:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

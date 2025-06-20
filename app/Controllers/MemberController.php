@@ -109,6 +109,111 @@ class MemberController extends BaseController
             return $this->respond(['members' => $data], 200);
         }
     }
+    // From CRM
+    public function add_member_crm()
+    {
+        //
+        date_default_timezone_set('Asia/Kolkata');
+        $model = new MemberModel();
+        $modelGeo = new GeoTagModel();
+        $atten = new AgentAttendenceModel();
+        $mobile = $this->request->getVar('mobile');
+        $mobileFour = substr($mobile, -4);
+        $name_str = strtoupper($this->request->getVar('businessName'));
+        $name_str = str_replace(" ", "", $name_str);
+        $name_str = substr($name_str, 0, 4);
+        $signDate = date('Y-m-d');
+        $date = date('Y-m-d H:i:s');
+        $signIn = date('H:i:s');
+        $employee = $this->request->getVar('agent');
+
+        if ($this->request->getVar('panNo') != '') {
+            # code...
+            $pan = $this->request->getVar('panNo');
+        } else {
+            # code...
+            $pan = $this->request->getVar('mobile') . "/NA";
+        }
+        if ($this->request->getVar('adhar') != '') {
+            # code...
+            $adhar = $this->request->getVar('adhar');
+        } else {
+            # code...
+            $adhar = $this->request->getVar('mobile') . "/N";
+        }
+        if ($this->request->getVar('gstNo') != '') {
+            # code...
+            $gst = $this->request->getVar('gstNo');
+        } else {
+            # code...
+            $gst = $this->request->getVar('panNo') . "/NA";
+        }
+        $imageFile = $this->request->getFile('image_profile');
+        $imagePath = null;
+
+        if ($imageFile && $imageFile->isValid() && !$imageFile->hasMoved()) {
+            $newName = $imageFile->getRandomName(); // Or use a unique ID
+            $imageFile->move(ROOTPATH . 'public/uploads/', $newName);
+            $imagePath = 'uploads/' . $newName;
+        }
+
+
+        $data = [
+            'member_id'         =>  $name_str . $mobileFour,
+            'groupName'         => $this->request->getVar('groupName'),
+            'groupId'           => $this->request->getVar('groupId'),
+            'mobile'            => $this->request->getVar('mobile'),
+            'pan'               => $pan,
+            'gst'               => $gst,
+            'adhar'             => $adhar,
+            'name'              => $this->request->getVar('name'),
+            'location'          => $this->request->getVar('memberLocation'),
+            'pincode'           => $this->request->getVar('groupPin'),
+
+
+            'businessType'      => $this->request->getVar('businessType'),
+            'businessName'      => $this->request->getVar('businessName'),
+            'footFall'          => $this->request->getVar('footFall'),
+            'stock'             => $this->request->getVar('stock'),
+            'outstanding'       => $this->request->getVar('previous_emi'),
+            'estab'             => $this->request->getVar('business_time'),
+            'dailySales'        => $this->request->getVar('daily_sales'),
+            'image'             => base_url() . $imagePath,
+
+            'agent'             => $this->request->getVar('agent'),
+            'aadhaarVerified'   => $this->request->getVar('authenticate'),
+            'aadhaarData'       => $this->request->getVar('kycLocalValueSubmit'),
+            // 'gstData'           => $this->request->getVar('gstLocalValueSubmit'),
+            'panName'           => $this->request->getVar('panName'),
+            'created_at'        => $date,
+            'eli_run'           => "Y",
+            'month_purchase'    => $this->request->getVar('month_purchase')
+        ];
+
+        $data_eli_run = [
+            'cibil' =>  $this->request->getVar('cibil'),
+            'member_id' => $name_str . $mobileFour,
+            'first_date' => date('Y-m-d'),
+
+        ];
+        $db = db_connect();
+        $builder = $db->table('initial_eli_run');
+        $builder->insert($data_eli_run);
+
+        $query = $model->save($data);
+        if (!$query) {
+            return $this->respond(['error' => 'Invalid Request.' . $query], 401);
+        } else {
+            # code...
+            $session = session();
+            $session->setFlashdata('success', 'Member Added Successfully');
+            return redirect()->to(base_url() . 'members');
+            // return $this->respond(['members' => $data], 200);
+        }
+    }
+
+    // From CRM
+
     public function view_member()
     {
         $model = new MemberModel();

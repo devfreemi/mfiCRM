@@ -137,7 +137,7 @@
     }
 } ?>
 
-<!-- <script>
+<script>
     $('#remarks').on('change', function() {
         let selected = $(this).val();
 
@@ -147,8 +147,8 @@
         // Remove btn-primary and add btn-dang/er
         $('#actionBtn').removeClass('btn-primary').addClass('btn-danger');
         // Optional: Change button click behavior
-        // $('#actionBtn').off('click').on('click', function() {
-        //     alert('Button clicked: ' + selected);
-        // });
+        $('#actionBtn').off('click').on('click', function() {
+            alert('Button clicked: ' + selected);
+        });
     });
-</script> -->
+</script>

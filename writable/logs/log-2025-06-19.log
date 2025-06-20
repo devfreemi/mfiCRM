@@ -1,0 +1,640 @@
+INFO - 2025-06-19 09:42:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:42:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:42:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:42:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:43:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:44:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:45:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:45:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:46:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:47:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-19 09:47:43 --> ErrorException: Undefined variable $row
+in APPPATH\Views\members.php on line 24.
+ 1 APPPATH\Views\members.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\members.php', 24)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\members.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('members', [], true)
+ 5 APPPATH\Controllers\Home.php(27): view('members')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->members()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 09:47:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:48:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:50:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:50:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 09:54:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:07:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:09:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:09:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:09:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:14:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:14:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:20:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:23:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:23:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:24:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:28:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:28:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:29:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:29:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:29:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:52:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 10:55:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:06:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:08:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:09:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:10:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:10:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:11:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:11:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:12:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 16:42:34 --> mysqli_sql_exception: Unknown column 'gstData' in 'field list' in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `me...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `me...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `me...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `me...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-06-19 16:42:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'gstData' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :gstData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 2 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:42:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'gstData' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331554_8b783f4962781be5c5b9.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, NULL, \'2025-06-19 16:42:34\', \'Y\', \'100000\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331554_8b783f4962781be5c5b9.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, NULL, \'2025-06-19 16:42:34\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :gstData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 4 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:42:34 --> [Caused by] mysqli_sql_exception: Unknown column 'gstData' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331554_8b783f4962781be5c5b9.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, NULL, \'2025-06-19 16:42:34\', \'Y\', \'100000\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331554_8b783f4962781be5c5b9.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, NULL, \'2025-06-19 16:42:34\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331554_8b783f4962781be5c5b9.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, NULL, \'2025-06-19 16:42:34\', \'Y\', \'100000\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `gstData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :gstData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 5 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:13:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 16:43:41 --> mysqli_sql_exception: Column 'name' cannot be null in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `me...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `me...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `me...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `me...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-06-19 16:43:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'name' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 2 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:43:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'name' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331621_b19558bdb7cf6e73b52b.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:43:41\', \'Y\', \'100000\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331621_b19558bdb7cf6e73b52b.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:43:41\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 4 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:43:41 --> [Caused by] mysqli_sql_exception: Column 'name' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331621_b19558bdb7cf6e73b52b.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:43:41\', \'Y\', \'100000\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331621_b19558bdb7cf6e73b52b.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:43:41\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', NULL, \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331621_b19558bdb7cf6e73b52b.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:43:41\', \'Y\', \'100000\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 5 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:14:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 16:44:20 --> mysqli_sql_exception: Column 'gender' cannot be null in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `me...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `me...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `me...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `me...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-06-19 16:44:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 2 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:44:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331660_6fcd52aa8e2d47c2d73e.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:20\', \'Y\', \'100000\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331660_6fcd52aa8e2d47c2d73e.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:20\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 4 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:44:20 --> [Caused by] mysqli_sql_exception: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331660_6fcd52aa8e2d47c2d73e.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:20\', \'Y\', \'100000\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331660_6fcd52aa8e2d47c2d73e.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:20\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331660_6fcd52aa8e2d47c2d73e.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:20\', \'Y\', \'100000\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 5 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:14:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 16:44:44 --> mysqli_sql_exception: Column 'gender' cannot be null in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `me...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `me...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `me...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `me...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-06-19 16:44:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 2 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:44:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331684_91eba4874c5b7731c924.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:44\', \'Y\', \'100000\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331684_91eba4874c5b7731c924.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:44\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 4 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:44:44 --> [Caused by] mysqli_sql_exception: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331684_91eba4874c5b7731c924.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:44\', \'Y\', \'100000\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331684_91eba4874c5b7731c924.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:44\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331684_91eba4874c5b7731c924.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:44\', \'Y\', \'100000\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 5 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:14:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 16:44:48 --> mysqli_sql_exception: Column 'gender' cannot be null in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `me...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `me...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `me...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `me...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-06-19 16:44:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 2 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:44:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331688_662f1358eb264f9447b3.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:48\', \'Y\', \'100000\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331688_662f1358eb264f9447b3.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:48\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 4 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:44:48 --> [Caused by] mysqli_sql_exception: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331688_662f1358eb264f9447b3.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:48\', \'Y\', \'100000\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331688_662f1358eb264f9447b3.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:48\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'Test\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331688_662f1358eb264f9447b3.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:44:48\', \'Y\', \'100000\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 5 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:15:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 16:45:04 --> mysqli_sql_exception: Column 'gender' cannot be null in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `me...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `me...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `me...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `me...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\www\mfiCRM\system\BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-06-19 16:45:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 2 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:45:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331704_b8e4f9312cbcda074871.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:45:04\', \'Y\', \'100000\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331704_b8e4f9312cbcda074871.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:45:04\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 4 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 16:45:04 --> [Caused by] mysqli_sql_exception: Column 'gender' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331704_b8e4f9312cbcda074871.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:45:04\', \'Y\', \'100000\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331704_b8e4f9312cbcda074871.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:45:04\', \'Y\', \'100000\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (\'XYZL7894\', \'\', \'244\', \'8247147894\', \'EFYPP1478M\', \'EFYPP1478M/NA\', \'8247147894/N\', \'Amir Khan\', \'XYZ LTD\', \'700001\', NULL, NULL, NULL, NULL, \'XYZ LTD\', \'80\', \'1000000\', NULL, NULL, NULL, \'uploads/1750331704_b8e4f9312cbcda074871.png\', NULL, NULL, NULL, NULL, NULL, NULL, NULL, \'1\', NULL, NULL, NULL, \'2025-06-19 16:45:04\', \'Y\', \'100000\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2302): CodeIgniter\Database\BaseConnection->query('INSERT INTO `members` (`member_id`, `groupName`, `groupId`, `mobile`, `pan`, `gst`, `adhar`, `name`, `location`, `pincode`, `gender`, `marital`, `occupation`, `businessType`, `businessName`, `footFall`, `stock`, `outstanding`, `estab`, `dailySales`, `image`, `bankAccount`, `ifsc`, `bankName`, `bankBranch`, `bankCity`, `bankState`, `bankAddress`, `agent`, `aadhaarVerified`, `aadhaarData`, `panName`, `created_at`, `eli_run`, `month_purchase`) VALUES (:member_id:, :groupName:, :groupId:, :mobile:, :pan:, :gst:, :adhar:, :name:, :location:, :pincode:, :gender:, :marital:, :occupation:, :businessType:, :businessName:, :footFall:, :stock:, :outstanding:, :estab:, :dailySales:, :image:, :bankAccount:, :ifsc:, :bankName:, :bankBranch:, :bankCity:, :bankState:, :bankAddress:, :agent:, :aadhaarVerified:, :aadhaarData:, :panName:, :created_at:, :eli_run:, :month_purchase:)', [...], false)
+ 5 SYSTEMPATH\Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\MemberController.php(202): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\MemberController->add_member_crm()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MemberController))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:15:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:15:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:17:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:17:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:19:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:19:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:21:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:23:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:23:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-19 11:23:58 --> ErrorException: Undefined variable $cibil
+in APPPATH\Views\member_edit.php on line 59.
+ 1 APPPATH\Views\member_edit.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cibil', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\member_edit.php', 59)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\member_edit.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('member_edit', [], true)
+ 5 APPPATH\Controllers\Home.php(31): view('member_edit')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->member_edit()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:23:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-19 11:23:59 --> ErrorException: Undefined variable $cibil
+in APPPATH\Views\member_edit.php on line 59.
+ 1 APPPATH\Views\member_edit.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cibil', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\member_edit.php', 59)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\member_edit.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('member_edit', [], true)
+ 5 APPPATH\Controllers\Home.php(31): view('member_edit')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->member_edit()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:24:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-19 11:24:07 --> ErrorException: Undefined variable $cibil
+in APPPATH\Views\member_edit.php on line 59.
+ 1 APPPATH\Views\member_edit.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cibil', 'C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\member_edit.php', 59)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\member_edit.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('member_edit', [], true)
+ 5 APPPATH\Controllers\Home.php(31): view('member_edit')
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->member_edit()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 11:27:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:28:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:29:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:32:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:32:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:33:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:34:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:34:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:34:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-06-19 11:36:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-19 11:36:15 --> mysqli_sql_exception: Unknown column 'emi' in 'field list' in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `in...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `in...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `in...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `in...', NULL, false)
+#4 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+#5 C:\xampp\htdocs\www\mfiCRM\app\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert(Array)
+#6 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+#7 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+#8 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2025-06-19 11:36:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'emi' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', null, false)
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+ 3 APPPATH\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 11:36:15 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'emi' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', null, false)
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+ 5 APPPATH\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-06-19 11:36:15 --> [Caused by] mysqli_sql_exception: Unknown column 'emi' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1798): CodeIgniter\Database\BaseConnection->query('INSERT INTO `initial_eli_run` (`cibil`, `eligibility`, `emi`, `first_date`, `loan_amount`, `member_id`, `reason`, `roi`, `score`, `tenure`)
+VALUES (\'752\',\'Eligible\',2638.89,\'2025-06-19\',50000,\'XYZL1266\',\'Upgraded to minimum ₹50K plan with higher ROI and longer tenure.\',30,10,36)
+ON DUPLICATE KEY UPDATE
+`initial_eli_run`.`cibil` = VALUES(`cibil`),
+`initial_eli_run`.`eligibility` = VALUES(`eligibility`),
+`initial_eli_run`.`emi` = VALUES(`emi`),
+`initial_eli_run`.`first_date` = VALUES(`first_date`),
+`initial_eli_run`.`loan_amount` = VALUES(`loan_amount`),
+`initial_eli_run`.`member_id` = VALUES(`member_id`),
+`initial_eli_run`.`reason` = VALUES(`reason`),
+`initial_eli_run`.`roi` = VALUES(`roi`),
+`initial_eli_run`.`score` = VALUES(`score`),
+`initial_eli_run`.`tenure` = VALUES(`tenure`)', null, false)
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1926): CodeIgniter\Database\BaseBuilder->batchExecute('_upsertBatch')
+ 6 APPPATH\Controllers\LoanEligibilityController.php(123): CodeIgniter\Database\BaseBuilder->upsert([...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\LoanEligibilityController->checkEligibility()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LoanEligibilityController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-06-19 12:24:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

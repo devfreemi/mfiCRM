@@ -235,38 +235,61 @@ class LoanEligibilityModel extends Model
             return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         }
 
-        $min_loan = 50000;
-        $max_roi = 30; // Maximum ROI for ₹50K plan
-        $max_tenure = 36;
-        // Calculate EMI for ₹50,000 at 30% ROI for 36 months
-        $min_emi = $this->calculateEMI($min_loan, $max_roi, $max_tenure);
+        // $min_loan = 50000;
+        // $max_roi = 30; // Maximum ROI for ₹50K plan
+        // $max_tenure = 36;
+        // // Calculate EMI for ₹50,000 at 30% ROI for 36 months
+        // $min_emi = $this->calculateEMI($min_loan, $max_roi, $max_tenure);
+        // $loan_amount = $eligibility_amount;
+        // $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
+
+        // if ($calculated_emi > $eligible_emi) {
+        //     // Convert to monthly flat rate
+        //     $monthly_rate = $final_roi / (12 * 100);
+
+        //     // Flat interest: Loan = (EMI × Tenure) / (1 + (Rate × Tenure in years))
+        //     $total_interest_factor = ($final_roi * $tenure / 12) / 100;
+        //     $adjusted_loan = ($eligible_emi * $tenure) / (1 + $total_interest_factor);
+
+        //     // Update loan and EMI to FOIR-adjusted values
+        //     $loan_amount = $adjusted_loan;
+        //     $calculated_emi = $eligible_emi;
+        //     $reason .= "Adjusted to match FOIR. ";
+        // }
+        // // If customer can afford that EMI, give ₹50k with higher ROI and tenure
+        // if ($loan_amount < $min_loan) {
+        //     return [
+        //         "Eligibility" => "Eligible - High Risk",
+        //         "LoanAmount" => $min_loan,
+        //         "ROI" => $max_roi,
+        //         "FixedROI" => $max_roi,
+        //         "Tenure" => $max_tenure,
+        //         "Score" => round($score, 2),
+        //         "EMI" => round($min_emi, 2),
+        //         "Reason" => "Upgraded to minimum ₹50K plan with higher ROI and longer tenure.",
+        //         "FOIR" => $foir,
+        //     ];
+        // } 
+        $min_loan = 10000; // Revised minimum loan for high-risk
+        $high_risk_roi = 30; // High ROI for high-risk customers
+        $min_tenure = 8; // Minimum 8 months
+
         $loan_amount = $eligibility_amount;
-        $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
+        $calculated_emi = $this->calculateEMI($loan_amount, $final_roi, $tenure);
 
         if ($calculated_emi > $eligible_emi) {
-            // Convert to monthly flat rate
-            $monthly_rate = $final_roi / (12 * 100);
+            // Mark as high-risk and downgrade to smaller loan, shorter tenure
+            $calculated_emi = $this->calculateEMI($min_loan, $high_risk_roi, $min_tenure);
 
-            // Flat interest: Loan = (EMI × Tenure) / (1 + (Rate × Tenure in years))
-            $total_interest_factor = ($final_roi * $tenure / 12) / 100;
-            $adjusted_loan = ($eligible_emi * $tenure) / (1 + $total_interest_factor);
-
-            // Update loan and EMI to FOIR-adjusted values
-            $loan_amount = $adjusted_loan;
-            $calculated_emi = $eligible_emi;
-            $reason .= "Adjusted to match FOIR. ";
-        }
-        // If customer can afford that EMI, give ₹50k with higher ROI and tenure
-        if ($loan_amount < $min_loan) {
             return [
                 "Eligibility" => "Eligible",
                 "LoanAmount" => $min_loan,
-                "ROI" => $max_roi,
-                "FixedROI" => $max_roi,
-                "Tenure" => $max_tenure,
+                "ROI" => $high_risk_roi,
+                "FixedROI" => $high_risk_roi,
+                "Tenure" => $min_tenure,
                 "Score" => round($score, 2),
-                "EMI" => round($min_emi, 2),
-                "Reason" => "Upgraded to minimum ₹50K plan with higher ROI and longer tenure.",
+                "EMI" => round($calculated_emi),
+                "Reason" => "High FOIR risk. Downgraded to minimum ₹10K loan for 8 months at higher ROI.",
                 "FOIR" => $foir,
             ];
         } else {
@@ -278,7 +301,7 @@ class LoanEligibilityModel extends Model
                 "FixedROI" => round($final_roi, 2),
                 "Tenure" => $tenure,
                 "Score" => round($score, 2),
-                "EMI" => round($calculated_emi, 2),
+                "EMI" => round($calculated_emi),
                 "Reason" => trim($reason),
                 "FOIR" => $foir,
             ];

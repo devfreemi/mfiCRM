@@ -18,6 +18,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('group', 'Home::group');
     $routes->add('members', 'Home::members');
     $routes->add('member-edit', 'Home::member_edit');
+    $routes->add('member-add', 'Home::member_add');
+    $routes->add('add-member', 'MemberController::add_member_crm');
     $routes->add('loan', 'Home::loan');
     $routes->add('application-view', 'Home::loan_view');
     $routes->add('group-view', 'Home::group_view');
