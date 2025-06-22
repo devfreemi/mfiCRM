@@ -98,6 +98,8 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/get-approved-retailer-v1', 'LoanEligibilityController::approved_retailer');
     $routes->add('api/get-approved-retailer-data-v1', 'LoanEligibilityController::approved_retailer_data');
     $routes->add('api/retailer-doc-upload-v1', 'RetailerDocumentsController::add_doc');
+    $routes->add('api/check-shop-image-v1', 'RetailerDocumentsController::check_shop_image_status');
+    $routes->add('api/check-pan-voter-v1', 'RetailerDocumentsController::check_pan_voter_status');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
     // Collection in LOS

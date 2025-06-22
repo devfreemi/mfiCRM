@@ -214,8 +214,8 @@ class LoanEligibilityController extends BaseController
         $empID = $this->request->getVar('employeeID');
         $loanModel = new LoanEligibilityModel();
         $data = $loanModel->join('members', 'members.member_id  = initial_eli_run.member_id')
-            ->join('loans', 'loans.member_id = initial_eli_run.member_id', 'left')
-            ->where('loans.member_id IS NULL')
+            // ->join('loans', 'loans.member_id = initial_eli_run.member_id', 'left')
+            ->where('initial_eli_run.eligibility', 'Eligible')
             ->where('agent', $empID)->findAll();
 
 
