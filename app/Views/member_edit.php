@@ -38,6 +38,7 @@
                     <div class="col-md-4">
                         <label for="loan" class="form-label">CIBIL Score</label>
                         <?php
+                        $cibil = 0; // Set default value to avoid undefined error
                         if ($elirun === 'Y') {
                             # code...
                             $builderB = $db->table('initial_eli_run');
@@ -49,9 +50,6 @@
                                 $cibil = $rowB->cibil;
                             }
                             # code...
-                        } else {
-                            # code...
-                            $cibil = 0;
                         }
 
 

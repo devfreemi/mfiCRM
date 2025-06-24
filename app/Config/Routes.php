@@ -100,6 +100,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/retailer-doc-upload-v1', 'RetailerDocumentsController::add_doc');
     $routes->add('api/check-shop-image-v1', 'RetailerDocumentsController::check_shop_image_status');
     $routes->add('api/check-pan-voter-v1', 'RetailerDocumentsController::check_pan_voter_status');
+    $routes->add('api/check-home-address-proof-v1', 'RetailerDocumentsController::check_home_address_proof_status');
+    $routes->add('api/check-shop-address-proof-v1', 'RetailerDocumentsController::check_shop_address_proof_status');
+    $routes->add('api/check-business-proof-v1', 'RetailerDocumentsController::check_business_docs_status');
+    $routes->add('api/check-bank-statement-v1', 'RetailerDocumentsController::check_bank_statement_status');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
     // Collection in LOS

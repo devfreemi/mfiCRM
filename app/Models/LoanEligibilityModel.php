@@ -40,7 +40,7 @@ class LoanEligibilityModel extends Model
             'Stationary' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
             'Pharmacy' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
             'Electrical' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
-            'Elctronic And Electrical Shop' => [[0, 10000, 0.20], [10000, 25000, 0.20], [25000, 35000, 0.19], [35000, 50000, 0.19], [50000, 75000, 0.18], [75000, INF, 0.15]],
+            'Elctronic' => [[0, 10000, 0.20], [10000, 25000, 0.20], [25000, 35000, 0.19], [35000, 50000, 0.19], [50000, 75000, 0.18], [75000, INF, 0.15]],
             'Pet Shop' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
             'Sweet Shop' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
             'Food & Beverage' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
@@ -59,7 +59,7 @@ class LoanEligibilityModel extends Model
 
         $monthly_sales = $daily_sales * 30;
         $gross_income = $monthly_sales * $margin;
-        $foir_limit = $gross_income * 0.5;
+        $foir_limit = $gross_income * 0.6;
         $net_affordable_emi = $foir_limit - $existing_emi;
 
         if ($gross_income >= 0 && $gross_income <= 33000) {
@@ -74,8 +74,10 @@ class LoanEligibilityModel extends Model
             "Margin" => $margin,
             "GrossIncome" => $gross_income,
             "IncomeGroup" => $income_group,
-            "EligibleEMI" => max(0, $net_affordable_emi), // can't be negative
+            "FOIRLIMIT" => $foir_limit,
             "ExistingEMI" => $existing_emi,
+            "EligibleEMI" => max(0, $net_affordable_emi), // can't be negative
+
         ];
     }
 
@@ -127,7 +129,7 @@ class LoanEligibilityModel extends Model
             $roi -= 1.5;
         } elseif ($this->cibil_score >= 675) {
             $score += 1;
-            $roi -= 1;
+            $roi += 1;
         } elseif ($this->cibil_score > 0) {
             return ["Eligibility" => "Not Eligible", "Reason" => "Low CIBIL score", "LoanAmount" => 0, "ROI" => 0, "FixedROI" => 0, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         } else {
@@ -139,10 +141,10 @@ class LoanEligibilityModel extends Model
         // Business Age
         if ($this->business_time >= 5) {
             $score += 2;
-            $roi -= 2;
+            $roi -= 1.5;
         } elseif ($this->business_time >= 2) {
             $score += 1;
-            $roi -= 1;
+            $roi -= 0.5;
         } else {
             $roi += 2;
             $reason .= "Low business age. ";
@@ -152,12 +154,12 @@ class LoanEligibilityModel extends Model
         if ($this->daily_sales == 0) return ["Eligibility" => "Not Eligible", "Reason" => "Zero sales", "LoanAmount" => 0, "ROI" => 0, "FixedROI" => 0, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         elseif ($this->daily_sales >= 10000) {
             $score += 3;
-            $roi -= 2;
+            $roi -= 1.5;
         } elseif ($this->daily_sales >= 5000) {
             $score += 2;
-            $roi -= 1;
+            $roi -= 0.5;
         } elseif ($this->daily_sales >= 2000) {
-            $score += 1;
+            $score += 1.5;
         } else {
             $roi += 2;
             $reason .= "Low sales. ";
@@ -172,10 +174,12 @@ class LoanEligibilityModel extends Model
             $roi -= 1.5;
         } elseif ($this->stock >= 100000) {
             $score += 2;
+            $roi += 1;
         } elseif ($this->stock >= 50000) {
+            $roi += 2;
             $score += 1;
         } else {
-            $roi += 2;
+            $roi += 2.5;
             $reason .= "Low stock. ";
         }
 
@@ -197,7 +201,7 @@ class LoanEligibilityModel extends Model
             $roi -= 0.5;
         } elseif (in_array($this->business_type, $retail)) {
             $score += 0.5;
-            $roi += 0.5;
+            $roi += 1;
         }
 
         // // Final adjustments
@@ -217,79 +221,87 @@ class LoanEligibilityModel extends Model
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
         // Fixed ROI and Tenure based on Loan Eligibility Amount
-        if ($eligibility_amount > 200000) {
-            $fixed_roi = 26;
-            $tenure = 36;
-        } elseif ($eligibility_amount > 50000) {
-            $fixed_roi = 27;
+        if ($eligibility_amount >= 200000) {
+            $fixed_roi = 26.0;
             $tenure = 24;
+        } elseif ($eligibility_amount >= 190000) {
+            $fixed_roi = 26.2;
+            $tenure = 24;
+        } elseif ($eligibility_amount >= 180000) {
+            $fixed_roi = 26.4;
+            $tenure = 24;
+        } elseif ($eligibility_amount >= 170000) {
+            $fixed_roi = 26.6;
+            $tenure = 24;
+        } elseif ($eligibility_amount >= 160000) {
+            $fixed_roi = 26.8;
+            $tenure = 24;
+        } elseif ($eligibility_amount >= 150000) {
+            $fixed_roi = 27.0;
+            $tenure = 24;
+        } elseif ($eligibility_amount >= 140000) {
+            $fixed_roi = 27.2;
+            $tenure = 21;
+        } elseif ($eligibility_amount >= 130000) {
+            $fixed_roi = 27.4;
+            $tenure = 21;
+        } elseif ($eligibility_amount >= 120000) {
+            $fixed_roi = 27.6;
+            $tenure = 21;
+        } elseif ($eligibility_amount >= 110000) {
+            $fixed_roi = 27.8;
+            $tenure = 21;
+        } elseif ($eligibility_amount >= 100000) {
+            $fixed_roi = 28.0;
+            $tenure = 21;
+        } elseif ($eligibility_amount >= 90000) {
+            $fixed_roi = 28.2;
+            $tenure = 18;
+        } elseif ($eligibility_amount >= 80000) {
+            $fixed_roi = 28.4;
+            $tenure = 18;
+        } elseif ($eligibility_amount >= 70000) {
+            $fixed_roi = 28.6;
+            $tenure = 18;
+        } elseif ($eligibility_amount >= 60000) {
+            $fixed_roi = 28.8;
+            $tenure = 12;
+        } elseif ($eligibility_amount >= 50000) {
+            $fixed_roi = 29.0;
+            $tenure = 12;
         } else {
-            $fixed_roi = 28;
+            // Should not be eligible — fallback
+            $fixed_roi = 30.0;
             $tenure = 12;
         }
 
         // Ensure ROI is the higher of the calculated ROI or the fixed ROI
-        $final_roi = min(max($roi, $fixed_roi), 28);
+        $final_roi = min(max($roi, $fixed_roi), 30);
 
         if ($score < 7) {
             return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         }
 
-        // $min_loan = 50000;
-        // $max_roi = 30; // Maximum ROI for ₹50K plan
-        // $max_tenure = 36;
-        // // Calculate EMI for ₹50,000 at 30% ROI for 36 months
-        // $min_emi = $this->calculateEMI($min_loan, $max_roi, $max_tenure);
-        // $loan_amount = $eligibility_amount;
-        // $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
 
-        // if ($calculated_emi > $eligible_emi) {
-        //     // Convert to monthly flat rate
-        //     $monthly_rate = $final_roi / (12 * 100);
+        $min_loan = 50000;
+        $max_roi = 30;
+        $min_tenure = 9;
 
-        //     // Flat interest: Loan = (EMI × Tenure) / (1 + (Rate × Tenure in years))
-        //     $total_interest_factor = ($final_roi * $tenure / 12) / 100;
-        //     $adjusted_loan = ($eligible_emi * $tenure) / (1 + $total_interest_factor);
-
-        //     // Update loan and EMI to FOIR-adjusted values
-        //     $loan_amount = $adjusted_loan;
-        //     $calculated_emi = $eligible_emi;
-        //     $reason .= "Adjusted to match FOIR. ";
-        // }
-        // // If customer can afford that EMI, give ₹50k with higher ROI and tenure
-        // if ($loan_amount < $min_loan) {
-        //     return [
-        //         "Eligibility" => "Eligible - High Risk",
-        //         "LoanAmount" => $min_loan,
-        //         "ROI" => $max_roi,
-        //         "FixedROI" => $max_roi,
-        //         "Tenure" => $max_tenure,
-        //         "Score" => round($score, 2),
-        //         "EMI" => round($min_emi, 2),
-        //         "Reason" => "Upgraded to minimum ₹50K plan with higher ROI and longer tenure.",
-        //         "FOIR" => $foir,
-        //     ];
-        // } 
-        $min_loan = 10000; // Revised minimum loan for high-risk
-        $high_risk_roi = 30; // High ROI for high-risk customers
-        $min_tenure = 8; // Minimum 8 months
-
+        // Calculate EMI for ₹50K at 30% ROI for 9 months
+        $min_required_emi = $this->calculateEMI($min_loan, $max_roi, $min_tenure);
         $loan_amount = $eligibility_amount;
-        $calculated_emi = $this->calculateEMI($loan_amount, $final_roi, $tenure);
-
-        if ($calculated_emi > $eligible_emi) {
-            // Mark as high-risk and downgrade to smaller loan, shorter tenure
-            $calculated_emi = $this->calculateEMI($min_loan, $high_risk_roi, $min_tenure);
-
+        $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
+        // Reject if user cannot afford even the minimum plan
+        if ($eligible_emi < $min_required_emi) {
             return [
-                "Eligibility" => "Eligible",
-                "LoanAmount" => $min_loan,
-                "ROI" => $high_risk_roi,
-                "FixedROI" => $high_risk_roi,
-                "Tenure" => $min_tenure,
+                "Eligibility" => "Not Eligible",
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
                 "Score" => round($score, 2),
-                "EMI" => round($calculated_emi),
-                "Reason" => "High FOIR risk. Downgraded to minimum ₹10K loan for 8 months at higher ROI.",
+                "EMI" => 0,
+                "Reason" => "Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.",
                 "FOIR" => $foir,
             ];
         } else {

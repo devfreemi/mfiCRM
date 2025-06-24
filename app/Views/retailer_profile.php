@@ -89,8 +89,7 @@
 
                 foreach ($query->getResult() as $row) {
                     $doc = $row->document_path;
-                    // $cleanedJson = trim(str_replace('Json object:', '', $doc));
-                    $cleanedJson = $doc;
+
                     // Decode it into associative array
 
                     // echo "- $url<br>";
@@ -100,7 +99,7 @@
                         <div class="card h-100 shadow-sm">
                             <img src="<?= $doc ?>" class="card-img-top" alt="Document Image">
                             <div class="card-body text-center">
-                                <h6 class="card-title">Documents</h6>
+                                <h6 class="card-title"><?= $row->document_type ?></h6>
                                 <a href="<?= $doc ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
                             </div>
                         </div>

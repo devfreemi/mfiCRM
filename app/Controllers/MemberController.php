@@ -68,7 +68,7 @@ class MemberController extends BaseController
             'pan'               => $pan,
             'gst'               => $gst,
             'adhar'             => $adhar,
-            'name'              => $this->request->getVar('panName'),
+            'name'              => $this->request->getVar('name'),
             'location'          => $this->request->getVar('memberLocation'),
             'pincode'           => $this->request->getVar('groupPin'),
             'gender'            => $this->request->getVar('gender'),

@@ -156,4 +156,207 @@ class RetailerDocumentsController extends BaseController
             ], 200);
         }
     }
+    // check house address status
+    public function check_home_address_proof_status()
+    {
+        $memberId = $this->request->getVar('member_id');
+
+        if (!$memberId) {
+            return $this->respond([
+                'status' => false,
+                'message' => 'member_id is required.'
+            ], 400);
+        }
+
+        $db = db_connect();
+        $builder = $db->table('retailerdocuments');
+
+        // Always required
+        $requiredDocs = ['Doc_House_Electricity_Bill', 'Doc_House_Property_Tax'];
+
+        // Check if both Rent Agreement pages exist
+        $rentPage1 = $builder->where('member_id', $memberId)
+            ->where('document_type', 'Doc_House_Rent_Agreement_Page1')
+            ->countAllResults();
+
+        $builder = $db->table('retailerdocuments');
+        $rentPage2 = $builder->where('member_id', $memberId)
+            ->where('document_type', 'Doc_House_Rent_Agreement_Page2')
+            ->countAllResults();
+
+        $isRented = ($rentPage1 > 0 && $rentPage2 > 0);
+
+        if ($isRented) {
+            $requiredDocs[] = 'Doc_House_Rent_Agreement_Page1';
+            $requiredDocs[] = 'Doc_House_Rent_Agreement_Page2';
+        }
+
+        // Now check all required documents
+        $uploaded = [];
+        foreach ($requiredDocs as $docType) {
+            $builder = $db->table('retailerdocuments');
+            $count = $builder->where('member_id', $memberId)
+                ->where('document_type', $docType)
+                ->countAllResults();
+
+            $uploaded[$docType] = ($count > 0);
+        }
+
+        // Final output
+        if (!in_array(false, $uploaded, true)) {
+            return $this->respond([
+                'status' => true,
+                'message' => 'captured',
+                'ownership' => $isRented ? 'rented' : 'owned'
+            ], 201);
+        } else {
+            return $this->respond([
+                'status' => false,
+                'message' => 'not captured',
+                'ownership' => $isRented ? 'rented' : 'owned',
+                'missing_documents' => array_keys(array_filter($uploaded, fn($v) => !$v))
+            ], 200);
+        }
+    }
+
+    // check shop address status
+    public function check_shop_address_proof_status()
+    {
+        $memberId = $this->request->getVar('member_id');
+
+        if (!$memberId) {
+            return $this->respond([
+                'status' => false,
+                'message' => 'member_id is required.'
+            ], 400);
+        }
+
+        $db = db_connect();
+        $builder = $db->table('retailerdocuments');
+
+        // Always required
+        $requiredDocs = ['Doc_Shop_Electricity_Bill', 'Doc_Shop_Property_Tax'];
+
+        // Check if both Rent Agreement pages exist
+        $rentPage1 = $builder->where('member_id', $memberId)
+            ->where('document_type', 'Doc_Shop_Rent_Agreement_Page1')
+            ->countAllResults();
+
+        $builder = $db->table('retailerdocuments');
+        $rentPage2 = $builder->where('member_id', $memberId)
+            ->where('document_type', 'Doc_Shop_Rent_Agreement_Page2')
+            ->countAllResults();
+
+        $isRented = ($rentPage1 > 0 && $rentPage2 > 0);
+
+        if ($isRented) {
+            $requiredDocs[] = 'Doc_Shop_Rent_Agreement_Page1';
+            $requiredDocs[] = 'Doc_Shop_Rent_Agreement_Page2';
+        }
+
+        // Now check all required documents
+        $uploaded = [];
+        foreach ($requiredDocs as $docType) {
+            $builder = $db->table('retailerdocuments');
+            $count = $builder->where('member_id', $memberId)
+                ->where('document_type', $docType)
+                ->countAllResults();
+
+            $uploaded[$docType] = ($count > 0);
+        }
+
+        // Final output
+        if (!in_array(false, $uploaded, true)) {
+            return $this->respond([
+                'status' => true,
+                'message' => 'captured',
+                'ownership' => $isRented ? 'rented' : 'owned'
+            ], 201);
+        } else {
+            return $this->respond([
+                'status' => false,
+                'message' => 'not captured',
+                'ownership' => $isRented ? 'rented' : 'owned',
+                'missing_documents' => array_keys(array_filter($uploaded, fn($v) => !$v))
+            ], 200);
+        }
+    }
+
+    // Check business document uploads
+    public function check_business_docs_status()
+    {
+        $memberId = $this->request->getVar('member_id');
+
+        if (!$memberId) {
+            return $this->respond([
+                'status' => false,
+                'message' => 'member_id is required.'
+            ], 400);
+        }
+
+        $db = db_connect();
+        $builder = $db->table('retailerdocuments');
+
+        // Required business documents
+        $requiredDocs = ['Doc_GST', 'Doc_Trade_License', 'Doc_ITR', 'Doc_Purchase_Bill', 'Doc_Sale_Bill'];
+
+        $uploaded = [];
+
+        foreach ($requiredDocs as $docType) {
+            $builder = $db->table('retailerdocuments'); // reset builder for each loop
+            $count = $builder->where('member_id', $memberId)
+                ->where('document_type', $docType)
+                ->countAllResults();
+
+            $uploaded[$docType] = ($count > 0);
+        }
+
+        // Determine if all are uploaded
+        if (!in_array(false, $uploaded, true)) {
+            return $this->respond([
+                'status' => true,
+                'message' => 'captured'
+            ], 201);
+        } else {
+            return $this->respond([
+                'status' => false,
+                'message' => 'not captured',
+                'missing_documents' => array_keys(array_filter($uploaded, fn($v) => !$v))
+            ], 200);
+        }
+    }
+
+    // Check bank statement status
+    public function check_bank_statement_status()
+    {
+        $memberId = $this->request->getVar('member_id');
+
+        if (!$memberId) {
+            return $this->respond([
+                'status' => false,
+                'message' => 'member_id is required.'
+            ], 400);
+        }
+
+        $db = db_connect();
+        $builder = $db->table('retailerdocuments');
+
+        // Check if Bank Statement is uploaded
+        $count = $builder->where('member_id', $memberId)
+            ->where('document_type', 'Bank_Statement')
+            ->countAllResults();
+
+        if ($count > 0) {
+            return $this->respond([
+                'status' => true,
+                'message' => 'captured'
+            ], 201);
+        } else {
+            return $this->respond([
+                'status' => false,
+                'message' => 'not captured',
+                'missing_documents' => 'Bank_Statement'
+            ], 200);
+        }
+    }
 }
