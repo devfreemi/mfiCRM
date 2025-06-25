@@ -19,178 +19,188 @@
 
                             <!-- Profile Picture Overlay -->
                             <div class=" bottom-0 start-0 translate-middle-y ms-4 mb-2">
-                                <img src="https://avatar.iran.liara.run/username?username=<?= esc($retailers['name']) ?>" class="rounded-circle border border-white border-3 shadow" alt="Profile" style="width: 120px; height: 120px;">
+                                <img src="https://ui-avatars.com/api/?background=random&&rounded=true&&name=<?= esc($retailers['name']) ?>" class="rounded-circle border border-white border-3 shadow" alt="Profile" style="width: 120px; height: 120px;">
                             </div>
                         </div>
                         <h2 class="mb-4">Field Inspection Feedback Form</h2>
+                        <?php if ($serverError = session('server_error')): ?>
+                            <div class="alert alert-danger">
+                                <strong>⚠ Internal Error:</strong> <?= esc($serverError) ?>
+                            </div>
+                        <?php endif; ?>
+                        <form action="<?= base_url() ?>submit-fi" method="POST">
 
-                        <form action="/submit-feedback" method="POST">
+                            <!-- Inspector & Member Info -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <strong>Inspector & Member Details</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="member_id" class="form-label">Member ID</label>
+                                        <input type="text" class="form-control" name="member_id" id="member_id" value="<?= esc($retailers['member_id']) ?>" readonly required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fiInspector_name" class="form-label">Field Inspector Name</label>
+                                        <select class="form-control" name="fiInspector_name_select" id="fiInspector_name_select" required>
+                                            <option selected value="" disabled>--FI Officer Name--</option>
+                                            <?php
+                                            $db = \Config\Database::connect();
+                                            $builder2 = $db->table('employees');
+                                            $builder2->select('*');
+
+                                            $employees = $builder2->get()->getResult();
+                                            ?>
+                                            <?php foreach ($employees as $row2) : ?>
+                                                <option value="<?= $row2->employeeID ?>"><?= $row2->name ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <input type="hidden" name="fiInspector_name" id="fiInspector_name">
+                                        <!-- <input type="text" class="form-control" name="fiInspector_name" id="fiInspector_name" required> -->
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Retailer Inspection -->
                             <div class="card mb-4">
-                                <div class="card-header">
-                                    <strong>Retailer Inspection</strong>
-                                </div>
+                                <div class="card-header"><strong>Retailer Inspection</strong></div>
                                 <div class="card-body">
+                                    <!-- Retailer present -->
                                     <label class="form-label">Retailer present at the time of visit</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_present" value="Yes" id="retailer_present_yes">
-                                        <label class="form-check-label" for="retailer_present_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_present" value="No" id="retailer_present_no">
-                                        <label class="form-check-label" for="retailer_present_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="retailer_present" value="Yes" id="retailer_present_yes" required>
+                                    <label for="retailer_present_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="retailer_present" value="No" id="retailer_present_no">
+                                    <label for="retailer_present_no">No</label>
 
+                                    <!-- Retailer behavior -->
                                     <br><label class="form-label mt-3">Retailer behavior was professional</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_behavior" value="Yes" id="retailer_behavior_yes">
-                                        <label class="form-check-label" for="retailer_behavior_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_behavior" value="No" id="retailer_behavior_no">
-                                        <label class="form-check-label" for="retailer_behavior_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="retailer_behavior_professional" value="Yes" id="retailer_behavior_yes" required>
+                                    <label for="retailer_behavior_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="retailer_behavior_professional" value="No" id="retailer_behavior_no">
+                                    <label for="retailer_behavior_no">No</label>
 
+                                    <!-- Retailer awareness -->
                                     <br><label class="form-label mt-3">Retailer is aware of products and schemes</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_awareness" value="Yes" id="retailer_awareness_yes">
-                                        <label class="form-check-label" for="retailer_awareness_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_awareness" value="No" id="retailer_awareness_no">
-                                        <label class="form-check-label" for="retailer_awareness_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="retailer_aware_products" value="Yes" id="retailer_awareness_yes" required>
+                                    <label for="retailer_awareness_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="retailer_aware_products" value="No" id="retailer_awareness_no">
+                                    <label for="retailer_awareness_no">No</label>
 
-                                    <br><label class="form-label mt-3">Retailer needs training</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_training" value="Yes" id="retailer_training_yes">
-                                        <label class="form-check-label" for="retailer_training_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="retailer_training" value="No" id="retailer_training_no">
-                                        <label class="form-check-label" for="retailer_training_no">No</label>
-                                    </div>
+
                                 </div>
                             </div>
 
                             <!-- Shop Inspection -->
                             <div class="card mb-4">
-                                <div class="card-header">
-                                    <strong>Retailer Shop Inspection</strong>
-                                </div>
+                                <div class="card-header"><strong>Retailer Shop Inspection</strong></div>
                                 <div class="card-body">
+                                    <!-- Shop clean -->
                                     <label class="form-label">Shop is clean and well maintained</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="shop_clean" value="Yes" id="shop_clean_yes">
-                                        <label class="form-check-label" for="shop_clean_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="shop_clean" value="No" id="shop_clean_no">
-                                        <label class="form-check-label" for="shop_clean_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="shop_clean" value="Yes" id="shop_clean_yes" required>
+                                    <label for="shop_clean_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="shop_clean" value="No" id="shop_clean_no">
+                                    <label for="shop_clean_no">No</label>
 
+                                    <!-- Products displayed -->
                                     <br><label class="form-label mt-3">Products are properly displayed</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="product_display" value="Yes" id="product_display_yes">
-                                        <label class="form-check-label" for="product_display_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="product_display" value="No" id="product_display_no">
-                                        <label class="form-check-label" for="product_display_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="products_displayed" value="Yes" id="product_display_yes" required>
+                                    <label for="product_display_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="products_displayed" value="No" id="product_display_no">
+                                    <label for="product_display_no">No</label>
 
+                                    <!-- Stock -->
                                     <br><label class="form-label mt-3">Adequate stock available</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="stock_available" value="Yes" id="stock_yes">
-                                        <label class="form-check-label" for="stock_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="stock_available" value="No" id="stock_no">
-                                        <label class="form-check-label" for="stock_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="stock_available" value="Yes" id="stock_yes" required>
+                                    <label for="stock_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="stock_available" value="No" id="stock_no">
+                                    <label for="stock_no">No</label>
 
+                                    <!-- Promotional -->
                                     <br><label class="form-label mt-3">Promotional materials visible</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="promo_visible" value="Yes" id="promo_yes">
-                                        <label class="form-check-label" for="promo_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="promo_visible" value="No" id="promo_no">
-                                        <label class="form-check-label" for="promo_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="promo_materials_visible" value="Yes" id="promo_yes" required>
+                                    <label for="promo_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="promo_materials_visible" value="No" id="promo_no">
+                                    <label for="promo_no">No</label>
 
+                                    <!-- Location -->
                                     <br><label class="form-label mt-3">Shop location is easily accessible</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="shop_accessible" value="Yes" id="shop_accessible_yes">
-                                        <label class="form-check-label" for="shop_accessible_yes">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="shop_accessible" value="No" id="shop_accessible_no">
-                                        <label class="form-check-label" for="shop_accessible_no">No</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="location_accessible" value="Yes" id="shop_accessible_yes" required>
+                                    <label for="shop_accessible_yes">Yes</label>
+                                    <input class="form-check-input" type="radio" name="location_accessible" value="No" id="shop_accessible_no">
+                                    <label for="shop_accessible_no">No</label>
                                 </div>
                             </div>
 
                             <!-- Payment Behavior -->
                             <div class="card mb-4">
-                                <div class="card-header">
-                                    <strong>Retailer's Payment Behavior</strong>
-                                </div>
+                                <div class="card-header"><strong>Retailer's Payment Behavior</strong></div>
                                 <div class="card-body">
                                     <label class="form-label">Payment behavior</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="payment_behavior" value="Pays on time" id="payment1">
-                                        <label class="form-check-label" for="payment1">Pays on time</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="payment_behavior" value="Delayed payments" id="payment2">
-                                        <label class="form-check-label" for="payment2">Delayed payments</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="payment_behavior" value="Requires follow-up" id="payment3">
-                                        <label class="form-check-label" for="payment3">Requires follow-up</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="payment_behavior" value="Makes advance payments" id="payment4">
-                                        <label class="form-check-label" for="payment4">Makes advance payments</label>
-                                    </div>
+                                    <input class="form-check-input" type="radio" name="payment_behavior" value="Pays on time" id="payment1" required>
+                                    <label for="payment1">Pays on time</label>
+                                    <input class="form-check-input" type="radio" name="payment_behavior" value="Delayed payments" id="payment2">
+                                    <label for="payment2">Delayed payments</label>
+                                    <input class="form-check-input" type="radio" name="payment_behavior" value="Requires follow-up" id="payment3">
+                                    <label for="payment3">Requires follow-up</label>
+                                    <input class="form-check-input" type="radio" name="payment_behavior" value="Makes advance payments" id="payment4">
+                                    <label for="payment4">Makes advance payments</label>
                                 </div>
                             </div>
 
-                            <!-- Shop Ownership -->
+                            <!-- Shop & House Ownership -->
+                            <div class="card mb-4">
+                                <div class="card-header"><strong>Shop & House Ownership</strong></div>
+                                <div class="card-body">
+                                    <!-- Shop Ownership -->
+                                    <label class="form-label">Shop ownership</label><br>
+                                    <input class="form-check-input" type="radio" name="shop_ownership" value="Owned" id="shop_own" required>
+                                    <label for="shop_own">Owned</label>
+                                    <input class="form-check-input" type="radio" name="shop_ownership" value="Rented" id="shop_rent">
+                                    <label for="shop_rent">Rented</label>
+
+                                    <!-- House Ownership -->
+                                    <br><label class="form-label mt-3">House ownership</label><br>
+                                    <input class="form-check-input" type="radio" name="house_ownership" value="Owned" id="house_own" required>
+                                    <label for="house_own">Owned</label>
+                                    <input class="form-check-input" type="radio" name="house_ownership" value="Rented" id="house_rent">
+                                    <label for="house_rent">Rented</label>
+                                </div>
+                            </div>
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <strong>Shop & House Ownership</strong>
+                                    <strong>Document Verification</strong>
                                 </div>
                                 <div class="card-body">
-                                    <label class="form-label">Shop ownership</label><br>
+                                    <label class="form-label">Are all documents verified with originals?</label><br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="shop_ownership" value="Owned" id="shop_own">
-                                        <label class="form-check-label" for="shop_own">Owned</label>
+                                        <input class="form-check-input" type="radio" name="documents_verified" value="Yes" id="docs_yes" required>
+                                        <label class="form-check-label" for="docs_yes">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="shop_ownership" value="Rented" id="shop_rent">
-                                        <label class="form-check-label" for="shop_rent">Rented</label>
-                                    </div>
-
-                                    <br><label class="form-label mt-3">House ownership</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="house_ownership" value="Owned" id="house_own">
-                                        <label class="form-check-label" for="house_own">Owned</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="house_ownership" value="Rented" id="house_rent">
-                                        <label class="form-check-label" for="house_rent">Rented</label>
+                                        <input class="form-check-input" type="radio" name="documents_verified" value="No" id="docs_no">
+                                        <label class="form-check-label" for="docs_no">No</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Submit Button -->
+                            <!-- Inspector Comments -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <strong>Inspector Comments</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="inspector_comments" class="form-label">Any comments or observations</label>
+                                        <textarea class="form-control" name="inspector_comments" id="inspector_comments" rows="4" placeholder="Write here..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Submit -->
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary">Submit Feedback</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
 
@@ -203,7 +213,12 @@
 
         </div>
     </main>
-
+    <script>
+        document.getElementById('fiInspector_name_select').addEventListener('change', function() {
+            const selectedText = this.options[this.selectedIndex].text;
+            document.getElementById('fiInspector_name').value = selectedText;
+        });
+    </script>
     <?php include 'fragments/footer.php'; ?>
 </div>
 </div>

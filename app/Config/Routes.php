@@ -34,6 +34,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->post('loan/check', 'LoanEligibilityController::checkEligibility');
     $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
     $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
+    $routes->add('submit-fi', 'FiCheckController::submit');
+    $routes->get('fi-report', 'FiCheckController::report');
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
