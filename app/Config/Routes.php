@@ -39,6 +39,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
+    $routes->add('loan-create', 'LoanApi::loan_create');
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {

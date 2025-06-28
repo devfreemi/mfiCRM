@@ -18,6 +18,7 @@ class LoanModel extends Model
         'loan_amount',
         'loan_type',
         'loan_status',
+        'roi',
         'loan_tenure',
         'emi',
         'pending_emi',

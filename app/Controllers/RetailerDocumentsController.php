@@ -74,7 +74,7 @@ class RetailerDocumentsController extends BaseController
             'created_at'    => date('Y-m-d H:i:s')
         ];
 
-        $builder->insert($data);
+        $builder->upsert($data);
 
         return $this->respond([
             'status' => true,

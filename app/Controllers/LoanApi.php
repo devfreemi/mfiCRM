@@ -34,6 +34,39 @@ class LoanApi extends BaseController
             return $this->respond(['loan' => $data], 200);
         }
     }
+    /**
+     * Create a new loan application.
+     *
+     * 
+     */
+    // This function is used to create a new loan application.
+    public function loan_create()
+    {
+        //
+        $model = new LoanModel();
+        $data = [
+
+            'groupId'       => $this->request->getPost('groupID'),
+            'member_id'     => $this->request->getPost('memberID'),
+            'loan_amount'   => $this->request->getPost('loan_amount'),
+            'loan_tenure'   => $this->request->getPost('tenure'),
+            'roi'           => $this->request->getPost('roi'),
+            'employee_id'   => $this->request->getPost('employeeID'),
+            'loan_status'     => $this->request->getPost('status'),
+            'applicationID' => date('ym') . str_pad(mt_rand(0, 999), 3, '0', STR_PAD_LEFT) . $this->request->getPost('mobile'),
+
+        ];
+        // $query = $model->insert($data);
+        $query = $model->save($data);
+        if (!$query) {
+            return $this->respond(['error' => 'Invalid Request.' . $query], 401);
+        } else {
+            # code...
+            $session = session();
+            $session->setFlashdata('msg', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'loan');
+        }
+    }
     public function list_of_loan()
     {
         $model = new LoanModel();
@@ -78,7 +111,7 @@ class LoanApi extends BaseController
 
 
         // $day_tenure = $tenure * 30;
-        $roi = $this->request->getVar('roi');
+        $roi = $this->request->getPost('roi');
         if ($status == "Approved") {
             # code...
             $model->create($table);
@@ -97,6 +130,7 @@ class LoanApi extends BaseController
 
             // Flat EMI: Total payable / total months
             $emi = round($due / $tenure);
+            $disbursable = round($loan_amount - ($loan_amount * 0.04));
             $data = [
 
                 'loan_status'       => "Approved",
@@ -106,6 +140,8 @@ class LoanApi extends BaseController
                 'loan_due'          => $due,
                 'roi'               => $roi,
                 'total_amount'      => $due,
+                'disbursable_amount' => $disbursable,
+
             ];
 
             $builder->where('applicationID', $applicationid);

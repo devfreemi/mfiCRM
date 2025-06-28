@@ -37,6 +37,7 @@ class FiCheckController extends BaseController
                 'location_accessible' => $this->request->getPost('location_accessible'),
 
                 'payment_behavior' => $this->request->getPost('payment_behavior'),
+                'documents_received' => implode(', ', $this->request->getPost('documents_received') ?? []),
 
                 'shop_ownership' => $this->request->getPost('shop_ownership'),
                 'house_ownership' => $this->request->getPost('house_ownership'),

@@ -28,6 +28,7 @@ class FiCheckModel extends Model
         'shop_ownership',
         'house_ownership',
         'documents_verified',
+        'documents_received',
         'inspector_comments'
     ];
 

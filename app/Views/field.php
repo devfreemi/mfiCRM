@@ -25,7 +25,7 @@
                         <h2 class="mb-4">Field Inspection Feedback Form</h2>
                         <?php if ($serverError = session('server_error')): ?>
                             <div class="alert alert-danger">
-                                <strong>⚠ Internal Error:</strong> <?= esc($serverError) ?>
+                                <strong>⚠ Error:</strong> <?= esc($serverError) ?>
                             </div>
                         <?php endif; ?>
                         <form action="<?= base_url() ?>submit-fi" method="POST">
@@ -166,6 +166,44 @@
                                     <label for="house_rent">Rented</label>
                                 </div>
                             </div>
+                            <!-- Documents Received from Retailer -->
+                            <!-- Documents Received from Retailer -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <strong>Documents Received from Retailer</strong>
+                                </div>
+                                <div class="card-body">
+                                    <label class="form-label">Select all received and verified documents:</label><br>
+
+                                    <div class="row">
+                                        <!-- Personal Documents -->
+                                        <div class="col-md-6">
+                                            <h6 class="text-danger mb-2">Personal Documents</h6>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="PAN Card" id="doc_pan"><label class="form-check-label" for="doc_pan">PAN Card</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Aadhaar Card" id="doc_aadhaar"><label class="form-check-label" for="doc_aadhaar">Aadhaar Card</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Voter ID" id="doc_voter"><label class="form-check-label" for="doc_voter">Voter ID</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Electricity Bill" id="doc_elec"><label class="form-check-label" for="doc_elec">Electricity Bill</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Property Tax Receipt" id="doc_tax"><label class="form-check-label" for="doc_tax">Property Tax Receipt</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Rent Agreement (House)" id="doc_rent1"><label class="form-check-label" for="doc_rent1">Rent Agreement (House)</label></div>
+                                        </div>
+
+                                        <!-- Business Documents -->
+                                        <div class="col-md-6">
+                                            <h6 class="text-success mb-2">Business Documents</h6>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Trade License" id="doc_license"><label class="form-check-label" for="doc_license">Trade License</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Shop Electricity Bill" id="doc_shop_elec"><label class="form-check-label" for="doc_shop_elec">Shop Electricity Bill</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Shop Rent Agreement" id="doc_shop_rent"><label class="form-check-label" for="doc_shop_rent">Shop Rent Agreement</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="GST Certificate" id="doc_gst"><label class="form-check-label" for="doc_gst">GST Certificate</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Purchase Bills" id="doc_purchase"><label class="form-check-label" for="doc_purchase">Purchase Bills</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Sale Bills" id="doc_sale"><label class="form-check-label" for="doc_sale">Sale Bills</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Income Tax Return" id="doc_itr"><label class="form-check-label" for="doc_itr">Income Tax Return</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="documents_received[]" value="Bank Statement" id="doc_bank"><label class="form-check-label" for="doc_bank">Bank Statement</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <strong>Document Verification</strong>
