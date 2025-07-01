@@ -131,16 +131,19 @@ class LoanApi extends BaseController
             // Flat EMI: Total payable / total months
             $emi = round($due / $tenure);
             $disbursable = round($loan_amount - ($loan_amount * 0.04));
+            $chargesandinsurance = round($loan_amount * 0.04);
             $data = [
 
                 'loan_status'       => "Approved",
                 'loan_tenure'       => $tenure,
                 'emi'               =>  $emi,
+                'interest'          =>  $interest,
                 'pending_emi'       =>  $day_tenure,
                 'loan_due'          => $due,
                 'roi'               => $roi,
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
+                'chargesandinsurance' => $chargesandinsurance,
 
             ];
 

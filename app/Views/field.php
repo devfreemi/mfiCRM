@@ -29,6 +29,8 @@
                             </div>
                         <?php endif; ?>
                         <form action="<?= base_url() ?>submit-fi" method="POST">
+                            <!-- Member's Details Verification -->
+
 
                             <!-- Inspector & Member Info -->
                             <div class="card mb-4">
@@ -60,7 +62,112 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <strong>Member's Details Verification</strong>
+                                </div>
+                                <div class="card-body">
 
+                                    <!-- PERSONAL DETAILS -->
+                                    <h6 class="text-primary mb-3">Personal Details</h6>
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Name: <strong><?= esc($retailers['name']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="name" id="verify_name" required>
+                                                <label class="form-check-label" for="verify_name">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Mobile: <strong><?= esc($retailers['mobile']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="mobile" id="verify_mobile" required>
+                                                <label class="form-check-label" for="verify_mobile">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Address: <strong><?= esc($retailers['location']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="address" id="verify_address" required>
+                                                <label class="form-check-label" for="verify_address">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- BUSINESS DETAILS -->
+                                    <h6 class="text-success mb-3 mt-4">Business Details</h6>
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Business Name: <strong><?= esc($retailers['businessName']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="business_name" id="verify_business_name" required>
+                                                <label class="form-check-label" for="verify_business_type">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Business Type: <strong><?= esc($retailers['businessType']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="business_type" id="verify_business_type" required>
+                                                <label class="form-check-label" for="verify_business_type">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Daily Sales: <strong>₹<?= number_format($retailers['dailySales']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="daily_sales" id="verify_daily_sales" required>
+                                                <label class="form-check-label" for="verify_daily_sales">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Stock Value: <strong>₹<?= number_format($retailers['stock']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="stock_value" id="verify_stock_value" required>
+                                                <label class="form-check-label" for="verify_stock_value">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Monthly Purchase: <strong>₹<?= number_format($retailers['purchase']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="monthly_purchase" id="verify_monthly_purchase" required>
+                                                <label class="form-check-label" for="verify_monthly_purchase">Verified</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Retailer Inspection -->
                             <div class="card mb-4">
                                 <div class="card-header"><strong>Retailer Inspection</strong></div>

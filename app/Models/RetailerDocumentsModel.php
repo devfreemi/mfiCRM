@@ -18,6 +18,8 @@ class RetailerDocumentsModel extends Model
         'document_path',
         'created_at',
         'updated_at',
+        'document_type',
+        'document_password'
     ];
 
     // Dates

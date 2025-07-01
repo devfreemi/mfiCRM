@@ -71,6 +71,7 @@ class RetailerDocumentsController extends BaseController
             'member_id'     => $memberId,
             'document_path' => $docPath,
             'document_type' => $docType,
+            'document_password' => $this->request->getVar('document_password') ?? null,
             'created_at'    => date('Y-m-d H:i:s')
         ];
 

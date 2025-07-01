@@ -154,6 +154,76 @@
                                         <h4 class="mb-0 fw-semibold"><?= esc($fiReport['fiInspector_name']) ?></h4>
                                     </div>
 
+                                    <div class="mb-2">
+                                        <div class="card shadow-sm border-0 mb-4">
+                                            <div class="card-header bg-white border-bottom">
+                                                <h5 class="mb-0">
+                                                    <i class="bi bi-person-check text-primary me-2"></i>
+                                                    Member's Details Verification
+                                                </h5>
+                                            </div>
+                                            <div class="card-body px-4 py-3">
+
+                                                <?php
+                                                $verified = array_map('trim', explode(',', $fiReport['verified_fields'] ?? ''));
+
+                                                function isVerified($key, $verified)
+                                                {
+                                                    return in_array($key, $verified)
+                                                        ? '<span class="text-primary fw-bold">✔️</span>'
+                                                        : '<span class="text-danger fw-bold">❌</span>';
+                                                }
+                                                ?>
+
+                                                <div class="row">
+                                                    <!-- Personal Details -->
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-primary fw-semibold mb-3">Personal Details</h6>
+                                                        <ul class="list-group list-group-flush small">
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Name:</span>
+                                                                <span><strong><?= esc($retailers['name']) ?></strong> <?= isVerified('name', $verified) ?></span>
+                                                            </li>
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Mobile:</span>
+                                                                <span><strong><?= esc($retailers['mobile']) ?></strong> <?= isVerified('mobile', $verified) ?></span>
+                                                            </li>
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Address:</span>
+                                                                <span><strong><?= esc($retailers['location']) ?></strong> <?= isVerified('address', $verified) ?></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <!-- Business Details -->
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-success fw-semibold mb-3">Business Details</h6>
+                                                        <ul class="list-group list-group-flush small">
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Business Type:</span>
+                                                                <span><strong><?= esc($retailers['businessType']) ?></strong> <?= isVerified('business_type', $verified) ?></span>
+                                                            </li>
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Daily Sales:</span>
+                                                                <span><strong>₹<?= esc($retailers['dailySales']) ?></strong> <?= isVerified('daily_sales', $verified) ?></span>
+                                                            </li>
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Stock Value:</span>
+                                                                <span><strong>₹<?= esc($retailers['stock']) ?></strong> <?= isVerified('stock_value', $verified) ?></span>
+                                                            </li>
+                                                            <li class="list-group-item d-flex justify-content-between">
+                                                                <span>Monthly Purchase:</span>
+                                                                <span><strong>₹<?= esc($retailers['month_purchase']) ?></strong> <?= isVerified('monthly_purchase', $verified) ?></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
                                     <hr>
 
                                     <div class="row">
@@ -187,7 +257,6 @@
                                     </div>
 
                                     <hr>
-
                                     <div class="mb-2">
 
                                         <?php
@@ -237,7 +306,7 @@
                                                         </ul>
                                                     </div>
                                                     <h6 class="text-primary mt-4">Verification & Comments</h6>
-                                                    <p class="mb-1">Documents Verified: <strong><?= esc($fiReport['documents_verified']) ?></strong></p>
+                                                    <p class="mb-1">Documents seen & Verified: <strong><?= esc($fiReport['documents_verified']) ?></strong></p>
 
                                                 </div>
 
@@ -308,10 +377,9 @@
 
                                                                         ?>
                                                                             <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'Disbursed Verified') echo 'disabled'; ?>>Approved</option>
-                                                                            <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Disbursed Verified</option>
                                                                             <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Disbursed</option>
-                                                                            <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Rejected' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Closed</option>
-                                                                            <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Rejected' || $row->loan_status === 'Completed' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Rejected</option>
+                                                                            <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Approved' || $row->loan_status === 'Rejected' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Closed</option>
+                                                                            <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Approved' || $row->loan_status === 'Rejected' || $row->loan_status === 'Completed' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Rejected</option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
