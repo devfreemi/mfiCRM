@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\API\ResponseTrait;
+use App\Models\LoanModel;
 
 class FIautoController extends BaseController
 {
@@ -95,7 +96,54 @@ class FIautoController extends BaseController
                     </div>';
 
 
+            // Check member details from member table 
 
+            $builderM = $db->table('members');
+            $builderM->select('*');
+            $builderM->where('member_id', $memberId);
+            $queryM = $builderM->get();
+            // $countEli = $builderB->countAllResults();
+            foreach ($queryM->getResult() as $rowM) {
+                // $eli = $rowB->eligibility;
+                // $eligible_amount = $rowB->loan_amount;
+                // $roi = $rowB->roi;
+                // $emi = $rowB->emi;
+                // $tenure = $rowB->tenure;
+                $mobile = $rowM->mobile;
+                $groupId = $rowM->groupId;
+                $agent = $rowM->agent;
+            }
+            // Now insert the data into the ELI table
+
+            $builderB = $db->table('initial_eli_run');
+            $builderB->select('*');
+            $builderB->where('member_id ', $memberId);
+            $queryB = $builderB->get();
+            // $countEli = $builderB->countAllResults();
+            foreach ($queryB->getResult() as $rowB) {
+                $eli = $rowB->eligibility;
+                $eligible_amount = $rowB->loan_amount;
+                $roi = $rowB->roi;
+                $emi = $rowB->emi;
+                $tenure = $rowB->tenure;
+            }
+
+            $model = new LoanModel();
+            $data_loan = [
+
+                'groupId'       => $groupId,
+                'member_id'     => $memberId,
+                'loan_amount'   => $eligible_amount,
+                'loan_tenure'   => $tenure,
+                'roi'           =>  $roi,
+                'employee_id'   => $agent,
+                'loan_status'     => "FI Initiated",
+                'application_stage' => 'in_progress',
+                'applicationID' => date('ym') . str_pad(mt_rand(0, 999), 3, '0', STR_PAD_LEFT) . $mobile,
+
+            ];
+            // $query = $model->insert($data);
+            $query = $model->save($data_loan);
 
             // Initialize and configure email
             $email = \Config\Services::email();
@@ -115,7 +163,7 @@ class FIautoController extends BaseController
             // Set email params
             $email->setFrom('noreply@retailpe.in', 'RetailPe Field Investigation');
             $email->setTo('subhajit@retailpe.in'); // Change recipient as needed
-            $email->setCC('kousik@retailpe.in');
+            // $email->setCC('kousik@retailpe.in');
             $email->setSubject("FI Initiated – Member ID: $memberId | Retailer Documents Attached");
             $email->setMessage($message);
 

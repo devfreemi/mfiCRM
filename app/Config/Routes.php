@@ -8,7 +8,11 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->add('backoffice-user-signup', 'Auth::signup_validation');
 $routes->add('backoffice-user-login', 'Auth::login_validation');
+
 $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
+$routes->add('submit-fi', 'FiCheckController::submit');
+$routes->get('fi-report', 'FiCheckController::report');
+$routes->get('get-place-name', 'GeoController::reverse');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('dashboard', 'Home::dashboard');
@@ -35,8 +39,6 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->post('loan/check', 'LoanEligibilityController::checkEligibility');
     $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
 
-    $routes->add('submit-fi', 'FiCheckController::submit');
-    $routes->get('fi-report', 'FiCheckController::report');
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
@@ -114,9 +116,9 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/los/emi/get-today-emi-v1', 'PaymentController::get_today_emi');
     $routes->add('api/los/order/create-emi-order-v1', 'PaymentController::generate_order');
     // Field Investigation
-    // $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
+    $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
 });
-$routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
+// $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
 
 
 $routes->group(

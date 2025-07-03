@@ -30,7 +30,20 @@ class FiCheckModel extends Model
         'documents_verified',
         'verified_fields',
         'documents_received',
-        'inspector_comments'
+        'inspector_comments',
+        'fi_status',
+        'fi_final', // New field to store final FI status
+        'inspector_daily_sales',
+        'inspector_stock_value',
+        'inspector_month_purchase',
+        // New location fields
+        'latitude',
+        'longitude',
+        'place_name',
+
+        // Image paths
+        'shop_photo',
+        'selfie_with_owner',
     ];
 
     // Dates

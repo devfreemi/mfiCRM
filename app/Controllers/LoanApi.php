@@ -115,11 +115,7 @@ class LoanApi extends BaseController
         if ($status == "Approved") {
             # code...
             $model->create($table);
-            // $r = ($roi / 100 / 12);
-            // $x = pow(1 + $r, $tenure);
-            // $emi = round(($loan_amount * $x * $r) / ($x - 1));
-            // $due = round($emi * $tenure);
-            // Monthly interest rate is not needed in flat interest, but keeping variable structure
+
             $r = ($roi / 100 / 12);
 
             // Total interest (Flat): (P × R × N years)

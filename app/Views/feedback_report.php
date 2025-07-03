@@ -29,20 +29,27 @@
                                     <tr>
                                         <th>Member ID</th>
                                         <th>Inspector</th>
-                                        <th>Inspector Comments</th>
+                                        <th>Comments</th>
                                         <th>Retailer Present</th>
                                         <th>Professional</th>
                                         <th>Aware</th>
-                                        <th>Original Document Verified</th>
+                                        <th>Needs Training</th>
                                         <th>Shop Clean</th>
-                                        <th>Product Displayed</th>
-                                        <th>Stock available</th>
-                                        <th>Promo</th>
+                                        <th>Products Displayed</th>
+                                        <th>Stock Available</th>
+                                        <th>Promo Visible</th>
                                         <th>Location Accessible</th>
-                                        <th>Payment</th>
+                                        <th>Payment Behavior</th>
                                         <th>Shop Ownership</th>
                                         <th>House Ownership</th>
-                                        <th>Date</th>
+                                        <th>Doc Verified</th>
+                                        <th>Documents Received</th>
+                                        <th>Verified Fields</th>
+                                        <th>Corrected Daily Sales</th>
+                                        <th>Corrected Stock Value</th>
+                                        <th>Corrected Monthly Purchase</th>
+                                        <th>FI Status</th>
+                                        <th>Submitted On</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,7 +61,7 @@
                                             <td><?= esc($f['retailer_present']) ?></td>
                                             <td><?= esc($f['retailer_behavior_professional']) ?></td>
                                             <td><?= esc($f['retailer_aware_products']) ?></td>
-                                            <td><?= esc($f['documents_verified']) ?></td>
+                                            <td><?= esc($f['retailer_needs_training']) ?></td>
                                             <td><?= esc($f['shop_clean']) ?></td>
                                             <td><?= esc($f['products_displayed']) ?></td>
                                             <td><?= esc($f['stock_available']) ?></td>
@@ -63,11 +70,19 @@
                                             <td><?= esc($f['payment_behavior']) ?></td>
                                             <td><?= esc($f['shop_ownership']) ?></td>
                                             <td><?= esc($f['house_ownership']) ?></td>
+                                            <td><?= esc($f['documents_verified']) ?></td>
+                                            <td><?= esc($f['documents_received']) ?></td>
+                                            <td><?= esc($f['verified_fields']) ?></td>
+                                            <td>₹<?= esc(number_format($f['inspector_daily_sales'], 2)) ?></td>
+                                            <td>₹<?= esc(number_format($f['inspector_stock_value'], 2)) ?></td>
+                                            <td>₹<?= esc(number_format($f['inspector_month_purchase'], 2)) ?></td>
+                                            <td><?= esc($f['fi_status']) ?></td>
                                             <td><?= date('d M Y, h:i A', strtotime($f['created_at'])) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

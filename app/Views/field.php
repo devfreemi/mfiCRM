@@ -28,10 +28,31 @@
                                 <strong>⚠ Error:</strong> <?= esc($serverError) ?>
                             </div>
                         <?php endif; ?>
-                        <form action="<?= base_url() ?>submit-fi" method="POST">
+                        <form action="<?= base_url() ?>submit-fi" method="POST" enctype="multipart/form-data">
                             <!-- Member's Details Verification -->
 
-
+                            <input type="text" value="<?= esc($retailers['groupId']) ?>" name="groupId" hidden>
+                            <input type="text" value="<?= esc($retailers['member_id']) ?>" name="member_id" hidden>
+                            <input type="text" value="<?= esc($retailers['agent']) ?>" name="agent" hidden>
+                            <input type="text" value="<?= esc($retailers['mobile']) ?>" name="mobile" hidden>
+                            <?php
+                            $db = db_connect();
+                            $builderB = $db->table('initial_eli_run');
+                            $builderB->select('*');
+                            $builderB->where('member_id ', $retailers['member_id']);
+                            $queryB = $builderB->get();
+                            // $countEli = $builderB->countAllResults();
+                            foreach ($queryB->getResult() as $rowB) {
+                                $eli = $rowB->eligibility;
+                                $eligible_amount = $rowB->loan_amount;
+                                $roi = $rowB->roi;
+                                $emi = $rowB->emi;
+                                $tenure = $rowB->tenure;
+                            }
+                            ?>
+                            <input type="text" value="<?= $eligible_amount ?>" name="eligible_amount" hidden>
+                            <input type="text" value="<?= $roi ?>" name="roi" hidden>
+                            <input type="text" value="<?= $tenure ?>" name="tenure" hidden>
                             <!-- Inspector & Member Info -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -68,16 +89,19 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <!-- PERSONAL DETAILS -->
-                                    <h6 class="text-primary mb-3">Personal Details</h6>
+                                    <!-- Example for Personal Details with radio buttons -->
                                     <div class="mb-3 row align-items-center">
                                         <div class="col-md-8">
                                             <label class="form-label">Name: <strong><?= esc($retailers['name']) ?></strong></label>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="name" id="verify_name" required>
-                                                <label class="form-check-label" for="verify_name">Verified</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[name]" id="name_yes" value="Yes" required>
+                                                <label class="form-check-label" for="name_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[name]" id="name_no" value="No">
+                                                <label class="form-check-label" for="name_no">No</label>
                                             </div>
                                         </div>
                                     </div>
@@ -87,9 +111,13 @@
                                             <label class="form-label">Mobile: <strong><?= esc($retailers['mobile']) ?></strong></label>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="mobile" id="verify_mobile" required>
-                                                <label class="form-check-label" for="verify_mobile">Verified</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[mobile]" id="mobile_yes" value="Yes" required>
+                                                <label class="form-check-label" for="mobile_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[mobile]" id="mobile_no" value="No">
+                                                <label class="form-check-label" for="mobile_no">No</label>
                                             </div>
                                         </div>
                                     </div>
@@ -99,74 +127,99 @@
                                             <label class="form-label">Address: <strong><?= esc($retailers['location']) ?></strong></label>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="address" id="verify_address" required>
-                                                <label class="form-check-label" for="verify_address">Verified</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[address]" id="address_yes" value="Yes" required>
+                                                <label class="form-check-label" for="address_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[address]" id="address_no" value="No">
+                                                <label class="form-check-label" for="address_no">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Business Type -->
+                                    <div class="mb-3 row align-items-center">
+                                        <div class="col-md-8">
+                                            <label class="form-label">Business Type: <strong><?= esc($retailers['businessType']) ?></strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[business_type]" id="business_type_yes" value="Yes" required>
+                                                <label class="form-check-label" for="business_type_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[business_type]" id="business_type_no" value="No">
+                                                <label class="form-check-label" for="business_type_no">No</label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- BUSINESS DETAILS -->
                                     <h6 class="text-success mb-3 mt-4">Business Details</h6>
-                                    <div class="mb-3 row align-items-center">
-                                        <div class="col-md-8">
-                                            <label class="form-label">Business Name: <strong><?= esc($retailers['businessName']) ?></strong></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="business_name" id="verify_business_name" required>
-                                                <label class="form-check-label" for="verify_business_type">Verified</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row align-items-center">
-                                        <div class="col-md-8">
-                                            <label class="form-label">Business Type: <strong><?= esc($retailers['businessType']) ?></strong></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="business_type" id="verify_business_type" required>
-                                                <label class="form-check-label" for="verify_business_type">Verified</label>
-                                            </div>
-                                        </div>
-                                    </div>
 
+                                    <!-- DAILY SALES -->
                                     <div class="mb-3 row align-items-center">
                                         <div class="col-md-8">
                                             <label class="form-label">Daily Sales: <strong>₹<?= number_format($retailers['dailySales']) ?></strong></label>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="daily_sales" id="verify_daily_sales" required>
-                                                <label class="form-check-label" for="verify_daily_sales">Verified</label>
+                                        <div class="col-md-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[daily_sales]" id="daily_sales_yes" value="Yes" required>
+                                                <label class="form-check-label" for="daily_sales_yes">Yes</label>
                                             </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[daily_sales]" id="daily_sales_no" value="No">
+                                                <label class="form-check-label" for="daily_sales_no">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" step="0.01" class="form-control form-control-sm d-none" value="<?= $retailers['dailySales'] ?>" name="corrected_fields[daily_sales]" id="corrected_daily_sales" placeholder="Enter corrected daily sales">
                                         </div>
                                     </div>
 
+                                    <!-- STOCK VALUE -->
                                     <div class="mb-3 row align-items-center">
                                         <div class="col-md-8">
                                             <label class="form-label">Stock Value: <strong>₹<?= number_format($retailers['stock']) ?></strong></label>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="stock_value" id="verify_stock_value" required>
-                                                <label class="form-check-label" for="verify_stock_value">Verified</label>
+                                        <div class="col-md-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[stock_value]" id="stock_value_yes" value="Yes" required>
+                                                <label class="form-check-label" for="stock_value_yes">Yes</label>
                                             </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[stock_value]" id="stock_value_no" value="No">
+                                                <label class="form-check-label" for="stock_value_no">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" step="0.01" class="form-control form-control-sm d-none" value="<?= $retailers['stock'] ?>" name="corrected_fields[stock_value]" id="corrected_stock_value" placeholder="Enter corrected stock value">
                                         </div>
                                     </div>
 
+                                    <!-- MONTHLY PURCHASE -->
                                     <div class="mb-3 row align-items-center">
                                         <div class="col-md-8">
-                                            <label class="form-label">Monthly Purchase: <strong>₹<?= number_format($retailers['purchase']) ?></strong></label>
+                                            <label class="form-label">Monthly Purchase: <strong>₹<?= number_format($retailers['month_purchase']) ?></strong></label>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="verified_fields[]" value="monthly_purchase" id="verify_monthly_purchase" required>
-                                                <label class="form-check-label" for="verify_monthly_purchase">Verified</label>
+                                        <div class="col-md-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[monthly_purchase]" id="monthly_purchase_yes" value="Yes" required>
+                                                <label class="form-check-label" for="monthly_purchase_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="verified_fields[monthly_purchase]" id="monthly_purchase_no" value="No">
+                                                <label class="form-check-label" for="monthly_purchase_no">No</label>
                                             </div>
                                         </div>
+                                        <div class="col-md-2">
+                                            <input type="number" step="0.01" class="form-control form-control-sm d-none" value="<?= $retailers['purchase'] ?>" name="corrected_fields[monthly_purchase]" id="corrected_monthly_purchase" placeholder="Enter corrected monthly purchase">
+                                        </div>
                                     </div>
+
                                 </div>
+
                             </div>
                             <!-- Retailer Inspection -->
                             <div class="card mb-4">
@@ -327,7 +380,45 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- GPS & Image Capture Section -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <strong>Location & Photo Capture</strong>
+                                </div>
+                                <div class="card-body">
 
+                                    <!-- Location -->
+                                    <div class="card mb-4">
+                                        <div class="card-header"><strong>📍 GPS Location</strong></div>
+                                        <div class="card-body">
+                                            <input type="hidden" name="latitude" id="latitude">
+                                            <input type="hidden" name="longitude" id="longitude">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control text-success fw-bold" readonly required name="place_name" id="place_name">
+                                                    </div>
+
+                                                    <button type="button" onclick="detectLocation()" class="btn btn-outline-primary col-6">Detect Location</button>
+                                                </div>
+                                            </div>
+                                            <span id="loader" class="ms-2 text-muted" style="display: none;">⏳ Fetching location...</span>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Image Capture -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Shop Photo (Exterior / Interior)</label>
+                                        <input type="file" name="shop_photo" accept="image/*" capture="environment" class="form-control" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Selfie with Retailer</label>
+                                        <input type="file" name="selfie_with_owner" accept="image/*" capture="user" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Inspector Comments -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -340,6 +431,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Submit -->
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary">Submit Feedback</button>
@@ -364,6 +456,97 @@
             document.getElementById('fiInspector_name').value = selectedText;
         });
     </script>
+    <script>
+        const fields = ['daily_sales', 'stock_value', 'monthly_purchase'];
+
+        fields.forEach(field => {
+            const yes = document.getElementById(`${field}_yes`);
+            const no = document.getElementById(`${field}_no`);
+            const input = document.getElementById(`corrected_${field}`);
+
+            yes.addEventListener('change', () => {
+                input.classList.add('d-none');
+                // input.value = '';
+            });
+
+            no.addEventListener('change', () => {
+                input.classList.remove('d-none');
+            });
+        });
+    </script>
+    <!-- <script>
+        function detectLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    document.getElementById("latitude").value = lat;
+                    document.getElementById("longitude").value = lon;
+
+                    // Send lat/lon to your PHP endpoint
+                    const response = await fetch(`/get-place-name?lat=${lat}&lon=${lon}`);
+                    const data = await response.json();
+
+                    const placeName = data.place_name || "Unknown";
+                    document.getElementById("place_name").value = placeName;
+                    document.getElementById("place_name_text").textContent = placeName;
+                });
+            }
+        }
+    </script> -->
+    <script>
+        function detectLocation() {
+            const loader = $("#loader");
+            const btn = $("#detectBtn");
+
+            loader.show();
+            // btn.prop("disabled", true); // Uncomment if you want to disable button
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    $("#latitude").val(lat);
+                    $("#longitude").val(lon);
+
+                    $.ajax({
+                        url: "/get-place-name",
+                        type: "GET",
+                        data: {
+                            lat: lat,
+                            lon: lon
+                        },
+                        success: function(data) {
+                            const placeName = data.place_name || "Unknown";
+                            $("#place_name").val(placeName);
+                            $("#place_name_text").text(placeName);
+                        },
+                        error: function() {
+                            alert("Error fetching location name.");
+                        },
+                        complete: function() {
+                            loader.hide();
+                            // btn.prop("disabled", false);
+                        }
+                    });
+
+                }, function(error) {
+                    alert("Geolocation error: " + error.message);
+                    loader.hide();
+                    // btn.prop("disabled", false);
+                });
+            } else {
+                alert("Geolocation not supported.");
+                loader.hide();
+                // btn.prop("disabled", false);
+            }
+        }
+    </script>
+
+
+
     <?php include 'fragments/footer.php'; ?>
 </div>
 </div>

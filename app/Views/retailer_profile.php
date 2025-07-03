@@ -163,10 +163,8 @@
                                                 </h5>
                                             </div>
                                             <div class="card-body px-4 py-3">
-
                                                 <?php
                                                 $verified = array_map('trim', explode(',', $fiReport['verified_fields'] ?? ''));
-
                                                 function isVerified($key, $verified)
                                                 {
                                                     return in_array($key, $verified)
@@ -174,9 +172,7 @@
                                                         : '<span class="text-danger fw-bold">❌</span>';
                                                 }
                                                 ?>
-
                                                 <div class="row">
-                                                    <!-- Personal Details -->
                                                     <div class="col-md-6">
                                                         <h6 class="text-primary fw-semibold mb-3">Personal Details</h6>
                                                         <ul class="list-group list-group-flush small">
@@ -195,7 +191,6 @@
                                                         </ul>
                                                     </div>
 
-                                                    <!-- Business Details -->
                                                     <div class="col-md-6">
                                                         <h6 class="text-success fw-semibold mb-3">Business Details</h6>
                                                         <ul class="list-group list-group-flush small">
@@ -204,120 +199,201 @@
                                                                 <span><strong><?= esc($retailers['businessType']) ?></strong> <?= isVerified('business_type', $verified) ?></span>
                                                             </li>
                                                             <li class="list-group-item d-flex justify-content-between">
-                                                                <span>Daily Sales:</span>
-                                                                <span><strong>₹<?= esc($retailers['dailySales']) ?></strong> <?= isVerified('daily_sales', $verified) ?></span>
+                                                                <span>Daily Sales (Verified):</span>
+                                                                <span><strong><strong>₹<?= number_format($retailers['dailySales']) ?></strong> (₹<?= number_format($fiReport['inspector_daily_sales']) ?>)</strong> <?= isVerified('daily_sales', $verified) ?></span>
                                                             </li>
                                                             <li class="list-group-item d-flex justify-content-between">
-                                                                <span>Stock Value:</span>
-                                                                <span><strong>₹<?= esc($retailers['stock']) ?></strong> <?= isVerified('stock_value', $verified) ?></span>
+                                                                <span>Stock Value (Verified):</span>
+                                                                <span><strong><strong>₹<?= number_format($retailers['stock']) ?></strong> (₹<?= number_format($fiReport['inspector_stock_value']) ?>)</strong> <?= isVerified('stock_value', $verified) ?></span>
                                                             </li>
                                                             <li class="list-group-item d-flex justify-content-between">
-                                                                <span>Monthly Purchase:</span>
-                                                                <span><strong>₹<?= esc($retailers['month_purchase']) ?></strong> <?= isVerified('monthly_purchase', $verified) ?></span>
+                                                                <span>Monthly Purchase (Verified):</span>
+                                                                <span><strong>₹<?= number_format($fiReport['inspector_month_purchase']) ?></strong> <?= isVerified('monthly_purchase', $verified) ?></span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
+
                                     <hr>
 
                                     <div class="row">
+                                        <?php
+                                        function coloredYesNo($value)
+                                        {
+                                            $val = strtolower(trim($value));
+                                            if ($val === 'yes') {
+                                                return '<span class="text-success fw-semibold">Yes</span>';
+                                            } elseif ($val === 'no') {
+                                                return '<span class="text-danger fw-semibold">No</span>';
+                                            } else {
+                                                return '<span>' . esc($value) . '</span>';
+                                            }
+                                        }
+                                        ?>
+
                                         <div class="col-md-6">
                                             <h6 class="text-primary">Retailer Interaction</h6>
                                             <ul class="list-group list-group-flush mb-3">
-                                                <li class="list-group-item">Retailer Present: <strong><?= esc($fiReport['retailer_present']) ?></strong></li>
-                                                <li class="list-group-item">Behavior Professional: <strong><?= esc($fiReport['retailer_behavior_professional']) ?></strong></li>
-                                                <li class="list-group-item">Aware of Products: <strong><?= esc($fiReport['retailer_aware_products']) ?></strong></li>
+                                                <li class="list-group-item">Retailer Present: <strong><?= coloredYesNo($fiReport['retailer_present']) ?></strong></li>
+                                                <li class="list-group-item">Behavior Professional: <strong><?= coloredYesNo($fiReport['retailer_behavior_professional']) ?></strong></li>
+                                                <li class="list-group-item">Aware of Products: <strong><?= coloredYesNo($fiReport['retailer_aware_products']) ?></strong></li>
+                                                <li class="list-group-item">Needs Training: <strong><?= coloredYesNo($fiReport['retailer_needs_training']) ?></strong></li>
                                             </ul>
                                         </div>
 
                                         <div class="col-md-6">
                                             <h6 class="text-primary">Shop Inspection</h6>
                                             <ul class="list-group list-group-flush mb-3">
-                                                <li class="list-group-item">Shop Clean: <strong><?= esc($fiReport['shop_clean']) ?></strong></li>
-                                                <li class="list-group-item">Products Displayed: <strong><?= esc($fiReport['products_displayed']) ?></strong></li>
-                                                <li class="list-group-item">Stock Available: <strong><?= esc($fiReport['stock_available']) ?></strong></li>
-                                                <li class="list-group-item">Promo Materials Visible: <strong><?= esc($fiReport['promo_materials_visible']) ?></strong></li>
-                                                <li class="list-group-item">Shop Accessible: <strong><?= esc($fiReport['location_accessible']) ?></strong></li>
+                                                <li class="list-group-item">Shop Clean: <strong><?= coloredYesNo($fiReport['shop_clean']) ?></strong></li>
+                                                <li class="list-group-item">Products Displayed: <strong><?= coloredYesNo($fiReport['products_displayed']) ?></strong></li>
+                                                <li class="list-group-item">Stock Available: <strong><?= coloredYesNo($fiReport['stock_available']) ?></strong></li>
+                                                <li class="list-group-item">Promo Materials Visible: <strong><?= coloredYesNo($fiReport['promo_materials_visible']) ?></strong></li>
+                                                <li class="list-group-item">Shop Accessible: <strong><?= coloredYesNo($fiReport['location_accessible']) ?></strong></li>
                                             </ul>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h6 class="text-primary">Payment Behavior</h6>
-                                            <p class="fw-semibold"><?= esc($fiReport['payment_behavior']) ?></p>
-                                        </div>
 
                                     </div>
+
+
 
                                     <hr>
-                                    <div class="mb-2">
 
-                                        <?php
-                                        $receivedDocs = array_map('trim', explode(',', $fiReport['documents_received'] ?? ''));
-                                        function docStatus($docName, $receivedDocs)
-                                        {
-                                            return in_array($docName, $receivedDocs) ? '✅' : '❌';
-                                        }
-                                        ?>
+                                    <?php
+                                    $receivedDocs = array_map('trim', explode(',', $fiReport['documents_received'] ?? ''));
+                                    function docStatus($docName, $receivedDocs)
+                                    {
+                                        return in_array($docName, $receivedDocs) ? '✅' : '❌';
+                                    }
+                                    ?>
 
-                                        <div class="card mb-4">
-                                            <div class="card-header bg-light">
-                                                <strong>📄 Documents Received from Retailer</strong>
-                                            </div>
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- Personal Documents -->
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-primary">Personal Documents</h6>
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item"><?= docStatus('PAN Card', $receivedDocs) ?> PAN Card</li>
-                                                            <li class="list-group-item"><?= docStatus('Aadhaar Card', $receivedDocs) ?> Aadhaar Card</li>
-                                                            <li class="list-group-item"><?= docStatus('Voter ID', $receivedDocs) ?> Voter ID</li>
-                                                            <li class="list-group-item"><?= docStatus('Electricity Bill', $receivedDocs) ?> Electricity Bill</li>
-                                                            <li class="list-group-item"><?= docStatus('Property Tax Receipt', $receivedDocs) ?> Property Tax Receipt</li>
-                                                            <li class="list-group-item"><?= docStatus('Rent Agreement (House)', $receivedDocs) ?> Rent Agreement (House)</li>
-                                                        </ul>
-                                                        <div class="col-md-6 text-center mx-auto mt-3">
-                                                            <h6 class="text-primary">Ownership</h6>
-                                                            <p class="mb-1">Shop: <strong><?= esc($fiReport['shop_ownership']) ?></strong></p>
-                                                            <p class="mb-0">House: <strong><?= esc($fiReport['house_ownership']) ?></strong></p>
-                                                        </div>
+                                    <div class="card mb-4">
+                                        <div class="card-header bg-light">
+                                            <strong>📄 Documents Received from Retailer</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h6 class="text-primary">Personal Documents</h6>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><?= docStatus('PAN Card', $receivedDocs) ?> PAN Card</li>
+                                                        <li class="list-group-item"><?= docStatus('Aadhaar Card', $receivedDocs) ?> Aadhaar Card</li>
+                                                        <li class="list-group-item"><?= docStatus('Voter ID', $receivedDocs) ?> Voter ID</li>
+                                                        <li class="list-group-item"><?= docStatus('Electricity Bill', $receivedDocs) ?> Electricity Bill</li>
+                                                        <li class="list-group-item"><?= docStatus('Property Tax Receipt', $receivedDocs) ?> Property Tax Receipt</li>
+                                                        <li class="list-group-item"><?= docStatus('Rent Agreement (House)', $receivedDocs) ?> Rent Agreement (House)</li>
+                                                    </ul>
+                                                    <div class="col-md-6 text-center mx-auto mt-3">
+                                                        <h6 class="text-primary">Ownership</h6>
+                                                        <p class="mb-1">Shop: <strong><?= esc($fiReport['shop_ownership']) ?></strong></p>
+                                                        <p class="mb-0">House: <strong><?= esc($fiReport['house_ownership']) ?></strong></p>
                                                     </div>
-                                                    <!-- Business Documents -->
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-success">Business Documents</h6>
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item"><?= docStatus('Shop Electricity Bill', $receivedDocs) ?> Shop Electricity Bill</li>
-                                                            <li class="list-group-item"><?= docStatus('Shop Rent Agreement', $receivedDocs) ?> Shop Rent Agreement</li>
-                                                            <li class="list-group-item"><?= docStatus('GST Certificate', $receivedDocs) ?> GST Certificate</li>
-                                                            <li class="list-group-item"><?= docStatus('Purchase Bills', $receivedDocs) ?> Purchase Bills</li>
-                                                            <li class="list-group-item"><?= docStatus('Sale Bills', $receivedDocs) ?> Sale Bills</li>
-                                                            <li class="list-group-item"><?= docStatus('Income Tax Return', $receivedDocs) ?> Income Tax Return</li>
-                                                            <li class="list-group-item"><?= docStatus('Bank Statement', $receivedDocs) ?> Bank Statement</li>
-                                                            <li class="list-group-item"><?= docStatus('Trade License', $receivedDocs) ?> Trade License</li>
-                                                        </ul>
-                                                    </div>
-                                                    <h6 class="text-primary mt-4">Verification & Comments</h6>
-                                                    <p class="mb-1">Documents seen & Verified: <strong><?= esc($fiReport['documents_verified']) ?></strong></p>
-
                                                 </div>
 
+                                                <div class="col-md-6">
+                                                    <h6 class="text-success">Business Documents</h6>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><?= docStatus('Shop Electricity Bill', $receivedDocs) ?> Shop Electricity Bill</li>
+                                                        <li class="list-group-item"><?= docStatus('Shop Rent Agreement', $receivedDocs) ?> Shop Rent Agreement</li>
+                                                        <li class="list-group-item"><?= docStatus('GST Certificate', $receivedDocs) ?> GST Certificate</li>
+                                                        <li class="list-group-item"><?= docStatus('Purchase Bills', $receivedDocs) ?> Purchase Bills</li>
+                                                        <li class="list-group-item"><?= docStatus('Sale Bills', $receivedDocs) ?> Sale Bills</li>
+                                                        <li class="list-group-item"><?= docStatus('Income Tax Return', $receivedDocs) ?> Income Tax Return</li>
+                                                        <li class="list-group-item"><?= docStatus('Bank Statement', $receivedDocs) ?> Bank Statement</li>
+                                                        <li class="list-group-item"><?= docStatus('Trade License', $receivedDocs) ?> Trade License</li>
+                                                    </ul>
+                                                </div>
                                             </div>
+
+                                            <div class="mt-4">
+                                                <h6 class="text-primary">Documents Seen & Verified</h6>
+                                                <p class="fw-semibold"><?= esc($fiReport['documents_verified']) ?></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h6 class="text-primary">📍 Location Details</h6>
+                                                <ul class="list-group list-group-flush small">
+                                                    <li class="list-group-item d-flex justify-content-between">
+                                                        <span>Place Name:</span>
+                                                        <span><strong><?= esc($fiReport['place_name']) ?: 'N/A' ?></strong></span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between">
+                                                        <span>Latitude:</span>
+                                                        <span><strong><?= esc($fiReport['latitude']) ?: 'N/A' ?></strong></span>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between">
+                                                        <span>Longitude:</span>
+                                                        <span><strong><?= esc($fiReport['longitude']) ?: 'N/A' ?></strong></span>
+                                                    </li>
+                                                </ul>
+                                                <?php if (!empty($fiReport['latitude']) && !empty($fiReport['longitude'])): ?>
+                                                    <div class="mt-3">
+                                                        <h6 class="text-primary">📍 Map Location</h6>
+                                                        <iframe
+                                                            width="100%"
+                                                            height="200"
+                                                            style="border:0"
+                                                            loading="lazy"
+                                                            allowfullscreen
+                                                            referrerpolicy="no-referrer-when-downgrade"
+                                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBL37wmv8b2ttTewyEFj3ri8sLIew5RN2E&center=<?= $fiReport['latitude'] ?>,<?= $fiReport['longitude'] ?>&q=<?= esc($fiReport['place_name']) ?: 'N/A' ?>&zoom=17&maptype=satellite">
+                                                        </iframe>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <p class="text-muted">Location coordinates not available to show map.</p>
+                                                <?php endif; ?>
+
+                                            </div>
+                                            <div class="mb-4">
+                                                <h6 class="text-primary">📸 Captured Photos</h6>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <strong>Shop Photo</strong><br>
+                                                        <?php if (!empty($fiReport['shop_photo'])): ?>
+                                                            <img src="<?= base_url($fiReport['shop_photo']) ?>" class="img-fluid rounded border" style="max-height: 200px;">
+                                                        <?php else: ?>
+                                                            <p class="text-muted">Not available</p>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <strong>Selfie with Owner</strong><br>
+                                                        <?php if (!empty($fiReport['selfie_with_owner'])): ?>
+                                                            <img src="<?= base_url($fiReport['selfie_with_owner']) ?>" class="img-fluid rounded border" style="max-height: 200px;">
+                                                        <?php else: ?>
+                                                            <p class="text-muted">Not available</p>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
 
                                         <p class="text-muted">Inspector's Comment: <span class="text-info fw-bold fs-4"><?= esc($fiReport['inspector_comments']) ?: 'No additional comments.' ?></span></p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            Update Loan Application
-                                        </button>
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <h6 class="text-primary">Payment Behavior</h6>
+                                                <p class="badge bg-success fs-6"><?= esc($fiReport['payment_behavior']) ?></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="text-primary">FI Status</h6>
+                                                <?php
+                                                $fi_final = $fiReport['fi_final'];
+                                                $badgeClass = match ($fi_final) {
+                                                    'Y' => 'success',
+                                                    'N' => 'danger',
+                                                    'W' => 'warning',
+                                                };
+                                                ?>
+                                                <span class="badge bg-<?= $badgeClass ?> fs-6"><?= strtoupper($fiReport['fi_status']) ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mx-auto my-4">
+                                            <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                Update Loan Application
+                                            </button>
+                                        </div>
                                         <!-- Modal -->
                                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog">
