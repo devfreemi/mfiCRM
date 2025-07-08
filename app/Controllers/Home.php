@@ -66,4 +66,8 @@ class Home extends BaseController
     {
         return view('employee_attendence');
     }
+    public function redirection()
+    {
+        return view('page-redirection');
+    }
 }

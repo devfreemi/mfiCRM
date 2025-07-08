@@ -131,9 +131,9 @@ class FiCheckController extends BaseController
                 $application_stage = 'approval_pending';
             } else {
                 $fiStatus = ($unverifiedCount > 0 ? 'Minor mismatches: ' . implode(', ', $notVerified) : 'FI passed. All matched.');
-                $fiResult = 'FI Success';
+                $fiResult = 'Approved';
                 $fi_final = 'Y';
-                $application_stage = 'approved';
+                $application_stage = 'FI Success';
             }
             // Inspector overrides (if mismatch)
             $inspectedSales = in_array('daily_sales', $notVerified) ? $correctedFields['daily_sales'] ?? null : $correctedFields['daily_sales'];
@@ -177,8 +177,35 @@ class FiCheckController extends BaseController
             ];
 
             $model->insert($data);
-
+            $db = db_connect();
             $model = new LoanModel();
+            $applicationid   = $this->request->getPost('applicationid');
+            $table = "tab_" . $applicationid;
+            $status = $this->request->getPost('status');
+            $loan_amount = $this->request->getPost('eligible_amount');
+            $tenure = $this->request->getPost('tenure');
+            // Exact Date calculation
+            $start = new \DateTime();
+            $end = (clone $start)->modify("+$tenure months");
+            $diff = $start->diff($end);
+            $day_tenure =  $diff->days;
+
+
+            // $day_tenure = $tenure * 30;
+            $roi = $this->request->getPost('roi');
+            $r = ($roi / 100 / 12);
+
+            // Total interest (Flat): (P × R × N years)
+            $interest = ($loan_amount * $roi * ($tenure / 12)) / 100;
+
+            // Total amount payable
+            $due = round($loan_amount + $interest);
+
+            // Flat EMI: Total payable / total months
+            $emi = round($due / $tenure);
+            $disbursable = round($loan_amount - ($loan_amount * 0.04));
+            $chargesandinsurance = round($loan_amount * 0.04);
+
             $data_loan = [
 
                 'groupId'       => $this->request->getPost('groupId'),
@@ -186,6 +213,11 @@ class FiCheckController extends BaseController
                 'loan_amount'   => $this->request->getPost('eligible_amount'),
                 'loan_tenure'   => $this->request->getPost('tenure'),
                 'roi'           => $this->request->getPost('roi'),
+                'emi'               =>  $emi,
+                'total_amount'      => $due,
+                'disbursable_amount' => $disbursable,
+                'chargesandinsurance' => $chargesandinsurance,
+                'interest'          =>  $interest,
                 'employee_id'   => $this->request->getPost('agent'),
                 'loan_status'     => $fiResult,
                 'application_stage' => $application_stage,
@@ -193,8 +225,10 @@ class FiCheckController extends BaseController
 
             ];
             // $query = $model->insert($data);
-            $query = $model->save($data_loan);
-
+            // $query = $model->save($data_loan);
+            $builderLoan = $db->table('loans');
+            $builderLoan->where('member_id', $this->request->getPost('member_id'));
+            $builderLoan->update($data_loan);
             // Update the member's details status
             $data_update = [
 
@@ -204,13 +238,13 @@ class FiCheckController extends BaseController
                 'month_purchase'    => $inspectedPurchase,
 
             ];
-            $db = db_connect();
+
             $builder = $db->table('members');
             $builder->where('member_id', $this->request->getPost('member_id'));
             $query = $builder->update($data_update);
             // Normal flow
             session()->setFlashdata('msg', $fi_final);
-            return view('fi-success');
+            return view('fi-success', ['member_id' => $this->request->getPost('member_id')]);
         } catch (\Throwable $e) {
             if ($this->request->isAJAX()) {
                 return $this->response->setJSON([

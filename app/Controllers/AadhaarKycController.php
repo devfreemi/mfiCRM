@@ -220,110 +220,113 @@ class AadhaarKycController extends BaseController
 
 
 
-    public function send_otp()
-    {
-        //Data Input
-        $employeeIDkyc = $this->request->getVar('employeeIDkyc');
-        $aadhaarNo = $this->request->getVar('aadhaarNo');
-        $aadhaarFour = substr($aadhaarNo, -6);
-        $caseId = $aadhaarFour;
-        $consent = "Y";
+    // public function send_otp()
+    // {
+    //     //Data Input
 
-        // $query = $model->save($data);
-        // $data = [
-        //     'aadhaarNo'        => $aadhaarNo,
-        //     'caseId'          => $caseId,
-        //     'consent'        => $consent,
-        //     'keyDoneBy'      => $employeeIDkyc,
-        //     'timestamp'       => date('Y-m-d H:i:s'),
-        // ];
-        $dataApi = array(
-            'aadhaarNo'        => $aadhaarNo,
-            'consent'        => $consent,
-            'clientData' => array(
-                'caseId'          => $caseId,
-            ),
-        );
-        $data_json = json_encode($dataApi);
+    //     $aadhaarFour = substr($aadhaarNo, -6);
+    //     $caseId = $aadhaarFour;
+    //     $consent = "Y";
 
-        if ($aadhaarNo != '') {
-            # code...
-            $curl = curl_init();
+    //     // $query = $model->save($data);
+    //     // $data = [
+    //     //     'aadhaarNo'        => $aadhaarNo,
+    //     //     'caseId'          => $caseId,
+    //     //     'consent'        => $consent,
+    //     //     'keyDoneBy'      => $employeeIDkyc,
+    //     //     'timestamp'       => date('Y-m-d H:i:s'),
+    //     // ];
+    //     $dataApi = array(
+    //         'aadhaarNo'        => $aadhaarNo,
+    //         'consent'        => $consent,
+    //         'clientData' => array(
+    //             'caseId'          => $caseId,
+    //         ),
+    //     );
+    //     $data_json = json_encode($dataApi);
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/otp",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => $data_json,
-                CURLOPT_HTTPHEADER => array(
-                    "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
-                ),
-            ));
+    //     if ($aadhaarNo != '') {
+    //         # code...
+    //         $curl = curl_init();
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            $response_decode = json_decode($response, true);
+    //         curl_setopt_array($curl, array(
+    //             CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/initialize',
+    //             CURLOPT_RETURNTRANSFER => true,
+    //             CURLOPT_ENCODING => '',
+    //             CURLOPT_MAXREDIRS => 10,
+    //             CURLOPT_TIMEOUT => 0,
+    //             CURLOPT_FOLLOWLOCATION => true,
+    //             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    //             CURLOPT_CUSTOMREQUEST => 'POST',
+    //             CURLOPT_POSTFIELDS => $data_json,
+    //             CURLOPT_HTTPHEADER => array(
+    //                 "content-type: application/json",
+    //                 "x-auth-key: KzKQbi9Tw8OokmY"
+    //             ),
+    //         ));
 
-            curl_close($curl);
+    //         $response = curl_exec($curl);
+    //         $err = curl_error($curl);
+    //         $response_decode = json_decode($response, true);
 
-            if ($err) {
-                // echo "cURL Error #:" . $err;
-                return $this->respond(['error' => 'Invalid Request.' . $err], 401);
-            } else {
-                // echo $response;
-                return $this->respond(['kyc' => $response_decode], 200);
-            }
-        } else {
-            # code...
-            return $this->respond(['error' => 'Server Error.'], 502);
-        }
-    }
+    //         curl_close($curl);
+
+    //         if ($err) {
+    //             // echo "cURL Error #:" . $err;
+    //             return $this->respond(['error' => 'Invalid Request.' . $err], 401);
+    //         } else {
+    //             // echo $response;
+    //             return $this->respond(['kyc' => $response_decode], 200);
+    //         }
+    //     } else {
+    //         # code...
+    //         return $this->respond(['error' => 'Server Error.'], 502);
+    //     }
+    // }
     public function verify_otp()
     {
         // Data Input
-        $otpAadhaar = $this->request->getVar('otp');
-        $employeeIDkycVer = $this->request->getVar('employeeIDkycVer');
-        $aadhaarNo = $this->request->getVar('aadhaarNo');
+        $name = $this->request->getVar('nameAdh');
+        $mobile = $this->request->getVar('mobileNumber');
 
-        $shareCode = rand(1000, 9999);
-        $aadhaarFour = substr($aadhaarNo, -6);
-        $caseId = $aadhaarFour;
-        $requestId = $this->request->getVar('requestId');
-        $consent = "Y";
+
 
         $dataApi = array(
-            'otp'              => $otpAadhaar,
-            'aadhaarNo'        => $aadhaarNo,
-            'requestId'        => $requestId,
-            'consent'          => $consent,
-            'shareCode'        => $shareCode,
-            'clientData' => array(
-                'caseId'          => $caseId,
-            ),
+            "data" => array(
+                "prefill_options" => array(
+                    "full_name"     => $name,
+                    "mobile_number" => $mobile,
+
+                ),
+                "expiry_minutes" => 10,
+                "send_sms"       => true,
+                "send_email"     => false,
+                "verify_phone"   => true,
+                "verify_email"   => false,
+                "signup_flow"    => false,
+                "redirect_url"   => "https://www.retailpe.in/",
+                "state"          => "RetailPeLOS"
+            )
         );
         $data_json = json_encode($dataApi);
 
-        if ($otpAadhaar != '') {
+        if ($mobile != '') {
             # code...
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://hub.perfios.com/api/kyc/v3/aadhaar-xml/file",
+                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/initialize',
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
+                CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
                     "content-type: application/json",
-                    "x-auth-key: KzKQbi9Tw8OokmY"
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                 ),
             ));
 
@@ -367,7 +370,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/mobile-to-pan',
+                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/mobile-to-pan',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -377,7 +380,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                     // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
                     'Content-Type: application/json'
                 ),
@@ -408,7 +411,7 @@ class AadhaarKycController extends BaseController
                     $curlInter = curl_init();
 
                     curl_setopt_array($curlInter, array(
-                        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/pan-comprehensive',
+                        CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/pan-comprehensive',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
@@ -418,7 +421,7 @@ class AadhaarKycController extends BaseController
                         CURLOPT_CUSTOMREQUEST => 'POST',
                         CURLOPT_POSTFIELDS => $data_json_pan,
                         CURLOPT_HTTPHEADER => array(
-                            'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                            'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                             // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
                             'Content-Type: application/json'
                         ),
@@ -446,7 +449,7 @@ class AadhaarKycController extends BaseController
                             $data_json_gst = json_encode($dataApiGst);
                             $curlGst = curl_init();
                             curl_setopt_array($curlGst, array(
-                                CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/corporate/gstin-by-pan',
+                                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/corporate/gstin-by-pan',
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => '',
                                 CURLOPT_MAXREDIRS => 10,
@@ -456,7 +459,7 @@ class AadhaarKycController extends BaseController
                                 CURLOPT_CUSTOMREQUEST => 'POST',
                                 CURLOPT_POSTFIELDS => $data_json_gst,
                                 CURLOPT_HTTPHEADER => array(
-                                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                                     'Content-Type: application/json'
                                 ),
                             ));
@@ -507,7 +510,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/pan/pan-comprehensive',
+                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/pan-comprehensive',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -517,7 +520,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                     // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
                     'Content-Type: application/json'
                 ),
@@ -544,7 +547,7 @@ class AadhaarKycController extends BaseController
                     $data_json_gst = json_encode($dataApiGst);
                     $curlGst = curl_init();
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/corporate/gstin-by-pan',
+                        CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/corporate/gstin-by-pan',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
@@ -554,7 +557,7 @@ class AadhaarKycController extends BaseController
                         CURLOPT_CUSTOMREQUEST => 'POST',
                         CURLOPT_POSTFIELDS => $data_json_gst,
                         CURLOPT_HTTPHEADER => array(
-                            'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                            'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                             'Content-Type: application/json'
                         ),
                     ));
@@ -601,7 +604,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://sandbox.surepass.io/api/v1/corporate/gstin-advanced",
+                CURLOPT_URL => "https://kyc-api.surepass.io/api/v1/corporate/gstin-advanced",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -611,7 +614,7 @@ class AadhaarKycController extends BaseController
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $data_json,
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY'),
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                     'Content-Type: application/json'
                 ),
             ));

@@ -13,6 +13,11 @@ $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
 $routes->add('submit-fi', 'FiCheckController::submit');
 $routes->get('fi-report', 'FiCheckController::report');
 $routes->get('get-place-name', 'GeoController::reverse');
+// PDF Generate and eSign
+$routes->get('preview-pdf/(:any)', 'GeneratePdf::previewSanctionLetter/$1');
+
+$routes->get('generate-pdf/(:segment)', 'GeneratePdf::generatePdf/$1');
+$routes->get('redirection', 'Home::redirection');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('dashboard', 'Home::dashboard');
@@ -43,6 +48,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
     $routes->add('loan-create', 'LoanApi::loan_create');
+    // PFD Test
+
 });
 
 $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
@@ -94,7 +101,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/total-outstanding-month', 'LoanApi::total_outstanding_month');
     $routes->add('api/total-disbursed-month', 'LoanApi::total_disbursed_month');
     // KYC Verification
-    $routes->add('api/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp');
+    $routes->add('api/kyc-aadhaar-check-status', 'AadhaarKycController::send_otp');
     $routes->add('api/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp');
     $routes->add('api/kyc-pan-search', 'AadhaarKycController::get_pan'); // For PAN Search
     $routes->add('api/kyc-pan-verify', 'AadhaarKycController::verify_pan');

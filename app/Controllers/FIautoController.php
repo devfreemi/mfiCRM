@@ -138,7 +138,7 @@ class FIautoController extends BaseController
                 'roi'           =>  $roi,
                 'employee_id'   => $agent,
                 'loan_status'     => "FI Initiated",
-                'application_stage' => 'in_progress',
+                'application_stage' => 'in_process',
                 'applicationID' => date('ym') . str_pad(mt_rand(0, 999), 3, '0', STR_PAD_LEFT) . $mobile,
 
             ];
@@ -171,7 +171,7 @@ class FIautoController extends BaseController
             if ($email->send()) {
                 return $this->respond([
                     'status' => true,
-                    'message' => 'Documents emailed successfully.',
+                    'message' => 'Documents emailed successfully and FI Initiate',
                     'data' => $documents
                 ], 200);
             } else {

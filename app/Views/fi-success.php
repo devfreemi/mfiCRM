@@ -39,7 +39,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">Next Step</h5>
                                                 <p class="card-text">You can now proceed to the <strong>Final Approval</strong> and <strong>Document Signing</strong> stage.</p>
-                                                <a href="#" class="btn btn-success">Proceed to Final Approval</a>
+                                                <a href="<?= base_url() ?>preview-pdf/<?= esc($member_id) ?>" class="btn btn-success">Proceed to Final Approval</a>
                                             </div>
                                         </div>
 

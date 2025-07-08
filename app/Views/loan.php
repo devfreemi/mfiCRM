@@ -70,9 +70,9 @@
 
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group">
-                                                    <!-- <button type="button" class="btn btn-primary  view" id="<?php echo $row->applicationID; ?>">
+                                                    <button type="button" class="btn btn-primary  view" id="<?php echo $row->applicationID; ?>">
                                                         <i class="align-middle" data-feather="edit"></i>
-                                                    </button> -->
+                                                    </button>
                                                     <?php
                                                     if ($row->loan_status === "Disbursed") { ?>
                                                         <button type="button" class="btn btn-danger details" id="<?php echo $row->applicationID; ?>">
