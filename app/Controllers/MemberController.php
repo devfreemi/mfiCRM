@@ -57,6 +57,13 @@ class MemberController extends BaseController
             # code...
             $gst = $this->request->getVar('panNo') . "/NA";
         }
+        if ($this->request->getVar('gender') === 'M') {
+            # code...
+            $gender = 'Male';
+        } else {
+            # code...
+            $gender = 'Female';
+        }
 
 
 
@@ -71,7 +78,7 @@ class MemberController extends BaseController
             'name'              => $this->request->getVar('name'),
             'location'          => $this->request->getVar('memberLocation'),
             'pincode'           => $this->request->getVar('groupPin'),
-            'gender'            => $this->request->getVar('gender'),
+            'gender'            => $gender,
             'marital'           => $this->request->getVar('marital'),
             'occupation'        => $this->request->getVar('occupation'),
             'businessType'      => $this->request->getVar('businessType'),
@@ -96,6 +103,7 @@ class MemberController extends BaseController
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
             'eli_run'           => "Y",
+            'userDOB'           => $this->request->getVar('panDob'),
             'month_purchase'    => $this->request->getVar('month_purchase')
         ];
 

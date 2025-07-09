@@ -12,7 +12,7 @@ class LoanEligibilityModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'cibilReport', 'created_at', 'updated_at'];
 
     protected $stock;
     protected $daily_sales;
@@ -127,7 +127,7 @@ class LoanEligibilityModel extends Model
         } elseif ($this->cibil_score >= 700) {
             $score += 1.5;
             $roi -= 1.5;
-        } elseif ($this->cibil_score >= 675) {
+        } elseif ($this->cibil_score >= 670) {
             $score += 1;
             $roi += 1;
         } elseif ($this->cibil_score > 0) {

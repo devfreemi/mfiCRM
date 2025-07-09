@@ -132,8 +132,6 @@ class LoanEligibilityController extends BaseController
     {
         // $request = service('request');
         // $cibil = rand(0, 900);
-        $cibil = 680;
-        // Get input data from the form
         if ($this->request->getVar('previous_emi') === "") {
             # code...
             $previous_emi = 0;
@@ -150,46 +148,97 @@ class LoanEligibilityController extends BaseController
             $business_time = round($current_year -  $this->request->getVar('business_time'));
         }
 
-        $data = [
-            'stock' =>  $this->request->getVar('stock'),
-            'daily_sales' =>  $this->request->getVar('daily_sales'),
-            'cibil_score' => $cibil,
-            'business_time' => $business_time,
-            'location' =>  $this->request->getVar('location'),
-            'business_type' =>  $this->request->getVar('business_type'),
-            'previous_emi' => $previous_emi,
-            'memberId' => $this->request->getVar('memberId_api'),
-        ];
+        $name = $this->request->getVar('panName');
+        $mobile = $this->request->getVar('mobile');
+        $panNumber = $this->request->getVar('panNumber');
+        $dataApi = array(
+            'name'              => $name,
+            'consent'           => "Y",
+            "mobile"            => $mobile,
+            "pan"               => $panNumber
+        );
+        $data_json = json_encode($dataApi);
 
-        // Load the LoanEligibilityModel and pass input data
-        $loanModel = new LoanEligibilityModel();
-        $loanModel->setData($data);
+        $curl = curl_init();
 
-        $result = $loanModel->calculateLoanEligibility();
-        // Merge input data with result for passing to view
-        $data['result'] = $result;
-        // member data update
-        $data_eli_run = [
-            'cibil' => $cibil,
-            'member_id' => $this->request->getVar('memberId_api'),
-            'first_date' => date('Y-m-d'),
-            'loan_amount' => $result['LoanAmount'],
-            'roi' => $result['FixedROI'],
-            'tenure' => $result['Tenure'],
-            'emi' => $result['EMI'],
-            'score' => $result['Score'],
-            'eligibility' => $result['Eligibility'],
-            'reason' => $result['Reason'],
-        ];
-        $db = db_connect();
-        $builder = $db->table('initial_eli_run');
-        $builder->upsert($data_eli_run);
-        // return view('eli-page', $data);
-        if (is_null($data)) {
-            return $this->respond(['error' => 'Invalid Request.'], 401);
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/credit-report-experian/fetch-report',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data_json,
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        $response_decode = json_decode($response, true);
+
+
+
+        curl_close($curl);
+        if ($err) {
+            // echo "cURL Error #:" . $err;
+            return $this->respond(['error' => 'Internal Exception!' . $err], 502);
+        } else {
+            $cibil = $response_decode['data']['credit_score'];
+            $cibilReport    = $response_decode['data']['credit_report'];
+            $data = [
+                'stock' =>  $this->request->getVar('stock'),
+                'daily_sales' =>  $this->request->getVar('daily_sales'),
+                'cibil_score' => $cibil,
+                'cibilReport' => $cibilReport,
+                'business_time' => $business_time,
+                'location' =>  $this->request->getVar('location'),
+                'business_type' =>  $this->request->getVar('business_type'),
+                'previous_emi' => $previous_emi,
+                'memberId' => $this->request->getVar('memberId_api'),
+
+            ];
+
+            // Load the LoanEligibilityModel and pass input data
+            $loanModel = new LoanEligibilityModel();
+            $loanModel->setData($data);
+
+            $result = $loanModel->calculateLoanEligibility();
+            // Merge input data with result for passing to view
+            $data['result'] = $result;
+            // member data update
+            $data_eli_run = [
+                'cibil' => $cibil,
+                'member_id' => $this->request->getVar('memberId_api'),
+                'cibilReport' => $cibilReport,
+                'first_date' => date('Y-m-d'),
+                'loan_amount' => $result['LoanAmount'],
+                'roi' => $result['FixedROI'],
+                'tenure' => $result['Tenure'],
+                'emi' => $result['EMI'],
+                'score' => $result['Score'],
+                'eligibility' => $result['Eligibility'],
+                'reason' => $result['Reason'],
+            ];
+            $db = db_connect();
+            $builder = $db->table('initial_eli_run');
+            $builder->upsert($data_eli_run);
+            // return view('eli-page', $data);
+            if (is_null($data)) {
+                return $this->respond(['error' => 'Invalid Request.'], 401);
+            }
+
+            return $this->respond(['member' => $data], 200);
         }
 
-        return $this->respond(['member' => $data], 200);
+        // Get input data from the form
+
+
         // print_r($query);
         // echo ("<br>");
         // print_r($data);

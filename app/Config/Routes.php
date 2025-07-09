@@ -101,7 +101,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/total-outstanding-month', 'LoanApi::total_outstanding_month');
     $routes->add('api/total-disbursed-month', 'LoanApi::total_disbursed_month');
     // KYC Verification
-    $routes->add('api/kyc-aadhaar-check-status', 'AadhaarKycController::send_otp');
+    $routes->add('api/kyc-aadhaar-check-status', 'AadhaarKycController::digi_status');
     $routes->add('api/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp');
     $routes->add('api/kyc-pan-search', 'AadhaarKycController::get_pan'); // For PAN Search
     $routes->add('api/kyc-pan-verify', 'AadhaarKycController::verify_pan');
@@ -117,6 +117,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/check-shop-address-proof-v1', 'RetailerDocumentsController::check_shop_address_proof_status');
     $routes->add('api/check-business-proof-v1', 'RetailerDocumentsController::check_business_docs_status');
     $routes->add('api/check-bank-statement-v1', 'RetailerDocumentsController::check_bank_statement_status');
+    $routes->add('api/bank-statement-analyze-v1', 'RetailerDocumentsController::check_bank_statement_analyze');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
     // Collection in LOS

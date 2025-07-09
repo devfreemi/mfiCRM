@@ -360,4 +360,51 @@ class RetailerDocumentsController extends BaseController
             ], 200);
         }
     }
+    public function check_bank_statement_analyze()
+    {
+        $pdf = $this->request->getFile('file');
+
+        if (!$pdf->isValid()) {
+            return $this->fail('No valid file uploaded.');
+        }
+
+        // Move to temp path
+        $tempPath = FCPATH . 'uploads/' . $pdf->getRandomName();
+        $pdf->move(FCPATH . 'uploads', basename($tempPath));
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank/statement/upload',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => [
+                'file' => new \CURLFile($tempPath, 'application/pdf', $pdf->getClientName()),
+            ],
+            CURLOPT_HTTPHEADER => [
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                'Accept: application/json',
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        $error = curl_error($curl);
+        curl_close($curl);
+
+
+
+        // Delete temp file
+        @unlink($tempPath);
+
+        // Return Surepass response
+        // return $this->response
+        //     ->setStatusCode($httpCode)
+        //     ->setJSON(json_decode($response, true));
+        return $this->respond([
+            'bank_analyze' => $response
+        ], 200);
+    }
 }
