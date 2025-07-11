@@ -190,12 +190,12 @@ class LoanEligibilityController extends BaseController
             return $this->respond(['error' => 'Internal Exception!' . $err], 502);
         } else {
             $cibil = $response_decode['data']['credit_score'];
-            $cibilReport    = $response_decode['data']['credit_report'];
+            // $cibilReport    = $response_decode['data']['credit_report'];
             $data = [
                 'stock' =>  $this->request->getVar('stock'),
                 'daily_sales' =>  $this->request->getVar('daily_sales'),
                 'cibil_score' => $cibil,
-                'cibilReport' => $cibilReport,
+                // 'cibilReport' => $cibilReport,
                 'business_time' => $business_time,
                 'location' =>  $this->request->getVar('location'),
                 'business_type' =>  $this->request->getVar('business_type'),
@@ -215,7 +215,7 @@ class LoanEligibilityController extends BaseController
             $data_eli_run = [
                 'cibil' => $cibil,
                 'member_id' => $this->request->getVar('memberId_api'),
-                'cibilReport' => $cibilReport,
+                // 'cibilReport' => $cibilReport,
                 'first_date' => date('Y-m-d'),
                 'loan_amount' => $result['LoanAmount'],
                 'roi' => $result['FixedROI'],

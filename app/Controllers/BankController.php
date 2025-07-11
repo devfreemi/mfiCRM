@@ -67,4 +67,63 @@ class BankController extends BaseController
 
         return $this->respond($bank, 200);
     }
+
+    public function bank_verification()
+    {
+        $meber_id = $this->request->getVar('memberId_bank');
+        $dataApi = array(
+            'id_number'                 => $this->request->getVar('acc_no'),
+            'ifsc'                      => $this->request->getVar('ifsc_code'),
+            "ifsc_details"              => true
+
+        );
+        $data_json = json_encode($dataApi);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank-verification/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data_json,
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $responseDown = curl_exec($curl);
+        // $responseDown = curl_exec($curlDown);
+        $error_an = curl_error($curl);
+        $response_decode_an = json_decode($responseDown, true);
+        $data = [
+            'bankName' => $response_decode_an['data']['ifsc_details']['bank_name'],
+            'ifsc' => $response_decode_an['data']['ifsc_details']['ifsc'],
+            'bankBranch' => $response_decode_an['data']['ifsc_details']['branch'],
+            'bankCity' => $response_decode_an['data']['ifsc_details']['city'],
+            'bankState' => $response_decode_an['data']['ifsc_details']['state'],
+
+            'bankAddress' => $response_decode_an['data']['ifsc_details']['address'],
+            'bankAccount' => $this->request->getVar('acc_no'),
+        ];
+        curl_close($curl);
+        if ($error_an) {
+            # code...
+            return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+        } else {
+            # code...
+            $db = db_connect();
+            $builder = $db->table('members');
+            $builder->where('member_id', $meber_id);
+            $builder->update($data);
+            return $this->respond([
+                'bank_verified' => $response_decode_an
+            ], 200);
+        }
+    }
 }

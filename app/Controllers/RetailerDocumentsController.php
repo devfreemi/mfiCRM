@@ -390,9 +390,62 @@ class RetailerDocumentsController extends BaseController
 
         $response = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $response_decode = json_decode($response, true);
 
         $error = curl_error($curl);
         curl_close($curl);
+
+        return $this->respond([
+            'bank_analyze_upload' => $response_decode
+        ], 200);
+
+        if ($error) {
+            # code...
+            return $this->respond(['error' => 'Internal Exception!' . $error], 502);
+        } else {
+            // return $this->respond([
+            //     'bank_analyze_upload' => $response_decode
+            // ], 200);
+            $client_id    = $response_decode['data']['client_id'];
+            $dataApi = array(
+                'client_id'              => $client_id,
+
+            );
+            $data_json = json_encode($dataApi);
+
+            $curlDown = curl_init();
+
+            curl_setopt_array($curlDown, array(
+                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank/statement/download',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => $data_json,
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                    'Accept: application/json',
+                    // 'Content-Type: application/json'
+                ),
+            ));
+
+            $responseDown = curl_exec($curlDown);
+            $error_an = curl_error($curlDown);
+            curl_close($curlDown);
+            if ($error_an) {
+                # code...
+                return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+            } else {
+                # code...
+                $response_decode_an = json_decode($responseDown, true);
+                return $this->respond([
+                    'bank_analyze_report' => $response_decode_an
+                ], 200);
+            }
+        }
 
 
 
@@ -403,8 +456,74 @@ class RetailerDocumentsController extends BaseController
         // return $this->response
         //     ->setStatusCode($httpCode)
         //     ->setJSON(json_decode($response, true));
-        return $this->respond([
-            'bank_analyze' => $response
-        ], 200);
+
+    }
+    public function checkUploadedDocs()
+    {
+        $memberId = $this->request->getVar('memberIDFI');
+
+        if (!$memberId) {
+            return $this->respond(['error' => 'member_id is required'], 400);
+        }
+
+        // Required document types excluding Shop_Image (handled separately)
+        $requiredDocuments = [
+            'Doc_GST',
+            'Doc_Trade_License',
+            'Doc_Shop_Property_Tax',
+            'Doc_Purchase_Bill',
+            'Doc_Sale_Bill',
+            'BANK_STATEMENT',
+            'Doc_House_Electricity_Bill',
+            'VOTER_ID',
+            'PAN_ID',
+            'Doc_House_Property_Tax',
+            'Doc_Shop_Electricity_Bill',
+            'Doc_ITR',
+        ];
+
+        $db = db_connect();
+
+        // Get all document types uploaded by this member
+        $builder = $db->table('retailerdocuments');
+        $builder->select('document_type');
+        $builder->where('member_id', $memberId);
+        $query = $builder->get();
+        $uploadedDocsRaw = $query->getResultArray();
+
+        $uploadedDocs = array_column($uploadedDocsRaw, 'document_type');
+
+        // Count number of Shop_Image
+        $shopImageCount = 0;
+        foreach ($uploadedDocs as $docType) {
+            if ($docType === 'Shop_Image') {
+                $shopImageCount++;
+            }
+        }
+
+        // Check if all required documents (excluding Shop_Image) are present
+        $missingDocs = array_diff($requiredDocuments, $uploadedDocs);
+
+        // If Shop_Image < 3, add a custom missing message
+        if ($shopImageCount < 3) {
+            $missingDocs[] = 'Shop_Image (at least 3 required, found ' . $shopImageCount . ')';
+        }
+
+        if (empty($missingDocs)) {
+            return $this->respond([
+                'status' => true,
+                'message' => '✅ All required documents including 3 Shop Images are uploaded.',
+                'shop_image_count' => $shopImageCount,
+                'uploaded_documents' => $uploadedDocs
+            ], 200);
+        } else {
+            return $this->respond([
+                'status' => false,
+                'message' => '⚠️ Some documents are missing.',
+                'missing_documents' => array_values($missingDocs),
+                'shop_image_count' => $shopImageCount,
+                'uploaded_documents' => $uploadedDocs
+            ], 422);
+        }
     }
 }

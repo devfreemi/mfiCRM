@@ -126,7 +126,7 @@ class FiCheckController extends BaseController
                 $application_stage = 'Rejected';
             } elseif ($deviation >= 40 || $fiFailPercent >= 30) {
                 $fiStatus = '⚠️ FI Needs Review - Some mismatches and inspection concerns.';
-                $fiResult = 'FI Needs Review';
+                $fiResult = 'Re initiate FI';
                 $fi_final = 'W';
                 $application_stage = 'approval_pending';
             } else {
@@ -178,12 +178,10 @@ class FiCheckController extends BaseController
 
             $model->insert($data);
             $db = db_connect();
-            $model = new LoanModel();
-            $applicationid   = $this->request->getPost('applicationid');
-            $table = "tab_" . $applicationid;
-            $status = $this->request->getPost('status');
-            $loan_amount = $this->request->getPost('eligible_amount');
-            $tenure = $this->request->getPost('tenure');
+            // $model = new LoanModel();
+
+            $loan_amount = $this->request->getVar('eligible_amount');
+            $tenure = $this->request->getVar('tenure');
             // Exact Date calculation
             $start = new \DateTime();
             $end = (clone $start)->modify("+$tenure months");
@@ -192,7 +190,7 @@ class FiCheckController extends BaseController
 
 
             // $day_tenure = $tenure * 30;
-            $roi = $this->request->getPost('roi');
+            $roi = $this->request->getVar('roi');
             $r = ($roi / 100 / 12);
 
             // Total interest (Flat): (P × R × N years)
@@ -208,26 +206,26 @@ class FiCheckController extends BaseController
 
             $data_loan = [
 
-                'groupId'       => $this->request->getPost('groupId'),
-                'member_id'     => $this->request->getPost('member_id'),
-                'loan_amount'   => $this->request->getPost('eligible_amount'),
-                'loan_tenure'   => $this->request->getPost('tenure'),
-                'roi'           => $this->request->getPost('roi'),
+                'groupId'       => $this->request->getVar('groupId'),
+                'member_id'     => $this->request->getVar('member_id'),
+                'loan_amount'   => $this->request->getVar('eligible_amount'),
+                'loan_tenure'   => $this->request->getVar('tenure'),
+                'roi'           => $this->request->getVar('roi'),
                 'emi'               =>  $emi,
+                'pending_emi'       =>  $day_tenure,
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
                 'interest'          =>  $interest,
-                'employee_id'   => $this->request->getPost('agent'),
+                'employee_id'   => $this->request->getVar('agent'),
                 'loan_status'     => $fiResult,
                 'application_stage' => $application_stage,
-                'applicationID' => date('ym') . str_pad(mt_rand(0, 999), 3, '0', STR_PAD_LEFT) . $this->request->getPost('mobile'),
 
             ];
             // $query = $model->insert($data);
             // $query = $model->save($data_loan);
             $builderLoan = $db->table('loans');
-            $builderLoan->where('member_id', $this->request->getPost('member_id'));
+            $builderLoan->where('member_id', $this->request->getVar('member_id'));
             $builderLoan->update($data_loan);
             // Update the member's details status
             $data_update = [

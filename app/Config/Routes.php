@@ -60,6 +60,8 @@ $routes->group('', ['filter' => 'LoginCheck'], function ($routes) {
 // API FOR APP SERVICE
 $routes->add('api/login-api-v1', 'Employee::api_login');
 $routes->add('api/member/login-v1', 'MemberLoginController::member_application_login');
+$routes->add('api/member/register-v1', 'MemberLoginController::member_application_register');
+
 $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/employee-details-api-v1', 'EmployeeDetails::get_employee');
     $routes->add('api/branch-details-api-v1', 'BranchApi::barnch_api');
@@ -118,6 +120,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/check-business-proof-v1', 'RetailerDocumentsController::check_business_docs_status');
     $routes->add('api/check-bank-statement-v1', 'RetailerDocumentsController::check_bank_statement_status');
     $routes->add('api/bank-statement-analyze-v1', 'RetailerDocumentsController::check_bank_statement_analyze');
+    $routes->add('api/check-all-doc-v1', 'RetailerDocumentsController::checkUploadedDocs');
     // KYC Verification End
     $routes->add('api/log-out-api-v1', 'LogOutController::logout_emp');
     // Collection in LOS
@@ -125,15 +128,18 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/los/order/create-emi-order-v1', 'PaymentController::generate_order');
     // Field Investigation
     $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
+    $routes->add('api/verify-bank-v1', 'BankController::bank_verification');
 });
 // $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
-
+$routes->add('api/page/verify-bank-v1', 'BankController::bank_verification');
 
 $routes->group(
     '',
     ['filter' => 'MemberAuthFilter'],
     function ($routes) {
+        $routes->add('api/member/add-member-api-v1', 'MemberController::add_member');
         $routes->add('api/member/member-details-v1', 'MemberLoginController::member_details');
+        $routes->add('api/member/member-update-v1', 'MemberController::update_member');
         $routes->add('api/member/kyc/pan-validation-v1', 'AadhaarKycController::verify_pan_user');
         $routes->add('api/member/gst/gst-validation-v1', 'AadhaarKycController::verify_gst_user');
         $routes->add('api/member/emi/get-today-emi-v1', 'PaymentController::get_today_emi');

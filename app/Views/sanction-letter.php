@@ -272,78 +272,78 @@
         <div class="declaration py-4 dclrtn-agr">
 
             <h1>CREDIT FACILITY AGREEMENT No. <?= esc($member_id) ?></h1>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>BETWEEN</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;font-weight: 700'>AYUSH FISCAL PRIVATE LIMITED</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>("LENDER")</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>AND</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;font-weight: 700'><?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>("BORROWER")</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>THIS Credit Facility Agreement No. <?= esc($member_id) ?>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>BETWEEN</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'>AYUSH FISCAL PRIVATE LIMITED</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>("LENDER")</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>AND</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>("BORROWER")</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>THIS Credit Facility Agreement No. <?= esc($member_id) ?>
                 ("Credit Facility Agreement") is made and executed by and between:</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>AYUSH FISCAL PRIVATE LIMITED, Registered Address: 53, SHYAMA PRASAD MUKHERJEE ROAD, KOLKATA - 700026. a
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>AYUSH FISCAL PRIVATE LIMITED, Registered Address: 53, SHYAMA PRASAD MUKHERJEE ROAD, KOLKATA - 700026. a
                 non-banking financial company incorporated under the provisions of the Act, having its Corporate Identity Number
                 U65999WB1992PTC055336 and having its Registered Office at 53, Shyama Prasad Mukherjee Road, Kolkata - 700026 (hereinafter referred to
                 as "Lender" which expression shall, unless repugnant to the subject or context thereof include its successors,
                 transferees, novatees and assigns) of the FIRST PART;</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>AND</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>THE PERSONS SET FORTH IN SCHEDULE I HERETO, Address <?= esc($location) ?>,<?= esc($pincode) ?>..
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>AND</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>THE PERSONS SET FORTH IN SCHEDULE I HERETO, Address <?= esc($location) ?>,<?= esc($pincode) ?>..
                 (hereinafter referred to as the "Borrower" which expression shall, unless repugnant to the context or meaning
                 thereof, be deemed to include its successors, legal representatives and permitted assigns) of the SECOND PART.
             </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The expressions Borrower (as described in Schedule I)
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The expressions Borrower (as described in Schedule I)
                 and "the Lender" shall individually be referred to as a "Party" and collectively be referred to as the
                 "Parties".</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>WHEREAS</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The Borrower requires funds for the Purpose (as defined
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>WHEREAS</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The Borrower requires funds for the Purpose (as defined
                 in Schedule II) and has approached Lender for availing the Credit Facility.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Based on the representations and assurances of the
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Based on the representations and assurances of the
                 Obligors, the Lender has agreed to provide the Credit Facility to the Borrower and the Borrower has agreed to
                 avail the Credit Facility from Lender on the terms and subject to the conditions contained in this Credit
                 Facility Agreement along with the Schedule hereto and the General Terms and Conditions (as defined hereinafter)
                 as applicable to the Credit Facility.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Definitions</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>In this Credit Facility Agreement, unless there is
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Definitions</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>In this Credit Facility Agreement, unless there is
                 anything repugnant to the subject or context thereof, the expression listed below shall have the following
                 meaning:</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>"Credit Facility Agreement" shall mean the agreement
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>"Credit Facility Agreement" shall mean the agreement
                 entered into between the Lender, the Borrower and the Obligor(s) stating out the terms and conditions of the
                 Credit Facility.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>"Credit Facility" shall have the same meaning as Loan
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>"Credit Facility" shall have the same meaning as Loan
                 Facility as defined under the General Terms and Conditions.</p>
-            <!-- <p style='font-family:Arial; font-size:14px; margin:6px 0;font-weight: 700'>"General Terms and Conditions" shall mean the General Terms and Conditions as applicable with this Credit Facility Agreement governing the Credit Facility, provided by the Lender herein and duly registered on [DATE OF REGISTRATION], with the Sub-Registrar of Assurance, [SUB-REGISTRAR OFFICE], <?= esc($bankCity) ?> vide registration no. [REGISTRATION NUMBER] in book no. [BOOK NUMBER] Serial No. [SERIAL NUMBER], Registration Year [REGISTRATION YEAR], a copy of which is available on the website of the Lender namely, [LENDER'S WEBSITE FOR GTC]. The General Terms and Conditions shall be deemed to form an integral part of this Credit Facility Agreement and shall be read in conjunction and concurrently as if they are specifically incorporated herein.</p> -->
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>"Last Disbursement Request Date" shall mean, subject to
+            <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'>"General Terms and Conditions" shall mean the General Terms and Conditions as applicable with this Credit Facility Agreement governing the Credit Facility, provided by the Lender herein and duly registered on [DATE OF REGISTRATION], with the Sub-Registrar of Assurance, [SUB-REGISTRAR OFFICE], <?= esc($bankCity) ?> vide registration no. [REGISTRATION NUMBER] in book no. [BOOK NUMBER] Serial No. [SERIAL NUMBER], Registration Year [REGISTRATION YEAR], a copy of which is available on the website of the Lender namely, [LENDER'S WEBSITE FOR GTC]. The General Terms and Conditions shall be deemed to form an integral part of this Credit Facility Agreement and shall be read in conjunction and concurrently as if they are specifically incorporated herein.</p> -->
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>"Last Disbursement Request Date" shall mean, subject to
                 the fulfilment of the conditions of this Credit Facility Agreement, the last date of request for Disbursement,
                 as provided in Schedule II;</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>"Minimum Disbursement Amount" shall mean the minimum
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>"Minimum Disbursement Amount" shall mean the minimum
                 amount that the Lender will Disburse, subject to the terms and the conditions of this Credit Facility Agreement,
                 as provided in Schedule II;</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>All capitalized term used but not defined in this Credit
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>All capitalized term used but not defined in this Credit
                 Facility Agreement shall have the respective meaning as assigned to it under the General Terms and Conditions.
             </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Interpretation</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>In this Credit Facility Agreement, save where the
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Interpretation</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>In this Credit Facility Agreement, save where the
                 context otherwise requires would be interpreted as provided in the General Terms and Conditions.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Acknowledgement</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The Obligors confirms, represents and acknowledges
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Acknowledgement</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The Obligors confirms, represents and acknowledges
                 having received a copy of the General Terms and Conditions and that the Obligors have read and understood the
                 terms referred therein and agrees to abide by the terms, conditions, covenants and undertaking contained in the
                 General Terms and Conditions.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Disbursement of Loan Facility and Application of
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Disbursement of Loan Facility and Application of
                 Proceeds</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Lender, at the request and representations of the
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Lender, at the request and representations of the
                 Obligors, agrees to provide to the Borrower and the Borrower agrees to avail from Lender, the Credit Facility
                 for the Purpose, on and subject to the fulfilment of the terms, conditions and covenants contained in this
                 Credit Facility Agreement, the other Financing Documents and the Schedules written hereunder.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Effective date of the Credit Facility Agreement</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>This Credit Facility Agreement, General Terms and
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Effective date of the Credit Facility Agreement</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>This Credit Facility Agreement, General Terms and
                 Conditions and other Financing Documents are binding on the parties hereto on and from the date of this Credit
                 Facility Agreement and shall be in force and effect till the Final Settlement Date, unless terminated in
                 accordance with the provisions of the Agreement.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Terms and Conditions</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The Credit Facility shall be governed by the terms and
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Terms and Conditions</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The Credit Facility shall be governed by the terms and
                 conditions mentioned in Schedule II and written hereunder.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Insolvency & Bankruptcy</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The Obligors shall not undertake any insolvency
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Insolvency & Bankruptcy</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The Obligors shall not undertake any insolvency
                 resolution process or voluntary winding up (if applicable) or file for insolvency under the applicable law
                 without the prior written consent of the Lender. Further, regardless of whether the insolvency resolution
                 process is voluntary or involuntary, any resolution plan proposed by the Obligors or any of its directors
@@ -353,119 +353,119 @@
                 clause. In the event upon obtaining the approval of the Lender, the Borrower initiates a voluntary
                 insolvency/liquidation under the Insolvency and Bankruptcy Code 2016 ("IBC"), as amended from time to time, it
                 shall appoint the resolution professional in consultation with the Lender.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Re-borrowing</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Till the Last Disbursement Request Date, the Borrower
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Re-borrowing</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Till the Last Disbursement Request Date, the Borrower
                 shall be entitled to request for Disbursement of any amount of the Credit Facility which has been repaid in
                 accordance with this Credit Facility Agreement, provided that—</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>no Event of Default exists;</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>no Material Adverse Effect or default has occurred and
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>no Event of Default exists;</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>no Material Adverse Effect or default has occurred and
                 is continuing; and</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>the Disbursement requested along with the outstanding
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>the Disbursement requested along with the outstanding
                 Credit Facility shall not have exceeded the Credit Facility.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>All the terms of conditions of this Credit Facility
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>All the terms of conditions of this Credit Facility
                 Agreement and General Terms and Conditions shall apply to the re-borrowing mentioned in Clause 7.1.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Notwithstanding anything contained herein above, any
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Notwithstanding anything contained herein above, any
                 Disbursement from the Credit Facility which has been repaid shall be at the sole discretion of the Lender.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Renewal of the Credit Facility</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The Lender at its sole discretion, at the request of the
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Renewal of the Credit Facility</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The Lender at its sole discretion, at the request of the
                 Borrower, may renew the Credit Facility on such terms and conditions as may be decided by the Lender.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Electronic authentication</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>The Credit Facility Agreement may be authenticated
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Electronic authentication</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>The Credit Facility Agreement may be authenticated
                 electronically. Parties hereto, on such electronic authentication of this Credit Facility Agreement, hereby
                 agree to such method of electronic authentication. The Obligor further agrees that such electronic
                 authentication shall be legally enforceable against the Obligor and the Obligor shall not challenge the validity
                 or enforceability of such authentication.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Applicability of Reserve Bank of India Regulation</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>As per RBI Guidelines the Lender shall recognise
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Applicability of Reserve Bank of India Regulation</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>As per RBI Guidelines the Lender shall recognise
                 incipient stress in loan account, immediately on default, and shall classify such assets as Special Mention
                 Accounts (SMA) as per the categories/sub-categories mentioned under RBI’s "Master Circular - Prudential norms on
                 Income Recognition, Asset Classification and Provisioning pertaining to Advances". For ready references such
                 categories/sub-categories are also mentioned under Part A of Annexure I hereof.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>As per RBI Guidelines the Lender shall recognise a loan
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>As per RBI Guidelines the Lender shall recognise a loan
                 account as Non Performing Assets (NPA) in the event there is a delay in repayment of any amount under the Loan
                 continues beyond SMA-2 category as detailed under RBI’s "Master Circular - Prudential norms on Income
                 Recognition, Asset Classification and Provisioning pertaining to Advances". For ready references, the relevant
                 provisions/criteria in this regard are listed under Part B of Annexure I hereof.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>For better understanding of the issues of SMA and NPA
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>For better understanding of the issues of SMA and NPA
                 classifications, examples are provided under Part C of Annexure I hereof.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>IN WITNESS WHEREOF the Parties have caused this Credit
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>IN WITNESS WHEREOF the Parties have caused this Credit
                 Facility Agreement to be executed and acknowledged by their respective authorized officials or representatives
                 hereunto duly authorized, as hereinafter appearing on the day, month and year written herein below.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Parties, Signatory Name, Authorization Date,
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Parties, Signatory Name, Authorization Date,
                 Authorization, Signature</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;font-weight: 700'>Lender, Mr. Subhajit Paul, <?= date('l d F Y ') ?>, Authorized Signatory of the Lender, pursuant to the resolution of its Board passed in that
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'>Lender, Mr. Subhajit Paul, <?= date('l d F Y ') ?>, Authorized Signatory of the Lender, pursuant to the resolution of its Board passed in that
                 regard on Authorization Date who has signed these presents in token thereof</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;font-weight: 700'>Borrower, <?= esc($name) ?>, Not Applicable, Borrower represented by its Proprietor/Authorized Signatory.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>SCHEDULE I DETAILS OF THE BORROWER</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;font-weight: 700'><?= esc($businessName) ?> having office at <?= esc($location) ?> represented by
-                its proprietor, <?= esc($name) ?>, having Permanent Account Number
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'>Borrower, <?= esc($panName) ?>, Not Applicable, Borrower represented by its Proprietor/Authorized Signatory.</p>
+            <p style='font-family:Arial; font-size:24px; font-weight:900; margin:6px 0; text-align:center; padding: 12px'>SCHEDULE I DETAILS OF THE BORROWER</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'><?= esc($businessName) ?> having office at <?= esc($location) ?> represented by
+                its proprietor, <?= esc($panName) ?>, having Permanent Account Number
                 <?= esc($pan) ?> and residing at <?= esc($location) ?>.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>SCHEDULE II TERMS AND CONDITIONS OF THE CREDIT FACILITY
+            <p style='font-family:Arial; font-size:24px; font-weight:900; margin:6px 0; text-align:center; padding: 12px'>SCHEDULE II TERMS AND CONDITIONS OF THE CREDIT FACILITY
             </p>
             <table style='border-collapse:collapse; width:100%; margin:10px 0;'>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Sl. No.</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Particulars</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Details</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sl. No.</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Particulars</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Details</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>1</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Place of Agreement</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($location) ?></td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>1</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Place of Agreement</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($location) ?></td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>2</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Date of Agreement</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= date('l d F Y ') ?></td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>2</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Date of Agreement</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= date('l d F Y ') ?></td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>3</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Place of Occupation of
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>3</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Place of Occupation of
                         Borrower</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($location) ?>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($location) ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>4</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Purpose of Credit
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>4</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Purpose of Credit
                         Facility</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Retail Loan</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Retail Loan</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>5</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Sanctioned Credit
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sanctioned Credit
                         Facility</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Rs. 2,00,000.00</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rs. 2,00,000.00</td>
                 </tr>
 
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>6a</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Processing Fees</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6a</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing Fees</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>6b</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Insurance Premium</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6b</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance Premium</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>7</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Tenure</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Maximum of 12 months from each of the individual drawdown.
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Tenure</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum of 12 months from each of the individual drawdown.
                         The tenure of the credit facility is 36 months.</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>9</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Credit Facility Servicing
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Credit Facility Servicing
                         and Repayment of Principal and Interest</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>As would be acknowledged
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>As would be acknowledged
                         on each of the Disbursement/Drawdown Date(s)</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>10</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Disbursement and
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Disbursement and
                         Repayment Method</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>The Credit Facility shall be disbursed by the Lender through the platform of
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The Credit Facility shall be disbursed by the Lender through the platform of
                         Ntactus Financial Services Private Limited
                         Repayment date: 5th of every month.
                         Repayment options for the borrower: Payment Gateway(Netbanking/UPI), NACH,
@@ -475,211 +475,205 @@
 
 
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>11</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Interest Rate</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($roi) ?>% p.a.
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Interest Rate</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>% p.a.
                         payable monthly (Fixed)</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>12</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Delayed Interest</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>The interest rate as in
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Delayed Interest</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The interest rate as in
                         (11) will continue to be charged daily if the drawdown amount is not paid within the withdrawal tenure
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>13</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Prepayment Charges</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>13</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Prepayment Charges</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>14</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Bounce Charges</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>[BOUNCE CHARGES, e.g.,
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>14</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Bounce Charges</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>[BOUNCE CHARGES, e.g.,
                         Not Applicable or specify amount]</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>14</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Charges on miscellaneous
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>14</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Charges on miscellaneous
                         request(s) such as, change in servicing date, changes in Credit Facility servicing bank account,
                         replacement of security/servicing cheques etc.</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>16</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Address of the Borrower
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>16</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Address of the Borrower
                         for the purpose of service of Notice</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>As per Schedule I</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>As per Schedule I</td>
                 </tr>
             </table>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Annexure I Part A Special Mention Account (SMA)
+            <p style='font-family:Arial; font-size:24px; font-weight:900; margin:6px 0; text-align:center; padding: 12px'>Annexure I Part A Special Mention Account (SMA)
                 Categories / Sub-Categories</p>
             <table style='border-collapse:collapse; width:100%; margin:10px 0;'>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>SMA Sub-categories</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Basis for classification
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>SMA Sub-categories</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Basis for classification
                         – payment (principal/interest/any other amount) overdue</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>SMA-0</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>1-30 days</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>SMA-0</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>1-30 days</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>SMA-1</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>31-60 days</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>SMA-1</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>31-60 days</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>SMA-2</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>61-90 days</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>SMA-2</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>61-90 days</td>
                 </tr>
             </table>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Part B Non Performing Assets (NPA)</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>As per RBI Guidelines Non Performing Asset (NPA) is a
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Part B Non Performing Assets (NPA)</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>As per RBI Guidelines Non Performing Asset (NPA) is a
                 loan or an advance where;</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>interest and/ or instalment of principal remains overdue
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>interest and/ or instalment of principal remains overdue
                 for a period of more than 90 days in respect of a term loan,</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>the amount of liquidity facility remains outstanding for
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>the amount of liquidity facility remains outstanding for
                 more than 90 days, in respect of a securitisation transaction undertaken in terms of the Reserve Bank of India
                 (Securitisation of Standard Assets) Directions, 2021.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>in case of interest payments in respect of term loans,
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>in case of interest payments in respect of term loans,
                 an account will be classified as NPA if the interest applied at specified rests remains overdue for more than 90
                 days.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>in respect of accounts where there are potential threats
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>in respect of accounts where there are potential threats
                 for recovery on account of erosion in the value of security or non-availability of security and existence of
                 other factors such as frauds committed by borrowers/security providers, the asset should be straightaway
                 classified as doubtful or loss asset as appropriate:</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Erosion in the value of security can be reckoned as
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Erosion in the value of security can be reckoned as
                 significant when the realisable value of the security is less than 50 per cent of the value assessed by the bank
                 or accepted by RBI at the time of last inspection, as the case may be. Such NPAs may be straightaway classified
                 under doubtful category.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>If the realisable value of the security, as assessed by
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>If the realisable value of the security, as assessed by
                 the lending institution/ approved valuers/ RBI is less than 10 per cent of the outstanding in the borrowable
                 accounts, the existence of security should be ignored, and the asset should be straightaway classified as loss
                 asset.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Accounts are restructured.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Part C Example for SMA / NPA Classification Dates:</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Classification of borrower accounts as SMA as well as
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Accounts are restructured.</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Part C Example for SMA / NPA Classification Dates:</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Classification of borrower accounts as SMA as well as
                 NPA shall be done as part of day-end process for the relevant date and the SMA or NPA classification date shall
                 be the calendar date for which the day end process is run.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>For clarity over the SMA / NPA classification date and
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>For clarity over the SMA / NPA classification date and
                 better understanding of the issue following examples are provided as per the RBI Guidelines:</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Example: If due date of a loan account is March 31,
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Example: If due date of a loan account is March 31,
                 2021, and full dues are not received before the lending institution runs the day-end process for this date, the
                 date of overdue shall be March 31, 2021 and this account shall get tagged as SMA-0 upon running day-end process
                 on March 31, 2021. If it continues to remain overdue, then this account shall get tagged as SMA-1 upon running
                 day-end process on April 30, 2021 i.e. upon completion of 30 days of being continuously overdue. Accordingly,
                 the date of SMA-1 classification for that account shall be April 30, 2021.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Similarly, if the account continues to remain overdue,
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Similarly, if the account continues to remain overdue,
                 it shall get tagged as SMA-2 upon running day-end process on May 30, 2021 and if continues to remain overdue
                 further, it shall get classified as NPA upon running day-end process on June 29, 2021.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Annexure II Key Fact Statement</p>
+            <p style='font-family:Arial; font-size:24px; font-weight:900; margin:6px 0; text-align:center; padding: 12px'>Annexure II Key Fact Statement</p>
             <table style='border-collapse:collapse; width:100%; margin:10px 0;'>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Sr. No.</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Particulars</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Details</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sr. No.</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Particulars</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Details</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>1</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Limit amount (maximum
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>1</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Limit amount (maximum
                         amount disbursable to the borrower) (in Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($loan_amount, 2) ?>/-</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($loan_amount, 2) ?>/-</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>2</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Total interest charge
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>2</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Total interest charge
                         during the entire tenure of the individual line drawdown (in Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($interest, 2) ?>/-</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($interest, 2) ?>/-</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>3</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Other up-front charges
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>3</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Other up-front charges
                         (in Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'> NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'> NIL</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>a</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Processing fees (in
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>a</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing fees (in
                         Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>b</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Insurance charges (in
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>b</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance charges (in
                         Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>c</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Others (in Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>c</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Others (in Rupees)</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>4</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Net disbursable amount
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>4</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Net disbursable amount
                         ((i)-(iii)) (in Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($loan_amount, 2) ?>/-</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($disbursable_amount, 2) ?>/-</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>5</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Tenure of the Line (in
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Tenure of the Line (in
                         months)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($loan_tenure) ?> months
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($loan_tenure) ?> months
                     </td>
                 </tr>
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>6</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Maximum tenure of the
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum tenure of the
                         Individual Drawdown (in days)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>[MAXIMUM INDIVIDUAL
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>[MAXIMUM INDIVIDUAL
                         DRAWDOWN TENURE] months</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>6</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Total amount to be paid
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Total amount to be paid
                         by the borrower for each drawdown (in Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($total_amount, 2) ?>/-</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($total_amount, 2) ?>/-</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>8</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Rate of annualized delay
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rate of annualized delay
                         interest in case of delayed payments (if any)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($roi) ?>%
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>%
                     </td>
                 </tr>
-                <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>9</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Rate of annualized other
-                        penal charges (if any)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>[OTHER PENAL CHARGES]%
-                    </td>
-                </tr>
+
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>10</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Repayment date</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>[REPAYMENT DAY] of every
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Repayment date</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>[REPAYMENT DAY] of every
                         month</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>10</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Cooling off/look-up
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Cooling off/look-up
                         period</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>No prepayment charges
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>No prepayment charges
                         will be applicable throughout the tenure of the limit, hence the loan can be prepaid anytime during the
                         tenure.</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>11</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Details of LSP acting as
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Details of LSP acting as
                         recovery agent and authorized to approach the borrower</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Ntactus
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Ntactus
                         Financial Services Private Limited</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>12</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Name, designation,
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Name, designation,
                         address and phone number of nodal grievance redressal officer</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'> Mr. Subhajit Paul
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'> Mr. Bapan Sarkar
                         <br>
                         Contact Number: 033-45064448 – 10:00 am to 6:00 pm (Monday to Friday except National Holidays)
                         <br>
@@ -687,84 +681,84 @@
                     </td>
                 </tr>
             </table>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sample calculation for drawdown</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sample calculation for drawdown</p>
             <table style='border-collapse:collapse; width:100%; margin:10px 0;'>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Sr. No.</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Particulars</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Details</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sr. No.</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Particulars</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Details</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>1</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Limit amount</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($loan_amount, 2) ?>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>1</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Limit amount</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($loan_amount, 2) ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>2</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>ROI</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= number_format($roi, 2) ?>%</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>2</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>ROI</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= number_format($roi, 2) ?>%</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>3</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Processing fee</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'> 4%
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>3</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing fee</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'> 4%
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>4</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Insurance charges</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Nill</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>4</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance charges</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Nill</td>
                 </tr>
 
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>5</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Processing fee inclusive
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing fee inclusive
                         of GST</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($chargesandinsurance, 2) ?></td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($chargesandinsurance, 2) ?></td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>6</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Disbursed amount</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($disbursable_amount, 2) ?>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Disbursed amount</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($disbursable_amount, 2) ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>7</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Tenure of drawdown</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($loan_tenure) ?> Months
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Tenure of drawdown</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($loan_tenure) ?> Months
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>8</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Total number of
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Total number of
                         instalments (in Days)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($pending_emi) ?>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($pending_emi) ?>
                     </td>
                 </tr>
 
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>10</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Interest applicable</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($interest, 2) ?>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Interest applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($interest, 2) ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>11</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Repayment amount</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR <?= number_format($total_amount, 2) ?>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Repayment amount</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($total_amount, 2) ?>
                     </td>
                 </tr>
             </table>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ref.No: <?= esc($member_id) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>M/s <?= esc($businessName) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'><?= esc($bankAddress) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Attention: <?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sub: Sanction of Credit Facility</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Date: <?= date("d/m/Y") ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ref: Application Number - [APPLICATION NUMBER]</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Dear Sir,</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>We refer to various discussions we have had with your
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ref.No: <?= esc($member_id) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>M/s <?= esc($businessName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'><?= esc($bankAddress) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Attention: <?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sub: Sanction of Credit Facility</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Date: <?= date("d/m/Y") ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ref: Application Number - <?= esc($applicationID) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Dear Sir,</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>We refer to various discussions we have had with your
                 good self, regarding your proposal seeking credit facility of INR <?= esc($loan_amount) ?>
                 (Rupees <?php
                         $formatter = new NumberFormatter("en-IN", NumberFormatter::SPELLOUT);
@@ -773,7 +767,7 @@
                         echo ucfirst($words);
                         ?> Only) through the platform of Ntactus Financial Services Private Limited.
             </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>In this regard, we are pleased to inform you that we
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>In this regard, we are pleased to inform you that we
                 have considered your request for sanction of an amount not exceeding INR <?= esc($loan_amount) ?>
                 (Rupees <?php
                         $formatter = new NumberFormatter("en-IN", NumberFormatter::SPELLOUT);
@@ -781,43 +775,43 @@
 
                         echo ucfirst($words);
                         ?> Only) on the terms mentioned in the Annexure hereto.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>We would like to further inform you that <?= esc($fiInspector_name) ?> is appointed as our authorized collection agent for the collection of all receivables pertaining to your credit facility.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Please have this letter duly signed by your authorized
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>We would like to further inform you that <?= esc($fiInspector_name) ?> is appointed as our authorized collection agent for the collection of all receivables pertaining to your credit facility.</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Please have this letter duly signed by your authorized
                 signatory as acknowledgement of your acceptance of the sanction.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Thanking You, Yours faithfully,</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>AGREED AND ACCEPTED</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>For Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>For M/s <?= esc($businessName) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>By:</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Name: Mr. Subhajit Paul</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Title: Signatory Authority</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Name: <?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Title: Proprietor</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Registered Office: <?= esc($name) ?>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Thanking You, Yours faithfully,</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>AGREED AND ACCEPTED</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>For Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>For M/s <?= esc($businessName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>By:</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Name: Mr. Subhajit Paul</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Title: Signatory Authority</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Name: <?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Title: Proprietor</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: 53, SHYAMA PRASAD MUKHERJEE ROAD, KOLKATA - 700026
             </p>
-            <!-- <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Date: [DATE OF ESIGNATURE]</p> -->
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>GSTN No. </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>ANNEXURE - I</p>
+            <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Date: [DATE OF ESIGNATURE]</p> -->
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
+            <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p> -->
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>ANNEXURE - I</p>
             <table style='border-collapse:collapse; width:100%; margin:10px 0;'>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Sl. No.</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Particulars</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Details</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sl. No.</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Particulars</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Details</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>1</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Purpose of Credit
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>1</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Purpose of Credit
                         Facility</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Retail Loan</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Retail Loan</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>2</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Sanctioned Credit
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>2</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sanctioned Credit
                         Facility</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not exceeding INR
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not exceeding INR
                         <?= esc($loan_amount) ?>
                         (Rupees <?php
                                 $formatter = new NumberFormatter("en-IN", NumberFormatter::SPELLOUT);
@@ -827,147 +821,196 @@
                                 ?> only)</td>
                 </tr>
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>3</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Current Drawdown Limit
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>3</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Current Drawdown Limit
                     </td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR [CURRENT DRAWDOWN
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR [CURRENT DRAWDOWN
                         LIMIT IN NUMBERS]/-(Rupees [CURRENT DRAWDOWN LIMIT IN WORDS] Only)</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>4</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Processing Fees</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>4</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing Fees</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>5</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Insurance Premium</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance Premium</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>6</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Tenure</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Maximum of [MAXIMUM
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Tenure</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum of [MAXIMUM
                         DRAWDOWN TENURE] months from each of the individual drawdown.</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>7</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Credit Facility Servicing
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Credit Facility Servicing
                         and Repayment of Principal and Interest</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Repayment date:
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Repayment date:
                         5th of every month.</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>8</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Disbursement and
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Disbursement and
                         Repayment Method</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>The Credit Facility shall
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The Credit Facility shall
                         be disbursed by the Lender through the platform of Retail Pe</td>
                 </tr>
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>9</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Minimum drawdown amount
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Minimum drawdown amount
                     </td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>INR [MINIMUM DRAWDOWN
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR [MINIMUM DRAWDOWN
                         AMOUNT]</td>
                 </tr> -->
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>10</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Maximum drawdown amount
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum drawdown amount
                     </td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Current Drawdown Limit
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Current Drawdown Limit
                     </td>
                 </tr> -->
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>11</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Number of drawdowns
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Number of drawdowns
                         allowed</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>No limit (within the
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>No limit (within the
                         parameters of other terms)</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>12</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Interest Rate</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'><?= esc($roi) ?>% p.a.
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Interest Rate</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>% p.a.
                         payable monthly (Reducing)</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>13</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Delayed Interest</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>The interest rate as in
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>13</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Delayed Interest</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The interest rate as in
                         (12) will continue to be charged daily if the drawdown amount is not paid within the withdrawal tenure
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>14</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Prepayment Charges</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>14</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Prepayment Charges</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
                 <!-- <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>15</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Bounce Charges</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>[BOUNCE CHARGES, e.g.,
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>15</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Bounce Charges</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>[BOUNCE CHARGES, e.g.,
                         Not Applicable]</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>16</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Charges on miscellaneous
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>16</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Charges on miscellaneous
                         request(s) such as, change in servicing date, changes in Credit Facility servicing bank account,
                         replacement of security/servicing cheques etc.</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:14px;'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
             </table>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Paste Photo and Sign Across</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Borrower/Proprietor</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'><?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Application Details - <?= esc($member_id) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Amount: INR <?= esc($loan_amount) ?>/-</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Firm Name: <?= esc($businessName) ?></p>
-            <!-- <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Firm Website: [BORROWER'S FIRM WEBSITE, e.g., Not Provided]</p> -->
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Tenure: <?= esc($loan_tenure) ?> months</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Firm Type: <?= esc($businessType) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>GSTN: <?= esc($gst) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Purpose: Business</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Year of Incorporation: <?= esc($estab) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Applicants Details</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>| Role | Name | Mobile No | POI | POA |</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>|---|---|---|---|---|</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>| Firm | <?= esc($businessName) ?> | <?= esc($mobile) ?> | | |</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>| Proprietor | <?= esc($name) ?> |
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Paste Photo and Sign Across</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Borrower/Proprietor</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Application Details - <?= esc($member_id) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Amount: INR <?= esc($loan_amount) ?>/-</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Firm Name: <?= esc($businessName) ?></p>
+            <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Firm Website: [BORROWER'S FIRM WEBSITE, e.g., Not Provided]</p> -->
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Tenure: <?= esc($loan_tenure) ?> months</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Firm Type: <?= esc($businessType) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN: <?= esc($gst) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Purpose: Business</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Year of Incorporation: <?= esc($estab) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Applicants Details</p>
+            <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;'>| Role | Name | Mobile No | POI | POA |</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>|---|---|---|---|---|</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>| Firm | <?= esc($businessName) ?> | <?= esc($mobile) ?> | | |</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>| Proprietor | <?= esc($panName) ?> |
                 <?= esc($mobile) ?> | | |</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Addresses</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Registered: <?= esc($location) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Bank Statement(s)</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>| Account | Bank Account Number | Bank IFSC |</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>|---|---|---|</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>| <?= esc($bankName) ?> | <?= esc($bankAccount) ?> | <?= esc($ifsc) ?> |</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>I/We declare that all particulars and information given
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Addresses</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered: <?= esc($location) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Bank Statement(s)</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>| Account | Bank Account Number | Bank IFSC |</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>|---|---|---|</p> -->
+            <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #333;">
+                <h3 style="margin-top: 0;">Party Details</h3>
+                <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
+                    <thead style="background-color: #f2f2f2;">
+                        <tr>
+                            <th style="text-align: left;">Role</th>
+                            <th style="text-align: left;">Name</th>
+                            <th style="text-align: left;">Mobile No</th>
+                            <th style="text-align: left;">Addresses</th>
+                            <!-- <th style="text-align: left;">POA</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Firm</td>
+                            <td><?= esc($businessName) ?></td>
+                            <td><?= esc($mobile) ?></td>
+                            <td><?= esc($location) ?></td>
+                            <!-- <td></td> -->
+                        </tr>
+                        <tr>
+                            <td>Proprietor</td>
+                            <td><?= esc($panName) ?></td>
+                            <td><?= esc($mobile) ?></td>
+                            <td></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <h3 style="margin-top: 0;">Bank Statement(s)</h3>
+                <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+                    <thead style="background-color: #f2f2f2;">
+                        <tr>
+                            <th style="text-align: left;">Account</th>
+                            <th style="text-align: left;">Bank Account Number</th>
+                            <th style="text-align: left;">Bank IFSC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?= esc($bankAccount) ?></td>
+                            <td><?= esc($bankName) ?></td>
+                            <td><?= esc($ifsc) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>I/We declare that all particulars and information given
                 in the application form are true, correct and complete and that they shall form the basis of any credit facility
                 Ayush Fiscal Private Limited may decide to grant to me/us.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Represented by its Proprietor</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'><?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Registered Office: </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>GSTN No. </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sign Here</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Represented by its Proprietor</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'><?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026</p>
-            <!-- <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Date: [DATE OF ESIGNATURE]</p> -->
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>GSTN No. </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sign Here</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Date: <?= date("d/m/Y") ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>To,</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>53, Shyama Prasad Mukherjee Road, Kolkata - 700026</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sub: Declaration of End use of Funds</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ref: Application Number - <?= esc($member_id) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Dear Sir/Ma'am,</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>I/we have been sanctioned a Credit Facility of INR
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Represented by its Proprietor</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: </p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sign Here</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Represented by its Proprietor</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026</p>
+            <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Date: [DATE OF ESIGNATURE]</p> -->
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sign Here</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Date: <?= date("d/m/Y") ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>To,</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>53, Shyama Prasad Mukherjee Road, Kolkata - 700026</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sub: Declaration of End use of Funds</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ref: Application Number - <?= esc($member_id) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Dear Sir/Ma'am,</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>I/we have been sanctioned a Credit Facility of INR
                 <?= esc($loan_amount) ?> (Rupees <?php
                                                     $formatter = new NumberFormatter("en-IN", NumberFormatter::SPELLOUT);
                                                     $words = $formatter->format($loan_amount);
@@ -975,38 +1018,38 @@
                                                     echo ucfirst($words);
                                                     ?> Only) by
                 your organization.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>As stated in the application form the said Credit
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>As stated in the application form the said Credit
                 Facility is for the Purpose of Business. I/We hereby represent,
                 warrant and confirm that the aforesaid Purpose is a valid purpose and is not speculative or illegal/antisocial
                 in any manner. Furthermore, proceeds from the Credit Facility, shall not be used for capital market purposes.
             </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>I/We further agree, confirm and undertake that the
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>I/We further agree, confirm and undertake that the
                 Purpose of use of funds shall not be changed in any manner during the tenure of the Credit Facility.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>I/We agree that any breach of default in complying with
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>I/We agree that any breach of default in complying with
                 all or any aforesaid undertaking(s) shall constitute an Event of Default under the Agreements.</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>(Capitalized term not defined hereunder shall have the
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>(Capitalized term not defined hereunder shall have the
                 same meaning as ascribed to under the Agreements)</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Thanking You, Yours Faithfully</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>For <?= esc($businessName) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'><?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>(Proprietor)</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Thanking You, Yours Faithfully</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>For <?= esc($businessName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>(Proprietor)</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026
             </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>GSTN No. </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sign Here</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>For <?= esc($businessName) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'><?= esc($name) ?></p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>(Proprietor)</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sign Here</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>For <?= esc($businessName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>(Proprietor)</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026
             </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>GSTN No. </p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
-            <p style='font-family:Arial; font-size:14px; margin:6px 0;'>Sign Here</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sign Here</p>
         </div>
         <div class="declaration py-4">
             <div class="container">
@@ -1018,7 +1061,7 @@
                     <p><strong>Address:</strong> 53, SHYAMA PRASAD MUKHERJEE ROAD, KOLKATA - 700026</p>
                     <p class="fw-bold">Subject: Declaration for Daily Equated Payment (DEP) Towards Loan Repayment</p>
                     <p>
-                        I, <strong id="retailerName"><?= esc($name) ?></strong>, S/o or D/o <strong id="parentName"><?= esc($panName) ?></strong>,
+                        I, <strong id="retailerName"><?= esc($panName) ?></strong>, S/o or D/o <strong id="parentName"><?= esc($panName) ?></strong>,
                         residing at <strong id="RetailerFullAddress"><?= esc($location) ?>, <?= esc($pincode) ?></strong>, and operating my retail business
                         under the name <strong id="ShopName"><?= esc($businessName) ?></strong>, do hereby declare that I have
                         availed a loan facility from Ayush Fiscal Pvt Ltd, vide Loan Account No.
@@ -1038,7 +1081,7 @@
                     <p><strong>Place:</strong> <?= esc($location) ?></p>
                     <div class="signature-block">
                         <p>Signature of Retailer</p>
-                        <p><strong>Retailer Name:</strong> <?= esc($name) ?></p>
+                        <p><strong>Retailer Name:</strong> <?= esc($panName) ?></p>
                         <p><strong>Shop Name:</strong> <?= esc($businessName) ?></p>
                         <p><strong>Mobile Number:</strong> <?= esc($mobile) ?></p>
                         <p><strong>PAN / Aadhaar No.:</strong> <?= esc($pan) ?> / <?= esc($adhar) ?></p>
@@ -1055,7 +1098,7 @@
                         between:</p>
                     <div class="dclrtn-info-dtls">
                         <p><strong>Lender:</strong> <span class="text-decoration-underline">Ayush Fiscal Private Limited</span></p>
-                        <p><strong>Borrower (Shop Owner):</strong> <span class="text-decoration-underline"><?= esc($name) ?></span></p>
+                        <p><strong>Borrower (Shop Owner):</strong> <span class="text-decoration-underline"><?= esc($panName) ?></span></p>
                     </div>
                     <div class="dclrtn-info-dtls">
                         <strong>A. Borrower KYC Documents Provided</strong>
@@ -1156,7 +1199,7 @@
                     <div class="dclrtn-info-dtls">
                         <strong>Borrower (Shop Owner)</strong>
                         <p>Signature: <span>Digitally Signed</span></p>
-                        <p>Name: <span><?= esc($name) ?></span></p>
+                        <p>Name: <span><?= esc($panName) ?></span></p>
                     </div>
                     <div class="dclrtn-info-dtls">
                         <strong>Enclosures (Tick as attached):</strong>
@@ -1200,7 +1243,7 @@
                         <p><strong>Subject:</strong> Declaration of Stock as Collateral for Retail Shop Loan</p>
                     </div>
                     <div class="dclrtn-info-dtls">
-                        <p>I, <span><?= esc($name) ?></span>, DOB <span><?= esc($userDOB) ?></span>, residing at <span><?= esc($location) ?></span>, do hereby solemnly affirm and declare as under:
+                        <p>I, <span><?= esc($panName) ?></span>, DOB <span><?= esc($userDOB) ?></span>, residing at <span><?= esc($location) ?></span>, do hereby solemnly affirm and declare as under:
                         </p>
                     </div>
                     <p><strong>1. Personal and Shop Details</strong></p>
@@ -1315,7 +1358,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Shop Owner (Declarant)</td>
-                                            <td><?= esc($name) ?></td>
+                                            <td><?= esc($panName) ?></td>
                                             <td>Shop Owner</td>
                                             <td><?= date("d-m-Y H:i:s") ?></td>
                                             <td>Digitally Signed</td>

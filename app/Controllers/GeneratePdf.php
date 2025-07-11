@@ -603,11 +603,11 @@ class GeneratePdf extends BaseController
                 $response_json = json_decode($responseIn, true); // decode as array
 
                 $clientId = $response_json['data']['client_id'];
-                session_start();
-                $_SESSION['client_id'] = $clientId; // Store in session
-                $_SESSION['member_id']  = $member_id;
-                $_SESSION['member_name'] = $record['name'];
+                $session = session(); // Load the session service
 
+                $session->set('client_id', $clientId);
+                $session->set('member_id', $member_id);
+                $session->set('member_name', $record['name']);
                 // Session
                 $dataPdf = array(
                     'client_id'              => $clientId,

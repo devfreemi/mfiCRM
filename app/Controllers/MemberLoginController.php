@@ -47,7 +47,46 @@ class MemberLoginController extends BaseController
 
         return $this->respond($response, 200);
     }
+    // Member Register
+    public function member_application_register()
+    {
+        //
+        $model = new MemberModel();
+        $mobileNo = $this->request->getVar('mobile');
+        $data = [
+            'mobile'         =>  $mobileNo,
+        ];
+        // $member = $model->where('mobile', $mobileNo)->first();
+        $query = $model->insert($data);
 
+        if (is_null($query)) {
+            return $this->respond(['error' => 'Invalid Retailer Mobile Number!'], 401);
+        }
+
+
+
+        $key = getenv('JWT_SECRET');
+        $iat = time(); // current timestamp value
+        $exp = $iat + 3600 * 24;
+
+        $payload = array(
+            "iss" => "NFSPL",
+            "aud" => "Retail Pe Application",
+            "sub" => "API Security",
+            "iat" => $iat, //Time the JWT issued at
+            "exp" => $exp, // Expiration time of token
+            // "mobile" => $user['mobile'],
+        );
+
+        $token = JWT::encode($payload, $key, 'HS256');
+
+        $response = [
+            'message' => 'Login Succesful',
+            'token' => $token
+        ];
+
+        return $this->respond($response, 200);
+    }
     public function member_details()
     {
         //
