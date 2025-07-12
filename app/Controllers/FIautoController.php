@@ -162,8 +162,8 @@ class FIautoController extends BaseController
 
             // Set email params
             $email->setFrom('noreply@retailpe.in', 'RetailPe Field Investigation');
-            $email->setTo('subhajit@retailpe.in'); // Change recipient as needed
-            // $email->setCC('kousik@retailpe.in');
+            $email->setTo('bapan@retailpe.in'); // Change recipient as needed
+            $email->setCC('subhajit@retailpe.in');
             $email->setSubject("FI Initiated – Member ID: $memberId | Retailer Documents Attached");
             $email->setMessage($message);
 

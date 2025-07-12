@@ -608,6 +608,12 @@ class GeneratePdf extends BaseController
                 $session->set('client_id', $clientId);
                 $session->set('member_id', $member_id);
                 $session->set('member_name', $record['name']);
+                $session->set('applicationid', $record['applicationID']);
+                $session->set('loan_amount', $record['loan_tenure']);
+                $session->set('roi', $record['roi']);
+                $session->set('tenure', $record['tenure']);
+
+
                 // Session
                 $dataPdf = array(
                     'client_id'              => $clientId,

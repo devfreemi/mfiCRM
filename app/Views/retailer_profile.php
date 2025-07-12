@@ -441,7 +441,6 @@
                                                                     <label for="inputState" class="form-label">Status</label>
                                                                     <select id="inputState" class="form-select" name="status" required>
                                                                         <option selected disabled value="">Choose</option>
-                                                                        <option value="FI Success">Field Inspection Success</option>
                                                                         <?php
                                                                         $db = db_connect();
                                                                         $builder = $db->table('loans');

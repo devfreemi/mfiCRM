@@ -145,6 +145,8 @@ $routes->group(
         $routes->add('api/member/emi/get-today-emi-v1', 'PaymentController::get_today_emi');
         $routes->add('api/member/order/create-emi-order-v1', 'PaymentController::generate_order');
         $routes->add('api/member/payment/payment-conformation-v1', 'PaymentController::conformation');
+        $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
+        $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
     }
 );
 $routes->add('payment/redirect/gateway', 'PaymentController::app_payment_collection');

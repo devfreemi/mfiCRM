@@ -71,8 +71,6 @@
                         <label for="inputState" class="form-label">Status</label>
                         <select id="inputState" class="form-select" name="status" required>
                             <option selected disabled>Choose</option>
-                            <option value="Applied" <?php if ($row->loan_status === 'Applied') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Approved' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'Disbursed Verified') echo 'disabled'; ?>>Applied</option>
-                            <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'Disbursed Verified') echo 'disabled'; ?>>Approved</option>
                             <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed Verified</option>
                             <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed</option>
                             <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Rejected') echo 'disabled'; ?>>Completed</option>

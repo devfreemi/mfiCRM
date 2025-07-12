@@ -47,6 +47,10 @@
             $clientId  = $session->get('client_id');
             $member_id = $session->get('member_id');
             $name      = $session->get('member_name');
+            $applicationid = $session->get('applicationid');
+            $loan_amount = $session->get('loan_amount');
+            $roi = $session->get('roi');
+            $tenure = $session->get('tenure');
 
             $curlGetPdf = curl_init();
             curl_setopt_array($curlGetPdf, array(
@@ -152,7 +156,10 @@
                                         <input type="text" class="form-control" id="ifsc_code" name="ifsc_code" required>
                                     </div>
                                 </div>
-
+                                <input type="hidden" id="applicationid" value="<?= esc($applicationid) ?>">
+                                <input type="hidden" id="loan_amount" value="<?= esc($loan_amount) ?>">
+                                <input type="hidden" id="tenure" value="<?= esc($tenure) ?>">
+                                <input type="hidden" id="roi" value="<?= esc($roi) ?>">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" id='submit-btn' class="btn btn-success">Verify</button>
@@ -200,7 +207,28 @@
                         $('#bankResult').removeClass('d-none');
                         $('#bankForm').addClass('d-none');
                         $('#bankForm').removeClass('d-block');
+                        // ✅ Trigger update_of_loan API after successful verification
+                        const loanData = {
+                            applicationid: $('#applicationid').val(), // Hidden input or JS var
+                            status: 'Approved', // or 'Disbursed' or other
+                            loan_amount: $('#loan_amount').val(), // Hidden or in context
+                            tenure: $('#tenure').val(), // in months
+                            roi: $('#roi').val() // e.g. 18
+                        };
 
+                        $.ajax({
+                            url: "https://crm.retailpe.in/update-loan",
+                            method: "POST",
+                            data: loanData,
+                            success: function(res) {
+                                console.log("✅ Loan updated:", res);
+                                $('#bankResult').append('<p class="text-success">Loan status updated successfully.</p>');
+                            },
+                            error: function(xhr) {
+                                console.error("❌ Loan update error:", xhr.responseText);
+                                $('#bankResult').append('<p class="text-danger">Loan update failed.</p>');
+                            }
+                        });
                     } else {
                         $('#bankResult').html('<p class="text-danger">❌ Bank verification failed or no data returned.</p>').removeClass('d-none');
                     }
