@@ -26,7 +26,8 @@ class LoanModel extends Model
         'loan_due',
         'employee_id',
         'applicationID',
-        'created_at'
+        'created_at',
+        'emi_day'
     ];
 
     // Dates

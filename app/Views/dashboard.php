@@ -17,7 +17,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col mt-0">
-                                                <h5 class="card-title">Groups</h5>
+                                                <h5 class="card-title">Markets</h5>
                                             </div>
 
                                             <div class="col-auto">

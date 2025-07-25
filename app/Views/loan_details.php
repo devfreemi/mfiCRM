@@ -9,7 +9,7 @@
                 <th>Installment No.</th>
                 <th>EMI Date</th>
                 <th>EMI</th>
-                <th>Loan Balance</th>
+                <!-- <th>Loan Balance</th> -->
                 <th>Status</th>
                 <th>Transaction Id</th>
                 <th>Transaction Date</th>
@@ -21,9 +21,9 @@
             $db = db_connect();
             $builderLoan = $db->table('tab_' . $_POST["appli_id"]);
             $builderLoan->select('*');
-            $builderLoan->where('reference', 'Due');
-            $builderLoan->orWhere('reference', 'Y');
-            $builderLoan->orderBy('Id', 'DESC');
+            // $builderLoan->where('reference', 'Due');
+            // $builderLoan->orWhere('reference', 'Y');
+            $builderLoan->orderBy('Id', 'ASC');
             $queryLoan = $builderLoan->get();
             foreach ($queryLoan->getResult() as $rowLoan) {
             ?>
@@ -32,7 +32,6 @@
                     <td><?php echo $rowLoan->Id; ?></td>
                     <td><?php echo $rowLoan->valueDateStamp; ?></td>
                     <td><?php echo number_format($rowLoan->emi); ?></td>
-                    <td><?php echo number_format($rowLoan->balance); ?></td>
                     <td>
                         <?php
                         if ($rowLoan->reference === "Y") {
@@ -52,9 +51,10 @@
                             # code...
                             echo "<strong class='text-success'>EMI Paid</strong>";
                         } else { ?>
-                            <a href="<?php echo base_url() ?>payment/details?id=<?php echo $_POST["appli_id"]; ?>" class="btn btn-primary view">
+                            <!-- <a href="<?php echo base_url() ?>payment/details?id=<?php echo $_POST["appli_id"]; ?>" class="btn btn-primary view">
                                 Pay <i class="far fa-credit-card"></i>
-                            </a>
+                            </a> -->
+                            <strong class='text-warning'>EMI Pending</strong>
                         <?php }
                         ?>
 
@@ -75,7 +75,7 @@
                 <th>Installment No.</th>
                 <th>EMI Date</th>
                 <th>EMI</th>
-                <th>Loan Balance</th>
+                <!-- <th>Loan Balance</th> -->
                 <th>Status</th>
                 <th>Transaction Id</th>
                 <th>Transaction Date</th>

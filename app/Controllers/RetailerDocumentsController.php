@@ -38,6 +38,7 @@ class RetailerDocumentsController extends BaseController
         //     return $this->respond(['documents' => $data], 200);
         // }
         date_default_timezone_set('Asia/Kolkata');
+        log_message('info', 'Doc Upload Request Received!');
         $model = new RetailerDocumentsModel();
 
         $memberId = $this->request->getVar('member_id');
@@ -64,6 +65,7 @@ class RetailerDocumentsController extends BaseController
                 'status' => false,
                 'message' => 'Upload limit reached for this document type.'
             ], 406);
+            log_message('info', 'Upload limit reached for this document type!: ');
         }
 
         // ✅ Insert if within limits
@@ -77,11 +79,13 @@ class RetailerDocumentsController extends BaseController
 
         $builder->upsert($data);
 
+
         return $this->respond([
             'status' => true,
             'message' => 'Document uploaded successfully.',
             'documents' => $data
         ], 200);
+        log_message('info', 'Retailer Documents Uploaded successfully!: ' . json_encode($data));
     }
 
     // Check if the shop image has been uploaded 3 times
@@ -362,6 +366,8 @@ class RetailerDocumentsController extends BaseController
     }
     public function check_bank_statement_analyze()
     {
+
+        log_message('info', 'Bank Statement Analyze Request Received!');
         $pdf = $this->request->getFile('file');
 
         if (!$pdf->isValid()) {
@@ -395,55 +401,61 @@ class RetailerDocumentsController extends BaseController
         $error = curl_error($curl);
         curl_close($curl);
 
-        return $this->respond([
-            'bank_analyze_upload' => $response_decode
-        ], 200);
-
+        // return $this->respond([
+        //     'bank_analyze_upload' => $response_decode
+        // ], 200);
+        log_message('info', 'Bank Statement Analyze Request Received!' . $response);
         if ($error) {
             # code...
             return $this->respond(['error' => 'Internal Exception!' . $error], 502);
         } else {
-            // return $this->respond([
-            //     'bank_analyze_upload' => $response_decode
-            // ], 200);
-            $client_id    = $response_decode['data']['client_id'];
-            $dataApi = array(
-                'client_id'              => $client_id,
+            if ($response_decode['status_code'] == 200) {
+                log_message('info', 'Bank Statement Analyze Download API Started !' . $response_decode['data']['client_id']);
+                $client_id    = $response_decode['data']['client_id'];
+                $dataApi = array(
+                    'client_id'              => $client_id,
 
-            );
-            $data_json = json_encode($dataApi);
+                );
+                $data_json = json_encode($dataApi);
 
-            $curlDown = curl_init();
+                $curlDown = curl_init();
 
-            curl_setopt_array($curlDown, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank/statement/download',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => $data_json,
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
-                    'Accept: application/json',
-                    // 'Content-Type: application/json'
-                ),
-            ));
+                curl_setopt_array($curlDown, array(
+                    CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank/statement/download',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $data_json,
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                        'Accept: application/json',
+                        // 'Content-Type: application/json'
+                    ),
+                ));
 
-            $responseDown = curl_exec($curlDown);
-            $error_an = curl_error($curlDown);
-            curl_close($curlDown);
-            if ($error_an) {
-                # code...
-                return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+                $responseDown = curl_exec($curlDown);
+                $error_an = curl_error($curlDown);
+                curl_close($curlDown);
+                if ($error_an) {
+                    # code...
+                    log_message('error', 'Bank Statement Analyze Completed Successfully !' . $error_an);
+                    return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+                } else {
+                    # code...
+                    $response_decode_an = json_decode($responseDown, true);
+                    log_message('info', 'Bank Statement Analyze Completed Successfully !' . $responseDown);
+                    return $this->respond([
+                        'bank_analyze_report' => $response_decode_an
+                    ], 200);
+                }
             } else {
                 # code...
-                $response_decode_an = json_decode($responseDown, true);
-                return $this->respond([
-                    'bank_analyze_report' => $response_decode_an
-                ], 200);
+                log_message('error', 'Internal Exception from API Providers!' . $response);
+                return $this->respond(['error' => 'Internal Exception from API Providers!' . $response], 502);
             }
         }
 

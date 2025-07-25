@@ -127,42 +127,19 @@
                     <form id="bankVerifyForm">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="bankVerifyModalLabel">Bank Verification</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="bankVerifyModalLabel">Update Loan Application</h5>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                             </div>
                             <div class="modal-body">
-                                <div id="bankResult" class="alert alert-success d-none mt-3">
-                                    <h6>✅ Bank Verified Successfully!</h6>
-                                    <p><strong>Holder Name:</strong> <span id="holderName"></span></p>
-                                    <p><strong>Bank Name:</strong> <span id="bankName"></span></p>
-                                    <p><strong>Branch:</strong> <span id="bankBranch"></span></p>
-                                    <p><strong>City:</strong> <span id="bankCity"></span></p>
-                                    <p><strong>State:</strong> <span id="bankState"></span></p>
-                                    <p><strong>IFSC:</strong> <span id="bankIFSC"></span></p>
-                                </div>
-                                <div id="bankForm" class="d-block">
-                                    <div class="mb-3">
-                                        <label for="memberId_bank" class="form-label">Member ID</label>
-                                        <input type="text" class="form-control" id="memberId_bank" name="memberId_bank" readonly value="<?= esc($member_id) ?>" required>
-                                    </div>
 
-                                    <div class="mb-3">
-                                        <label for="acc_no" class="form-label">Account Number</label>
-                                        <input type="text" class="form-control" id="acc_no" name="acc_no" required>
-                                    </div>
 
-                                    <div class="mb-3">
-                                        <label for="ifsc_code" class="form-label">IFSC Code</label>
-                                        <input type="text" class="form-control" id="ifsc_code" name="ifsc_code" required>
-                                    </div>
-                                </div>
                                 <input type="hidden" id="applicationid" value="<?= esc($applicationid) ?>">
                                 <input type="hidden" id="loan_amount" value="<?= esc($loan_amount) ?>">
                                 <input type="hidden" id="tenure" value="<?= esc($tenure) ?>">
                                 <input type="hidden" id="roi" value="<?= esc($roi) ?>">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" id='submit-btn' class="btn btn-success">Verify</button>
+                                <button type="button" id='submit-btn' class="btn btn-success">Send File to Disbursement</button>
                                 <button type="button" onclick="window.close()" class="btn btn-secondary">Close</button>
                             </div>
                         </div>
@@ -184,60 +161,31 @@
         $('#submit-btn').on('click', function(e) {
             e.preventDefault();
 
-            let formData = {
-                memberId_bank: $('#memberId_bank').val(),
-                acc_no: $('#acc_no').val(),
-                ifsc_code: $('#ifsc_code').val()
+
+            // ✅ Trigger update_of_loan API after successful verification
+            const loanData = {
+                applicationid: $('#applicationid').val(), // Hidden input or JS var
+                status: 'Approved', // or 'Disbursed' or other
+                loan_amount: $('#loan_amount').val(), // Hidden or in context
+                tenure: $('#tenure').val(), // in months
+                roi: $('#roi').val() // e.g. 18
             };
 
             $.ajax({
-                url: "https://crm.retailpe.in/api/page/verify-bank-v1", // Adjust controller route
+                url: "https://crm.retailpe.in/update-loan",
                 method: "POST",
-                data: formData,
-                success: function(response) {
-                    const data = response.bank_verified?.data?.ifsc_details;
-
-                    if (data) {
-                        $('#holderName').text(response.bank_verified.data.full_name);
-                        $('#bankName').text(data.bank_name);
-                        $('#bankBranch').text(data.branch);
-                        $('#bankCity').text(data.city);
-                        $('#bankState').text(data.state);
-                        $('#bankIFSC').text(data.ifsc);
-                        $('#bankResult').removeClass('d-none');
-                        $('#bankForm').addClass('d-none');
-                        $('#bankForm').removeClass('d-block');
-                        // ✅ Trigger update_of_loan API after successful verification
-                        const loanData = {
-                            applicationid: $('#applicationid').val(), // Hidden input or JS var
-                            status: 'Approved', // or 'Disbursed' or other
-                            loan_amount: $('#loan_amount').val(), // Hidden or in context
-                            tenure: $('#tenure').val(), // in months
-                            roi: $('#roi').val() // e.g. 18
-                        };
-
-                        $.ajax({
-                            url: "https://crm.retailpe.in/update-loan",
-                            method: "POST",
-                            data: loanData,
-                            success: function(res) {
-                                console.log("✅ Loan updated:", res);
-                                $('#bankResult').append('<p class="text-success">Loan status updated successfully.</p>');
-                            },
-                            error: function(xhr) {
-                                console.error("❌ Loan update error:", xhr.responseText);
-                                $('#bankResult').append('<p class="text-danger">Loan update failed.</p>');
-                            }
-                        });
-                    } else {
-                        $('#bankResult').html('<p class="text-danger">❌ Bank verification failed or no data returned.</p>').removeClass('d-none');
-                    }
-                    // $('#bankVerifyModal').modal('hide');
+                data: loanData,
+                success: function(res) {
+                    console.log("✅ Loan updated:", res);
+                    $('#bankResult').append('<p class="text-success">Loan status updated successfully.</p>');
                 },
                 error: function(xhr) {
-                    alert('Error verifying bank: ' + xhr.responseText);
+                    console.error("❌ Loan update error:", xhr.responseText);
+                    $('#bankResult').append('<p class="text-danger">Loan update failed.</p>');
                 }
             });
+
+
         });
     </script>
 </body>

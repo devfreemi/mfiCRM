@@ -276,7 +276,11 @@
             <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'>AYUSH FISCAL PRIVATE LIMITED</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>("LENDER")</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>AND</p>
-            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'><?= esc($panName) ?></p>
+            <p style='font-family:Arial; font-size:16px; margin:6px 0;font-weight: 700'>
+                <?= esc($businessName) ?>
+                <br>
+                <?= esc($panName) ?>
+            </p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>("BORROWER")</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>THIS Credit Facility Agreement No. <?= esc($member_id) ?>
                 ("Credit Facility Agreement") is made and executed by and between:</p>
@@ -467,11 +471,9 @@
                         Repayment Method</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The Credit Facility shall be disbursed by the Lender through the platform of
                         Ntactus Financial Services Private Limited
-                        Repayment date: 5th of every month.
                         Repayment options for the borrower: Payment Gateway(Netbanking/UPI), NACH,
                     </td>
                 </tr>
-
 
 
                 <tr>
@@ -484,7 +486,9 @@
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Delayed Interest</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The interest rate as in
-                        (11) will continue to be charged daily if the drawdown amount is not paid within the withdrawal tenure
+                        (11) will continue to be charged daily if the drawdown amount is not paid within the date of repayment
+                    </td>
+
                     </td>
                 </tr>
                 <tr>
@@ -879,20 +883,20 @@
                         parameters of other terms)</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Interest Rate</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>% p.a.
                         payable monthly (Reducing)</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>13</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Delayed Interest</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The interest rate as in
                         (12) will continue to be charged daily if the drawdown amount is not paid within the withdrawal tenure
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>14</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Prepayment Charges</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
@@ -903,7 +907,7 @@
                         Not Applicable]</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>16</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Charges on miscellaneous
                         request(s) such as, change in servicing date, changes in Credit Facility servicing bank account,
                         replacement of security/servicing cheques etc.</td>
@@ -991,7 +995,7 @@
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Ayush Fiscal Private Limited</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: </p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p>
+
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sign Here</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Represented by its Proprietor</p>
@@ -1000,7 +1004,7 @@
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Registered Office: 53, Shyama Prasad Mukherjee Road, Kolkata - 700026</p>
             <!-- <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Date: [DATE OF ESIGNATURE]</p> -->
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>CIN: U65999WB1992PTC055336 Tel: 033 4506 4448</p>
-            <p style='font-family:Arial; font-size:16px; margin:6px 0;'>GSTN No. </p>
+
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Email: support@ayushfiscal.com</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Sign Here</p>
             <p style='font-family:Arial; font-size:16px; margin:6px 0;'>Date: <?= date("d/m/Y") ?></p>
@@ -1061,7 +1065,7 @@
                     <p><strong>Address:</strong> 53, SHYAMA PRASAD MUKHERJEE ROAD, KOLKATA - 700026</p>
                     <p class="fw-bold">Subject: Declaration for Daily Equated Payment (DEP) Towards Loan Repayment</p>
                     <p>
-                        I, <strong id="retailerName"><?= esc($panName) ?></strong>, S/o or D/o <strong id="parentName"><?= esc($panName) ?></strong>,
+                        I, <strong id="retailerName"><?= esc($panName) ?></strong>,
                         residing at <strong id="RetailerFullAddress"><?= esc($location) ?>, <?= esc($pincode) ?></strong>, and operating my retail business
                         under the name <strong id="ShopName"><?= esc($businessName) ?></strong>, do hereby declare that I have
                         availed a loan facility from Ayush Fiscal Pvt Ltd, vide Loan Account No.
@@ -1070,7 +1074,7 @@
                     </p>
                     <p>As per the agreed terms and conditions, I undertake and confirm that:</p>
                     <ul>
-                        <li>1. I will repay the loan through <strong>Daily Equated Payments (DEP)</strong> of Rs. <strong id="dailyPaymentAmount"><?= esc($emi / 30) ?></strong>, starting from <strong id="startDate">_____________</strong> until the full repayment of the loan amount along with applicable interest, fees, and charges.</li>
+                        <li>1. I will repay the loan through <strong>Daily Equated Payments (DEP)</strong> of Rs. <strong id="dailyPaymentAmount"><?= round($total_amount / $pending_emi) ?></strong>, starting from <strong id="startDate">_____________</strong> until the full repayment of the loan amount along with applicable interest, fees, and charges.</li>
                         <li>2. I understand that the daily repayment amount is calculated based on the loan tenure and rate of interest mutually agreed upon at the time of disbursal.</li>
                         <li>3. I agree to ensure that the said daily payments will be made through the prescribed mode (cash/UPI/NACH/auto-debit, etc.) and within the stipulated time daily.</li>
                         <li>4. In case of any delay or non-payment, I understand that penalties and recovery actions as per the loan agreement may be applicable.</li>
@@ -1089,8 +1093,8 @@
                 </div>
             </div>
         </div>
-        <div class="declaration py-4">
-            <div class="container">
+        <div class="declaration py-4 mt-5" style="margin-top: 150px;">
+            <div class="container" style="margin-top: 150px;">
                 <div class="dclrtn-info">
                     <h1 class="mb-4 text-center"><span>Retailer</span> ANNEXURE – I</h1>
                     <h2 class="text-center pb-0">(Retail Shop Loan Supporting Declarations & Disclosures)</h2>
@@ -1113,8 +1117,8 @@
                         </ol>
                     </div>
                     <div class="dclrtn-info-dtls">
-                        <div class="dclrtn-info-dtls my-5">
-                            <h4 class="mb-4">Borrower Details</h4>
+                        <div class="dclrtn-info-dtls my-5" style="margin-top: 150px;">
+                            <h4 class="mb-4" style="margin-top: 0px;">Borrower Details</h4>
                             <div class="dclrtn-info-dtls">
                                 <table class="table table-bordered align-middle">
                                     <thead class="table-light">
@@ -1159,9 +1163,9 @@
                             following estimated value:
                         </p>
                         <ul>
-                            <li><strong>Total Estimated Stock Value:</strong>₹ <span><?= number_format($stock, 2) ?></span></li>
+                            <li><strong>Total Estimated Stock Value:</strong>Rs. <span><?= number_format($stock, 2) ?></span></li>
                             <li><strong>Nature of Stock:</strong> <span><?= 'Physical' ?></span></li>
-                            <li><strong>Basis of Valuation:</strong> <span>₹ <?= number_format($stock, 2) ?></span></li>
+                            <li><strong>Basis of Valuation:</strong> <span>Rs. <?= number_format($stock, 2) ?></span></li>
                             <li><strong>Stock Valuation Date:</strong> <span><?= date('Y-m-d') ?></span></li>
                         </ul>
                         <p>Borrower agrees to update the stock valuation quarterly or as requested by Lender.</p>
@@ -1170,9 +1174,9 @@
                         <strong>D. Daily Sales Declaration</strong>
                         <p>The Borrower voluntarily declares the average daily sales of the retail shop to be:</p>
                         <ul>
-                            <li><strong>Estimated Daily Sales: </strong>₹ <span><?= number_format($dailySales, 2) ?></span></li>
+                            <li><strong>Estimated Daily Sales: </strong>Rs. <span><?= number_format($dailySales, 2) ?></span></li>
                             <!-- <li><strong>Peak Season Variation:</strong> <span></span></li> -->
-                            <li><strong>Average Monthly Sales (Last 3 months):</strong>₹ <span><?= number_format($dailySales * 30, 2) ?></span></li>
+                            <li><strong>Average Monthly Sales (Last 3 months):</strong>Rs. <span><?= number_format($dailySales * 30, 2) ?></span></li>
                         </ul>
                         <p>Supporting evidence such as sales register or UPI/transaction history may be provided upon
                             request.
@@ -1182,11 +1186,11 @@
                         <strong>E. Affirmation & Good Faith Declaration</strong>
                         <p>The Borrower confirms and agrees that:</p>
                         <ul>
-                            <li>1. The above declarations are made voluntarily and in good faith to support the unsecured
-                                loan.
+                            <li>1. The above declarations are made voluntarily and in good faith to support the credit facility
+                                .
                             </li>
                             <li>2. Any misrepresentation shall constitute a breach of agreement.</li>
-                            <li>3. The loan is being extended based on trust, without collateral, and subject to periodic
+                            <li>3. The loan is being extended based on trust and subject to periodic
                                 review by the Lender.
                             </li>
                             <li>4. The Lender reserves the right to seek additional documentation if needed.</li>
@@ -1234,7 +1238,7 @@
                 <div class="dclrtn-info">
                     <h1 class="mb-4 text-center"><span>Retailer</span> ANNEXURE – II</h1>
                     <p class="text-center pb-0">Declaration by Shop Owner for Stock Collateral</p>
-                    <p class="text-center pb-5">(To be executed on Shop Letterhead or ₹100 Stamp Paper)</p>
+                    <p class="text-center pb-5">(To be executed on Shop Letterhead or Rs.100 Stamp Paper)</p>
                     <div class="dclrtn-info-dtls">
                         <p><strong>To:</strong></p>
                         <p><strong>The Loan Officer</strong></p>
@@ -1257,10 +1261,19 @@
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label" for="owned"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span><?= esc($shop_ownership) ?></label>
                                 </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="rentAgreement"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span><?php
 
+                                                                                                                                                                                if ($shop_ownership == 'Owned') {
+                                                                                                                                                                                    echo "Property Tax Receipt";
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    echo "Rent Agreement";
+                                                                                                                                                                                }
+                                                                                                                                                                                ?></label>
+                                </div>
                             </div>
                         </li>
-                        <li><strong>KYC Documents Attached:</strong>
+                        <li><strong>KYC Documents Attached (Personal and Business KYC):</strong>
                             <div class="dclrtn-info-dtls">
                                 <div class="form-check">
                                     <label class="form-check-label" for="aadhaarCard"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span>Aadhaar Card</label>
@@ -1269,11 +1282,13 @@
                                     <label class="form-check-label" for="panCard"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span>PAN Card</label>
                                 </div>
                                 <div class="form-check">
-                                    <label class="form-check-label" for="shopCertificate"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span>Shop Establishment Certificate</label>
+                                    <label class="form-check-label" for="shopCertificate"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span>Trade License</label>
                                 </div>
+
                                 <div class="form-check">
-                                    <label class="form-check-label" for="rentAgreement"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span>Rent Agreement / Property Tax Receipt</label>
+                                    <label class="form-check-label" for="rentAgreement"><span style="font-family: 'DejaVu Sans'; font-size: 14px; color:green;">&#10004;</span>GST Certificate</label>
                                 </div>
+
                             </div>
                         </li>
                     </ul>
@@ -1301,8 +1316,8 @@
                                 <tr>
                                     <td>1</td>
                                     <td><?= esc($businessType) ?> </td>
-                                    <td>₹ <?= number_format($stock, 2) ?> </td>
-                                    <td>Approx ₹ <?= number_format($stock, 2) ?> Stock available, FI: <?= esc($stock_available) ?></td>
+                                    <td>Rs. <?= number_format($stock, 2) ?> </td>
+                                    <td>Approx Rs. <?= number_format($stock, 2) ?> Stock available, FI: <?= esc($stock_available) ?></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -1313,7 +1328,7 @@
 
                                 <tr class="fw-bold">
                                     <td colspan="2">Total</td>
-                                    <td>₹ <?= number_format($stock, 2) ?> </td>
+                                    <td>Rs. <?= number_format($stock, 2) ?> </td>
                                     <td></td>
                                 </tr>
                             </tbody>

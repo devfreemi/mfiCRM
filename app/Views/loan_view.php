@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">Loan Amount</label>
-                        <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="<?php echo $row->loan_amount; ?>" readonly>
+                        <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="<?php echo $row->loan_amount; ?>">
                     </div>
                     <div class="col-4">
                         <label for="inputAddress" class="form-label">ROI</label>
@@ -71,6 +71,8 @@
                         <label for="inputState" class="form-label">Status</label>
                         <select id="inputState" class="form-select" name="status" required>
                             <option selected disabled>Choose</option>
+                            <option value="Approved">Approved</option>
+
                             <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed Verified</option>
                             <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed</option>
                             <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Rejected') echo 'disabled'; ?>>Completed</option>

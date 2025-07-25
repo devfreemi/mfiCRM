@@ -95,8 +95,8 @@
                             <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Group Name</th>
-                                    <th>Group ID</th>
+                                    <th>Market Name</th>
+                                    <th>Market ID</th>
                                     <th>Members Name</th>
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>

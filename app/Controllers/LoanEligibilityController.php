@@ -7,6 +7,8 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\LoanEligibilityModel;
 use CodeIgniter\API\ResponseTrait;
 
+date_default_timezone_set('Asia/Kolkata');
+
 class LoanEligibilityController extends BaseController
 {
     use ResponseTrait;
@@ -57,6 +59,7 @@ class LoanEligibilityController extends BaseController
                 $current_year = date('Y');
                 $business_time = round($current_year - $request->getVar('business_time'));
             }
+            log_message('info', 'Rule Engine API response: ' . $this->request->getVar('previous_emi'));
 
             $data = [
                 'stock' => $request->getVar('stock'),
@@ -130,6 +133,8 @@ class LoanEligibilityController extends BaseController
     // API
     public function checkEligibilityAPI()
     {
+
+        log_message('info', '✅ checkEligibilityAPI called');
         // $request = service('request');
         // $cibil = rand(0, 900);
         if ($this->request->getVar('previous_emi') === "") {
@@ -159,6 +164,7 @@ class LoanEligibilityController extends BaseController
         );
         $data_json = json_encode($dataApi);
 
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -181,14 +187,18 @@ class LoanEligibilityController extends BaseController
         $response = curl_exec($curl);
         $err = curl_error($curl);
         $response_decode = json_decode($response, true);
+        log_message('info', 'Experian CIBIL Check API Called and Success: ' . $response);
 
 
 
         curl_close($curl);
         if ($err) {
             // echo "cURL Error #:" . $err;
+            log_message('error', 'Experian Cibil API Failed: ' . json_encode($err));
+
             return $this->respond(['error' => 'Internal Exception!' . $err], 502);
         } else {
+
             $cibil = $response_decode['data']['credit_score'];
             // $cibilReport    = $response_decode['data']['credit_report'];
             $data = [
@@ -232,12 +242,14 @@ class LoanEligibilityController extends BaseController
             if (is_null($data)) {
                 return $this->respond(['error' => 'Invalid Request.'], 401);
             }
+            log_message('info', 'Rule Engine API response: ' . json_encode($data_eli_run));
 
             return $this->respond(['member' => $data], 200);
         }
 
         // Get input data from the form
 
+        // log_message('info', 'Rule Engine API response: ' . $this->request->getVar('previous_emi'));
 
         // print_r($query);
         // echo ("<br>");
@@ -272,6 +284,7 @@ class LoanEligibilityController extends BaseController
             return $this->respond(['error' => 'Invalid Request.'], 401);
         } else {
             # code...
+            log_message('info', 'Approved Retailers List API called. Employee ID: ' . $empID);
             return $this->respond($data, 200);
         }
     }
@@ -288,6 +301,7 @@ class LoanEligibilityController extends BaseController
             return $this->respond(['error' => 'Invalid Request.'], 401);
         } else {
             # code...
+            log_message('info', 'Approved Retailers List API called. Employee ID: ' . json_encode($data));
             return $this->respond($data, 200);
         }
     }

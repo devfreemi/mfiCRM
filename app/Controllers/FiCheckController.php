@@ -55,7 +55,7 @@ class FiCheckController extends BaseController
                 'business_type',
                 'daily_sales',
                 'stock_value',
-                'monthly_purchase'
+                'month_purchase'
             ];
 
             $verifiedFieldsInput = $this->request->getPost('verified_fields') ?? [];
@@ -138,7 +138,7 @@ class FiCheckController extends BaseController
             // Inspector overrides (if mismatch)
             $inspectedSales = in_array('daily_sales', $notVerified) ? $correctedFields['daily_sales'] ?? null : $correctedFields['daily_sales'];
             $inspectedStock = in_array('stock_value', $notVerified) ? $correctedFields['stock_value'] ?? null : $correctedFields['stock_value'];
-            $inspectedPurchase = in_array('monthly_purchase', $notVerified) ? $correctedFields['monthly_purchase'] ?? null : $correctedFields['monthly_purchase'];
+            $inspectedPurchase = in_array('month_purchase', $notVerified) ? $correctedFields['month_purchase'] ?? null : $correctedFields['month_purchase'];
 
             // Save data
             $data = [
@@ -213,6 +213,7 @@ class FiCheckController extends BaseController
                 'roi'           => $this->request->getVar('roi'),
                 'emi'               =>  $emi,
                 'pending_emi'       =>  $day_tenure,
+                'emi_day'          => round($due / $day_tenure),
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
@@ -220,6 +221,7 @@ class FiCheckController extends BaseController
                 'employee_id'   => $this->request->getVar('agent'),
                 'loan_status'     => $fiResult,
                 'application_stage' => $application_stage,
+                'updated_at' => date('Y-m-d H:i:s'),
 
             ];
             // $query = $model->insert($data);

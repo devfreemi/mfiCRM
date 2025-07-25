@@ -44,6 +44,7 @@ class LoanEligibilityModel extends Model
             'Pet Shop' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
             'Sweet Shop' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
             'Food & Beverage' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
+            'Hardware' =>  [[0, 10000, 0.19], [10000, 25000, 0.18], [25000, 35000, 0.17], [35000, 50000, 0.16], [50000, 75000, 0.15], [75000, INF, 0.15]],
             'Furniture' => [[0, 10000, 0.19], [10000, 25000, 0.18], [25000, 35000, 0.17], [35000, 50000, 0.16], [50000, 75000, 0.15], [75000, INF, 0.15]]
         ];
 
@@ -95,6 +96,8 @@ class LoanEligibilityModel extends Model
 
     public function calculateLoanEligibility()
     {
+        log_message('info', 'Rule Engine Start Working');
+
         $foir = $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi);
         $eligible_emi = $foir['EligibleEMI'];
 
@@ -293,6 +296,8 @@ class LoanEligibilityModel extends Model
         $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
         // Reject if user cannot afford even the minimum plan
         if ($eligible_emi < $min_required_emi) {
+            log_message('info', 'Rule Engine Reject The Retailer: Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.');
+
             return [
                 "Eligibility" => "Not Eligible",
                 "LoanAmount" => 0,
@@ -305,6 +310,8 @@ class LoanEligibilityModel extends Model
                 "FOIR" => $foir,
             ];
         } else {
+            log_message('info', 'Rule Engine Eligible The Retailer');
+
             return [
                 "Eligibility" => "Eligible",
                 "LoanAmount" => round($loan_amount),

@@ -44,6 +44,7 @@ class MemberLoginController extends BaseController
             'message' => 'Login Succesful',
             'token' => $token
         ];
+        log_message('info', 'Existing Retailer Login by OTP: ' . $mobileNo);
 
         return $this->respond($response, 200);
     }
@@ -84,7 +85,7 @@ class MemberLoginController extends BaseController
             'message' => 'Login Succesful',
             'token' => $token
         ];
-
+        log_message('info', 'New Retailer Register by OTP: ' . $mobileNo);
         return $this->respond($response, 200);
     }
     public function member_details()

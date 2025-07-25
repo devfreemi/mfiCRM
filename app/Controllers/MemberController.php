@@ -100,22 +100,25 @@ class MemberController extends BaseController
             'agent'             => $this->request->getVar('agent'),
             'aadhaarVerified'   => $this->request->getVar('authenticate'),
             'aadhaarData'       => $this->request->getVar('kycLocalValueSubmit'),
-            'gstData'           => $this->request->getVar('gstLocalValueSubmit'),
+            'gstData'           => Null,
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
             'month_purchase'    => $this->request->getVar('purchaseMonthly'),
             'eli_run'           => "Y",
             'userDOB'           => $this->request->getVar('panDob'),
-            'month_purchase'    => $this->request->getVar('month_purchase')
+
         ];
 
 
 
         $query = $model->save($data);
         if (!$query) {
+            log_message('error', 'Add New Retailer API Called and Failed ' . json_encode($query));
+
             return $this->respond(['error' => 'Invalid Request.' . $query], 401);
         } else {
             # code...
+            log_message('info', 'Add New Retailer API Called and Data Inserted in DB: ' . json_encode($data));
             return $this->respond(['members' => $data], 200);
         }
     }
@@ -411,5 +414,21 @@ class MemberController extends BaseController
         return view('field', $data);
         // print_r($data);
         // echo $memberID;
+    }
+    // Retailer Loan Doc
+
+    public function retailer_loan_doc()
+    {
+        // $session = session();
+        $memberID = $this->request->getVar('memberID');
+        $db = db_connect();
+        $builder = $db->table('retailer_loan_doc');
+        $doc = $builder->where('member_id', $memberID)->where('eSign', 'Y')->get()->getRowArray();
+
+        if (is_null($doc)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond(['doc' => $doc], 200);
     }
 }

@@ -18,6 +18,7 @@ $routes->get('preview-pdf/(:any)', 'GeneratePdf::previewSanctionLetter/$1');
 
 $routes->get('generate-pdf/(:segment)', 'GeneratePdf::generatePdf/$1');
 $routes->get('redirection', 'Home::redirection');
+$routes->get('digi-success', 'Home::digi_success');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('dashboard', 'Home::dashboard');
@@ -45,6 +46,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('retailers/details/(:any)', 'MemberController::retailer_profile/$1');
 
     $routes->add('emi/payment', 'PaymentController::initiate_payment');
+    $routes->add('disbursement', 'Home::disbursement');
+    $routes->add('disbursement/details/(:any)', 'LoanApi::disbursement_details/$1');
     $routes->get('payment/details', 'PaymentController::details');
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
     $routes->add('loan-create', 'LoanApi::loan_create');
@@ -108,6 +111,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/kyc-pan-search', 'AadhaarKycController::get_pan'); // For PAN Search
     $routes->add('api/kyc-pan-verify', 'AadhaarKycController::verify_pan');
     $routes->add('api/gst-verify', 'AadhaarKycController::verify_gst');
+    $routes->add('api/voter-id-verify', 'AadhaarKycController::verify_voter_id');
     $routes->add('api/check-eli-api-v1', 'LoanEligibilityController::checkEligibilityAPI');
     $routes->add('api/get-eli-loan-api-v1', 'LoanEligibilityController::get_approval');
     $routes->add('api/get-approved-retailer-v1', 'LoanEligibilityController::approved_retailer');
@@ -147,6 +151,8 @@ $routes->group(
         $routes->add('api/member/payment/payment-conformation-v1', 'PaymentController::conformation');
         $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
         $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
+        // $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
+        $routes->add('api/retailer-loan-doc-api-v1', 'MemberController::retailer_loan_doc');
     }
 );
 $routes->add('payment/redirect/gateway', 'PaymentController::app_payment_collection');

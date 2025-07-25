@@ -233,7 +233,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/status/' . $clientIDAdh,
+                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/list-documents/' . $clientIDAdh,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -250,15 +250,72 @@ class AadhaarKycController extends BaseController
             $response = curl_exec($curl);
             $err = curl_error($curl);
             $response_decode = json_decode($response, true);
+            log_message('info', 'Digi Locker Verification API List Documents called. Payload: ' . json_encode($response_decode));
+            $aadhaarFileId = null;
 
+            foreach ($response_decode['data']['documents'] as $doc) {
+                if ($doc['doc_type'] === 'ADHAR') {
+                    $aadhaarFileId = $doc['file_id'];
+                    break;
+                }
+            }
             curl_close($curl);
 
             if ($err) {
                 // echo "cURL Error #:" . $err;
+                log_message('error', 'Digi Locker Verification API called & Error By Retailer. Payload: ' . $err);
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
+                // Get the response of file download
+                $curlD = curl_init();
+
+                curl_setopt_array($curlD, array(
+                    CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/download-document/' . $clientIDAdh . '/' . $aadhaarFileId,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'GET',
+                    CURLOPT_HTTPHEADER => array(
+                        "content-type: application/json",
+                        'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                    ),
+                ));
+
+                $responseD = curl_exec($curlD);
+                $errD = curl_error($curlD);
+                $response_decode_d = json_decode($responseD, true);
+
+                curl_close($curlD);
+                // Download the PDF file
+                $pdfUrl = $response_decode_d['data']['download_url'];
+
+                // Generate file name and destination path
+                $fileName = $clientIDAdh . 'aadhaar.pdf';
+                $storagePath = FCPATH . 'uploads/customer_doc/aadhaar/' . $clientIDAdh . '/';
+                $fullFilePath = $storagePath . $fileName;
+
+                // Create directory if it does not exist
+                if (!is_dir($storagePath)) {
+                    mkdir($storagePath, 0777, true);
+                }
+
+                // Use file_get_contents and file_put_contents to download and save
+                $pdfContent = file_get_contents($pdfUrl);
+                if ($pdfContent === false) {
+                    // echo "❌ Failed to download PDF.";
+                } else {
+                    file_put_contents($fullFilePath, $pdfContent);
+                    $uploadPath = 'uploads/customer_doc/aadhaar/' . $clientIDAdh . '/' . $fileName;
+                    // Append upload path in response
+                    $response_decode_d['aadhaar_file_path'] = 'https://crm.retailpe.in/' . $uploadPath;
+                }
                 // echo $response;
-                return $this->respond(['kyc' => $response_decode], 200);
+                log_message('info', 'Aadhaar upload in server. Payload: ' . $uploadPath);
+                log_message('info', 'Digi Locker Verification Download Aadhaar. Payload: ' . json_encode($response_decode_d));
+                return $this->respond(['kyc' => $response_decode_d], 200);
             }
         } else {
             # code...
@@ -285,12 +342,13 @@ class AadhaarKycController extends BaseController
                 "send_email"     => false,
                 "verify_phone"   => true,
                 "verify_email"   => false,
-                "signup_flow"    => false,
-                "redirect_url"   => "https://www.retailpe.in/",
+                "signup_flow"    => true,
+                "redirect_url"   => "https://crm.retailpe.in/digi-success",
                 "state"          => "RetailPeLOS"
             )
         );
         $data_json = json_encode($dataApi);
+        log_message('info', 'Digi Locker API called. Payload: ' . $data_json);
 
         if ($mobile != '') {
             # code...
@@ -323,6 +381,7 @@ class AadhaarKycController extends BaseController
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
                 // return $response;
+                log_message('info', 'Digi Locker API called & Success. Payload: ' . $response);
                 return $this->respond(['aadhaar' => $response_decode], 200);
             }
         } else {
@@ -330,6 +389,7 @@ class AadhaarKycController extends BaseController
             return $this->respond(['error' => 'Internal Error'], 502);
         }
     }
+
     // --------------------------------------------
     // --------------------------------------------
     // GET PAN FROM NAME AND MOBILE NUMBER
@@ -346,6 +406,8 @@ class AadhaarKycController extends BaseController
 
         );
         $data_json = json_encode($dataApi);
+        log_message('info', 'PAN Verification API called. Payload: ' . $data_json);
+
 
         if ($name != '' && $mobile != '') {
             # code...
@@ -486,6 +548,7 @@ class AadhaarKycController extends BaseController
             'get_address'            => true,
         );
         $data_json = json_encode($dataApi);
+        log_message('info', 'PAN Verification API called. Payload: ' . $data_json);
 
         if ($panNumber != '') {
             # code...
@@ -513,13 +576,15 @@ class AadhaarKycController extends BaseController
             $response_decode = json_decode($response, true);
 
             curl_close($curl);
+            log_message('info', 'PAN Verification API called. Payload: ' . $data_json);
 
             if ($err) {
                 // echo "cURL Error #:" . $err;
                 return $this->respond(['error' => 'Internal Exception!' . $err], 502);
+                log_message('error', 'PAN Verification API called. Payload: ' . json_encode($err));
             } else {
                 // return $response;
-
+                log_message('info', 'PAN Verification API Success. Payload: ' . $response);
                 if ($response_decode['status_code'] === 200) {
                     # code... get gst from pan
                     $dataApiGst = array(
@@ -550,6 +615,7 @@ class AadhaarKycController extends BaseController
                         // echo "cURL Error #:" . $err;
                         return $this->respond(['error' => 'Internal Exception!' . $err_gst], 502);
                     } else {
+                        log_message('info', 'PAN Verification API & GST Search by PAN API called & Success. Payload: ' . $response_gst);
                         // return $response_gst;
                         // return $this->respond(['gst' => $response_decode_gst], 200);
                         $response_decode_gst = json_decode($response_gst, true);
@@ -561,11 +627,13 @@ class AadhaarKycController extends BaseController
                     }
                 } else {
                     # code...
+                    log_message('error', 'PAN Verification API & GST Search by PAN API called & Failed. API Down');
                     return $this->respond(['error' => 'Server Error'], 500);
                 }
             }
         } else {
             # code...
+            log_message('error', 'PAN Verification API & GST Search by PAN API called & Failed. PAN number not send!');
             return $this->respond(['error' => 'Internal Error'], 502);
         }
     }
@@ -580,6 +648,7 @@ class AadhaarKycController extends BaseController
 
         );
         $data_json = json_encode($dataApi);
+        log_message('info', 'GST Validation API called. Payload: ' . $data_json);
 
         if ($gstNumber != '') {
             # code...
@@ -614,6 +683,7 @@ class AadhaarKycController extends BaseController
                 $name_str = strtoupper($response_decode['data']['business_name']);
                 $name_str = str_replace(" ", "", $name_str);
                 $name_str = substr($name_str, 0, 4);
+                $name_str = str_replace(['.', '/'], '', $name_str);
                 $db = db_connect();
                 $dataInsert = [
                     'status'            => $response_decode['data']['gstin_status'],
@@ -631,11 +701,69 @@ class AadhaarKycController extends BaseController
                 ];
                 $builderMaster = $db->table('gstmaster');
                 $builderMaster->upsert($dataInsert);
+                log_message('info', 'GST Validation API called & Success & Data Updated. Response: ' . $response);
+
                 return $this->respond(['gst' => $response_decode], 200);
             }
         }
     }
+    // Voter ID
+    public function verify_voter_id()
+    {
+        // Data Input
+        $voterNumber = $this->request->getVar('voterNumber');
 
+
+
+
+        $dataApi = array(
+
+            "id_number" => $voterNumber,
+
+        );
+        $data_json = json_encode($dataApi);
+        log_message('info', 'Voter ID API called. Payload: ' . $data_json);
+
+        if ($voterNumber != '') {
+            # code...
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/voter-id/voter-id',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => $data_json,
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                    'Content-Type: application/json'
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            $respone_decode_voter = json_decode($response, true);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+                // echo "cURL Error #:" . $err;
+                return $this->respond(['error' => 'Invalid Request.' . $err], 401);
+            } else {
+                // return $response;
+                log_message('info', 'Voter ID API called & Success. Payload: ' . $response);
+                return $this->respond(['voter_id' => $respone_decode_voter], 200);
+            }
+        } else {
+            # code...
+            log_message('error', 'Voter ID API called Voter ID number not send!');
+            return $this->respond(['error' => 'Internal Error'], 502);
+        }
+    }
     // --------------------------------------------
 
     // --------------------------------------------

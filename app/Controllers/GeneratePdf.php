@@ -107,7 +107,7 @@ class GeneratePdf extends BaseController
             'businessName'       => $record['businessName'],
             'footFall'           => $record['footFall'],
             'stock'              => $record['stock'],
-            'purchase'           => $record['purchase'],
+            // 'purchase'           => $record['purchase'],
             'outstanding'        => $record['outstanding'],
             'estab'              => $record['estab'],
             'dailySales'         => $record['dailySales'],
@@ -280,7 +280,7 @@ class GeneratePdf extends BaseController
             'businessName'       => $record['businessName'],
             'footFall'           => $record['footFall'],
             'stock'              => $record['stock'],
-            'purchase'           => $record['purchase'],
+            // 'purchase'           => $record['purchase'],
             'outstanding'        => $record['outstanding'],
             'estab'              => $record['estab'],
             'dailySales'         => $record['dailySales'],
@@ -570,6 +570,8 @@ class GeneratePdf extends BaseController
                 )
             );
             $data_json = json_encode($dataApi);
+            log_message('info', 'eSign Generated ' . $data_json);
+
             // print_r($data_json);
             // INIT NSDL
             $curlIn = curl_init();
@@ -599,7 +601,7 @@ class GeneratePdf extends BaseController
                 return redirect()->to(base_url() . 'preview-pdf/' . $member_id);
             } else {
                 # code...
-
+                log_message('info', 'eSign Completed ' . $responseIn);
                 $response_json = json_decode($responseIn, true); // decode as array
 
                 $clientId = $response_json['data']['client_id'];
@@ -609,9 +611,9 @@ class GeneratePdf extends BaseController
                 $session->set('member_id', $member_id);
                 $session->set('member_name', $record['name']);
                 $session->set('applicationid', $record['applicationID']);
-                $session->set('loan_amount', $record['loan_tenure']);
+                $session->set('loan_amount', $record['loan_amount']);
                 $session->set('roi', $record['roi']);
-                $session->set('tenure', $record['tenure']);
+                $session->set('tenure', $record['loan_tenure']);
 
 
                 // Session
@@ -645,6 +647,7 @@ class GeneratePdf extends BaseController
                     # code...
                     return redirect()->to(base_url() . 'preview-pdf/' . $member_id);
                 } else {
+                    log_message('info', 'eSign Uploaded ' . $responsePdf);
                     return redirect()->to($clientId = $response_json['data']['url']);
                 }
             }

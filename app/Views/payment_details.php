@@ -57,7 +57,7 @@
                         $curl = curl_init();
 
                         curl_setopt_array($curl, array(
-                            CURLOPT_URL => "https://sandbox.cashfree.com/pg/orders",
+                            CURLOPT_URL => "https://api.cashfree.com/pg/orders",
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => "",
                             CURLOPT_MAXREDIRS => 10,
@@ -65,7 +65,13 @@
                             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                             CURLOPT_CUSTOMREQUEST => "POST",
                             CURLOPT_POSTFIELDS => $data_json,
-                            CURLOPT_HTTPHEADER => array(),
+                            CURLOPT_HTTPHEADER => array(
+                                'X-Client-Secret: ..',
+                                'X-Client-Id: ..',
+                                'x-api-version: 2025-01-01',
+                                'Content-Type: application/json',
+                                'Accept: application/json',
+                            ),
                         ));
 
                         $response = curl_exec($curl);

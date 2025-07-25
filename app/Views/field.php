@@ -205,16 +205,16 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="verified_fields[monthly_purchase]" id="monthly_purchase_yes" value="Yes" required>
-                                                <label class="form-check-label" for="monthly_purchase_yes">Yes</label>
+                                                <input class="form-check-input" type="radio" name="verified_fields[month_purchase]" id="month_purchase_yes" value="Yes" required>
+                                                <label class="form-check-label" for="month_purchase_yes">Yes</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="verified_fields[monthly_purchase]" id="monthly_purchase_no" value="No">
-                                                <label class="form-check-label" for="monthly_purchase_no">No</label>
+                                                <input class="form-check-input" type="radio" name="verified_fields[month_purchase]" id="month_purchase_no" value="No">
+                                                <label class="form-check-label" for="month_purchase_no">No</label>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" step="0.01" class="form-control form-control-sm d-none" value="<?= $retailers['purchase'] ?>" name="corrected_fields[monthly_purchase]" id="corrected_monthly_purchase" placeholder="Enter corrected monthly purchase">
+                                            <input type="number" step="0.01" class="form-control form-control-sm d-none" value="<?= $retailers['month_purchase'] ?>" name="corrected_fields[month_purchase]" id="corrected_month_purchase" placeholder="Enter corrected monthly purchase">
                                         </div>
                                     </div>
 
@@ -457,7 +457,7 @@
         });
     </script>
     <script>
-        const fields = ['daily_sales', 'stock_value', 'monthly_purchase'];
+        const fields = ['daily_sales', 'stock_value', 'month_purchase'];
 
         fields.forEach(field => {
             const yes = document.getElementById(`${field}_yes`);

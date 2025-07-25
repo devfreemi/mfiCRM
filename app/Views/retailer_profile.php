@@ -389,115 +389,38 @@
                                                 <span class="badge bg-<?= $badgeClass ?> fs-6"><?= strtoupper($fiReport['fi_status']) ?></span>
                                             </div>
                                         </div>
-                                        <div class="text-center mx-auto my-4">
-                                            <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                Update Loan Application
-                                            </button>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticBackdropLabel">Update Loan Application</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body text-start">
-                                                        <?php
-                                                        $db = db_connect();
-                                                        $builderUrl = $db->table('loans');
-                                                        $builderUrl->select('*');
-                                                        $builderUrl->join('members', 'members.member_id = loans.member_id');
-                                                        $builderUrl->where('members.member_id', $retailers['member_id']);
-                                                        $query = $builderUrl->get();
-                                                        $actonUrl = base_url() . "loan-create";
 
-                                                        // ✅ If loans found, update the URL based on status
-                                                        foreach ($query->getResult() as $rowUrl) {
-                                                            if (in_array($rowUrl->loan_status, ['FI Success', 'Approved', 'Disbursed', 'Completed', 'Rejected', 'Disbursed Verified'])) {
-                                                                $actonUrl = base_url() . "update-loan";
-                                                                break; // no need to check further once one match found
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <form class="row g-3" action="<?= $actonUrl ?>" method="post">
-                                                            <?= csrf_field('auth') ?>
-                                                            <?php if ($retailers['eli_run'] === "Y") { ?>
-
-                                                                <div class="col-6">
-                                                                    <label for="inputAddress" class="form-label">Loan Amount</label>
-                                                                    <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="<?= $eligible_amount ?>" readonly>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <label for="inputAddress" class="form-label">ROI</label>
-                                                                    <input type="text" class="form-control" name="roi" id="roi" value="<?= $roi ?>">
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <label for="inputAddress" class="form-label">Loan Tenure</label>
-                                                                    <input type="text" class="form-control" name="tenure" id="tenure" value="<?= $tenure ?>">
-                                                                </div>
-
-                                                                <div class="col-md-6">
-                                                                    <label for="inputState" class="form-label">Status</label>
-                                                                    <select id="inputState" class="form-select" name="status" required>
-                                                                        <option selected disabled value="">Choose</option>
-                                                                        <?php
-                                                                        $db = db_connect();
-                                                                        $builder = $db->table('loans');
-                                                                        $builder->select('*');
-                                                                        $builder->join('members', 'members.member_id = loans.member_id');
-                                                                        $builder->where('members.member_id', $retailers['member_id']);
-                                                                        $query = $builder->get();
-                                                                        foreach ($query->getResult() as $row) {
-
-                                                                        ?>
-                                                                            <option value="Approved" <?php if ($row->loan_status === 'Approved') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'Disbursed Verified') echo 'disabled'; ?>>Approved</option>
-                                                                            <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Disbursed</option>
-                                                                            <option value="Completed" <?php if ($row->loan_status === 'Completed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Approved' || $row->loan_status === 'Rejected' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Closed</option>
-                                                                            <option value="Rejected" <?php if ($row->loan_status === 'Rejected') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Approved' || $row->loan_status === 'Rejected' || $row->loan_status === 'Completed' || $row->loan_status === 'FI Success') echo 'disabled'; ?>>Rejected</option>
-                                                                        <?php } ?>
-                                                                    </select>
-                                                                </div>
-
-                                                                <input type="hidden" value="<?= $retailers['member_id'] ?>" name="memberID">
-                                                                <input type="hidden" value="<?= $retailers['groupId'] ?>" name="groupID">
-                                                                <input type="hidden" value="<?= $retailers['mobile'] ?>" name="mobile">
-                                                                <input type="hidden" value="<?= $retailers['agent'] ?>" name="employeeID">
-                                                                <?php
-                                                                $db = db_connect();
-                                                                $builder = $db->table('loans');
-                                                                $builder->select('*');
-                                                                $builder->join('members', 'members.member_id = loans.member_id');
-                                                                $builder->where('members.member_id', $retailers['member_id']);
-                                                                $query = $builder->get();
-                                                                foreach ($query->getResult() as $row) {
-
-                                                                ?>
-                                                                    <input type="hidden" value="<?= $row->applicationID ?>" name="applicationid">
-                                                                <?php } ?>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                                </div>
-
-                                                            <?php } else { ?>
-                                                                <div class="col-md-12">
-                                                                    <p class="text-danger">Please run the eligibility check first to update the loan application.</p>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </form>
-                                                    </div>
-                                                    <!-- <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Understood</button>
-                                                    </div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Modal -->
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="container my-4">
+                            <?php
+
+                            if ($fi_final == 'Y') {
+                                # code...
+                            ?>
+                                <?php $db = db_connect();
+
+                                $builder_doc_loan = $db->table('retailer_loan_doc');
+                                $builder_doc_loan->where('member_id', $retailers['member_id']);
+                                $builder_doc_loan->where('eSign', 'Y');
+                                $row_loan_doc = $builder_doc_loan->get()->getRow();
+                                // echo $row_loan_doc->eSign;
+                                if ($row_loan_doc) {
+                                    if ($row_loan_doc->eSign === 'Y') {
+                                        echo "<p style='color: green;'>eSigned: Completed</p>";
+                                    } else {
+                                        echo "<a class='btn btn-primary' href='" . base_url() . "preview-pdf/" . $retailers['member_id'] . "'>Start eSigning</a>";
+                                    }
+                                } else {
+                                    echo "<a class='btn btn-warning' href='" . base_url() . "preview-pdf/" . $retailers['member_id'] . "'>Start eSigning</a>";
+                                } ?>
+
+                            <?php
+                            }
+                            ?>
+
                         </div>
                     <?php else: ?>
                         <div class="container my-4">

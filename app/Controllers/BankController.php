@@ -110,6 +110,7 @@ class BankController extends BaseController
 
             'bankAddress' => $response_decode_an['data']['ifsc_details']['address'],
             'bankAccount' => $this->request->getVar('acc_no'),
+            // 'code' => $response_decode_an['status_code'],
         ];
         curl_close($curl);
         if ($error_an) {

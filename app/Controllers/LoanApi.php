@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\LoanModel;
 use CodeIgniter\API\ResponseTrait;
 
+date_default_timezone_set('Asia/Kolkata');
 class LoanApi extends BaseController
 {
     use ResponseTrait;
@@ -131,15 +132,18 @@ class LoanApi extends BaseController
             $data = [
 
                 'loan_status'       => "Approved",
+                'loan_amount'      => $loan_amount,
                 'loan_tenure'       => $tenure,
                 'emi'               =>  $emi,
                 'interest'          =>  $interest,
                 'pending_emi'       =>  $day_tenure,
                 'loan_due'          => $due,
+                'emi_day'          => round($due / $day_tenure),
                 'roi'               => $roi,
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
+                'updated_at'      => date('Y-m-d H:i:s'),
 
             ];
 
@@ -203,19 +207,185 @@ class LoanApi extends BaseController
                 $data_loan = [
 
                     'loan_status'      => $this->request->getPost('status'),
+                    'updated_at'      => date('Y-m-d H:i:s'),
                 ];
                 $builder->where('applicationID', $applicationid);
                 $builder->update($data_loan);
             }
+            // Update in disbursement table
+            // Save the file
+            $file = $this->request->getFile('bank_receipt');
+            if ($file->isValid() && !$file->hasMoved()) {
+                $fileName = $file->getRandomName();
+                $file->move(FCPATH . 'uploads/bank_receipts', $fileName);
+                $bankReceipt = 'uploads/bank_receipts/' . $fileName;
+            }
+            $data_dis = [
+                'bank_receipt' => $bankReceipt,
+                'disbursed_amount' => $this->request->getPost('disbursed_amount'),
+                'applicationID' => $applicationid,
+                'retailer_id'   => $this->request->getPost('member_id'),
+                'transaction_id' => $this->request->getPost('transaction_id'),
+                'created_at' => date('Y-m-d H:i:s'),
+            ];
+            $builder_dis = $db->table('disbursement');
+            $builder_dis->insert($data_dis);
+            // cURL Code for Send SMS to member
+            $dataSms = array(
+                "name" => $this->request->getPost('member_name'),
+                "phone" => $this->request->getPost('member_phone'),
+                "amount" => $this->request->getPost('loan_amount'),
+                "account_last4" => substr($this->request->getPost('member_bank_account'), -4),
 
+            );
+            $dataSmsJson = json_encode($dataSms);
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://otp.retailpe.in/api/sms-disbursement/send",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => $dataSmsJson,
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/json",
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+                log_message('error', 'cURL Error: ' . $err);
+            } else {
+                log_message('info', 'SMS sent successfully: ' . $response);
+            }
+            // cURL Code END
+            // Mail Code Start
+            // Initialize and configure email
+            $message = '
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Loan Disbursal Confirmation - Retail Pe</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+                        .container { max-width: 600px; margin: 30px auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+                        .header { background: #6819e6; color: white; padding: 20px; text-align: center; }
+                        .header img { height: 50px; }
+                        .banner { display: flex; background: #dcd3ff9e; padding: 8px 20px; align-items: center; gap: 20px; }
+                        .icon-circle {
+                            background: linear-gradient(145deg, #e0d4fb, #ffffff);
+                            border-radius: 50%;
+                            padding: 18px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            box-shadow: 0 2px 8px rgba(104, 25, 230, 0.2);
+                        }
+                        .icon-circle img {
+                            height: 55px;
+                            width: 55px;
+                        }
+                        h2 {
+                                color: #6819e6;
+                                margin: 0;
+                                font-size: 18px;
+                                text-align: justify;
+                                padding: 32px;
+                        }
+                        .content { padding: 30px; color: #333; }
+                        .content h2 { color: #6819e6; margin: 0; font-size: 22px; }
+                        .content p { font-size: 15px; line-height: 1.6; }
+                        .highlight { font-weight: bold; color: #6819e6; }
+                        .footer { background: #6819e6; color: #fff; padding: 20px; text-align: center; font-size: 13px; line-height: 1.5; }
+                        a { color: #007bff; text-decoration: none; }
+                        .button { text-align: center; margin: 30px 0; }
+                        .button a { background-color: #6819e6; color: #ffffff; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <img src="https://crm.retailpe.in/assets/img/icons/brands/RetailPeMail.png" alt="Retail Pe">
+                        </div>
+                        <div class="banner">
+                            <div class="icon-circle">
+                                <img src="https://crm.retailpe.in/assets/img/icons/brands/rupee.png" alt="Money Icon">
+                            </div>
+                            <h2>Cash Loan Disbursed</h2>
+                        </div>
+                        <div class="content">
+                            <p><strong>Dear ' . esc($this->request->getPost('member_name')) . ',</strong></p>
+                            <p>We are excited to inform you that your Retail Loan of ₹' . number_format($this->request->getPost('loan_amount')) . ' with <span class="highlight">Retail Pe</span> has been successfully disbursed.</p>
+
+                            <p><strong>Loan Account Number:</strong> ' . esc($this->request->getPost('applicationid')) . '<br>
+                            <strong>Total Loan Amount:</strong> ₹' . number_format($this->request->getPost('loan_amount')) . '<br>
+                            <strong>Start Date:</strong> ' . esc($this->request->getPost('first_dei_date')) . '</p>
+
+                            <p>If you require any assistance regarding your Retail Loan, please <a href="mailto:support@retailpe.in">click here</a> to contact our customer support team.</p>
+
+                            <p>Please ensure timely Installment payments to maintain a healthy credit record and continue enjoying financial services from <strong>Retail Pe</strong>.</p>
+                            <p>We appreciate your trust and look forward to supporting your business growth.</p>
+
+                            <div class="button">
+                                <a href="https://retailpe.in">Visit Our Site</a>
+                            </div>
+
+                            <p>Warm regards,<br>
+                            <strong><span class="highlight">Retail Pe</span> Team</strong></p>
+                        </div>
+                        <div class="footer">
+                            Ntactus Financial Services Private Limited<br>
+                            Mani Casadona,<br>
+                            Street Number 372, Action Area I,<br>
+                            IIF Newtown, Kolkata - 700156
+                        </div>
+                    </div>
+                </body>
+                </html>';
+            $email = \Config\Services::email();
+            $email->initialize([
+                'protocol'   => 'smtp',
+                'SMTPHost'   => 'smtp.hostinger.com',
+                'SMTPUser'   => 'noreply@retailpe.in',
+                'SMTPPass'   => 'Noreply@2025#', // Use Gmail App Password
+                'SMTPPort'   => 587,
+                'SMTPCrypto' => 'tls',
+                'mailType'   => 'html',
+                'charset'    => 'utf-8',
+                'newline'    => "\r\n",
+                'crlf'       => "\r\n"
+            ]);
+
+            // Set email params
+            $email->setFrom('noreply@retailpe.in', 'Retail Pe');
+            $email->setTo($this->request->getPost('customer_email')); // Change recipient as needed
+            $email->setCC('kousik@retailpe.in');
+            $email->setSubject("Congratulations! Your Loan of ₹ " . number_format($this->request->getPost('loan_amount'), 2) . " Has Been Disbursed");
+            $email->setMessage($message);
+
+            // Send and respond
+            if ($email->send()) {
+                log_message('info', 'Mail Sent Successfully: ' . $this->request->getPost('customer_email'));
+            } else {
+                log_message('error', 'Failed to send email: ' . $email->printDebugger(['headers']));
+            }
             $session = session();
-            $session->setFlashdata('msg', 'Loan Status Updated!');
-            return redirect()->to(base_url() . 'loan');
+            $session->setFlashdata('success', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'disbursement/details/' . $applicationid);
         } else {
             # code...
             $data = [
 
                 'loan_status'      => $this->request->getPost('status'),
+                'updated_at'      => date('Y-m-d H:i:s'),
             ];
 
             $builder->where('applicationID', $applicationid);
@@ -259,17 +429,20 @@ class LoanApi extends BaseController
 
         if (!$loanID || !$db->tableExists($table)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
+            log_message('error', 'Invalid Request: Loan ID or table does not exist.');
         } else {
 
             $builder_emi = $db->table($table);
 
-            $query = $builder_emi->where('reference', 'N')->orWhere('reference', 'Due')->get();
+            // $query = $builder_emi->where('reference', 'N')->orWhere('reference', 'Due')->get();
+            $query = $builder_emi->get();
             foreach ($query->getResult() as $row) {
 
                 $response[] = array(
                     "emi_number" =>  $row->Id,
                     "emi" => $row->emi,
                     "valueDate" => $row->valueDate,
+                    "reference" => $row->reference,
                     "valueDateStamp" => $row->valueDateStamp,
                     "statusCode" => 200,
 
@@ -280,6 +453,7 @@ class LoanApi extends BaseController
                 $response,
                 200
             );
+            log_message('info', 'Success.');
         }
     }
 
@@ -555,7 +729,7 @@ class LoanApi extends BaseController
         if (!$empID) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
         } else {
-            $totalDisbursed = $model->selectSum('total_amount')->where('employee_id', $empID)->where('loan_status', 'Disbursed')->get();
+            $totalDisbursed = $model->selectSum('loan_amount', 'total_amount')->where('employee_id', $empID)->where('loan_status', 'Disbursed')->get();
             foreach ($totalDisbursed->getResult() as $rowD) {
                 return $this->respond(
                     $rowD,
@@ -601,5 +775,17 @@ class LoanApi extends BaseController
                 );
             }
         }
+    }
+
+    public function disbursement_details($applicationID)
+    {
+        // $session = session();
+        $model = new LoanModel();
+        $data['disbursement'] = $model->where('applicationID', $applicationID)->first();
+
+
+        return view('disbursement_details', $data);
+        // print_r($data);
+        // echo $memberID;
     }
 }

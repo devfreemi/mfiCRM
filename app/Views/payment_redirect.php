@@ -46,7 +46,7 @@
                                         <div class="card">
                                             <div class="card-body pb-0">
                                                 <h5 class="card-title">
-                                                    QR for Rs. <?= number_format($amount) ?>.00
+                                                    QR for Rs. <?= esc($amount) ?>
                                                 </h5>
 
                                                 <div class="">
@@ -90,7 +90,7 @@
 
                     <input type="hidden" class="form-control form-control-lg rounded-3" id="paymentSessionId" value="<?= esc($paymentSessionId) ?>" required readonly>
 
-                    <input type="hidden" id="returnUrl" value="<?= base_url() ?>payment/conformation/gateway?orderID=<?= esc($orderID) ?>&loanId=<?= esc($loanID) ?>&order_amount=<?= esc($amount) ?>" />
+                    <input type="hidden" id="returnUrl" value="<?= base_url() ?>payment/conformation/gateway?orderID=<?= esc($orderID) ?>&loanId=<?= esc($loanID) ?>" />
                     <div class="d-grid">
                         <button type="button" class="btn btn-primary btn-lg rounded-3" id="renderBtn">
                             <i class="bi bi-lock-fill me-1"></i> Generate QR Code
@@ -110,7 +110,7 @@
         const paymentBtn = document.getElementById("renderBtn");
 
         const cashfree = Cashfree({
-            mode: "sandbox"
+            mode: "production"
         });
         const paymentMessage = document.getElementById("paymentMessage");
         let qr = cashfree.create("upiQr", {

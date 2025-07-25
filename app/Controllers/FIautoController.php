@@ -13,7 +13,7 @@ class FIautoController extends BaseController
     public function auto_mail_fi_start()
     {
         $memberId = $this->request->getVar('member_id');
-
+        log_message('info', 'FIautoController auto_mail_fi_start called with member_id: ' . $memberId);
         if (!$memberId) {
             return $this->respond([
                 'status' => false,
@@ -169,12 +169,14 @@ class FIautoController extends BaseController
 
             // Send and respond
             if ($email->send()) {
+                log_message('info', 'FIautoController auto_mail_fi_start called with member_id and mailed sent successfully: ' . $memberId);
                 return $this->respond([
                     'status' => true,
                     'message' => 'Documents emailed successfully and FI Initiate',
                     'data' => $documents
                 ], 200);
             } else {
+                log_message('error', 'FIautoController auto_mail_fi_start failed to send email: ' . $email->printDebugger(['headers']));
                 return $this->respond([
                     'status' => false,
                     'message' => 'Documents found but failed to send email.',

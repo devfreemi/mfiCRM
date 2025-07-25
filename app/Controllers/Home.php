@@ -58,6 +58,10 @@ class Home extends BaseController
     {
         return view('bank_deposite');
     }
+    public function disbursement()
+    {
+        return view('disbursement');
+    }
     public function geo_tag()
     {
         return view('geo_tag');
@@ -69,5 +73,9 @@ class Home extends BaseController
     public function redirection()
     {
         return view('page-redirection');
+    }
+    public function digi_success()
+    {
+        return view('digilocker_success');
     }
 }
