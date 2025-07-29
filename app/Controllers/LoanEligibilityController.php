@@ -41,8 +41,47 @@ class LoanEligibilityController extends BaseController
             $query = $builder->update($data_update);
             return view('members');
         } else {
-            // $cibil = rand(0, 900);
-            $cibil = $request->getVar('cibil');
+
+            $name = $this->request->getVar('name');
+            $mobile = $this->request->getVar('mobile');
+            $panNumber = $this->request->getVar('pan');
+            $dataApi = array(
+                'name'              => $name,
+                'consent'           => "Y",
+                "mobile"            => $mobile,
+                "pan"               => $panNumber
+            );
+            $data_json = json_encode($dataApi);
+
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/credit-report-experian/fetch-report',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => $data_json,
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                    // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
+                    'Content-Type: application/json'
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            $response_decode = json_decode($response, true);
+            log_message('info', 'Experian CIBIL Check API Called and Success: ' . $response);
+
+            $cibil = $response_decode['data']['credit_score'];
+            $cibilReport    = $response;
+
+            curl_close($curl);
             // Get input data from the form
             if ($request->getVar('previous_emi') === "") {
                 # code...
@@ -120,6 +159,7 @@ class LoanEligibilityController extends BaseController
                 'score' => $result['Score'],
                 'eligibility' => $result['Eligibility'],
                 'reason' => $result['Reason'],
+                'cibilReport' => $cibilReport,
             ];
             $db = db_connect();
             $builder = $db->table('initial_eli_run');
@@ -200,7 +240,7 @@ class LoanEligibilityController extends BaseController
         } else {
 
             $cibil = $response_decode['data']['credit_score'];
-            // $cibilReport    = $response_decode['data']['credit_report'];
+            $cibilReport    = $response;
             $data = [
                 'stock' =>  $this->request->getVar('stock'),
                 'daily_sales' =>  $this->request->getVar('daily_sales'),
@@ -225,7 +265,7 @@ class LoanEligibilityController extends BaseController
             $data_eli_run = [
                 'cibil' => $cibil,
                 'member_id' => $this->request->getVar('memberId_api'),
-                // 'cibilReport' => $cibilReport,
+                'cibilReport' => $cibilReport,
                 'first_date' => date('Y-m-d'),
                 'loan_amount' => $result['LoanAmount'],
                 'roi' => $result['FixedROI'],
@@ -304,5 +344,22 @@ class LoanEligibilityController extends BaseController
             log_message('info', 'Approved Retailers List API called. Employee ID: ' . json_encode($data));
             return $this->respond($data, 200);
         }
+    }
+    public function cibil_report($memberId)
+    {
+        $model = new LoanEligibilityModel();
+        $record = $model->where('member_id', $memberId)
+            ->orderBy('id', 'DESC')
+            ->first();
+
+        if (!$record) {
+            return "No reports available.";
+        }
+
+        $reportData = json_decode($record['cibilReport'], true);
+
+        // print_r($reportData);
+        return view('cibil-report', ['data' => $reportData]);
+        // return view('cibil-report', ['data' => $data]);
     }
 }

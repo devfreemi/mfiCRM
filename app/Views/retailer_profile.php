@@ -38,6 +38,8 @@
                             $roi = $rowB->roi;
                             $emi = $rowB->emi;
                             $tenure = $rowB->tenure;
+                            $report = $rowB->cibilReport;
+                            $cibil = $rowB->cibil;
                             if ($eli === 'Not Eligible') {
                                 # code...
 
@@ -68,6 +70,8 @@
                                 <p class="mb-1"><strong>ROI:</strong> <?= $roi ?> %</p>
                                 <p class="mb-1"><strong>EMI:</strong> <?= number_format($emi) ?>.00</p>
                                 <p class="mb-1"><strong>Tenure:</strong> <?= $tenure ?> Months</p>
+                                <p class="mb-1"><strong>CIBIL Score:</strong> <?= $cibil ?> </p>
+                                <p class="mb-1"><strong>CIBIL Report:</strong> <a href="<?= base_url() ?>retailers/cibil-report/<?= $retailers['member_id'] ?>" target="_blank" class="btn btn-sm btn-outline-primary">View Report</a></p>
                             </div>
                         <?php }  ?>
                         <div class="col-md-4 mb-2">

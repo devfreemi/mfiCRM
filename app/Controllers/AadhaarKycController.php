@@ -291,9 +291,10 @@ class AadhaarKycController extends BaseController
                 curl_close($curlD);
                 // Download the PDF file
                 $pdfUrl = $response_decode_d['data']['download_url'];
-
+                $fileType = $response_decode_d['data']['mime_type'];
+                $ext_fileType = str_replace("application/", "", $fileType);
                 // Generate file name and destination path
-                $fileName = $clientIDAdh . 'aadhaar.pdf';
+                $fileName = $clientIDAdh . 'aadhaar.' . $ext_fileType;
                 $storagePath = FCPATH . 'uploads/customer_doc/aadhaar/' . $clientIDAdh . '/';
                 $fullFilePath = $storagePath . $fileName;
 
@@ -306,6 +307,7 @@ class AadhaarKycController extends BaseController
                 $pdfContent = file_get_contents($pdfUrl);
                 if ($pdfContent === false) {
                     // echo "❌ Failed to download PDF.";
+                    die("❌ Failed to download file. Check php.ini 'allow_url_fopen' and the URL itself.");
                 } else {
                     file_put_contents($fullFilePath, $pdfContent);
                     $uploadPath = 'uploads/customer_doc/aadhaar/' . $clientIDAdh . '/' . $fileName;
@@ -343,6 +345,7 @@ class AadhaarKycController extends BaseController
                 "verify_phone"   => true,
                 "verify_email"   => false,
                 "signup_flow"    => true,
+                "logo_url"       =>   "https://www.retailpe.in/assets/img/Logo/Retail%20Pe.webp",
                 "redirect_url"   => "https://crm.retailpe.in/digi-success",
                 "state"          => "RetailPeLOS"
             )
