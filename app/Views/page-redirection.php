@@ -54,7 +54,7 @@
 
             $curlGetPdf = curl_init();
             curl_setopt_array($curlGetPdf, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/esign/get-signed-document/' . $clientId,
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/esign/get-signed-document/' . $clientId,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,

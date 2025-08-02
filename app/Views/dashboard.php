@@ -51,7 +51,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h1 class="mt-1 mb-3">₹ 0</h1>
+                                        <?php
+                                        $db = db_connect();
+                                        $builder_dis = $db->table('loans');
+                                        $builder_dis->selectSum('loan_amount');
+                                        $builder_dis->where('loan_status', 'Disbursed');
+                                        $query_dis = $builder_dis->get();
+                                        $total_disbursed = $query_dis->getRow()->loan_amount;
+
+                                        ?>
+                                        <h1 class="mt-1 mb-3">₹ <?= number_format($total_disbursed, 2); ?></h1>
                                         <!-- <div class="mb-0">
                                             <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25%
                                             </span>

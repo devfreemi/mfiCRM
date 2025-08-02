@@ -82,7 +82,7 @@ class BankController extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank-verification/',
+            CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/bank-verification/',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -122,6 +122,54 @@ class BankController extends BaseController
             $builder = $db->table('members');
             $builder->where('member_id', $meber_id);
             $builder->update($data);
+            return $this->respond([
+                'bank_verified' => $response_decode_an
+            ], 200);
+        }
+    }
+    // Bank Verification for RM app
+    public function bank_verification_rm_app()
+    {
+
+        $dataApi = array(
+            'id_number'                 => $this->request->getVar('acc_no'),
+            'ifsc'                      => $this->request->getVar('ifsc_code'),
+            "ifsc_details"              => true
+
+        );
+        $data_json = json_encode($dataApi);
+        log_message('info', 'Bank Verification Initiated. Payload: ' . $data_json);
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/bank-verification/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data_json,
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $responseDown = curl_exec($curl);
+        // $responseDown = curl_exec($curlDown);
+        $error_an = curl_error($curl);
+        $response_decode_an = json_decode($responseDown, true);
+
+        curl_close($curl);
+        if ($error_an) {
+            # code...
+            log_message('error', 'Bank Verification Failed. Error: ' . $error_an);
+            return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+        } else {
+            # code...
+            log_message('info', 'Bank Verification Success. Payload: ' . $responseDown);
             return $this->respond([
                 'bank_verified' => $response_decode_an
             ], 200);

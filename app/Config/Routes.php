@@ -133,7 +133,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/los/order/create-emi-order-v1', 'PaymentController::generate_order');
     // Field Investigation
     $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
-    $routes->add('api/verify-bank-v1', 'BankController::bank_verification');
+    $routes->add('api/verify-bank-v1', 'BankController::bank_verification_rm_app');
 });
 // $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
 $routes->add('api/page/verify-bank-v1', 'BankController::bank_verification');

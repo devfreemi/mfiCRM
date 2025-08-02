@@ -367,9 +367,10 @@ class RetailerDocumentsController extends BaseController
     public function check_bank_statement_analyze()
     {
 
+        $db = db_connect();
         log_message('info', 'Bank Statement Analyze Request Received!');
         $pdf = $this->request->getFile('file');
-
+        $memberId = $this->request->getVar('member_id');
         if (!$pdf->isValid()) {
             return $this->fail('No valid file uploaded.');
         }
@@ -382,7 +383,7 @@ class RetailerDocumentsController extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank/statement/upload',
+            CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/bank/statement/upload',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => [
@@ -410,48 +411,110 @@ class RetailerDocumentsController extends BaseController
             return $this->respond(['error' => 'Internal Exception!' . $error], 502);
         } else {
             if ($response_decode['status_code'] == 200) {
-                log_message('info', 'Bank Statement Analyze Download API Started !' . $response_decode['data']['client_id']);
-                $client_id    = $response_decode['data']['client_id'];
-                $dataApi = array(
-                    'client_id'              => $client_id,
+                try {
+                    // Step 1: Assume you already have $client_id from previous analysis response
+                    $client_id = $response_decode['data']['client_id'];
 
-                );
-                $data_json = json_encode($dataApi);
+                    // Config
+                    $apiKey = getenv('SUREPASS_API_KEY_PROD');
+                    $url = 'https://kyc-api.surepass.app/api/v1/bank/statement/download';
+                    $maxAttempts = 10; // Maximum retries
+                    $attempt = 0;
+                    $finalResponse = null;
 
-                $curlDown = curl_init();
+                    do {
+                        $attempt++;
 
-                curl_setopt_array($curlDown, array(
-                    CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/bank/statement/download',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => $data_json,
-                    CURLOPT_HTTPHEADER => array(
-                        'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
-                        'Accept: application/json',
-                        // 'Content-Type: application/json'
-                    ),
-                ));
+                        $curlDown = curl_init();
+                        curl_setopt_array($curlDown, [
+                            CURLOPT_URL => $url,
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_CUSTOMREQUEST => 'POST',
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_HTTPHEADER => [
+                                'Authorization: Bearer ' . $apiKey,
+                                'Accept: */*',
+                                'User-Agent: PostmanRuntime/7.45.0',
+                                'Cache-Control: no-cache',
+                                'Connection: keep-alive'
+                            ],
+                            // ✅ Multipart like Postman
+                            CURLOPT_POSTFIELDS => [
+                                'client_id' => $client_id
+                            ],
+                        ]);
 
-                $responseDown = curl_exec($curlDown);
-                $error_an = curl_error($curlDown);
-                curl_close($curlDown);
-                if ($error_an) {
-                    # code...
-                    log_message('error', 'Bank Statement Analyze Completed Successfully !' . $error_an);
-                    return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
-                } else {
-                    # code...
-                    $response_decode_an = json_decode($responseDown, true);
-                    log_message('info', 'Bank Statement Analyze Completed Successfully !' . $responseDown);
+                        $responseDown = curl_exec($curlDown);
+                        $httpCode = curl_getinfo($curlDown, CURLINFO_HTTP_CODE);
+                        $error = curl_error($curlDown);
+                        curl_close($curlDown);
+
+                        log_message('info', "Attempt $attempt | HTTP $httpCode | Resp: $responseDown | Err: $error");
+
+                        if ($error) {
+                            return $this->respond(['error' => 'Curl Error: ' . $error], 502);
+                        }
+
+                        $response_decode_an = json_decode($responseDown, true);
+                        $finalResponse = $response_decode_an;
+
+                        // ✅ Exit loop if status is 200 and statement is ready
+                        if ($httpCode === 200 && !empty($response_decode_an['data']['statement'])) {
+                            break;
+                        }
+
+                        // Wait 3 seconds before retry
+                        sleep(3);
+                    } while ($attempt < $maxAttempts);
+
+                    // Save to DB without model
+                    $jsonString = json_encode($finalResponse, JSON_UNESCAPED_SLASHES);
+
+                    // Check if record exists
+                    $existing = $db->table('bank_statement_reports')
+                        ->where('member_id', $memberId)
+                        ->get()
+                        ->getRowArray();
+
+                    if ($existing) {
+                        // Update existing record
+                        $db->table('bank_statement_reports')
+                            ->where('member_id', $memberId)
+                            ->update([
+                                'client_id' => $client_id,
+                                'report_json' => $jsonString
+                            ]);
+                        log_message('info', "Bank statement updated for member: $memberId");
+                    } else {
+                        // Insert new record
+                        $db->table('bank_statement_reports')->insert([
+                            'member_id' => $memberId,
+                            'client_id' => $client_id,
+                            'report_json' => $jsonString
+                        ]);
+                        log_message('info', "Bank statement inserted for member: $memberId");
+                    }
+
                     return $this->respond([
-                        'bank_analyze_report' => $response_decode_an
+                        'message' => 'Bank statement saved successfully',
+                        'bank_analyze_report' => $finalResponse
                     ], 200);
+                } catch (\Exception $e) {
+                    log_message('error', 'Bank Statement Analyze Exception: ' . $e->getMessage());
+                    return $this->respond(['error' => 'Internal Exception!' . $e->getMessage()], 500);
                 }
+                // if ($error_an) {
+                //     # code...
+                //     log_message('error', 'Bank Statement Analyze Response !' . $error_an);
+                //     return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+                // } else {
+                //     # code...
+                //     $response_decode_an = json_decode($responseDown, true);
+                //     log_message('info', 'Bank Statement Analyze Completed Successfully !' . $responseDown);
+                //     return $this->respond([
+                //         'bank_analyze_report' => $response_decode_an
+                //     ], 200);
+                // }
             } else {
                 # code...
                 log_message('error', 'Internal Exception from API Providers!' . $response);

@@ -57,6 +57,7 @@
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
+                                    <th>Current EMI</th>
                                     <th>Established Year</th>
                                     <th>Images</th>
                                     <th>Date</th>
@@ -120,6 +121,7 @@
                                         <td><?php echo $row->dailySales; ?></td>
                                         <td><?php echo $row->stock; ?></td>
                                         <td><?php echo $row->footFall; ?></td>
+                                        <td><?php echo $row->outstanding; ?></td>
                                         <td><?php echo $row->estab; ?></td>
 
                                         <td>
@@ -164,6 +166,7 @@
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
                                     <th>Daily Footfall</th>
+                                    <th>Current EMI</th>
                                     <th>Established Year</th>
                                     <th>Remarks</th>
                                     <th>Images</th>

@@ -233,7 +233,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/list-documents/' . $clientIDAdh,
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/digilocker/list-documents/' . $clientIDAdh,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -270,7 +270,7 @@ class AadhaarKycController extends BaseController
                 $curlD = curl_init();
 
                 curl_setopt_array($curlD, array(
-                    CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/download-document/' . $clientIDAdh . '/' . $aadhaarFileId,
+                    CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/digilocker/download-document/' . $clientIDAdh . '/' . $aadhaarFileId,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,
@@ -358,7 +358,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/digilocker/initialize',
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/digilocker/initialize',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -381,6 +381,7 @@ class AadhaarKycController extends BaseController
 
             if ($err) {
                 // echo "cURL Error #:" . $err;
+                log_message('error', 'Digi Locker API Error. Payload: ' . $err);
                 return $this->respond(['error' => 'Invalid Request.' . $err], 401);
             } else {
                 // return $response;
@@ -417,7 +418,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/mobile-to-pan',
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/pan/mobile-to-pan',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -458,7 +459,7 @@ class AadhaarKycController extends BaseController
                     $curlInter = curl_init();
 
                     curl_setopt_array($curlInter, array(
-                        CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/pan-comprehensive',
+                        CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/pan/pan-comprehensive',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
@@ -496,7 +497,7 @@ class AadhaarKycController extends BaseController
                             $data_json_gst = json_encode($dataApiGst);
                             $curlGst = curl_init();
                             curl_setopt_array($curlGst, array(
-                                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/corporate/gstin-by-pan',
+                                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/corporate/gstin-by-pan',
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => '',
                                 CURLOPT_MAXREDIRS => 10,
@@ -558,7 +559,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/pan-comprehensive',
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/pan/pan-comprehensive',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -579,12 +580,12 @@ class AadhaarKycController extends BaseController
             $response_decode = json_decode($response, true);
 
             curl_close($curl);
-            log_message('info', 'PAN Verification API called. Payload: ' . $data_json);
-
+            log_message('info', 'PAN Verification API cURL Called. Payload: ' . $data_json);
+            log_message('info', 'PAN Verification API cURL Response : ' . $response ?? $err);
             if ($err) {
                 // echo "cURL Error #:" . $err;
                 return $this->respond(['error' => 'Internal Exception!' . $err], 502);
-                log_message('error', 'PAN Verification API called. Payload: ' . json_encode($err));
+                log_message('error', 'PAN Verification API Failed : ' . json_encode($err));
             } else {
                 // return $response;
                 log_message('info', 'PAN Verification API Success. Payload: ' . $response);
@@ -597,7 +598,7 @@ class AadhaarKycController extends BaseController
                     $data_json_gst = json_encode($dataApiGst);
                     $curlGst = curl_init();
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/corporate/gstin-by-pan',
+                        CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/corporate/gstin-by-pan',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
@@ -658,7 +659,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://kyc-api.surepass.io/api/v1/corporate/gstin-advanced",
+                CURLOPT_URL => "https://kyc-api.surepass.app/api/v1/corporate/gstin-advanced",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -789,7 +790,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/pan/pan-comprehensive',
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/pan/pan-comprehensive',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -826,7 +827,7 @@ class AadhaarKycController extends BaseController
                     $data_json_gst = json_encode($dataApiGst);
                     $curlGst = curl_init();
                     curl_setopt_array($curlGst, array(
-                        CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/corporate/gstin-by-pan',
+                        CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/corporate/gstin-by-pan',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
@@ -885,7 +886,7 @@ class AadhaarKycController extends BaseController
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://kyc-api.surepass.io/api/v1/corporate/gstin-advanced",
+                CURLOPT_URL => "https://kyc-api.surepass.app/api/v1/corporate/gstin-advanced",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,

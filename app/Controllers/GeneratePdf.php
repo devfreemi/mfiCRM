@@ -391,7 +391,7 @@ class GeneratePdf extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/esign/set-branding',
+            CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/esign/set-branding',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -577,7 +577,7 @@ class GeneratePdf extends BaseController
             $curlIn = curl_init();
 
             curl_setopt_array($curlIn, array(
-                CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/esign/initialize',
+                CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/esign/initialize',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -625,7 +625,7 @@ class GeneratePdf extends BaseController
                 $data_json_pdf = json_encode($dataPdf);
                 $curlPdf = curl_init();
                 curl_setopt_array($curlPdf, array(
-                    CURLOPT_URL => 'https://kyc-api.surepass.io/api/v1/esign/upload-pdf',
+                    CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/esign/upload-pdf',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,

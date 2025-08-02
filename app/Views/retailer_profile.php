@@ -124,6 +124,7 @@
                             " class="card-img-top" alt="Document Image">
                             <div class="card-body text-center">
                                 <h6 class="card-title"><?= $row->document_type ?></h6>
+                                <p>Password: <strong><?= esc($row->document_password) ?></strong></p>
                                 <a href="<?= $doc ?>" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
                             </div>
                         </div>

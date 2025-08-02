@@ -45,6 +45,8 @@
                                 $builder = $db->table('loans');
                                 $builder->select('*');
                                 $builder->join('members', 'members.member_id = loans.member_id');
+                                $builder->where('members.remarks', 'Ok');
+
                                 $query = $builder->get();
                                 foreach ($query->getResult() as $row) {
                                     $e_id =  $row->employee_id;
