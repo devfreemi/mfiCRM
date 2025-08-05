@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\RetailerDocumentsModel;
 
-
+date_default_timezone_set('Asia/Kolkata');
 class RetailerDocumentsController extends BaseController
 {
     use ResponseTrait;
@@ -37,7 +37,7 @@ class RetailerDocumentsController extends BaseController
         //     # code...
         //     return $this->respond(['documents' => $data], 200);
         // }
-        date_default_timezone_set('Asia/Kolkata');
+
         log_message('info', 'Doc Upload Request Received!');
         $model = new RetailerDocumentsModel();
 
@@ -418,7 +418,7 @@ class RetailerDocumentsController extends BaseController
                     // Config
                     $apiKey = getenv('SUREPASS_API_KEY_PROD');
                     $url = 'https://kyc-api.surepass.app/api/v1/bank/statement/download';
-                    $maxAttempts = 10; // Maximum retries
+                    $maxAttempts = 35; // Maximum retries
                     $attempt = 0;
                     $finalResponse = null;
 
@@ -599,6 +599,260 @@ class RetailerDocumentsController extends BaseController
                 'shop_image_count' => $shopImageCount,
                 'uploaded_documents' => $uploadedDocs
             ], 422);
+        }
+    }
+
+    // OpenAI api
+    public function analyzeImage()
+    {
+        $apiKey = getenv('OPENAI_API_KEY'); // from .env
+        $imageUrl = $this->request->getVar('document_path');
+        if (!$imageUrl) {
+            return $this->respond([
+                'status' => 'error',
+                'message' => 'No image URL provided'
+            ], 400);
+        }
+
+        // Prepare OpenAI API Request
+        $url = "https://api.openai.com/v1/responses";
+
+        $data = array(
+            "model" => "gpt-4.1-mini",
+            "input" => array(
+                array(
+                    "role" => "user",
+                    "content" => array(
+                        array(
+                            "type" => "input_text",
+                            "text" => "You are an expert data analyst. Analyze the provided image carefully. 
+                                1. Identify all rows that contain 'Todays Sale' or similar terms. 
+                                2. Extract the numeric sale values from each of those rows. 
+                                3. Calculate the SUM of all 'Todays Sale' rows. 
+                                4. Calculate the AVERAGE sale value. 
+                                5. Respond only with structured JSON in this format:
+                                {\"total_sale\": number, \"average_sale\": number}.
+                                6. If the image is missing, unreadable, or does not contain sales data,
+                                return: {\"total_sale\": \"no data\", \"average_sale\": \"no data\"}."
+                        ),
+                        array(
+                            "type" => "input_image",
+                            "image_url" => $imageUrl
+                        )
+                    )
+                )
+            )
+        );
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: ' . 'Bearer ' . $apiKey
+            ),
+            CURLOPT_POSTFIELDS => json_encode($data),
+        ));
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            return $this->respond([
+                'status' => 'error',
+                'message' => curl_error($ch)
+            ], 500);
+        }
+
+        curl_close($ch);
+
+        // Decode the OpenAI full response
+        $responseArray = json_decode($response, true);
+
+        // Extract the embedded JSON text
+        $rawJsonText = $responseArray['output'][0]['content'][0]['text'] ?? null;
+        log_message('info', 'OpenAI Response: ' . $rawJsonText);
+        if ($rawJsonText) {
+            // 1️⃣ Remove commas between digits
+            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $rawJsonText);
+
+            // 2️⃣ Decode the cleaned JSON
+            $salesData = json_decode($cleanJsonText, true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($salesData)) {
+                $totalSale = $salesData['total_sale'] ?? 'no data';
+                $averageSale = $salesData['average_sale'] ?? 'no data';
+
+                // 3️⃣ Convert numeric strings to numbers
+                if (is_string($totalSale) && is_numeric($totalSale)) {
+                    $totalSale = $totalSale + 0;
+                }
+                if (is_string($averageSale) && is_numeric($averageSale)) {
+                    $averageSale = $averageSale + 0;
+                }
+                // Return the cleaned response
+                return $this->respond([
+                    'status' => 'success',
+                    'total_sale' => $salesData['total_sale'] ?? 'no data',
+                    'average_sale' => $salesData['average_sale'] ?? 'no data'
+                ], 200);
+            } else {
+                // JSON decoding failed
+                return $this->respond([
+                    'status' => 'error',
+                    'message' => 'Invalid JSON format in AI response text',
+                    'raw_text' => $rawJsonText
+                ], 500);
+            }
+        } else {
+            // Fallback if OpenAI returned unexpected format
+            return $this->respond([
+                'status' => 'error',
+                'message' => 'AI response did not contain sales data',
+                'ai_response' => $responseArray
+            ], 500);
+        }
+    }
+
+    // For Purchase Bill
+    public function analyzeImagePurchase()
+    {
+        $apiKey = getenv('OPENAI_API_KEY'); // from .env
+
+        // Get JSON from React Native
+        $rawInput = $this->request->getJSON(true);
+        $imageUrls = $rawInput['document_path'] ?? [];
+
+        // Validate URLs
+        if (!is_array($imageUrls) || count($imageUrls) === 0) {
+            return $this->respond([
+                'status' => 'error',
+                'message' => 'No image URLs provided'
+            ], 400);
+            log_message('error', 'No image URLs provided');
+        }
+
+        // Build OpenAI prompt for analyzing 3 purchase bills
+        $prompt = "
+                        You are an expert data analyst for retail purchase bills. Analyze the 3 provided images, each containing a purchase bill. Perform the following steps:
+
+                        1. Read and understand all 3 purchase bills from the images.
+                        2. Extract the total purchase value from each bill. 
+                        - Look for terms like 'Total', 'Grand Total', 'Total Amount', or similar.
+                        - Ignore GST breakdown or other intermediate totals unless marked as the final bill total.
+                        3. Calculate the following:
+                        - total_purchase_bill_1 = total purchase value of the first bill
+                        - total_purchase_bill_2 = total purchase value of the second bill
+                        - total_purchase_bill_3 = total purchase value of the third bill
+                        4. Compute combined and summary values:
+                        - average_purchase = average of the 3 total purchase values
+                        - highest_purchase_value = the highest total purchase value among the 3 bills
+                        - highest_purchase_bill = which bill has the highest purchase (Bill_1, Bill_2, or Bill_3)
+                        5. Return ONLY structured JSON in this exact format (numbers without currency symbols):
+
+                        {
+                        \"bill_1_total\": number,
+                        \"bill_2_total\": number,
+                        \"bill_3_total\": number,
+                        \"average_purchase\": number,
+                        \"highest_purchase_value\": number,
+                        \"highest_purchase_bill\": \"Bill_1\" | \"Bill_2\" | \"Bill_3\"
+                        }
+
+                        6. If any bill is missing, unreadable, or has no total, return \"no data\" for that bill.
+                        7. Do not include any explanation, only JSON output.
+                        ";
+
+        // Build OpenAI request content
+        $content = [
+            [
+                "type" => "input_text",
+                "text" => $prompt
+            ]
+        ];
+
+        // Add all images
+        foreach ($imageUrls as $urlItem) {
+            $content[] = [
+                "type" => "input_image",
+                "image_url" => $urlItem
+            ];
+        }
+
+        $data = [
+            "model" => "gpt-4.1-mini",
+            "input" => [
+                [
+                    "role" => "user",
+                    "content" => $content
+                ]
+            ]
+        ];
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => "https://api.openai.com/v1/responses",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json',
+                'Authorization: ' . 'Bearer ' . $apiKey
+            ],
+            CURLOPT_POSTFIELDS => json_encode($data),
+        ]);
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            return $this->respond([
+                'status' => 'error',
+                'message' => curl_error($ch)
+            ], 500);
+        }
+
+        curl_close($ch);
+
+        // Decode OpenAI response
+        $responseArray = json_decode($response, true);
+        $rawJsonText = $responseArray['output'][0]['content'][0]['text'] ?? null;
+        log_message('info', 'OpenAI Multi-Image Purchase Bill Response: ' . $rawJsonText);
+
+        if ($rawJsonText) {
+            // Clean numbers like 12,345
+            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $rawJsonText);
+            $salesData = json_decode($cleanJsonText, true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($salesData)) {
+                return $this->respond([
+                    'status' => 'success',
+                    'data' => [
+                        'bill_1_total' => $salesData['bill_1_total'] ?? 'no data',
+                        'bill_2_total' => $salesData['bill_2_total'] ?? 'no data',
+                        'bill_3_total' => $salesData['bill_3_total'] ?? 'no data',
+                        'average_purchase' => $salesData['average_purchase'] ?? 'no data',
+                        'highest_purchase_value' => $salesData['highest_purchase_value'] ?? 'no data',
+                        'highest_purchase_bill' => $salesData['highest_purchase_bill'] ?? 'no data'
+                    ]
+                ], 200);
+                log_message('info', 'Success of AI Bill Analyzer');
+            } else {
+                return $this->respond([
+                    'status' => 'error',
+                    'message' => 'Invalid JSON format in AI response',
+                    'raw_text' => $rawJsonText
+                ], 500);
+                log_message('error', 'Invalid JSON format in AI response--> ' . $rawJsonText);
+            }
+        } else {
+            return $this->respond([
+                'status' => 'error',
+                'message' => 'AI response did not contain Purchase data',
+                'ai_response' => $responseArray
+            ], 500);
+            log_message('error', 'AI response did not contain Purchase data--> ' . $responseArray);
         }
     }
 }

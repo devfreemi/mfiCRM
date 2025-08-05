@@ -134,6 +134,8 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     // Field Investigation
     $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
     $routes->add('api/verify-bank-v1', 'BankController::bank_verification_rm_app');
+    $routes->add('api/analyze-image-v1', 'RetailerDocumentsController::analyzeImage');
+    $routes->add('api/analyze-purchase-image-v1', 'RetailerDocumentsController::analyzeImagePurchase');
 });
 // $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
 $routes->add('api/page/verify-bank-v1', 'BankController::bank_verification');
