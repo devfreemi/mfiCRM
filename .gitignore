@@ -13,3 +13,4 @@ writable/certs/private_key.pem
 writable/certs/public_key.pem
 writable/certs/uat_public_key.pem
 app/Views/payment_details.php
+.env

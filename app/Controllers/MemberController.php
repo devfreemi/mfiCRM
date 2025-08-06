@@ -104,8 +104,9 @@ class MemberController extends BaseController
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
             'month_purchase'    => $this->request->getVar('purchaseMonthly'),
-            'eli_run'           => "Y",
+            'eli_run'           => "N",
             'userDOB'           => $this->request->getVar('panDob'),
+            'loanPurpose'       => $this->request->getVar('loanPurpose'),
 
         ];
 

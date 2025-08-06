@@ -152,7 +152,7 @@ class BankController extends BaseController
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => $data_json,
             CURLOPT_HTTPHEADER => array(
-                // 'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
                 'Content-Type: application/json'
             ),
         ));

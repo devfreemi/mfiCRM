@@ -52,7 +52,8 @@ class MemberModel extends Model
         'comments',
         'remarks',
         'userDOB',
-        'gstData'
+        'gstData',
+        'loanPurpose'
 
     ];
 

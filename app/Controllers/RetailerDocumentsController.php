@@ -48,43 +48,77 @@ class RetailerDocumentsController extends BaseController
         $db = db_connect();
         $builder = $db->table('retailerdocuments');
 
-        // 🔍 Count existing uploads for this doc type and member
-        $countQuery = $builder->selectCount('id')
-            ->where('member_id', $memberId)
-            ->where('document_type', $docType)
-            ->get()
-            ->getRow();
 
-        $existingCount = $countQuery->id ?? 0;
+        $specialTypes = ['Doc_Sale_Bill', 'Doc_Purchase_Bill_1', 'Doc_Purchase_Bill_2', 'Doc_Purchase_Bill_3'];
 
-        // 🛑 Limit logic
-        if (($docType === 'Shop_Image' && $existingCount >= 3) ||
-            ($docType !== 'Shop_Image' && $existingCount >= 1)
-        ) {
+        if (in_array($docType, $specialTypes)) {
+            // 🔹 Check if this document type already exists for this member
+            $existingDoc = $builder->where('member_id', $memberId)
+                ->where('document_type', $docType)
+                ->get()
+                ->getRow();
+
+            $data = [
+                'member_id'        => $memberId,
+                'document_path'    => $docPath,
+                'document_type'    => $docType,
+                'document_password' => $this->request->getVar('document_password') ?? null,
+                'updated_at'       => date('Y-m-d H:i:s'),
+            ];
+
+            if ($existingDoc) {
+                // 🔹 Update existing doc
+                $builder->where('id', $existingDoc->id)->update($data);
+                $message = 'Document updated successfully.';
+            } else {
+                // 🔹 Insert new doc
+                $data['created_at'] = date('Y-m-d H:i:s');
+                $builder->insert($data);
+                $message = 'Document uploaded successfully.';
+            }
+
             return $this->respond([
-                'status' => false,
-                'message' => 'Upload limit reached for this document type.'
-            ], 406);
-            log_message('info', 'Upload limit reached for this document type!: ');
+                'status' => true,
+                'message' => $message,
+                'documents' => $data
+            ], 200);
+        } else {
+            // 🔹 Normal document types with upload limits
+            $countQuery = $builder->selectCount('id')
+                ->where('member_id', $memberId)
+                ->where('document_type', $docType)
+                ->get()
+                ->getRow();
+
+            $existingCount = $countQuery->id ?? 0;
+
+            // 🛑 Limit logic
+            if (($docType === 'Shop_Image' && $existingCount >= 3) ||
+                ($docType !== 'Shop_Image' && $existingCount >= 1)
+            ) {
+                return $this->respond([
+                    'status' => false,
+                    'message' => 'Upload limit reached for this document type.'
+                ], 406);
+            }
+
+            // ✅ Insert for normal docs
+            $data = [
+                'member_id'        => $memberId,
+                'document_path'    => $docPath,
+                'document_type'    => $docType,
+                'document_password' => $this->request->getVar('document_password') ?? null,
+                'created_at'       => date('Y-m-d H:i:s')
+            ];
+
+            $builder->insert($data);
+
+            return $this->respond([
+                'status' => true,
+                'message' => 'Document uploaded successfully.',
+                'documents' => $data
+            ], 200);
         }
-
-        // ✅ Insert if within limits
-        $data = [
-            'member_id'     => $memberId,
-            'document_path' => $docPath,
-            'document_type' => $docType,
-            'document_password' => $this->request->getVar('document_password') ?? null,
-            'created_at'    => date('Y-m-d H:i:s')
-        ];
-
-        $builder->upsert($data);
-
-
-        return $this->respond([
-            'status' => true,
-            'message' => 'Document uploaded successfully.',
-            'documents' => $data
-        ], 200);
         log_message('info', 'Retailer Documents Uploaded successfully!: ' . json_encode($data));
     }
 
@@ -676,7 +710,12 @@ class RetailerDocumentsController extends BaseController
         log_message('info', 'OpenAI Response: ' . $rawJsonText);
         if ($rawJsonText) {
             // 1️⃣ Remove commas between digits
-            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $rawJsonText);
+            $cleanJson = trim($rawJsonText);
+            $cleanJson = preg_replace('/^```[a-z]*\n?/i', '', $cleanJson); // Remove starting ```json
+            $cleanJson = preg_replace('/```$/', '', $cleanJson);           // Remove ending ```
+            $cleanJson = trim($cleanJson);
+
+            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $cleanJson);
 
             // 2️⃣ Decode the cleaned JSON
             $salesData = json_decode($cleanJsonText, true);
@@ -693,10 +732,20 @@ class RetailerDocumentsController extends BaseController
                     $averageSale = $averageSale + 0;
                 }
                 // Return the cleaned response
+
+                if ($totalSale === 'no data' || $averageSale === 'no data') {
+                    return $this->respond([
+                        'status' => 'error',
+                        'message' => 'AI could not extract valid sales data',
+                        'total_sale' => $totalSale,
+                        'average_sale' => $averageSale
+                    ], 500);
+                }
+
                 return $this->respond([
                     'status' => 'success',
-                    'total_sale' => $salesData['total_sale'] ?? 'no data',
-                    'average_sale' => $salesData['average_sale'] ?? 'no data'
+                    'total_sale' => $totalSale,
+                    'average_sale' => $averageSale
                 ], 200);
             } else {
                 // JSON decoding failed
@@ -724,7 +773,7 @@ class RetailerDocumentsController extends BaseController
         // Get JSON from React Native
         $rawInput = $this->request->getJSON(true);
         $imageUrls = $rawInput['document_path'] ?? [];
-
+        $memberId = $this->request->getVar('member_id');
         // Validate URLs
         if (!is_array($imageUrls) || count($imageUrls) === 0) {
             return $this->respond([
@@ -821,23 +870,61 @@ class RetailerDocumentsController extends BaseController
         log_message('info', 'OpenAI Multi-Image Purchase Bill Response: ' . $rawJsonText);
 
         if ($rawJsonText) {
-            // Clean numbers like 12,345
-            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $rawJsonText);
-            $salesData = json_decode($cleanJsonText, true);
+            // 1️⃣ Remove commas between digits
+            $cleanJson = trim($rawJsonText);
+            $cleanJson = preg_replace('/^```[a-z]*\n?/i', '', $cleanJson); // Remove starting ```json
+            $cleanJson = preg_replace('/```$/', '', $cleanJson);           // Remove ending ```
+            $cleanJson = trim($cleanJson);
 
+            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $cleanJson);
+
+            // 2️⃣ Decode the cleaned JSON
+            $salesData = json_decode($cleanJsonText, true);
             if (json_last_error() === JSON_ERROR_NONE && is_array($salesData)) {
-                return $this->respond([
-                    'status' => 'success',
-                    'data' => [
-                        'bill_1_total' => $salesData['bill_1_total'] ?? 'no data',
-                        'bill_2_total' => $salesData['bill_2_total'] ?? 'no data',
-                        'bill_3_total' => $salesData['bill_3_total'] ?? 'no data',
-                        'average_purchase' => $salesData['average_purchase'] ?? 'no data',
-                        'highest_purchase_value' => $salesData['highest_purchase_value'] ?? 'no data',
-                        'highest_purchase_bill' => $salesData['highest_purchase_bill'] ?? 'no data'
-                    ]
-                ], 200);
-                log_message('info', 'Success of AI Bill Analyzer');
+
+
+                // ✅ Insert into DB
+
+                if ($memberId) {
+                    $db = db_connect();
+                    $table = $db->table('retailer_purchase_analysis');
+                    // Prepare data (exclude member_id for update)
+                    $data = [
+                        'bill_1_total' => $salesData['bill_1_total'] ?? 0,
+                        'bill_2_total' => $salesData['bill_2_total'] ?? 0,
+                        'bill_3_total' => $salesData['bill_3_total'] ?? 0,
+                        'average_purchase' => $salesData['average_purchase'] ?? 0,
+                        'highest_purchase_value' => $salesData['highest_purchase_value'] ?? 0,
+                        'highest_purchase_bill' => $salesData['highest_purchase_bill'] ?? 0,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+
+                    // Check if record exists for the member
+                    $existing = $table->where('member_id', $memberId)->get()->getRow();
+
+                    if ($existing) {
+                        // ✅ Update existing record
+                        $table->where('member_id', $memberId)->update($data);
+                        log_message('info', 'Purchase analysis updated in DB for member: ' . $memberId);
+                    } else {
+                        // ✅ Insert new record
+                        $data['member_id'] = $memberId; // Only add for insert
+                        $table->insert($data);
+                        log_message('info', 'Purchase analysis inserted in DB for member: ' . $memberId);
+                    }
+                    return $this->respond([
+                        'status' => 'success',
+                        'data' => [
+                            'bill_1_total' => $salesData['bill_1_total'] ?? 'no data',
+                            'bill_2_total' => $salesData['bill_2_total'] ?? 'no data',
+                            'bill_3_total' => $salesData['bill_3_total'] ?? 'no data',
+                            'average_purchase' => $salesData['average_purchase'] ?? 'no data',
+                            'highest_purchase_value' => $salesData['highest_purchase_value'] ?? 'no data',
+                            'highest_purchase_bill' => $salesData['highest_purchase_bill'] ?? 'no data'
+                        ]
+                    ], 200);
+                    log_message('info', 'Success of AI Bill Analyzer');
+                }
             } else {
                 return $this->respond([
                     'status' => 'error',
