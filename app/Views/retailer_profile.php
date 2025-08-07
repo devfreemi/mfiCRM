@@ -12,11 +12,10 @@
 
             <!-- Shop Image (Full Image, Not Cropped) -->
             <div class="position-relative mb-2">
-                <img src="<?= esc($retailers['image']) ?>" class="img-fluid w-100 rounded bg-shop" alt="Shop Image">
-
+                <img src="<?= $retailers['image'] ?>" class="img-fluid w-100 rounded bg-shop" alt="Shop Image">
                 <!-- Profile Picture Overlay -->
                 <div class=" bottom-0 start-0 translate-middle-y ms-4 mb-2">
-                    <img src="https://ui-avatars.com/api/?background=random&&rounded=true&&name=<?= esc($retailers['name']) ?>" class="rounded-circle border border-white border-3 shadow" alt="Profile" style="width: 120px; height: 120px;">
+                    <img src="https://ui-avatars.com/api/?background=random&&rounded=true&&name=<?= $retailers['name'] ?>" class="rounded-circle border border-white border-3 shadow" alt="Profile" style="width: 120px; height: 120px;">
                 </div>
             </div>
 
@@ -132,7 +131,188 @@
                 <?php
                 } ?>
             </div>
+            <?php
+            // Direct DB connection
+            $db = db_connect();
+            $builder = $db->table('bank_statement_reports');
 
+            // Fetch report JSON
+            $builder->select('*');
+            $builder->where('member_id ', $retailers['member_id']);
+            $query = $builder->get();
+            $row = $query->getRow();
+
+            if (!$row) {
+                echo "<h3>No report found for Member ID: $memberId</h3>";
+                return;
+            }
+
+            // Decode JSON
+            $data = json_decode($row->report_json, true);
+            $camSheets = $data['data']['statement']['Bankstatement 1']['CAM Sheet'] ?? [];
+            $scorecard = $data['data']['statement']['Bankstatement 1']['Summary - Scorecard'] ?? [];
+
+            // Extract CAM Sheet: Total Month
+            // Find Consolidated row
+            $consolidated = null;
+            foreach ($camSheets as $sheet) {
+                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'consolidated') {
+                    $consolidated = $sheet;
+                    break;
+                }
+            }
+            ?>
+            <?php
+            $allowedCamKeys  = [
+                'Total of EMI Amount',
+                'Total No of EMI',
+                'Total sum of Credit Transactions',
+                'Total No of Cheque Bounce Outward',
+                'Total No of Inward UPI Transactions',
+                'Total of Inward UPI Amount',
+                'Total cheque return',
+                'Total No of ECS Failure',
+                'Total No of NACH Failure',
+                'Total number of ECS and NACH failures',
+                'Total No of Outward Payment Bounce',
+                'Total sum of Cash Deposits'
+            ];
+            ?>
+            <h2 class="mb-4 text-primary mt-5 fw-bold">CAM Sheet - Consolidated Summary of Bank Statement</h2>
+
+            <?php if ($consolidated): ?>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Metric</th>
+                                <th scope="col">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($consolidated as $key => $value): ?>
+                                <?php if (!in_array($key, $allowedCamKeys)) continue; ?>
+                                <tr>
+                                    <td><strong><?= esc($key) ?></strong></td>
+                                    <td class="fw-bold text-dark">
+                                        <?= esc(is_array($value) ? json_encode($value) : $value) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-warning">No Consolidated CAM Sheet found.</div>
+            <?php endif; ?>
+
+            <h2 class="mt-5 mb-4 text-success">Scoring Details (Summary - Scorecard)</h2>
+            <?php
+            $highlightScoreItems = [
+                'Monthly Average Balance',
+                'Monthly Average Surplus'
+            ];
+            ?>
+            <?php if (!empty($scorecard)): ?>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Details</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($scorecard as $item): ?>
+                                <?php
+                                $isHighlight = in_array($item['Item'] ?? '', $highlightScoreItems);
+                                ?>
+                                <tr class="<?= $isHighlight ? 'table-warning' : '' ?>">
+                                    <td><strong><?= esc($item['Item'] ?? '') ?></strong></td>
+                                    <td class="<?= $isHighlight ? 'fw-bold text-dark' : '' ?>">
+                                        <?= esc(is_array($item['Details']) ? json_encode($item['Details']) : $item['Details']) ?>
+                                    </td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-info">No Scorecard data available.</div>
+            <?php endif; ?>
+            <!-- CIBIL TEST -->
+            <?php
+            // Load and decode JSON file
+            $jsonPath = WRITEPATH . 'uploads/creditreportjson.json';
+            if (file_exists($jsonPath)) {
+                $jsonData = file_get_contents($jsonPath);
+                $data = json_decode($jsonData, true);
+
+                $accounts = $data['data']['credit_report']['CAIS_Account']['CAIS_Account_DETAILS'] ?? [];
+
+                $activeLoans = [];
+                $totalEmi = 0;
+
+                foreach ($accounts as $account) {
+                    if ($account['Portfolio_Type'] === 'I') {
+                        foreach ($account['Account_Review_Data'] ?? [] as $review) {
+                            if ($review['Account_Status'] == '11') {
+                                $emi = (int) ($review['EMI_Amount'] ?? 0);
+                                if ($emi > 0) {
+                                    $activeLoans[] = [
+                                        'Account_Number' => $account['Account_Number'],
+                                        'Portfolio_Type' => $account['Portfolio_Type'],
+                                        'Account_Status' => $review['Account_Status'],
+                                        'EMI' => $emi,
+                                        'Current_Balance' => $review['Current_Balance'],
+                                    ];
+                                    $totalEmi += $emi;
+                                    break; // Only latest active entry
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                echo "<p>JSON file not found at: <code>$jsonPath</code></p>";
+                exit;
+            }
+            ?>
+
+            <?php if (!empty($activeLoans)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Account Number</th>
+                            <th>Portfolio Type</th>
+                            <th>Account Status</th>
+                            <th>Current EMI (₹)</th>
+                            <th>Current Balance (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($activeLoans as $loan): ?>
+                            <tr>
+                                <td><?= esc($loan['Account_Number']) ?></td>
+                                <td><?= esc($loan['Portfolio_Type']) ?></td>
+                                <td><?= esc($loan['Account_Status']) ?></td>
+                                <td><?= number_format($loan['EMI']) ?></td>
+                                <td><?= number_format($loan['Current_Balance']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div class="summary">
+                    <p><strong>Total Active Loans:</strong> <?= count($activeLoans) ?></p>
+                    <p><strong>Total EMI Amount:</strong> ₹<?= number_format($totalEmi) ?></p>
+                </div>
+            <?php else: ?>
+                <p>No active individual loans (Portfolio Type 'I') found.</p>
+            <?php endif; ?>
+            <!-- CIBIL TEST -->
             <?php if ($retailers['eli_run'] === "Y") { ?>
                 <div class="col-12 mx-auto text-center">
                     <?php
