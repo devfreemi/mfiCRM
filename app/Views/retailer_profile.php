@@ -175,12 +175,29 @@
                 'Total No of NACH Failure',
                 'Total number of ECS and NACH failures',
                 'Total No of Outward Payment Bounce',
-                'Total sum of Cash Deposits'
+                'Total sum of Cash Deposits',
+                'Total debit transactions sum',
+                'Total of Outward UPI Amount'
             ];
             ?>
             <h2 class="mb-4 text-primary mt-5 fw-bold">CAM Sheet - Consolidated Summary of Bank Statement</h2>
 
-            <?php if ($consolidated): ?>
+            <?php if ($consolidated):
+                $totalDebit = isset($consolidated['Total debit transactions sum'])
+                    ? (float) $consolidated['Total debit transactions sum']
+                    : 0;
+
+                $totalOutwardUPI = isset($consolidated['Total of Outward UPI Amount'])
+                    ? (float) $consolidated['Total of Outward UPI Amount']
+                    : 0;
+                $totalEMI = isset($consolidated['Total of EMI Amount'])
+                    ? (float) $consolidated['Total of EMI Amount']
+                    : 0;
+                $investment = isset($consolidated['Investment Made Amount']) ? (float) $consolidated['Investment Made Amount']
+                    : 0;
+                // Calculate difference
+                $finalValue = $totalDebit - ($totalOutwardUPI + $totalEMI + $investment);
+            ?>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped align-middle">
                         <thead class="table-dark">
@@ -198,7 +215,12 @@
                                         <?= esc(is_array($value) ? json_encode($value) : $value) ?>
                                     </td>
                                 </tr>
+
                             <?php endforeach; ?>
+                            <tr>
+                                <td><strong>Total debit Amount (Non UPI)</strong></td>
+                                <td class="fw-bold text-primary"><?= number_format($finalValue, 2) ?></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -244,74 +266,87 @@
             <?php endif; ?>
             <!-- CIBIL TEST -->
             <?php
-            // Load and decode JSON file
+            // Load JSON directly in view (not recommended for production, but fine for testing)
             $jsonPath = WRITEPATH . 'uploads/creditreportjson.json';
-            if (file_exists($jsonPath)) {
-                $jsonData = file_get_contents($jsonPath);
-                $data = json_decode($jsonData, true);
+            $jsonData = json_decode(file_get_contents($jsonPath), true);
 
-                $accounts = $data['data']['credit_report']['CAIS_Account']['CAIS_Account_DETAILS'] ?? [];
+            $report = $jsonData['data']['credit_report'];
 
-                $activeLoans = [];
-                $totalEmi = 0;
+            // 1. Total Outstanding
+            $totalOutstanding = (float) ($report['CAIS_Account']['CAIS_Summary']['Total_Outstanding_Balance']['Outstanding_Balance_All'] ?? 0);
 
-                foreach ($accounts as $account) {
-                    if ($account['Portfolio_Type'] === 'I') {
-                        foreach ($account['Account_Review_Data'] ?? [] as $review) {
-                            if ($review['Account_Status'] == '11') {
-                                $emi = (int) ($review['EMI_Amount'] ?? 0);
-                                if ($emi > 0) {
-                                    $activeLoans[] = [
-                                        'Account_Number' => $account['Account_Number'],
-                                        'Portfolio_Type' => $account['Portfolio_Type'],
-                                        'Account_Status' => $review['Account_Status'],
-                                        'EMI' => $emi,
-                                        'Current_Balance' => $review['Current_Balance'],
-                                    ];
-                                    $totalEmi += $emi;
-                                    break; // Only latest active entry
-                                }
+            // 2. Total Loan Accounts (Portfolio_Type = 'I')
+            $totalLoanAccounts = (float) ($report['CAIS_Account']['CAIS_Summary']['Credit_Account']['CreditAccountTotal'] ?? 0);
+            // foreach ($report['CAIS_Account']['CAIS_Account_DETAILS'] as $acc) {
+            //     if (!empty($acc['Portfolio_Type']) && $acc['Portfolio_Type'] === 'I') {
+            //         $totalLoanAccounts++;
+            //     }
+            // }
+
+            // 3. Total Active Loan Amount & EMI details
+            $totalActiveLoanAmount = 0;
+            $activeLoanWiseEMI = [];
+
+            foreach ($report['CAIS_Account']['CAIS_Account_DETAILS'] as $account) {
+                if (
+                    !empty($account['Portfolio_Type']) &&
+                    $account['Portfolio_Type'] === 'I' &&
+                    isset($account['Account_Status']) &&
+                    $account['Account_Status'] == '11'
+                ) {
+                    $currBal = (float) ($account['Current_Balance'] ?? 0);
+                    $totalActiveLoanAmount += $currBal;
+
+                    // Get EMI from first non-empty EMI_Amount
+                    $emiAmount = '';
+                    if (!empty($account['Account_Review_Data'])) {
+                        foreach ($account['Account_Review_Data'] as $review) {
+                            if (!empty($review['EMI_Amount'])) {
+                                $emiAmount = $review['EMI_Amount'];
+                                break;
                             }
                         }
                     }
+
+                    $activeLoanWiseEMI[] = [
+                        'account_number' => $account['Account_Number'] ?? '',
+                        'current_balance' => $currBal,
+                        'emi_amount' => $emiAmount
+                    ];
                 }
-            } else {
-                echo "<p>JSON file not found at: <code>$jsonPath</code></p>";
-                exit;
             }
             ?>
+            <h2>Credit Report Summary</h2>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <tr>
+                    <th>Total Outstanding</th>
+                    <td><?= number_format($totalOutstanding, 2) ?></td>
+                </tr>
+                <tr>
+                    <th>Total Loan Accounts</th>
+                    <td><?= $totalLoanAccounts ?></td>
+                </tr>
+                <tr>
+                    <th>Total Active Loan Amount</th>
+                    <td><?= number_format($totalActiveLoanAmount, 2) ?></td>
+                </tr>
+            </table>
 
-            <?php if (!empty($activeLoans)): ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Account Number</th>
-                            <th>Portfolio Type</th>
-                            <th>Account Status</th>
-                            <th>Current EMI (₹)</th>
-                            <th>Current Balance (₹)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($activeLoans as $loan): ?>
-                            <tr>
-                                <td><?= esc($loan['Account_Number']) ?></td>
-                                <td><?= esc($loan['Portfolio_Type']) ?></td>
-                                <td><?= esc($loan['Account_Status']) ?></td>
-                                <td><?= number_format($loan['EMI']) ?></td>
-                                <td><?= number_format($loan['Current_Balance']) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-                <div class="summary">
-                    <p><strong>Total Active Loans:</strong> <?= count($activeLoans) ?></p>
-                    <p><strong>Total EMI Amount:</strong> ₹<?= number_format($totalEmi) ?></p>
-                </div>
-            <?php else: ?>
-                <p>No active individual loans (Portfolio Type 'I') found.</p>
-            <?php endif; ?>
+            <h3>Active Loan-wise EMI Details</h3>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <tr>
+                    <th>Account Number</th>
+                    <th>Current Balance</th>
+                    <th>EMI Amount</th>
+                </tr>
+                <?php foreach ($activeLoanWiseEMI as $loan): ?>
+                    <tr>
+                        <td><?= esc($loan['account_number']) ?></td>
+                        <td><?= number_format($loan['current_balance'], 2) ?></td>
+                        <td><?= !empty($loan['emi_amount']) ? number_format($loan['emi_amount'], 2) : '-' ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
             <!-- CIBIL TEST -->
             <?php if ($retailers['eli_run'] === "Y") { ?>
                 <div class="col-12 mx-auto text-center">

@@ -14,48 +14,23 @@ class LoanEligibilityModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'cibilReport', 'created_at', 'updated_at'];
 
-    // Input fields (populated via setData)
-    protected $stock = 0;
-    protected $daily_sales = 0;
-    protected $monthly_sales = 0;
-    protected $purchase_monthly = null;
-    protected $cibil_score = 0;
-    protected $business_time = 0;
-    protected $location = 'rural';
-    protected $business_type = '';
-    protected $previous_emi = 0;
-
-    // CAMS fields
-    protected $cam_consolidated = [];
-    protected $scorecard_summary = [];
-    protected $totalDebit = 0;
-    protected $totalOutwardUPI = 0;
-    protected $totalEMI = 0;
-    protected $investment = 0;
-    protected $finalValue = null;
-    protected $upiInward = 0;
+    protected $stock;
+    protected $daily_sales;
+    protected $cibil_score;
+    protected $business_time;
+    protected $location;
+    protected $business_type;
+    protected $previous_emi;
 
     public function setData(array $data)
     {
-        $this->stock = isset($data['stock']) ? (float)$data['stock'] : 0;
-        $this->daily_sales = isset($data['daily_sales']) ? (float)$data['daily_sales'] : 0;
-        $this->monthly_sales = isset($data['monthly_sales']) ? (float)$data['monthly_sales'] : ($this->daily_sales * 30);
-        $this->purchase_monthly = array_key_exists('purchase_monthly', $data) ? ($data['purchase_monthly'] === null ? null : (float)$data['purchase_monthly']) : null;
-        $this->cibil_score = isset($data['cibil_score']) ? (float)$data['cibil_score'] : 0;
-        $this->business_time = isset($data['business_time']) ? (int)$data['business_time'] : 0;
+        $this->stock = $data['stock'] ?? 0;
+        $this->daily_sales = $data['daily_sales'] ?? 0;
+        $this->cibil_score = $data['cibil_score'] ?? 0;
+        $this->business_time = $data['business_time'] ?? 0;
         $this->location = $data['location'] ?? 'rural';
         $this->business_type = $data['business_type'] ?? '';
-        $this->previous_emi = isset($data['previous_emi']) ? (float)$data['previous_emi'] : 0;
-
-        // CAMS
-        $this->cam_consolidated = $data['cam_consolidated'] ?? [];
-        $this->scorecard_summary = $data['scorecard_summary'] ?? [];
-        $this->totalDebit = isset($data['totalDebit']) ? (float)$data['totalDebit'] : (isset($this->cam_consolidated['Total debit transactions sum']) ? (float)$this->cam_consolidated['Total debit transactions sum'] : 0);
-        $this->totalOutwardUPI = isset($data['totalOutwardUPI']) ? (float)$data['totalOutwardUPI'] : (isset($this->cam_consolidated['Total of Outward UPI Amount']) ? (float)$this->cam_consolidated['Total of Outward UPI Amount'] : 0);
-        $this->totalEMI = isset($data['totalEMI']) ? (float)$data['totalEMI'] : (isset($this->cam_consolidated['Total of EMI Amount']) ? (float)$this->cam_consolidated['Total of EMI Amount'] : 0);
-        $this->investment = isset($data['investment']) ? (float)$data['investment'] : (isset($this->cam_consolidated['Investment Made Amount']) ? (float)$this->cam_consolidated['Investment Made Amount'] : 0);
-        $this->finalValue = isset($data['finalValue']) ? (float)$data['finalValue'] : null;
-        $this->upiInward = isset($data['upiInward']) ? (float)$data['upiInward'] : (isset($this->cam_consolidated['Total of Inward UPI Amount']) ? (float)$this->cam_consolidated['Total of Inward UPI Amount'] : 0);
+        $this->previous_emi = $data['previous_emi'] ?? 0;
     }
 
     public function calculateFOIREligibleEMI($daily_sales, $business_type, $existing_emi = 0)
@@ -102,7 +77,8 @@ class LoanEligibilityModel extends Model
             "IncomeGroup" => $income_group,
             "FOIRLIMIT" => $foir_limit,
             "ExistingEMI" => $existing_emi,
-            "EligibleEMI" => max(0, $net_affordable_emi),
+            "EligibleEMI" => max(0, $net_affordable_emi), // can't be negative
+
         ];
     }
 
@@ -110,7 +86,7 @@ class LoanEligibilityModel extends Model
     {
         if ($tenure_months == 0) return 0;
 
-        // Flat interest calculation (kept same as before)
+        // Flat interest calculation
         $interest = ($principal * $annual_rate * ($tenure_months / 12)) / 100;
         $total_payable = $principal + $interest;
 
@@ -122,7 +98,6 @@ class LoanEligibilityModel extends Model
     {
         log_message('info', 'Rule Engine Start Working');
 
-        // 1) FOIR check (early check)
         $foir = $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi);
         $eligible_emi = $foir['EligibleEMI'];
 
@@ -140,72 +115,12 @@ class LoanEligibilityModel extends Model
             ];
         }
 
-        // 2) CAMS checks (UPI inward >= 50% of monthly sales)
-        $monthly_sales = $this->monthly_sales ?: ($this->daily_sales * 30);
-
-        if ($monthly_sales > 0) {
-            $requiredUpi = 0.5 * $monthly_sales;
-            if ($this->upiInward < $requiredUpi) {
-                return [
-                    "Eligibility" => "Not Eligible",
-                    "Reason" => "UPI inward is less than 50% of monthly sales.",
-                    "LoanAmount" => 0,
-                    "ROI" => 0,
-                    "FixedROI" => 0,
-                    "Tenure" => 0,
-                    "Score" => 0,
-                    "EMI" => 0,
-                    "FOIR" => $foir,
-                ];
-            }
-        }
-
-        // 3) finalValue and purchase_monthly ±5% check
-        // finalValue = total debit or outward transaction
-        $finalValue = is_null($this->finalValue) ? ($this->totalDebit - ($this->totalOutwardUPI + $this->totalEMI + $this->investment)) : $this->finalValue;
-
-        // if finalValue is zero or negative, it's suspicious — reject
-        if ($finalValue <= 0) {
-            return [
-                "Eligibility" => "Not Eligible",
-                "Reason" => "Calculated final value is zero or negative — inconsistent CAMS data.",
-                "LoanAmount" => 0,
-                "ROI" => 0,
-                "FixedROI" => 0,
-                "Tenure" => 0,
-                "Score" => 0,
-                "EMI" => 0,
-                "FOIR" => $foir,
-            ];
-        }
-
-        if (!is_null($this->purchase_monthly)) {
-            $allowedDeviation = 0.05 * $finalValue;
-            if (abs($this->purchase_monthly - $finalValue) > $allowedDeviation) {
-                return [
-                    "Eligibility" => "Not Eligible",
-                    "Reason" => "Purchase monthly deviates more than 5% from calculated final value.",
-                    "LoanAmount" => 0,
-                    "ROI" => 0,
-                    "FixedROI" => 0,
-                    "Tenure" => 0,
-                    "Score" => 0,
-                    "EMI" => 0,
-                    "FOIR" => $foir,
-                ];
-            }
-        } else {
-            // If purchase_monthly not provided, we log and continue; it's not an auto-reject by default.
-            log_message('info', 'purchase_monthly not provided — skipping deviation check.');
-        }
-
-        // --- Continue original scoring logic below ---
         $score = 0;
         $roi = 28;
         $reason = '';
         $tenure = 24;
 
-        // CIBIL score adjustments
+        // CIBIL
         if ($this->cibil_score >= 800) {
             $score += 3;
             $roi -= 3;
@@ -276,7 +191,7 @@ class LoanEligibilityModel extends Model
         $score += $location_scores[$this->location] ?? 0;
         $roi -= $location_scores[$this->location] ?? 0;
 
-        // Business Type buckets
+        // Business Type
         $essential = ['Grocery', 'Pharmacy', 'Stationery'];
         $service = ['Pet Shop', 'Food stall', 'Sweet Shop'];
         $retail = ['Furniture', 'Electrical', 'Electronics and Appliances'];
@@ -292,15 +207,23 @@ class LoanEligibilityModel extends Model
             $roi += 1;
         }
 
-        // New Loan Calculation Formula (same as previous)
+        // // Final adjustments
+        // $fixed_roi = min(28, max(26, $roi));
+        // New Loan Calculation Formula
         $base_loan = $score * 500;
         $stock_contribution = $this->stock * 0.5;
         $daily_sales_contribution = $this->daily_sales * 10;
+
+        // Select the lower value between 50% of stock and 15 times daily sales
         $additional_loan = min($stock_contribution, $daily_sales_contribution);
+
+        // Final loan amount calculation
         $eligibility_amount = $base_loan + $additional_loan;
+
+        // Ensure the loan amount is within limits
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
-        // Fixed ROI and Tenure based on Loan Amount (kept same)
+        // Fixed ROI and Tenure based on Loan Eligibility Amount
         if ($eligibility_amount >= 200000) {
             $fixed_roi = 26.0;
             $tenure = 24;
@@ -350,25 +273,28 @@ class LoanEligibilityModel extends Model
             $fixed_roi = 29.0;
             $tenure = 12;
         } else {
+            // Should not be eligible — fallback
             $fixed_roi = 30.0;
             $tenure = 12;
         }
 
-        // final ROI
+        // Ensure ROI is the higher of the calculated ROI or the fixed ROI
         $final_roi = min(max($roi, $fixed_roi), 30);
 
         if ($score < 7) {
-            return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => round($score, 2), "EMI" => 0, "FOIR" => $foir];
+            return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         }
 
-        // Minimum affordability check (same as before)
+
         $min_loan = 50000;
         $max_roi = 30;
         $min_tenure = 9;
+
+        // Calculate EMI for ₹50K at 30% ROI for 9 months
         $min_required_emi = $this->calculateEMI($min_loan, $max_roi, $min_tenure);
         $loan_amount = $eligibility_amount;
         $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
-
+        // Reject if user cannot afford even the minimum plan
         if ($eligible_emi < $min_required_emi) {
             log_message('info', 'Rule Engine Reject The Retailer: Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.');
 

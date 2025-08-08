@@ -173,43 +173,48 @@ class LoanEligibilityController extends BaseController
     // API
     public function checkEligibilityAPI()
     {
-
         log_message('info', '✅ checkEligibilityAPI called');
-        // $request = service('request');
+
+        // default/placeholder cibil (keep as before)
         $cibil = 680;
-        if ($this->request->getVar('previous_emi') === "") {
-            # code...
-            $previous_emi = 0;
-        } else {
-            # code...
-            $previous_emi =  $this->request->getVar('previous_emi');
-        }
-        if ($this->request->getVar('business_time') === "") {
-            # code...
+
+        // sanitize inputs
+        $memberIdApi = $this->request->getVar('memberId_api') ?? $this->request->getVar('memberId') ?? null;
+        $previous_emi = $this->request->getVar('previous_emi') === "" ? 0 : (float) $this->request->getVar('previous_emi');
+        if ($this->request->getVar('business_time') === "" || is_null($this->request->getVar('business_time'))) {
             $business_time = 0;
         } else {
-            # code...
             $current_year = date('Y');
-            $business_time = round($current_year -  $this->request->getVar('business_time'));
+            // If client passed an establishment year, convert to age; otherwise if they passed years, this may need adjustment.
+            $raw = $this->request->getVar('business_time');
+            $business_time = (int) ($raw > 1900 ? round($current_year - (int)$raw) : (int)$raw);
         }
-        // Get Bank Statement Analyzer data
-        // ✅ Fetch CAM Summary from bank_statement_reports
+
+        $daily_sales = (float) ($this->request->getVar('daily_sales') ?? 0);
+        $purchase_monthly_input = $this->request->getVar('purchase_monthly');
+        $purchase_monthly = is_null($purchase_monthly_input) || $purchase_monthly_input === '' ? null : (float)$purchase_monthly_input;
+        $stock = (float) ($this->request->getVar('stock') ?? 0);
+        $location = $this->request->getVar('location') ?? 'rural';
+        $business_type = $this->request->getVar('business_type') ?? '';
+        $memberId = $memberIdApi;
+
+        // Fetch bank_statement_reports CAMS JSON
         $db = db_connect();
         $builder = $db->table('bank_statement_reports');
         $builder->select('*');
-        $builder->where('member_id', $this->request->getVar('memberId_api'));
+        $builder->where('member_id', $memberId);
         $row = $builder->get()->getRow();
 
-        $cam_summary = [];
+        $consolidated = [];
         $scorecard_summary = [];
-
         if ($row) {
             $report_data = json_decode($row->report_json, true);
 
+            // try to locate CAM sheets & scorecard safely
             $camSheets = $report_data['data']['statement']['Bankstatement 1']['CAM Sheet'] ?? [];
             $scorecard = $report_data['data']['statement']['Bankstatement 1']['Summary - Scorecard'] ?? [];
 
-            // ✅ Extract Consolidated CAM data
+            // find consolidated row (case-insensitive)
             $consolidated = null;
             foreach ($camSheets as $sheet) {
                 if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'consolidated') {
@@ -217,151 +222,103 @@ class LoanEligibilityController extends BaseController
                     break;
                 }
             }
-
-            $allowedCamKeys = [
-                'Total of EMI Amount',
-                'Total No of EMI',
-                'Total sum of Credit Transactions',
-                'Total No of Cheque Bounce Outward',
-                'Total No of Inward UPI Transactions',
-                'Total of Inward UPI Amount',
-                'Total cheque return',
-                'Total No of ECS Failure',
-                'Total No of NACH Failure',
-                'Total number of ECS and NACH failures',
-                'Total No of Outward Payment Bounce',
-                'Total sum of Cash Deposits'
-            ];
-
-            if ($consolidated) {
-                foreach ($consolidated as $key => $value) {
-                    if (in_array($key, $allowedCamKeys)) {
-                        $cam_summary[$key] = $value;
+            if (!$consolidated && !empty($camSheets)) {
+                // Fallback: sometimes consolidated might be last row or key named differently — try to find a row containing many expected keys
+                foreach ($camSheets as $sheet) {
+                    if (isset($sheet['Total debit transactions sum']) || isset($sheet['Total of EMI Amount'])) {
+                        $consolidated = $sheet;
+                        break;
                     }
                 }
             }
+            $consolidated = $consolidated ?? [];
 
-            // ✅ Extract Scorecard Summary
-            $highlightScoreItems = [
-                'Monthly Average Balance',
-                'Monthly Average Surplus'
-            ];
-
+            // Build a small scorecard summary
             foreach ($scorecard as $item) {
                 $itemName = $item['Item'] ?? '';
                 $itemDetail = $item['Details'] ?? null;
 
-                if (in_array($itemName, $highlightScoreItems)) {
+                if (in_array($itemName, ['Monthly Average Balance', 'Monthly Average Surplus'])) {
                     $scorecard_summary[$itemName] = $itemDetail;
                 }
             }
+        } else {
+            log_message('warning', "No bank_statement_reports found for member {$memberId}");
         }
 
-        // ✅ Combine all input data
+        // Parse consolidated CAM values safely
+        $totalDebit = isset($consolidated['Total debit transactions sum']) ? (float) $consolidated['Total debit transactions sum'] : 0;
+        $totalOutwardUPI = isset($consolidated['Total of Outward UPI Amount']) ? (float) $consolidated['Total of Outward UPI Amount'] : 0;
+        $totalEMI = isset($consolidated['Total of EMI Amount']) ? (float) $consolidated['Total of EMI Amount'] : 0;
+        $investment = isset($consolidated['Investment Made Amount']) ? (float) $consolidated['Investment Made Amount'] : 0;
+        $upiInward = isset($consolidated['Total of Inward UPI Amount']) ? (float) $consolidated['Total of Inward UPI Amount'] : 0;
 
-        // $name = $this->request->getVar('panName');
-        // $mobile = $this->request->getVar('mobile');
-        // $panNumber = $this->request->getVar('panNumber');
-        // $dataApi = array(
-        //     'name'              => $name,
-        //     'consent'           => "Y",
-        //     "mobile"            => $mobile,
-        //     "pan"               => $panNumber
-        // );
-        // $data_json = json_encode($dataApi);
+        // finalValue calculation (as you specified)
+        $finalValue = $totalDebit - ($totalOutwardUPI + $totalEMI + $investment);
 
+        // monthly sales (from provided daily_sales) — controller should compute and pass it
+        $monthly_sales = $daily_sales * 30;
 
-        // $curl = curl_init();
-
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/credit-report-experian/fetch-report',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_POSTFIELDS => $data_json,
-        //     CURLOPT_HTTPHEADER => array(
-        //         'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
-        //         // 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODM0MzIxOCwianRpIjoiYzAxY2ZmNDItZTBkYi00YjdhLWFkZWMtZmJmNmE1M2JmZDQwIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm5hbWFub2poYTdAc3VyZXBhc3MuaW8iLCJuYmYiOjE3NDgzNDMyMTgsImV4cCI6MTc1MDkzNTIxOCwiZW1haWwiOiJuYW1hbm9qaGE3QHN1cmVwYXNzLmlvIiwidGVuYW50X2lkIjoibWFpbiIsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.kyAlKocj2wsHG5vc34NMdKUPa7d4jKBMHlLzuJoUUpY',
-        //         'Content-Type: application/json'
-        //     ),
-        // ));
-
-        // $response = curl_exec($curl);
-        // $err = curl_error($curl);
-        // $response_decode = json_decode($response, true);
-        // log_message('info', 'Experian CIBIL Check API Called and Success: ' . $response);
-
-
-
-        // curl_close($curl);
-        // if ($err) {
-        //     // echo "cURL Error #:" . $err;
-        //     log_message('error', 'Experian Cibil API Failed: ' . json_encode($err));
-
-        //     return $this->respond(['error' => 'Internal Exception!' . $err], 502);
-        // } else {
-
-        // $cibil = $response_decode['data']['credit_score'];
-        // $cibilReport    = $response;
+        // Build unified data object to pass to model
         $data = [
-            'stock' =>  $this->request->getVar('stock'),
-            'daily_sales' =>  $this->request->getVar('daily_sales'),
-            'purchase_monthly' =>  $this->request->getVar('purchase_monthly'),
+            'stock' => $stock,
+            'daily_sales' => $daily_sales,
+            'monthly_sales' => $monthly_sales,
+            'purchase_monthly' => $purchase_monthly,
             'cibil_score' => $cibil,
-            // 'cibilReport' => $cibilReport,
             'business_time' => $business_time,
-            'location' =>  $this->request->getVar('location'),
-            'business_type' =>  $this->request->getVar('business_type'),
+            'location' => $location,
+            'business_type' => $business_type,
             'previous_emi' => $previous_emi,
-            'memberId' => $this->request->getVar('memberId_api'),
-            'cam_summary' => $cam_summary,
-            'scorecard_summary' => $scorecard_summary
+            'memberId' => $memberId,
+            // CAMS data / consolidated
+            'cam_consolidated' => $consolidated,
+            'scorecard_summary' => $scorecard_summary,
+            'totalDebit' => $totalDebit,
+            'totalOutwardUPI' => $totalOutwardUPI,
+            'totalEMI' => $totalEMI,
+            'investment' => $investment,
+            'finalValue' => $finalValue,
+            'upiInward' => $upiInward,
         ];
 
-        // Load the LoanEligibilityModel and pass input data
+        // send to model
         $loanModel = new LoanEligibilityModel();
         $loanModel->setData($data);
-
         $result = $loanModel->calculateLoanEligibility();
-        // Merge input data with result for passing to view
-        $data['result'] = $result;
-        // member data update
+
+        // store/record summary in initial_eli_run (keep previous behaviour)
         $data_eli_run = [
             'cibil' => $cibil,
-            'member_id' => $this->request->getVar('memberId_api'),
+            'member_id' => $memberId,
             'cibilReport' => null,
             'first_date' => date('Y-m-d'),
-            'loan_amount' => $result['LoanAmount'],
-            'roi' => $result['FixedROI'],
-            'tenure' => $result['Tenure'],
-            'emi' => $result['EMI'],
-            'score' => $result['Score'],
-            'eligibility' => $result['Eligibility'],
-            'reason' => $result['Reason'],
+            'loan_amount' => $result['LoanAmount'] ?? 0,
+            'roi' => $result['FixedROI'] ?? 0,
+            'tenure' => $result['Tenure'] ?? 0,
+            'emi' => $result['EMI'] ?? 0,
+            'score' => $result['Score'] ?? 0,
+            'eligibility' => $result['Eligibility'] ?? 'Not Eligible',
+            'reason' => $result['Reason'] ?? '',
         ];
-        $db = db_connect();
         $builder = $db->table('initial_eli_run');
-        $builder->upsert($data_eli_run);
-        // return view('eli-page', $data);
-        if (is_null($data)) {
-            return $this->respond(['error' => 'Invalid Request.'], 401);
+        // use replace or insert/update compatible with your CI4 version
+        if (method_exists($builder, 'upsert')) {
+            $builder->upsert($data_eli_run);
+        } else {
+            // fallback: try replace by member_id
+            $existing = $builder->where('member_id', $memberId)->get()->getRow();
+            if ($existing) {
+                $builder->where('member_id', $memberId)->update($data_eli_run);
+            } else {
+                $builder->insert($data_eli_run);
+            }
         }
+
         log_message('info', 'Rule Engine API response: ' . json_encode($data_eli_run));
 
-        return $this->respond(['member' => $data], 200);
-        // }
-
-        // Get input data from the form
-
-        // log_message('info', 'Rule Engine API response: ' . $this->request->getVar('previous_emi'));
-
-        // print_r($query);
-        // echo ("<br>");
-        // print_r($data);
+        // Return the model's structured result
+        return $this->respond(['member' => $data, 'result' => $result], 200);
     }
 
     public function get_approval()
