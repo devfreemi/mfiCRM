@@ -175,17 +175,17 @@ class LoanEligibilityController extends BaseController
     {
         log_message('info', '✅ checkEligibilityAPI called');
 
-        // default/placeholder cibil (keep as before)
-        $cibil = 680;
+        // ===== STEP 1: Gather Inputs =====
+        $cibil = 680; // default placeholder
+        log_message('info', 'CIBIL score set to default: ' . $cibil);
 
-        // sanitize inputs
         $memberIdApi = $this->request->getVar('memberId_api') ?? $this->request->getVar('memberId') ?? null;
         $previous_emi = $this->request->getVar('previous_emi') === "" ? 0 : (float) $this->request->getVar('previous_emi');
+
         if ($this->request->getVar('business_time') === "" || is_null($this->request->getVar('business_time'))) {
             $business_time = 0;
         } else {
             $current_year = date('Y');
-            // If client passed an establishment year, convert to age; otherwise if they passed years, this may need adjustment.
             $raw = $this->request->getVar('business_time');
             $business_time = (int) ($raw > 1900 ? round($current_year - (int)$raw) : (int)$raw);
         }
@@ -198,32 +198,31 @@ class LoanEligibilityController extends BaseController
         $business_type = $this->request->getVar('business_type') ?? '';
         $memberId = $memberIdApi;
 
-        // Fetch bank_statement_reports CAMS JSON
+        log_message('info', "Inputs gathered for member {$memberId}");
+
+        // ===== STEP 2: Fetch CAMS data =====
         $db = db_connect();
         $builder = $db->table('bank_statement_reports');
-        $builder->select('*');
-        $builder->where('member_id', $memberId);
+        $builder->select('*')->where('member_id', $memberId);
         $row = $builder->get()->getRow();
 
         $consolidated = [];
         $scorecard_summary = [];
+
         if ($row) {
             $report_data = json_decode($row->report_json, true);
 
-            // try to locate CAM sheets & scorecard safely
             $camSheets = $report_data['data']['statement']['Bankstatement 1']['CAM Sheet'] ?? [];
             $scorecard = $report_data['data']['statement']['Bankstatement 1']['Summary - Scorecard'] ?? [];
 
-            // find consolidated row (case-insensitive)
-            $consolidated = null;
+            // Find Consolidated Row
             foreach ($camSheets as $sheet) {
                 if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'consolidated') {
                     $consolidated = $sheet;
                     break;
                 }
             }
-            if (!$consolidated && !empty($camSheets)) {
-                // Fallback: sometimes consolidated might be last row or key named differently — try to find a row containing many expected keys
+            if (empty($consolidated) && !empty($camSheets)) {
                 foreach ($camSheets as $sheet) {
                     if (isset($sheet['Total debit transactions sum']) || isset($sheet['Total of EMI Amount'])) {
                         $consolidated = $sheet;
@@ -231,35 +230,34 @@ class LoanEligibilityController extends BaseController
                     }
                 }
             }
-            $consolidated = $consolidated ?? [];
 
-            // Build a small scorecard summary
+            // Build Scorecard Summary
             foreach ($scorecard as $item) {
                 $itemName = $item['Item'] ?? '';
                 $itemDetail = $item['Details'] ?? null;
-
                 if (in_array($itemName, ['Monthly Average Balance', 'Monthly Average Surplus'])) {
                     $scorecard_summary[$itemName] = $itemDetail;
                 }
             }
+
+            log_message('info', 'CAMS data successfully parsed for member ' . $memberId);
         } else {
             log_message('warning', "No bank_statement_reports found for member {$memberId}");
         }
 
-        // Parse consolidated CAM values safely
-        $totalDebit = isset($consolidated['Total debit transactions sum']) ? (float) $consolidated['Total debit transactions sum'] : 0;
-        $totalOutwardUPI = isset($consolidated['Total of Outward UPI Amount']) ? (float) $consolidated['Total of Outward UPI Amount'] : 0;
-        $totalEMI = isset($consolidated['Total of EMI Amount']) ? (float) $consolidated['Total of EMI Amount'] : 0;
-        $investment = isset($consolidated['Investment Made Amount']) ? (float) $consolidated['Investment Made Amount'] : 0;
-        $upiInward = isset($consolidated['Total of Inward UPI Amount']) ? (float) $consolidated['Total of Inward UPI Amount'] : 0;
+        // ===== STEP 3: Process CAMS values =====
+        $totalDebit = (float) ($consolidated['Total debit transactions sum'] ?? 0);
+        $totalOutwardUPI = (float) ($consolidated['Total of Outward UPI Amount'] ?? 0);
+        $totalEMI = (float) ($consolidated['Total of EMI Amount'] ?? 0);
+        $investment = (float) ($consolidated['Investment Made Amount'] ?? 0);
+        $upiInward = (float) ($consolidated['Total of Inward UPI Amount'] ?? 0);
 
-        // finalValue calculation (as you specified)
         $finalValue = $totalDebit - ($totalOutwardUPI + $totalEMI + $investment);
-
-        // monthly sales (from provided daily_sales) — controller should compute and pass it
         $monthly_sales = $daily_sales * 30;
 
-        // Build unified data object to pass to model
+        log_message('info', "CAMS financials calculated: finalValue={$finalValue}, monthly_sales={$monthly_sales}, upiInward={$upiInward}");
+
+        // ===== STEP 4: Prepare Model Data =====
         $data = [
             'stock' => $stock,
             'daily_sales' => $daily_sales,
@@ -271,7 +269,6 @@ class LoanEligibilityController extends BaseController
             'business_type' => $business_type,
             'previous_emi' => $previous_emi,
             'memberId' => $memberId,
-            // CAMS data / consolidated
             'cam_consolidated' => $consolidated,
             'scorecard_summary' => $scorecard_summary,
             'totalDebit' => $totalDebit,
@@ -282,12 +279,14 @@ class LoanEligibilityController extends BaseController
             'upiInward' => $upiInward,
         ];
 
-        // send to model
+        // ===== STEP 5: Send to Model for Microservice Checks =====
         $loanModel = new LoanEligibilityModel();
         $loanModel->setData($data);
-        $result = $loanModel->calculateLoanEligibility();
+        $result = $loanModel->calculateLoanEligibility(); // internally calls microservices
 
-        // store/record summary in initial_eli_run (keep previous behaviour)
+        log_message('info', 'Loan Eligibility Result: ' . json_encode($result));
+
+        // ===== STEP 6: Save Summary =====
         $data_eli_run = [
             'cibil' => $cibil,
             'member_id' => $memberId,
@@ -301,24 +300,22 @@ class LoanEligibilityController extends BaseController
             'eligibility' => $result['Eligibility'] ?? 'Not Eligible',
             'reason' => $result['Reason'] ?? '',
         ];
+
         $builder = $db->table('initial_eli_run');
-        // use replace or insert/update compatible with your CI4 version
-        if (method_exists($builder, 'upsert')) {
-            $builder->upsert($data_eli_run);
+        $existing = $builder->where('member_id', $memberId)->get()->getRow();
+        if ($existing) {
+            $builder->where('member_id', $memberId)->update($data_eli_run);
         } else {
-            // fallback: try replace by member_id
-            $existing = $builder->where('member_id', $memberId)->get()->getRow();
-            if ($existing) {
-                $builder->where('member_id', $memberId)->update($data_eli_run);
-            } else {
-                $builder->insert($data_eli_run);
-            }
+            $builder->insert($data_eli_run);
         }
 
-        log_message('info', 'Rule Engine API response: ' . json_encode($data_eli_run));
+        log_message('info', 'Eligibility run saved for member ' . $memberId);
 
-        // Return the model's structured result
-        return $this->respond(['member' => $data, 'result' => $result], 200);
+        // ===== STEP 7: Respond =====
+        return $this->respond([
+            'member' => $data,
+            'result' => $result
+        ], 200);
     }
 
     public function get_approval()

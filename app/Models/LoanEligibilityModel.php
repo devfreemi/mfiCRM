@@ -14,7 +14,9 @@ class LoanEligibilityModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'cibilReport', 'created_at', 'updated_at'];
 
-    // Input fields (populated via setData)
+    /* --------------------------
+     * State (input) fields
+     * -------------------------- */
     protected $stock = 0;
     protected $daily_sales = 0;
     protected $monthly_sales = 0;
@@ -24,6 +26,7 @@ class LoanEligibilityModel extends Model
     protected $location = 'rural';
     protected $business_type = '';
     protected $previous_emi = 0;
+    protected $memberId = null;
 
     // CAMS fields
     protected $cam_consolidated = [];
@@ -35,8 +38,14 @@ class LoanEligibilityModel extends Model
     protected $finalValue = null;
     protected $upiInward = 0;
 
+    /* --------------------------
+     * setData - populate model inputs
+     * -------------------------- */
     public function setData(array $data)
     {
+        log_message('info', 'LoanEligibilityModel::setData called with ' . json_encode(array_keys($data)));
+
+        $this->memberId = $data['memberId'] ?? null;
         $this->stock = isset($data['stock']) ? (float)$data['stock'] : 0;
         $this->daily_sales = isset($data['daily_sales']) ? (float)$data['daily_sales'] : 0;
         $this->monthly_sales = isset($data['monthly_sales']) ? (float)$data['monthly_sales'] : ($this->daily_sales * 30);
@@ -47,7 +56,6 @@ class LoanEligibilityModel extends Model
         $this->business_type = $data['business_type'] ?? '';
         $this->previous_emi = isset($data['previous_emi']) ? (float)$data['previous_emi'] : 0;
 
-        // CAMS
         $this->cam_consolidated = $data['cam_consolidated'] ?? [];
         $this->scorecard_summary = $data['scorecard_summary'] ?? [];
         $this->totalDebit = isset($data['totalDebit']) ? (float)$data['totalDebit'] : (isset($this->cam_consolidated['Total debit transactions sum']) ? (float)$this->cam_consolidated['Total debit transactions sum'] : 0);
@@ -56,243 +64,420 @@ class LoanEligibilityModel extends Model
         $this->investment = isset($data['investment']) ? (float)$data['investment'] : (isset($this->cam_consolidated['Investment Made Amount']) ? (float)$this->cam_consolidated['Investment Made Amount'] : 0);
         $this->finalValue = isset($data['finalValue']) ? (float)$data['finalValue'] : null;
         $this->upiInward = isset($data['upiInward']) ? (float)$data['upiInward'] : (isset($this->cam_consolidated['Total of Inward UPI Amount']) ? (float)$this->cam_consolidated['Total of Inward UPI Amount'] : 0);
+
+        log_message('info', "Model inputs set: memberId={$this->memberId}, daily_sales={$this->daily_sales}, monthly_sales={$this->monthly_sales}, cibil={$this->cibil_score}");
     }
 
-    public function calculateFOIREligibleEMI($daily_sales, $business_type, $existing_emi = 0)
+    /* --------------------------
+     * Microservice-style check methods
+     * Each method returns ['status' => bool, 'reason' => string|null, 'meta' => array]
+     * and logs input/result.
+     * -------------------------- */
+
+    // public function serviceFOIR()
+    // {
+    //     log_message('info', "serviceFOIR: computing FOIR for daily_sales={$this->daily_sales}, previous_emi={$this->previous_emi}, business_type={$this->business_type}");
+
+    //     $foirResult = $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi);
+    //     log_message('info', 'serviceFOIR: result ' . json_encode($foirResult));
+
+    //     return ['status' => true, 'reason' => null, 'meta' => ['foir' => $foirResult]];
+    // }
+
+    // public function serviceFOIRCapacityCheck()
+    // {
+    //     $foir = $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi);
+    //     $eligible_emi = $foir['EligibleEMI'] ?? 0;
+    //     log_message('info', "serviceFOIRCapacityCheck: eligible_emi={$eligible_emi}");
+
+    //     if ($eligible_emi <= 0) {
+    //         log_message('error', "serviceFOIRCapacityCheck: failed - no EMI capacity");
+    //         return ['status' => false, 'reason' => 'Customer has no EMI capacity after existing obligations.', 'meta' => ['foir' => $foir]];
+    //     }
+
+    //     log_message('info', "serviceFOIRCapacityCheck: passed");
+    //     return ['status' => true, 'reason' => null, 'meta' => ['foir' => $foir]];
+    // }
+    public function serviceFOIRCapacityCheck()
     {
-        $margin_table = [
-            'Grocery' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
-            'Stationary' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
-            'Pharmacy' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
-            'Electrical' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
-            'Elctronic' => [[0, 10000, 0.20], [10000, 25000, 0.20], [25000, 35000, 0.19], [35000, 50000, 0.19], [50000, 75000, 0.18], [75000, INF, 0.15]],
-            'Pet Shop' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
-            'Sweet Shop' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
-            'Food & Beverage' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
-            'Hardware' =>  [[0, 10000, 0.19], [10000, 25000, 0.18], [25000, 35000, 0.17], [35000, 50000, 0.16], [50000, 75000, 0.15], [75000, INF, 0.15]],
-            'Furniture' => [[0, 10000, 0.19], [10000, 25000, 0.18], [25000, 35000, 0.17], [35000, 50000, 0.16], [50000, 75000, 0.15], [75000, INF, 0.15]]
-        ];
+        log_message('info', "serviceFOIRCheck: computing FOIR for daily_sales={$this->daily_sales}, previous_emi={$this->previous_emi}, business_type={$this->business_type}");
 
-        $margin = 0.12; // default
-        if (isset($margin_table[$business_type])) {
-            foreach ($margin_table[$business_type] as [$min, $max, $m]) {
-                if ($daily_sales >= $min && $daily_sales < $max) {
-                    $margin = $m;
-                    break;
-                }
-            }
-        }
+        $foirResult = $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi);
+        log_message('info', 'serviceFOIRCheck: FOIR result ' . json_encode($foirResult));
 
-        $monthly_sales = $daily_sales * 30;
-        $gross_income = $monthly_sales * $margin;
-        $foir_limit = $gross_income * 0.6;
-        $net_affordable_emi = $foir_limit - $existing_emi;
-
-        if ($gross_income >= 0 && $gross_income <= 33000) {
-            $income_group = "LIG";
-        } elseif ($gross_income > 33000 && $gross_income <= 73000) {
-            $income_group = "MIG";
-        } else {
-            $income_group = "HIG";
-        }
-
-        return [
-            "Margin" => $margin,
-            "GrossIncome" => $gross_income,
-            "IncomeGroup" => $income_group,
-            "FOIRLIMIT" => $foir_limit,
-            "ExistingEMI" => $existing_emi,
-            "EligibleEMI" => max(0, $net_affordable_emi),
-        ];
-    }
-
-    public function calculateEMI($principal, $annual_rate, $tenure_months)
-    {
-        if ($tenure_months == 0) return 0;
-
-        // Flat interest calculation (kept same as before)
-        $interest = ($principal * $annual_rate * ($tenure_months / 12)) / 100;
-        $total_payable = $principal + $interest;
-
-        // EMI = Total Payable / Tenure
-        return $total_payable / $tenure_months;
-    }
-
-    public function calculateLoanEligibility()
-    {
-        log_message('info', 'Rule Engine Start Working');
-
-        // 1) FOIR check (early check)
-        $foir = $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi);
-        $eligible_emi = $foir['EligibleEMI'];
+        $eligible_emi = $foirResult['EligibleEMI'] ?? 0;
+        log_message('info', "serviceFOIRCheck: eligible_emi={$eligible_emi}");
 
         if ($eligible_emi <= 0) {
+            log_message('error', "serviceFOIRCheck: failed - no EMI capacity");
             return [
-                "Eligibility" => "Not Eligible",
-                "Reason" => "Customer has no EMI capacity after existing obligations.",
-                "LoanAmount" => 0,
-                "ROI" => 0,
-                "FixedROI" => 0,
-                "Tenure" => 0,
-                "Score" => 0,
-                "EMI" => 0,
-                "FOIR" => $foir,
+                'status' => false,
+                'reason' => 'Customer has no EMI capacity after existing obligations.',
+                'meta'   => ['foir' => $foirResult]
             ];
         }
 
-        // 2) CAMS checks (UPI inward >= 50% of monthly sales)
-        $monthly_sales = $this->monthly_sales ?: ($this->daily_sales * 30);
+        log_message('info', "serviceFOIRCheck: passed");
+        return [
+            'status' => true,
+            'reason' => null,
+            'meta'   => ['foir' => $foirResult]
+        ];
+    }
+    public function serviceCibil()
+    {
+        log_message('info', "serviceCibil: checking cibil_score={$this->cibil_score}");
 
-        if ($monthly_sales > 0) {
-            $requiredUpi = 0.5 * $monthly_sales;
-            if ($this->upiInward < $requiredUpi) {
-                return [
-                    "Eligibility" => "Not Eligible",
-                    "Reason" => "UPI inward is less than 50% of monthly sales.",
-                    "LoanAmount" => 0,
-                    "ROI" => 0,
-                    "FixedROI" => 0,
-                    "Tenure" => 0,
-                    "Score" => 0,
-                    "EMI" => 0,
-                    "FOIR" => $foir,
-                ];
-            }
-        }
-
-        // 3) finalValue and purchase_monthly ±5% check
-        // finalValue = total debit or outward transaction
-        $finalValue = is_null($this->finalValue) ? ($this->totalDebit - ($this->totalOutwardUPI + $this->totalEMI + $this->investment)) : $this->finalValue;
-
-        // if finalValue is zero or negative, it's suspicious — reject
-        if ($finalValue <= 0) {
-            return [
-                "Eligibility" => "Not Eligible",
-                "Reason" => "Calculated final value is zero or negative — inconsistent CAMS data.",
-                "LoanAmount" => 0,
-                "ROI" => 0,
-                "FixedROI" => 0,
-                "Tenure" => 0,
-                "Score" => 0,
-                "EMI" => 0,
-                "FOIR" => $foir,
-            ];
-        }
-
-        if (!is_null($this->purchase_monthly)) {
-            $allowedDeviation = 0.05 * $finalValue;
-            if (abs($this->purchase_monthly - $finalValue) > $allowedDeviation) {
-                return [
-                    "Eligibility" => "Not Eligible",
-                    "Reason" => "Purchase monthly deviates more than 5% from calculated final value.",
-                    "LoanAmount" => 0,
-                    "ROI" => 0,
-                    "FixedROI" => 0,
-                    "Tenure" => 0,
-                    "Score" => 0,
-                    "EMI" => 0,
-                    "FOIR" => $foir,
-                ];
-            }
-        } else {
-            // If purchase_monthly not provided, we log and continue; it's not an auto-reject by default.
-            log_message('info', 'purchase_monthly not provided — skipping deviation check.');
-        }
-
-        // --- Continue original scoring logic below ---
-        $score = 0;
-        $roi = 28;
-        $reason = '';
-        $tenure = 24;
-
-        // CIBIL score adjustments
         if ($this->cibil_score >= 800) {
-            $score += 3;
-            $roi -= 3;
+            log_message('info', "serviceCibil: excellent");
+            return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => 3]];
         } elseif ($this->cibil_score >= 750) {
-            $score += 2;
-            $roi -= 2;
+            log_message('info', "serviceCibil: very good");
+            return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => 2]];
         } elseif ($this->cibil_score >= 700) {
-            $score += 1.5;
-            $roi -= 1.5;
+            log_message('info', "serviceCibil: good");
+            return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => 1.5]];
         } elseif ($this->cibil_score >= 670) {
-            $score += 1;
-            $roi += 1;
+            log_message('info', "serviceCibil: acceptable");
+            return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => 1]];
         } elseif ($this->cibil_score > 0) {
-            return ["Eligibility" => "Not Eligible", "Reason" => "Low CIBIL score", "LoanAmount" => 0, "ROI" => 0, "FixedROI" => 0, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
+            log_message('error', "serviceCibil: failed - low score {$this->cibil_score}");
+            return ['status' => false, 'reason' => 'Low CIBIL score', 'meta' => ['cibil' => $this->cibil_score]];
         } else {
-            $score -= 1;
-            $roi += 2;
-            $reason .= "No CIBIL score. ";
+            log_message('warning', "serviceCibil: no cibil score");
+            return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => -1, 'note' => 'No CIBIL score']];
+        }
+    }
+
+    public function serviceUPIInwardCheck()
+    {
+        $monthly = $this->monthly_sales ?: ($this->daily_sales * 30);
+        $required = 0.5 * $monthly;
+        log_message('info', "serviceUPIInwardCheck: upiInward={$this->upiInward}, monthly_sales={$monthly}, required={$required}");
+
+        if ($monthly > 0 && $this->upiInward < $required) {
+            log_message('error', "serviceUPIInwardCheck: failed - upiInward < required");
+            return ['status' => false, 'reason' => 'UPI inward is less than 50% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required]];
         }
 
-        // Business Age
+        log_message('info', "serviceUPIInwardCheck: passed");
+        return ['status' => true, 'reason' => null, 'meta' => ['upiInward' => $this->upiInward, 'required' => $required]];
+    }
+
+    public function serviceFinalValueCalculation()
+    {
+        $finalValue = is_null($this->finalValue) ? ($this->totalDebit - ($this->totalOutwardUPI + $this->totalEMI + $this->investment)) : $this->finalValue;
+        log_message('info', "serviceFinalValueCalculation: totalDebit={$this->totalDebit}, totalOutwardUPI={$this->totalOutwardUPI}, totalEMI={$this->totalEMI}, investment={$this->investment}, finalValue={$finalValue}");
+
+        return ['status' => true, 'reason' => null, 'meta' => ['finalValue' => $finalValue]];
+    }
+
+    public function servicePurchaseDeviationCheck()
+    {
+        $fvRes = $this->serviceFinalValueCalculation();
+        $finalValue = $fvRes['meta']['finalValue'] ?? 0;
+
+        if ($finalValue <= 0) {
+            log_message('error', "servicePurchaseDeviationCheck: failed - finalValue <= 0 ({$finalValue})");
+            return ['status' => false, 'reason' => 'Calculated final value is zero or negative — inconsistent CAMS data.', 'meta' => ['finalValue' => $finalValue]];
+        }
+
+        if (is_null($this->purchase_monthly)) {
+            log_message('info', "servicePurchaseDeviationCheck: purchase_monthly not supplied - skipping deviation check");
+            return ['status' => true, 'reason' => null, 'meta' => ['finalValue' => $finalValue, 'skipped' => true]];
+        }
+
+        $allowedDeviation = 0.05 * $finalValue;
+        log_message('info', "servicePurchaseDeviationCheck: purchase_monthly={$this->purchase_monthly}, finalValue={$finalValue}, allowedDeviation={$allowedDeviation}");
+
+        if (abs($this->purchase_monthly - $finalValue) > $allowedDeviation) {
+            log_message('error', "servicePurchaseDeviationCheck: failed - deviation too large");
+            return ['status' => false, 'reason' => 'Purchase monthly deviates more than 5% from calculated final value.', 'meta' => ['purchase_monthly' => $this->purchase_monthly, 'finalValue' => $finalValue, 'allowedDeviation' => $allowedDeviation]];
+        }
+
+        log_message('info', "servicePurchaseDeviationCheck: passed");
+        return ['status' => true, 'reason' => null, 'meta' => ['finalValue' => $finalValue, 'allowedDeviation' => $allowedDeviation]];
+    }
+
+    /* --------------------------
+     * Scoring microservices: business age, sales, stock, location, business type
+     * Each returns ['score' => float, 'roiDelta' => float, 'notes' => string|null]
+     * -------------------------- */
+
+    public function serviceBusinessAgeScore()
+    {
+        log_message('info', "serviceBusinessAgeScore: business_time={$this->business_time}");
+        $score = 0;
+        $roiDelta = 0;
+        $notes = '';
+
         if ($this->business_time >= 5) {
-            $score += 2;
-            $roi -= 1.5;
+            $score = 2;
+            $roiDelta = -1.5;
         } elseif ($this->business_time >= 2) {
-            $score += 1;
-            $roi -= 0.5;
+            $score = 1;
+            $roiDelta = -0.5;
         } else {
-            $roi += 2;
-            $reason .= "Low business age. ";
+            $score = 0;
+            $roiDelta = 2;
+            $notes = 'Low business age.';
         }
 
-        // Daily Sales
-        if ($this->daily_sales == 0) return ["Eligibility" => "Not Eligible", "Reason" => "Zero sales", "LoanAmount" => 0, "ROI" => 0, "FixedROI" => 0, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
-        elseif ($this->daily_sales >= 10000) {
-            $score += 3;
-            $roi -= 1.5;
+        log_message('info', "serviceBusinessAgeScore: score={$score}, roiDelta={$roiDelta}");
+        return ['score' => $score, 'roiDelta' => $roiDelta, 'notes' => $notes];
+    }
+
+    public function serviceDailySalesScore()
+    {
+        log_message('info', "serviceDailySalesScore: daily_sales={$this->daily_sales}");
+        $score = 0;
+        $roiDelta = 0;
+        $notes = '';
+        if ($this->daily_sales == 0) {
+            log_message('error', 'serviceDailySalesScore: Zero sales');
+            return ['status' => false, 'reason' => 'Zero sales', 'meta' => null];
+        }
+        if ($this->daily_sales >= 10000) {
+            $score = 3;
+            $roiDelta = -1.5;
         } elseif ($this->daily_sales >= 5000) {
-            $score += 2;
-            $roi -= 0.5;
+            $score = 2;
+            $roiDelta = -0.5;
         } elseif ($this->daily_sales >= 2000) {
-            $score += 1.5;
+            $score = 1.5;
         } else {
-            $roi += 2;
-            $reason .= "Low sales. ";
+            $score = 0;
+            $roiDelta = 2;
+            $notes = 'Low sales.';
         }
 
-        // Stock
+        log_message('info', "serviceDailySalesScore: score={$score}, roiDelta={$roiDelta}");
+        return ['score' => $score, 'roiDelta' => $roiDelta, 'notes' => $notes];
+    }
+
+    public function serviceStockScore()
+    {
+        log_message('info', "serviceStockScore: stock={$this->stock}");
+        $score = 0;
+        $roiDelta = 0;
+        $notes = '';
+
         if ($this->stock >= 1000000) {
-            $score += 4;
-            $roi -= 2;
+            $score = 4;
+            $roiDelta = -2;
         } elseif ($this->stock >= 500000) {
-            $score += 3;
-            $roi -= 1.5;
+            $score = 3;
+            $roiDelta = -1.5;
         } elseif ($this->stock >= 100000) {
-            $score += 2;
-            $roi += 1;
+            $score = 2;
+            $roiDelta = 1;
         } elseif ($this->stock >= 50000) {
-            $roi += 2;
-            $score += 1;
+            $score = 1;
+            $roiDelta = 2;
         } else {
-            $roi += 2.5;
-            $reason .= "Low stock. ";
+            $score = 0;
+            $roiDelta = 2.5;
+            $notes = 'Low stock.';
         }
 
-        // Location
-        $location_scores = ['metro' => 2, 'urban' => 1.5, 'semi-urban' => 1, 'suburban' => 0.5, 'rural' => 0];
-        $score += $location_scores[$this->location] ?? 0;
-        $roi -= $location_scores[$this->location] ?? 0;
+        log_message('info', "serviceStockScore: score={$score}, roiDelta={$roiDelta}");
+        return ['score' => $score, 'roiDelta' => $roiDelta, 'notes' => $notes];
+    }
 
-        // Business Type buckets
+    public function serviceLocationScore()
+    {
+        $loc = strtolower($this->location);
+        $map = ['metro' => 2, 'urban' => 1.5, 'semi-urban' => 1, 'suburban' => 0.5, 'rural' => 0];
+        $score = $map[$loc] ?? 0;
+        $roiDelta = - ($map[$loc] ?? 0);
+
+        log_message('info', "serviceLocationScore: location={$this->location}, score={$score}, roiDelta={$roiDelta}");
+        return ['score' => $score, 'roiDelta' => $roiDelta, 'notes' => null];
+    }
+
+    public function serviceBusinessTypeScore()
+    {
+        log_message('info', "serviceBusinessTypeScore: business_type={$this->business_type}");
         $essential = ['Grocery', 'Pharmacy', 'Stationery'];
         $service = ['Pet Shop', 'Food stall', 'Sweet Shop'];
         $retail = ['Furniture', 'Electrical', 'Electronics and Appliances'];
 
+        $score = 0;
+        $roiDelta = 0;
+        $notes = null;
         if (in_array($this->business_type, $essential)) {
-            $score += 2;
-            $roi -= 1;
+            $score = 2;
+            $roiDelta = -1;
         } elseif (in_array($this->business_type, $service)) {
-            $score += 1;
-            $roi -= 0.5;
+            $score = 1;
+            $roiDelta = -0.5;
         } elseif (in_array($this->business_type, $retail)) {
-            $score += 0.5;
-            $roi += 1;
+            $score = 0.5;
+            $roiDelta = 1;
         }
 
-        // New Loan Calculation Formula (same as previous)
+        log_message('info', "serviceBusinessTypeScore: score={$score}, roiDelta={$roiDelta}");
+        return ['score' => $score, 'roiDelta' => $roiDelta, 'notes' => $notes];
+    }
+
+    /* --------------------------
+     * EMI calculation helper (flat interest)
+     * -------------------------- */
+    public function serviceCalculateEMI($principal, $annual_rate, $tenure_months)
+    {
+        log_message('info', "serviceCalculateEMI: principal={$principal}, annual_rate={$annual_rate}, tenure_months={$tenure_months}");
+        if ($tenure_months == 0) return 0;
+        $interest = ($principal * $annual_rate * ($tenure_months / 12)) / 100;
+        $total_payable = $principal + $interest;
+        $emi = $total_payable / $tenure_months;
+        log_message('info', "serviceCalculateEMI: emi={$emi}");
+        return $emi;
+    }
+
+    /* --------------------------
+     * Aggregator - orchestrates checks and scoring, returns final structured output
+     * -------------------------- */
+    public function calculateLoanEligibility()
+    {
+        log_message('info', 'calculateLoanEligibility: start for member ' . ($this->memberId ?? 'N/A'));
+
+        // 1. FOIR capacity check
+        $foirCheck = $this->serviceFOIRCapacityCheck();
+        if (!$foirCheck['status']) {
+            log_message('error', 'calculateLoanEligibility: rejected by FOIR capacity');
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => $foirCheck['reason'],
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
+                "Score" => 0,
+                "EMI" => 0,
+                "FOIR" => $foirCheck['meta']['foir'] ?? $this->calculateFOIREligibleEMI($this->daily_sales, $this->business_type, $this->previous_emi),
+            ];
+        }
+        $foir_meta = $foirCheck['meta']['foir'];
+
+        // 2. CAMS checks: UPI inward
+        $upiCheck = $this->serviceUPIInwardCheck();
+        if (!$upiCheck['status']) {
+            log_message('error', 'calculateLoanEligibility: rejected by UPI inward check');
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => $upiCheck['reason'],
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
+                "Score" => 0,
+                "EMI" => 0,
+                "FOIR" => $foir_meta,
+            ];
+        }
+
+        // 3. CAMS checks: purchase deviation & final value
+        $purchaseCheck = $this->servicePurchaseDeviationCheck();
+        if (!$purchaseCheck['status']) {
+            log_message('error', 'calculateLoanEligibility: rejected by purchase deviation check');
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => $purchaseCheck['reason'],
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
+                "Score" => 0,
+                "EMI" => 0,
+                "FOIR" => $foir_meta,
+            ];
+        }
+        $finalValue = $purchaseCheck['meta']['finalValue'] ?? ($this->totalDebit - ($this->totalOutwardUPI + $this->totalEMI + $this->investment));
+
+        // 4. CIBIL check
+        $cibilCheck = $this->serviceCibil();
+        if (!$cibilCheck['status']) {
+            log_message('error', 'calculateLoanEligibility: rejected by CIBIL check');
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => $cibilCheck['reason'],
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
+                "Score" => $this->cibil_score,
+                "EMI" => 0,
+                "FOIR" => $foir_meta,
+            ];
+        }
+
+        // 5. Aggregate scoring microservices
+        $score = 0;
+        $roi = 28; // base ROI
+        $reasonNotes = '';
+
+        // CIBIL adjustments from cibilCheck meta (if any)
+        $cibilDelta = $cibilCheck['meta']['scoreDelta'] ?? 0;
+        if ($cibilDelta) {
+            $score += $cibilDelta;
+            $roi -= $cibilDelta; // approximate inverse relation like earlier logic (keeps previous behavior)
+            log_message('info', "calculateLoanEligibility: applied cibilDelta {$cibilDelta}");
+        } elseif (!isset($cibilCheck['meta']['scoreDelta'])) {
+            // no meta delta - if service returned notes (no cibil) apply as before
+            if (isset($cibilCheck['meta']['note']) && $cibilCheck['meta']['note'] === 'No CIBIL score') {
+                $score -= 1;
+                $roi += 2;
+                $reasonNotes .= 'No CIBIL score. ';
+            }
+        }
+
+        // Business age
+        $bAge = $this->serviceBusinessAgeScore();
+        $score += $bAge['score'];
+        $roi += $bAge['roiDelta'];
+        if (!empty($bAge['notes'])) $reasonNotes .= $bAge['notes'] . ' ';
+
+        // Daily sales
+        $dailySalesScore = $this->serviceDailySalesScore();
+        if (isset($dailySalesScore['status']) && $dailySalesScore['status'] === false) {
+            log_message('error', 'calculateLoanEligibility: rejected due to zero sales');
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => $dailySalesScore['reason'],
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
+                "Score" => round($score, 2),
+                "EMI" => 0,
+                "FOIR" => $foir_meta,
+            ];
+        } else {
+            $score += $dailySalesScore['score'];
+            $roi += $dailySalesScore['roiDelta'];
+            if (!empty($dailySalesScore['notes'])) $reasonNotes .= $dailySalesScore['notes'] . ' ';
+        }
+
+        // Stock
+        $stockScore = $this->serviceStockScore();
+        $score += $stockScore['score'];
+        $roi += $stockScore['roiDelta'];
+        if (!empty($stockScore['notes'])) $reasonNotes .= $stockScore['notes'] . ' ';
+
+        // Location
+        $locScore = $this->serviceLocationScore();
+        $score += $locScore['score'];
+        $roi += $locScore['roiDelta'];
+
+        // Business Type
+        $btScore = $this->serviceBusinessTypeScore();
+        $score += $btScore['score'];
+        $roi += $btScore['roiDelta'];
+        if (!empty($btScore['notes'])) $reasonNotes .= $btScore['notes'] . ' ';
+
+        log_message('info', "calculateLoanEligibility: aggregated score={$score}, roi(before fixed)={$roi}, reasonNotes={$reasonNotes}");
+
+        // Loan amount calculation (same formula you had)
         $base_loan = $score * 500;
         $stock_contribution = $this->stock * 0.5;
         $daily_sales_contribution = $this->daily_sales * 10;
@@ -300,7 +485,7 @@ class LoanEligibilityModel extends Model
         $eligibility_amount = $base_loan + $additional_loan;
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
-        // Fixed ROI and Tenure based on Loan Amount (kept same)
+        // fixed ROI & tenure mapping (kept same)
         if ($eligibility_amount >= 200000) {
             $fixed_roi = 26.0;
             $tenure = 24;
@@ -354,24 +539,37 @@ class LoanEligibilityModel extends Model
             $tenure = 12;
         }
 
-        // final ROI
+        // final ROI (ensure within limits)
         $final_roi = min(max($roi, $fixed_roi), 30);
 
+        // score threshold
         if ($score < 7) {
-            return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => round($score, 2), "EMI" => 0, "FOIR" => $foir];
+            log_message('error', 'calculateLoanEligibility: failed - low score ' . $score);
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => "Low score",
+                "LoanAmount" => 0,
+                "ROI" => $roi,
+                "FixedROI" => $fixed_roi,
+                "Tenure" => 0,
+                "Score" => round($score, 2),
+                "EMI" => 0,
+                "FOIR" => $foir_meta,
+            ];
         }
 
-        // Minimum affordability check (same as before)
+        // affordability minimum
         $min_loan = 50000;
         $max_roi = 30;
         $min_tenure = 9;
-        $min_required_emi = $this->calculateEMI($min_loan, $max_roi, $min_tenure);
+        $min_required_emi = $this->serviceCalculateEMI($min_loan, $max_roi, $min_tenure);
         $loan_amount = $eligibility_amount;
-        $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
+        $calculated_emi = $this->serviceCalculateEMI($eligibility_amount, $final_roi, $tenure);
 
-        if ($eligible_emi < $min_required_emi) {
-            log_message('info', 'Rule Engine Reject The Retailer: Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.');
+        log_message('info', "calculateLoanEligibility: min_required_emi=" . $min_required_emi . ", eligible_emi=" . (isset($foir_meta['EligibleEMI']) ? $foir_meta['EligibleEMI'] : 0));
 
+        if (($foir_meta['EligibleEMI'] ?? 0) < $min_required_emi) {
+            log_message('error', 'calculateLoanEligibility: failed - cannot afford minimum plan');
             return [
                 "Eligibility" => "Not Eligible",
                 "LoanAmount" => 0,
@@ -381,23 +579,75 @@ class LoanEligibilityModel extends Model
                 "Score" => round($score, 2),
                 "EMI" => 0,
                 "Reason" => "Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.",
-                "FOIR" => $foir,
-            ];
-        } else {
-            log_message('info', 'Rule Engine Eligible The Retailer');
-
-            return [
-                "Eligibility" => "Eligible",
-                "LoanAmount" => round($loan_amount),
-                "calculatedLoanAmount" => round($eligibility_amount),
-                "ROI" => round($roi, 2),
-                "FixedROI" => round($final_roi, 2),
-                "Tenure" => $tenure,
-                "Score" => round($score, 2),
-                "EMI" => round($calculated_emi),
-                "Reason" => trim($reason),
-                "FOIR" => $foir,
+                "FOIR" => $foir_meta,
             ];
         }
+
+        // Eligible - final result
+        log_message('info', 'calculateLoanEligibility: Eligible. Preparing final result.');
+
+        return [
+            "Eligibility" => "Eligible",
+            "LoanAmount" => round($loan_amount),
+            "calculatedLoanAmount" => round($eligibility_amount),
+            "ROI" => round($roi, 2),
+            "FixedROI" => round($final_roi, 2),
+            "Tenure" => $tenure,
+            "Score" => round($score, 2),
+            "EMI" => round($calculated_emi),
+            "Reason" => trim($reasonNotes),
+            "FOIR" => $foir_meta,
+        ];
+    }
+
+    /* --------------------------
+     * Existing helper kept (FOIR calc)
+     * -------------------------- */
+    public function calculateFOIREligibleEMI($daily_sales, $business_type, $existing_emi = 0)
+    {
+        $margin_table = [
+            'Grocery' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
+            'Stationary' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
+            'Pharmacy' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
+            'Electrical' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
+            'Elctronic' => [[0, 10000, 0.20], [10000, 25000, 0.20], [25000, 35000, 0.19], [35000, 50000, 0.19], [50000, 75000, 0.18], [75000, INF, 0.15]],
+            'Pet Shop' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
+            'Sweet Shop' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
+            'Food & Beverage' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
+            'Hardware' =>  [[0, 10000, 0.19], [10000, 25000, 0.18], [25000, 35000, 0.17], [35000, 50000, 0.16], [50000, 75000, 0.15], [75000, INF, 0.15]],
+            'Furniture' => [[0, 10000, 0.19], [10000, 25000, 0.18], [25000, 35000, 0.17], [35000, 50000, 0.16], [50000, 75000, 0.15], [75000, INF, 0.15]]
+        ];
+
+        $margin = 0.12; // default
+        if (isset($margin_table[$business_type])) {
+            foreach ($margin_table[$business_type] as [$min, $max, $m]) {
+                if ($daily_sales >= $min && $daily_sales < $max) {
+                    $margin = $m;
+                    break;
+                }
+            }
+        }
+
+        $monthly_sales = $daily_sales * 30;
+        $gross_income = $monthly_sales * $margin;
+        $foir_limit = $gross_income * 0.6;
+        $net_affordable_emi = $foir_limit - $existing_emi;
+
+        if ($gross_income >= 0 && $gross_income <= 33000) {
+            $income_group = "LIG";
+        } elseif ($gross_income > 33000 && $gross_income <= 73000) {
+            $income_group = "MIG";
+        } else {
+            $income_group = "HIG";
+        }
+
+        return [
+            "Margin" => $margin,
+            "GrossIncome" => $gross_income,
+            "IncomeGroup" => $income_group,
+            "FOIRLIMIT" => $foir_limit,
+            "ExistingEMI" => $existing_emi,
+            "EligibleEMI" => max(0, $net_affordable_emi),
+        ];
     }
 }
