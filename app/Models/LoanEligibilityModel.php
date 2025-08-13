@@ -124,6 +124,74 @@ class LoanEligibilityModel extends Model
             'meta'   => ['foir' => $foirResult]
         ];
     }
+    // FOIR based Risk o meter
+    public function serviceFOIRUsageProfile($foir_meta)
+    {
+        log_message('info', "serviceFOIRUsageProfile: FOIRLIMIT={$foir_meta['FOIRLIMIT']}, ExistingEMI={$foir_meta['ExistingEMI']}, EligibleEMI={$foir_meta['EligibleEMI']}");
+
+        // Safety check
+        if ($foir_meta['FOIRLIMIT'] <= 0) {
+            log_message('error', "serviceFOIRUsageProfile: FOIR limit invalid");
+            return [
+                'status' => false,
+                'reason' => 'Invalid FOIR limit',
+                'meta'   => $foir_meta
+            ];
+        }
+
+        // FOIR usage %
+        $usagePercent = ($foir_meta['ExistingEMI'] / $foir_meta['FOIRLIMIT']) * 100;
+
+        // Defaults
+        $score = 0;
+        $roiDelta = 0;
+        $risk = '';
+
+
+        if ($usagePercent <= 25) {
+            $risk = 'Very Low Risk';
+            $score = 5;
+            $roiDelta = -2;
+        } elseif ($usagePercent <= 40) {
+            $risk = 'Moderately Low Risk';
+            $score = 4;
+            $roiDelta = -1.5;
+        } elseif ($usagePercent <= 55) {
+            $risk = 'Low Risk';
+            $score = 3;
+            $roiDelta = -1;
+        } elseif ($usagePercent <= 70) {
+            $risk = 'Moderate Risk';
+            $score = 2;
+            $roiDelta = 1;
+        } elseif ($usagePercent <= 85) {
+            $risk = 'Moderately High Risk';
+            $score = 1;
+            $roiDelta = 1.5;
+        } elseif ($usagePercent <= 100) {
+            $risk = 'High Risk';
+            $score = -1.5;
+            $roiDelta = 2;
+        } else {
+            $risk = 'Very High Risk';
+            $score = -3;
+            $roiDelta = 3;
+        }
+
+        log_message('info', "serviceFOIRUsageProfile: usagePercent={$usagePercent}, risk={$risk}, score={$score}, roiDelta={$roiDelta}");
+
+        return [
+            'status' => ($risk !== 'Very High Risk'),
+            'reason' => ($risk === 'Very High Risk') ? 'FOIR usage too high' : null,
+            'meta'   => [
+                'usagePercent' => round($usagePercent, 2),
+                'risk' => $risk,
+                'score' => $score,
+                'roiDelta' => $roiDelta,
+                'foirDetails' => $foir_meta
+            ]
+        ];
+    }
     public function serviceCibil()
     {
         log_message('info', "serviceCibil: checking cibil_score={$this->cibil_score}");
@@ -198,7 +266,50 @@ class LoanEligibilityModel extends Model
         log_message('info', "servicePurchaseDeviationCheck: passed");
         return ['status' => true, 'reason' => null, 'meta' => ['finalValue' => $finalValue, 'allowedDeviation' => $allowedDeviation]];
     }
+    // Business Growth Check
+    public function serviceBusinessGrowthCheck()
+    {
+        // Calculate net stock change
+        $net_stock_change = ($this->stock + $this->purchase_monthly) - ($this->daily_sales * 30);
 
+        $score = 0;
+        $roiDelta = 0;
+        $notes = '';
+
+        // Calculate 10% tolerance
+        $tolerance = $this->stock * 0.10;
+
+        // Determine growth status with tolerance
+        if ($net_stock_change >= ($this->stock - $tolerance)) {
+            $growthStatus = 'Growth';
+            $stockChange = 'Stock Within 10% Range';
+            $score = 2;
+            $roiDelta = -1;
+        } elseif ($net_stock_change < ($this->stock - $tolerance)) {
+            $growthStatus = 'De-growth';
+            $stockChange = 'Stock Decreased';
+            $score = -2;
+            $roiDelta = 1;
+        } else {
+            $growthStatus = 'Stable';
+            $stockChange = 'Stock Within 10% Range';
+            $score = 1;
+            $roiDelta = -0.5;
+        }
+
+        $notes = "Business Status: {$growthStatus}, {$stockChange}";
+
+        // Logs
+        log_message('info', "serviceBusinessGrowthCheck: net_stock_change={$net_stock_change}, tolerance={$tolerance}");
+        log_message('info', "serviceBusinessGrowthCheck: score={$score}, roiDelta={$roiDelta}, notes={$notes}");
+
+        // Return result
+        return [
+            'score' => $score,
+            'roiDelta' => $roiDelta,
+            'notes' => $notes
+        ];
+    }
     /* --------------------------
      * Scoring microservices: business age, sales, stock, location, business type
      * Each returns ['score' => float, 'roiDelta' => float, 'notes' => string|null]
@@ -358,7 +469,22 @@ class LoanEligibilityModel extends Model
             ];
         }
         $foir_meta = $foirCheck['meta']['foir'];
-
+        // 2. FOIR usage profile scoring
+        $foirCheck = $this->serviceFOIRUsageProfile($foir_meta);
+        if (!$foirCheck['status']) {
+            log_message('error', 'calculateLoanEligibility: rejected by FOIR usage check');
+            return [
+                "Eligibility" => "Not Eligible",
+                "Reason" => $foirCheck['reason'],
+                "LoanAmount" => 0,
+                "ROI" => 0,
+                "FixedROI" => 0,
+                "Tenure" => 0,
+                "Score" => 0,
+                "EMI" => 0,
+                "FOIR" => $foirCheck['meta'],
+            ];
+        }
         // 2. CAMS checks: UPI inward
         $upiCheck = $this->serviceUPIInwardCheck();
         if (!$upiCheck['status']) {
@@ -464,6 +590,12 @@ class LoanEligibilityModel extends Model
         $roi += $stockScore['roiDelta'];
         if (!empty($stockScore['notes'])) $reasonNotes .= $stockScore['notes'] . ' ';
 
+        // 4. Business Growth Check (NEW)
+        $growthCheck = $this->serviceBusinessGrowthCheck();
+        $score += $growthCheck['score'];
+        $roi += $growthCheck['roiDelta'];
+        $reasonNotes .= $growthCheck['notes'] . ' ';
+
         // Location
         $locScore = $this->serviceLocationScore();
         $score += $locScore['score'];
@@ -485,58 +617,38 @@ class LoanEligibilityModel extends Model
         $eligibility_amount = $base_loan + $additional_loan;
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
-        // fixed ROI & tenure mapping (kept same)
+        // Fixed ROI & tenure mapping (ROI 19%–24%, tenure 6–24 months, loan starts at 50k)
         if ($eligibility_amount >= 200000) {
-            $fixed_roi = 26.0;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 190000) {
-            $fixed_roi = 26.2;
+            $fixed_roi = 19.0;
             $tenure = 24;
         } elseif ($eligibility_amount >= 180000) {
-            $fixed_roi = 26.4;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 170000) {
-            $fixed_roi = 26.6;
+            $fixed_roi = 19.8;
             $tenure = 24;
         } elseif ($eligibility_amount >= 160000) {
-            $fixed_roi = 26.8;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 150000) {
-            $fixed_roi = 27.0;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 140000) {
-            $fixed_roi = 27.2;
+            $fixed_roi = 20.6;
             $tenure = 21;
-        } elseif ($eligibility_amount >= 130000) {
-            $fixed_roi = 27.4;
+        } elseif ($eligibility_amount >= 140000) {
+            $fixed_roi = 21.4;
             $tenure = 21;
         } elseif ($eligibility_amount >= 120000) {
-            $fixed_roi = 27.6;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 110000) {
-            $fixed_roi = 27.8;
-            $tenure = 21;
+            $fixed_roi = 22.2;
+            $tenure = 18;
         } elseif ($eligibility_amount >= 100000) {
-            $fixed_roi = 28.0;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 90000) {
-            $fixed_roi = 28.2;
-            $tenure = 18;
+            $fixed_roi = 23.0;
+            $tenure = 12;
         } elseif ($eligibility_amount >= 80000) {
-            $fixed_roi = 28.4;
-            $tenure = 18;
-        } elseif ($eligibility_amount >= 70000) {
-            $fixed_roi = 28.6;
-            $tenure = 18;
+            $fixed_roi = 23.5;
+            $tenure = 9;
         } elseif ($eligibility_amount >= 60000) {
-            $fixed_roi = 28.8;
-            $tenure = 12;
+            $fixed_roi = 23.8;
+            $tenure = 9;
         } elseif ($eligibility_amount >= 50000) {
-            $fixed_roi = 29.0;
-            $tenure = 12;
+            $fixed_roi = 24.0;
+            $tenure = 6;
         } else {
-            $fixed_roi = 30.0;
-            $tenure = 12;
+            // below 50k not allowed
+            $fixed_roi = null;
+            $tenure = null;
         }
 
         // final ROI (ensure within limits)
@@ -631,6 +743,9 @@ class LoanEligibilityModel extends Model
         $monthly_sales = $daily_sales * 30;
         $gross_income = $monthly_sales * $margin;
         $foir_limit = $gross_income * 0.6;
+        // Pick higher EMI
+        // $existing_emi = max($this->totalEMI, $this->previous_emi);
+        // log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . '. Take which ever is higher and that is = ' . $existing_emi);
         $net_affordable_emi = $foir_limit - $existing_emi;
 
         if ($gross_income >= 0 && $gross_income <= 33000) {

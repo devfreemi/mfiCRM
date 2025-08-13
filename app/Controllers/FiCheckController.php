@@ -200,8 +200,8 @@ class FiCheckController extends BaseController
             $due = round($loan_amount + $interest);
 
             // Flat EMI: Total payable / total months
-            $emi = round($due / $tenure);
-            $disbursable = round($loan_amount - ($loan_amount * 0.04));
+            $emi = round($due / $tenure, 2);
+            $disbursable = round($loan_amount - ($loan_amount * 0.04), 2);
             $chargesandinsurance = round($loan_amount * 0.04);
 
             $data_loan = [
@@ -213,7 +213,7 @@ class FiCheckController extends BaseController
                 'roi'           => $this->request->getVar('roi'),
                 'emi'               =>  $emi,
                 'pending_emi'       =>  $day_tenure,
-                'emi_day'          => round($due / $day_tenure),
+                'emi_day'          => round($due / $day_tenure, 2),
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,

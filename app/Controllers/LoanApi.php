@@ -126,7 +126,7 @@ class LoanApi extends BaseController
             $due = round($loan_amount + $interest);
 
             // Flat EMI: Total payable / total months
-            $emi = round($due / $tenure);
+            $emi = round($due / $tenure, 2);
             $disbursable = round($loan_amount - ($loan_amount * 0.04));
             $chargesandinsurance = round($loan_amount * 0.04);
             $data = [
@@ -138,11 +138,43 @@ class LoanApi extends BaseController
                 'interest'          =>  $interest,
                 'pending_emi'       =>  $day_tenure,
                 'loan_due'          => $due,
-                'emi_day'          => round($due / $day_tenure),
+                'emi_day'          => round($due / $day_tenure, 2),
                 'roi'               => $roi,
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
+                'updated_at'      => date('Y-m-d H:i:s'),
+
+            ];
+
+            $builder->where('applicationID', $applicationid);
+            $query = $builder->update($data);
+
+            $session = session();
+            $session->setFlashdata('msg', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'loan');
+        } elseif ($status == "FI Initiated") {
+            # code...
+            $model->create($table);
+
+            $r = ($roi / 100 / 12);
+
+            // Total interest (Flat): (P × R × N years)
+            $interest = ($loan_amount * $roi * ($tenure / 12)) / 100;
+
+            // Total amount payable
+            $due = round($loan_amount + $interest);
+
+            // Flat EMI: Total payable / total months
+            $emi = round($due / $tenure);
+            $disbursable = round($loan_amount - ($loan_amount * 0.04));
+            $chargesandinsurance = round($loan_amount * 0.04);
+            $data = [
+
+                'loan_status'       => "FI Initiated",
+                'loan_amount'      => $loan_amount,
+                'loan_tenure'       => $tenure,
+
                 'updated_at'      => date('Y-m-d H:i:s'),
 
             ];
@@ -174,7 +206,7 @@ class LoanApi extends BaseController
 
                 // Flat EMI: Total payable / total months
                 $emi = round($due / $tenure);
-                $final_emi = round($due / $day_tenure);
+                $final_emi = round($due / $day_tenure, 2);
                 $repeat = strtotime("+1 day", strtotime($today));
                 $today = date('Y-m-d', $repeat);
                 $todayStamp = date('d-M-y D', $repeat);

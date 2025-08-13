@@ -24,9 +24,10 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Group Name</th>
-                                    <th>Group ID</th>
-                                    <th>Members Name</th>
+                                    <th>Market Name</th>
+                                    <th>Market ID</th>
+                                    <th>Business Name</th>
+                                    <th>Owner Name</th>
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>
                                     <th>Loan Tenure</th>
@@ -59,6 +60,7 @@
                                             <td><?php echo $row->id; ?></td>
                                             <td><?php echo $row->groupName; ?></td>
                                             <td><?php echo $row->groupId; ?></td>
+                                            <td><?php echo $row->businessName; ?></td>
                                             <td><?php echo $row->name; ?></td>
                                             <td><?php echo $row->member_id; ?></td>
                                             <td><?php echo $row->loan_amount; ?></td>
@@ -99,7 +101,8 @@
                                     <th>Id</th>
                                     <th>Market Name</th>
                                     <th>Market ID</th>
-                                    <th>Members Name</th>
+                                    <th>Business Name</th>
+                                    <th>Owner Name</th>
                                     <th>Members Id</th>
                                     <th>Loan Amount</th>
                                     <th>Loan Tenure</th>

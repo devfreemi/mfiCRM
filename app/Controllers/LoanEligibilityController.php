@@ -176,8 +176,61 @@ class LoanEligibilityController extends BaseController
         log_message('info', '✅ checkEligibilityAPI called');
 
         // ===== STEP 1: Gather Inputs =====
-        $cibil = 680; // default placeholder
-        log_message('info', 'CIBIL score set to default: ' . $cibil);
+        // $cibil = 680; // default placeholder
+        // ===== STEP 1: Gather Inputs =====
+        $name = $this->request->getVar('panName');
+        $mobile = $this->request->getVar('mobile');
+        $panNumber = $this->request->getVar('panNumber');
+
+        // Call Experian API in real time
+        $dataApi = [
+            'name'    => $name,
+            'consent' => "Y",
+            'mobile'  => $mobile,
+            'pan'     => $panNumber
+        ];
+        $data_json = json_encode($dataApi);
+
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL            => 'https://kyc-api.surepass.app/api/v1/credit-report-experian/fetch-report',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING       => '',
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_TIMEOUT        => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST  => 'POST',
+            CURLOPT_POSTFIELDS     => $data_json,
+            CURLOPT_HTTPHEADER     => [
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                'Content-Type: application/json'
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            log_message('error', 'CIBIL API Error: ' . $err);
+            return $this->respond(['error' => 'Unable to fetch CIBIL report'], 500);
+        }
+
+        $response_decode = json_decode($response, true);
+        // log_message('info', 'Experian CIBIL Check API Response: ' . $response);
+
+        $cibil = $response_decode['data']['credit_score'] ?? 0;
+        $cibilReport = $response; // full raw JSON
+
+        if (!$cibil) {
+            log_message('error', 'CIBIL score not found in API response');
+            return $this->respond(['error' => 'Invalid CIBIL response'], 500);
+        }
+
+        log_message('info', 'Real-time CIBIL score fetched: ' . $cibil);
+        // ============ CIBIL
+        // log_message('info', 'CIBIL score set to default: ' . $cibil);
 
         $memberIdApi = $this->request->getVar('memberId_api') ?? $this->request->getVar('memberId') ?? null;
         $previous_emi = $this->request->getVar('previous_emi') === "" ? 0 : (float) $this->request->getVar('previous_emi');
@@ -290,7 +343,7 @@ class LoanEligibilityController extends BaseController
         $data_eli_run = [
             'cibil' => $cibil,
             'member_id' => $memberId,
-            'cibilReport' => null,
+            'cibilReport' =>  $cibilReport,
             'first_date' => date('Y-m-d'),
             'loan_amount' => $result['LoanAmount'] ?? 0,
             'roi' => $result['FixedROI'] ?? 0,

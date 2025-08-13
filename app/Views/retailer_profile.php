@@ -267,8 +267,19 @@
             <!-- CIBIL TEST -->
             <?php
             // Load JSON directly in view (not recommended for production, but fine for testing)
-            $jsonPath = WRITEPATH . 'uploads/creditreportjson.json';
-            $jsonData = json_decode(file_get_contents($jsonPath), true);
+
+            $builderCibil = $db->table('initial_eli_run');
+            $builderCibil->select('cibilReport');
+            $builderCibil->where('member_id ', $retailers['member_id']);
+            $queryCibil = $builderCibil->get();
+
+            $rowCibil = $queryCibil->getRow();
+
+            if ($rowCibil && !empty($rowCibil->cibilReport)) {
+                $jsonData = json_decode($rowCibil->cibilReport, true); // decode JSON to array
+            } else {
+                $jsonData = null; // or handle no data
+            }
 
             $report = $jsonData['data']['credit_report'];
 
