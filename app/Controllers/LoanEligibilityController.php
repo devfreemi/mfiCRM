@@ -317,6 +317,7 @@ class LoanEligibilityController extends BaseController
             'monthly_sales' => $monthly_sales,
             'purchase_monthly' => $purchase_monthly,
             'cibil_score' => $cibil,
+            'cibil_report' => $cibilReport,
             'business_time' => $business_time,
             'location' => $location,
             'business_type' => $business_type,
