@@ -291,7 +291,7 @@ class LoanEligibilityModel extends Model
                 $dpd = (int)($account['Days_Past_Due'] ?? 0);
 
                 $negativeStatusCodes = ['71', '78', '89', '93', '97']; // loss, settled, suit filed, wilful default, written-off
-                $negativeSettlementCodes = ['03', '02', '08', '06']; // settled, written-off settled, other
+                $negativeSettlementCodes = ['03', '02', '04', '08', '13', '15', '16', '17']; // settled, written-off settled, other
                 if (in_array($status, $negativeStatusCodes) || in_array($settleCode, $negativeSettlementCodes) || $dpd > 0) {
                     $hasNegativeHistory = true;
                     $negativeAccounts[] = [
@@ -372,25 +372,55 @@ class LoanEligibilityModel extends Model
         $finalValue = $fvRes['meta']['finalValue'] ?? 0;
 
         if ($finalValue <= 0) {
-            log_message('error', "servicePurchaseDeviationCheck: failed - finalValue <= 0 ({$finalValue})");
-            return ['status' => false, 'reason' => 'Calculated final value is zero or negative — inconsistent CAMS data.', 'meta' => ['finalValue' => $finalValue]];
+            log_message('error', "servicePurchaseDeviationCheck: failed - outward transactions amount is invalid (calculated={$finalValue})");
+            return [
+                'status' => false,
+                'reason' => 'Calculated outward transactions amount is zero or negative — inconsistent CAMS data.',
+                'meta'   => ['calculated_outward' => $finalValue]
+            ];
         }
 
         if (is_null($this->purchase_monthly)) {
-            log_message('info', "servicePurchaseDeviationCheck: purchase_monthly not supplied - skipping deviation check");
-            return ['status' => true, 'reason' => null, 'meta' => ['finalValue' => $finalValue, 'skipped' => true]];
+            log_message('info', "servicePurchaseDeviationCheck: customer’s declared monthly outward payment not provided - skipping check");
+            return [
+                'status' => false,
+                'reason' => 'Customer’s monthly outward payment not available for comparison.',
+                'meta'   => ['calculated_outward' => $finalValue, 'skipped' => true]
+            ];
         }
 
-        $allowedDeviation = 0.05 * $finalValue;
-        log_message('info', "servicePurchaseDeviationCheck: purchase_monthly={$this->purchase_monthly}, finalValue={$finalValue}, allowedDeviation={$allowedDeviation}");
+        $allowedDeviation = 0.1 * $finalValue;
+        log_message(
+            'info',
+            "servicePurchaseDeviationCheck: declared_outward={$this->purchase_monthly}, calculated_outward={$finalValue}, allowedDeviation={$allowedDeviation}"
+        );
 
         if (abs($this->purchase_monthly - $finalValue) > $allowedDeviation) {
-            log_message('error', "servicePurchaseDeviationCheck: failed - deviation too large");
-            return ['status' => false, 'reason' => 'Purchase monthly deviates more than 5% from calculated final value.', 'meta' => ['purchase_monthly' => $this->purchase_monthly, 'finalValue' => $finalValue, 'allowedDeviation' => $allowedDeviation]];
+            log_message(
+                'error',
+                "servicePurchaseDeviationCheck: failed - customer’s declared outward payments indicate higher dues/overdues to distributor/dealer (deviation beyond 5%)"
+            );
+
+            return [
+                'status' => false,
+                'reason' => 'Customer\'s declared outward payments suggest significant overdue or pending dues to distributor/dealer (deviation more than 5% from calculated outward transactions).',
+                'meta'   => [
+                    'declared_outward'   => $this->purchase_monthly,
+                    'calculated_outward' => $finalValue,
+                    'allowedDeviation'   => $allowedDeviation
+                ]
+            ];
         }
 
-        log_message('info', "servicePurchaseDeviationCheck: passed");
-        return ['status' => true, 'reason' => null, 'meta' => ['finalValue' => $finalValue, 'allowedDeviation' => $allowedDeviation]];
+        log_message('info', "servicePurchaseDeviationCheck: passed - customer’s declared outward payment is consistent");
+        return [
+            'status' => true,
+            'reason' => null,
+            'meta'   => [
+                'calculated_outward' => $finalValue,
+                'allowedDeviation'   => $allowedDeviation
+            ]
+        ];
     }
     // Business Growth Check
     public function serviceBusinessGrowthCheck()
@@ -859,7 +889,7 @@ class LoanEligibilityModel extends Model
     {
         $margin_table = [
             'Grocery' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
-            'Stationary' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
+            'Stationary' => [[0, 10000, 0.25], [10000, 25000, 0.24], [25000, 35000, 0.23], [35000, 50000, 0.22], [50000, 75000, 0.21], [75000, INF, 0.20]],
             'Pharmacy' => [[0, 10000, 0.16], [10000, 25000, 0.17], [25000, 35000, 0.18], [35000, 50000, 0.19], [50000, 75000, 0.20], [75000, INF, 0.20]],
             'Electrical' => [[0, 10000, 0.20], [10000, 25000, 0.19], [25000, 35000, 0.18], [35000, 50000, 0.17], [50000, 75000, 0.16], [75000, INF, 0.15]],
             'Elctronic' => [[0, 10000, 0.20], [10000, 25000, 0.20], [25000, 35000, 0.19], [35000, 50000, 0.19], [50000, 75000, 0.18], [75000, INF, 0.15]],
@@ -885,8 +915,8 @@ class LoanEligibilityModel extends Model
         $foir_limit = $gross_income * 0.6;
         // Pick higher EMI
         // $existing_emi = max($this->totalEMI, $this->previous_emi);
-        // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
-        $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
+        $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
+        // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
         // log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . '. Take which ever is higher and that is = ' . $existing_emi);
         $net_affordable_emi = $foir_limit - $existing_emi;
 

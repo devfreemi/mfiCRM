@@ -364,8 +364,14 @@ class LoanEligibilityController extends BaseController
         }
 
         log_message('info', 'Eligibility run saved for member ' . $memberId);
-
-        // ===== STEP 7: Respond =====
+        // ===== STEP 7: Update to master table =====
+        $data_eli_run_master = [
+            'eli_run' => 'Y',
+        ];
+        $builder_master = $db->table('members');
+        $builder_master->where('member_id', $memberId)->update($data_eli_run_master);
+        log_message('info', 'Eligibility run updated for member master table ' . $memberId);
+        // ===== STEP 8: Respond =====
         return $this->respond([
             'member' => $data,
             'result' => $result

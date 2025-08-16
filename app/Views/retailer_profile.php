@@ -177,7 +177,8 @@
                 'Total No of Outward Payment Bounce',
                 'Total sum of Cash Deposits',
                 'Total debit transactions sum',
-                'Total of Outward UPI Amount'
+                'Total of Outward UPI Amount',
+                'Investment Made Amount'
             ];
             ?>
             <h2 class="mb-4 text-primary mt-5 fw-bold">CAM Sheet - Consolidated Summary of Bank Statement</h2>
