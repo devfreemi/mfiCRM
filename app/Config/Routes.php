@@ -113,7 +113,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/kyc-pan-verify', 'AadhaarKycController::verify_pan');
     $routes->add('api/gst-verify', 'AadhaarKycController::verify_gst');
     $routes->add('api/voter-id-verify', 'AadhaarKycController::verify_voter_id');
-    $routes->add('api/check-eli-api-v1', 'LoanEligibilityController::checkEligibilityAPI');
+    // Rule Engine API
+    $routes->add('api/check-eli-api-v1', 'LoanEligibilityController::checkEligibilityAPIv1');
+    $routes->add('api/check-eli-api-v2', 'LoanEligibilityController::checkEligibilityAPIv2');  //V2 for next approval 
+    // Rule Engine API
     $routes->add('api/get-eli-loan-api-v1', 'LoanEligibilityController::get_approval');
     $routes->add('api/get-approved-retailer-v1', 'LoanEligibilityController::approved_retailer');
     $routes->add('api/get-approved-retailer-data-v1', 'LoanEligibilityController::approved_retailer_data');

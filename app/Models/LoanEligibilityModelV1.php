@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class LoanEligibilityModel extends Model
+class LoanEligibilityModelV1 extends Model
 {
     protected $table            = 'initial_eli_run';
     protected $primaryKey       = 'id';

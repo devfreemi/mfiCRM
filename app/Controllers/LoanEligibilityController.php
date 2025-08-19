@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\LoanEligibilityModel;
+use App\Models\LoanEligibilityModelV1;
 use CodeIgniter\API\ResponseTrait;
 
 date_default_timezone_set('Asia/Kolkata');
@@ -171,7 +172,7 @@ class LoanEligibilityController extends BaseController
 
 
     // API
-    public function checkEligibilityAPI()
+    public function checkEligibilityAPIv2()
     {
         log_message('info', '✅ checkEligibilityAPI called');
 
@@ -355,6 +356,7 @@ class LoanEligibilityController extends BaseController
             'reason' => $result['Reason'] ?? '',
         ];
 
+        $db = db_connect();
         $builder = $db->table('initial_eli_run');
         $existing = $builder->where('member_id', $memberId)->get()->getRow();
         if ($existing) {
@@ -366,7 +368,7 @@ class LoanEligibilityController extends BaseController
         log_message('info', 'Eligibility run saved for member ' . $memberId);
         // ===== STEP 7: Update to master table =====
         $data_eli_run_master = [
-            'eli_run' => 'Y',
+            'eli_run' => 'N',
         ];
         $builder_master = $db->table('members');
         $builder_master->where('member_id', $memberId)->update($data_eli_run_master);
@@ -377,7 +379,149 @@ class LoanEligibilityController extends BaseController
             'result' => $result
         ], 200);
     }
+    // Check Eligibility Model V1
+    public function checkEligibilityAPIv1()
+    {
+        log_message('info', '✅ checkEligibilityAPI called');
 
+        // ===== STEP 1: Gather Inputs =====
+        // $cibil = 680; // default placeholder
+        // ===== STEP 1: Gather Inputs =====
+        $name = $this->request->getVar('panName');
+        $mobile = $this->request->getVar('mobile');
+        $panNumber = $this->request->getVar('panNumber');
+
+        // Call Experian API in real time
+        $dataApi = [
+            'name'    => $name,
+            'consent' => "Y",
+            'mobile'  => $mobile,
+            'pan'     => $panNumber
+        ];
+        $data_json = json_encode($dataApi);
+
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL            => 'https://kyc-api.surepass.app/api/v1/credit-report-experian/fetch-report',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING       => '',
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_TIMEOUT        => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST  => 'POST',
+            CURLOPT_POSTFIELDS     => $data_json,
+            CURLOPT_HTTPHEADER     => [
+                'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
+                'Content-Type: application/json'
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            log_message('error', 'CIBIL API Error: ' . $err);
+            return $this->respond(['error' => 'Unable to fetch CIBIL report'], 500);
+        }
+
+        $response_decode = json_decode($response, true);
+        // log_message('info', 'Experian CIBIL Check API Response: ' . $response);
+
+        $cibil = $response_decode['data']['credit_score'] ?? 0;
+        $cibilReport = $response; // full raw JSON
+
+        if (!$cibil) {
+            log_message('error', 'CIBIL score not found in API response');
+            return $this->respond(['error' => 'Invalid CIBIL response'], 500);
+        }
+
+        log_message('info', 'Real-time CIBIL score fetched: ' . $cibil);
+        // ============ CIBIL
+        // log_message('info', 'CIBIL score set to default: ' . $cibil);
+
+        $memberIdApi = $this->request->getVar('memberId_api') ?? $this->request->getVar('memberId') ?? null;
+        $previous_emi = $this->request->getVar('previous_emi') === "" ? 0 : (float) $this->request->getVar('previous_emi');
+
+        if ($this->request->getVar('business_time') === "" || is_null($this->request->getVar('business_time'))) {
+            $business_time = 0;
+        } else {
+            $current_year = date('Y');
+            $raw = $this->request->getVar('business_time');
+            $business_time = (int) ($raw > 1900 ? round($current_year - (int)$raw) : (int)$raw);
+        }
+
+        $daily_sales = (float) ($this->request->getVar('daily_sales') ?? 0);
+        $purchase_monthly_input = $this->request->getVar('purchase_monthly');
+        $purchase_monthly = is_null($purchase_monthly_input) || $purchase_monthly_input === '' ? null : (float)$purchase_monthly_input;
+        $stock = (float) ($this->request->getVar('stock') ?? 0);
+        $location = $this->request->getVar('location') ?? 'rural';
+        $business_type = $this->request->getVar('business_type') ?? '';
+        $memberId = $memberIdApi;
+
+        log_message('info', "Inputs gathered for member {$memberId}");
+
+
+        // ===== STEP 4: Prepare Model Data =====
+        $data = [
+            'stock' => $stock,
+            'daily_sales' => $daily_sales,
+            'purchase_monthly' => $purchase_monthly,
+            'cibil_score' => $cibil,
+            'cibil_report' => $cibilReport,
+            'business_time' => $business_time,
+            'location' => $location,
+            'business_type' => $business_type,
+            'previous_emi' => $previous_emi,
+            'memberId' => $memberId,
+        ];
+
+        // ===== STEP 5: Send to Model for Microservice Checks =====
+        $loanModel = new LoanEligibilityModelV1();
+        $loanModel->setData($data);
+        $result = $loanModel->calculateLoanEligibility(); // internally calls microservices
+
+        log_message('info', 'Loan Eligibility Result: ' . json_encode($result));
+
+        // ===== STEP 6: Save Summary =====
+        $data_eli_run = [
+            'cibil' => $cibil,
+            'member_id' => $memberId,
+            'cibilReport' =>  $cibilReport,
+            'first_date' => date('Y-m-d'),
+            'loan_amount' => $result['LoanAmount'] ?? 0,
+            'roi' => $result['FixedROI'] ?? 0,
+            'tenure' => $result['Tenure'] ?? 0,
+            'emi' => $result['EMI'] ?? 0,
+            'score' => $result['Score'] ?? 0,
+            'eligibility' => $result['Eligibility'] ?? 'Not Eligible',
+            'reason' => $result['Reason'] ?? '',
+        ];
+        $db = db_connect();
+        $builder = $db->table('initial_eli_run');
+        $existing = $builder->where('member_id', $memberId)->get()->getRow();
+        if ($existing) {
+            $builder->where('member_id', $memberId)->update($data_eli_run);
+        } else {
+            $builder->insert($data_eli_run);
+        }
+
+        log_message('info', 'Eligibility run saved for member ' . $memberId);
+        // ===== STEP 7: Update to master table =====
+        $data_eli_run_master = [
+            'eli_run' => 'N',
+        ];
+        $builder_master = $db->table('members');
+        $builder_master->where('member_id', $memberId)->update($data_eli_run_master);
+        log_message('info', 'Eligibility run updated for member master table ' . $memberId);
+        // ===== STEP 8: Respond =====
+        return $this->respond([
+            'member' => $data,
+            'result' => $result
+        ], 200);
+    }
+    // End of V1
     public function get_approval()
     {
 

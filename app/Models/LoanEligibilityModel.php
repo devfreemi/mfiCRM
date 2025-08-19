@@ -100,6 +100,9 @@ class LoanEligibilityModel extends Model
     //     log_message('info', "serviceFOIRCapacityCheck: passed");
     //     return ['status' => true, 'reason' => null, 'meta' => ['foir' => $foir]];
     // }
+
+
+
     public function serviceFOIRCapacityCheck()
     {
         log_message('info', "serviceFOIRCheck: computing FOIR for daily_sales={$this->daily_sales}, previous_emi={$this->previous_emi}, business_type={$this->business_type}");
@@ -126,6 +129,7 @@ class LoanEligibilityModel extends Model
             'meta'   => ['foir' => $foirResult]
         ];
     }
+
     // FOIR based Risk o meter
     public function serviceFOIRUsageProfile($foir_meta)
     {
@@ -641,6 +645,7 @@ class LoanEligibilityModel extends Model
                 "FOIR" => $foirCheck['meta'],
             ];
         }
+
         // 2. CAMS checks: UPI inward
         $upiCheck = $this->serviceUPIInwardCheck();
         if (!$upiCheck['status']) {
@@ -678,20 +683,7 @@ class LoanEligibilityModel extends Model
 
         // 4. CIBIL check
         $cibilCheck = $this->serviceCibil();
-        // if (!$cibilCheck['status']) {
-        //     log_message('error', 'calculateLoanEligibility: rejected by CIBIL check');
-        //     return [
-        //         "Eligibility" => "Not Eligible",
-        //         "Reason" => $cibilCheck['reason'],
-        //         "LoanAmount" => 0,
-        //         "ROI" => 0,
-        //         "FixedROI" => 0,
-        //         "Tenure" => 0,
-        //         "Score" => $this->cibil_score,
-        //         "EMI" => 0,
-        //         "FOIR" => $foir_meta,
-        //     ];
-        // }
+
         if (!$cibilCheck['status']) {
             log_message('error', 'calculateLoanEligibility: rejected by CIBIL check - ' . $cibilCheck['reason']);
             return [
@@ -849,7 +841,34 @@ class LoanEligibilityModel extends Model
         $calculated_emi = $this->serviceCalculateEMI($eligibility_amount, $final_roi, $tenure);
 
         log_message('info', "calculateLoanEligibility: min_required_emi=" . $min_required_emi . ", eligible_emi=" . (isset($foir_meta['EligibleEMI']) ? $foir_meta['EligibleEMI'] : 0));
+        // // ----- NEW: Surplus & Balance Adjustment -----
+        // $monthlySurplus = $this->scorecard_summary['Monthly Average Surplus'] ?? 0;
+        // $monthlyBalance = $this->scorecard_summary['Monthly Average Balance'] ?? 0;
+        // $affordabilityCap = max($monthlySurplus, $monthlyBalance);
 
+        // if ($calculated_emi > $affordabilityCap) {
+        //     log_message('warning', "calculateLoanEligibility: EMI {$calculated_emi} > AffordabilityCap {$affordabilityCap}. Adjusting loan amount...");
+        //     $adjustedEMI = $affordabilityCap;
+        //     $loan_amount = $this->calculateLoanAmountFromEMI($adjustedEMI, $final_roi, $tenure);
+        //     $calculated_emi = $this->serviceCalculateEMI($loan_amount, $final_roi, $tenure);
+        //     log_message('info', "calculateLoanEligibility: Adjusted LoanAmount={$loan_amount}, EMI={$calculated_emi}");
+        // }
+
+        // // ----- Final Output -----
+        // return [
+        //     "Eligibility" => "Eligible",
+        //     "LoanAmount" => round($loan_amount),
+        //     "calculatedLoanAmount" => round($eligibility_amount),
+        //     "ROI" => round($roi, 2),
+        //     "FixedROI" => round($final_roi, 2),
+        //     "Tenure" => $tenure,
+        //     "Score" => round($score, 2),
+        //     "EMI" => round($calculated_emi),
+        //     "Reason" => trim($reasonNotes),
+        //     "FOIR" => $foir_meta,
+        //     "Surplus" => $monthlySurplus,
+        //     "AverageBalance" => $monthlyBalance,
+        // ];
         if (($foir_meta['EligibleEMI'] ?? 0) < $min_required_emi) {
             log_message('error', 'calculateLoanEligibility: failed - cannot afford minimum plan');
             return [
@@ -860,7 +879,7 @@ class LoanEligibilityModel extends Model
                 "Tenure" => 0,
                 "Score" => round($score, 2),
                 "EMI" => 0,
-                "Reason" => "Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.",
+                "Reason" => "Rejected — cannot afford minimum ₹50K loan.",
                 "FOIR" => $foir_meta,
             ];
         }
@@ -882,6 +901,19 @@ class LoanEligibilityModel extends Model
         ];
     }
 
+    // Simple Flat Loan Amount calculation from EMI
+    // private function calculateLoanAmountFromEMI($emi, $roi = null, $tenure = null)
+    // {
+    //     // use the same ROI & Tenure as in eligibility calculation
+    //     $roi    = $roi ?? $this->fixed_roi ?? 24; // fallback 24% yearly
+    //     $tenure = $tenure ?? $this->fixed_tenure ?? 12; // fallback 12 months
+
+    //     // Flat method: Loan Amount = (EMI × Tenure) / (1 + (ROI × Tenure / 1200))
+    //     // ROI in % yearly → convert to per year fraction
+    //     $loanAmount = ($emi * $tenure) / (1 + (($roi * $tenure) / 1200));
+
+    //     return round($loanAmount, 2);
+    // }
     /* --------------------------
      * Existing helper kept (FOIR calc)
      * -------------------------- */
@@ -915,8 +947,8 @@ class LoanEligibilityModel extends Model
         $foir_limit = $gross_income * 0.6;
         // Pick higher EMI
         // $existing_emi = max($this->totalEMI, $this->previous_emi);
-        $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
-        // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
+        // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
+        $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
         // log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . '. Take which ever is higher and that is = ' . $existing_emi);
         $net_affordable_emi = $foir_limit - $existing_emi;
 
