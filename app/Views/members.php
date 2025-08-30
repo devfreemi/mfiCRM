@@ -89,7 +89,7 @@
                                             }
                                         ?>
 
-                                            <td class="text-success fw-bold"><?php echo $eli; ?></td>
+                                            <td class="text-success fw-bold">Checked</td>
                                         <?php
                                         } else {
                                             # code...

@@ -342,8 +342,10 @@ class LoanEligibilityModel extends Model
             return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => 1.5]];
         } elseif ($this->cibil_score >= 670) {
             return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => 1]];
-        } else {
+        } elseif ($this->cibil_score > 0) {
             return ['status' => false, 'reason' => 'Low CIBIL score', 'meta' => compact('totalOutstanding', 'totalLoanAccounts', 'totalActiveLoanAmount', 'activeLoanWiseEMI')];
+        } else {
+            return ['status' => true, 'reason' => null, 'meta' => ['scoreDelta' => -1]];
         }
     }
 
@@ -375,6 +377,7 @@ class LoanEligibilityModel extends Model
         $fvRes = $this->serviceFinalValueCalculation();
         $finalValue = $fvRes['meta']['finalValue'] ?? 0;
 
+
         if ($finalValue <= 0) {
             log_message('error', "servicePurchaseDeviationCheck: failed - outward transactions amount is invalid (calculated={$finalValue})");
             return [
@@ -393,7 +396,7 @@ class LoanEligibilityModel extends Model
             ];
         }
 
-        $allowedDeviation = 0.1 * $finalValue;
+        $allowedDeviation = 0.15 * $finalValue;
         log_message(
             'info',
             "servicePurchaseDeviationCheck: declared_outward={$this->purchase_monthly}, calculated_outward={$finalValue}, allowedDeviation={$allowedDeviation}"
@@ -404,16 +407,10 @@ class LoanEligibilityModel extends Model
                 'error',
                 "servicePurchaseDeviationCheck: failed - customer’s declared outward payments indicate higher dues/overdues to distributor/dealer (deviation beyond 5%)"
             );
-
-            return [
-                'status' => false,
-                'reason' => 'Customer\'s declared outward payments suggest significant overdue or pending dues to distributor/dealer (deviation more than 5% from calculated outward transactions).',
-                'meta'   => [
-                    'declared_outward'   => $this->purchase_monthly,
-                    'calculated_outward' => $finalValue,
-                    'allowedDeviation'   => $allowedDeviation
-                ]
-            ];
+            $score = 0;
+            $roiDelta = 2.5;
+            $notes = '';
+            return ['status' => true, 'score' => $score, 'roiDelta' => $roiDelta, 'notes' => 'High Purchase and Debit Transaction deviation'];
         }
 
         log_message('info', "servicePurchaseDeviationCheck: passed - customer’s declared outward payment is consistent");
@@ -718,7 +715,30 @@ class LoanEligibilityModel extends Model
                 $reasonNotes .= 'No CIBIL score. ';
             }
         }
+        // 🔹 NEW: Special case if CIBIL = -1 → Fixed loan scheme
+        if (($cibilCheck['meta']['scoreDelta'] ?? null) === -1) {
+            log_message('info', 'calculateLoanEligibility: special case - CIBIL -1, fixed loan scheme applied');
 
+            $loanAmount = 50000;
+            $roi = 24;
+            $tenure = 6;
+
+            // Calculate EMI for fixed scheme
+            $emi = $this->serviceCalculateEMI($loanAmount, $roi, $tenure);
+
+            return [
+                "Eligibility" => "Eligible",
+                "Reason" => "Special scheme applied for CIBIL -1",
+                "LoanAmount" => $loanAmount,
+                "ROI" => $roi,
+                "FixedROI" => $roi,
+                "Tenure" => $tenure,
+                "Score" => $this->cibil_score,
+                "EMI" => round($emi, 2),
+                "FOIR" => $foir_meta,
+                "NegativeAccounts" => $cibilCheck['meta']['negativeAccounts'] ?? []
+            ];
+        }
         // Business age
         $bAge = $this->serviceBusinessAgeScore();
         $score += $bAge['score'];
@@ -779,30 +799,27 @@ class LoanEligibilityModel extends Model
         $eligibility_amount = $base_loan + $additional_loan;
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
-        // Fixed ROI & tenure mapping (ROI 19%–24%, tenure 6–24 months, loan starts at 50k)
-        if ($eligibility_amount >= 200000) {
-            $fixed_roi = 19.0;
+        // Fixed ROI & Tenure Mapping (Loan 2.5L–50k, ROI 18–24%, Tenure 24–6 months)
+        if ($eligibility_amount >= 250000) {
+            $fixed_roi = 18.0;
             $tenure = 24;
-        } elseif ($eligibility_amount >= 180000) {
-            $fixed_roi = 19.8;
-            $tenure = 24;
+        } elseif ($eligibility_amount >= 220000) {
+            $fixed_roi = 18.8;
+            $tenure = 21;
+        } elseif ($eligibility_amount >= 190000) {
+            $fixed_roi = 19.6;
+            $tenure = 21;
         } elseif ($eligibility_amount >= 160000) {
-            $fixed_roi = 20.6;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 140000) {
-            $fixed_roi = 21.4;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 120000) {
-            $fixed_roi = 22.2;
+            $fixed_roi = 20.8;
             $tenure = 18;
+        } elseif ($eligibility_amount >= 130000) {
+            $fixed_roi = 22.0;
+            $tenure = 15;
         } elseif ($eligibility_amount >= 100000) {
             $fixed_roi = 23.0;
             $tenure = 12;
-        } elseif ($eligibility_amount >= 80000) {
+        } elseif ($eligibility_amount >= 75000) {
             $fixed_roi = 23.5;
-            $tenure = 9;
-        } elseif ($eligibility_amount >= 60000) {
-            $fixed_roi = 23.8;
             $tenure = 9;
         } elseif ($eligibility_amount >= 50000) {
             $fixed_roi = 24.0;
@@ -949,7 +966,7 @@ class LoanEligibilityModel extends Model
         // $existing_emi = max($this->totalEMI, $this->previous_emi);
         // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
         $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
-        // log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . '. Take which ever is higher and that is = ' . $existing_emi);
+        // log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . ' and from Credit Report =' . $this->totalEMIAmountFromCibil . '. Take which ever is higher and that is = ' . $existing_emi);
         $net_affordable_emi = $foir_limit - $existing_emi;
 
         if ($gross_income >= 0 && $gross_income <= 33000) {

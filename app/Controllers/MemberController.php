@@ -331,7 +331,113 @@ class MemberController extends BaseController
             // return $this->respond(['members' => $data], 200);
         }
     }
+    // Update Member
+    public function update_member_los()
+    {
+        //
+        date_default_timezone_set('Asia/Kolkata');
+        $model = new MemberModel();
 
+        $mobile = $this->request->getVar('mobile');
+        $mobileFour = substr($mobile, -4);
+        $name_str = strtoupper($this->request->getVar('name'));
+        $name_str = str_replace(" ", "", $name_str);
+        $name_str = substr($name_str, 0, 4);
+        $name_str = str_replace(['.', '/'], '', $name_str);
+        $signDate = date('Y-m-d');
+        $date = date('Y-m-d H:i:s');
+        $signIn = date('H:i:s');
+        $employee = $this->request->getVar('agent');
+
+        if ($this->request->getVar('panNo') != '') {
+            # code...
+            $pan = $this->request->getVar('panNo');
+        } else {
+            # code...
+            $pan = $this->request->getVar('mobile') . "/NA";
+        }
+        if ($this->request->getVar('adhar') != '') {
+            # code...
+            $adhar = $this->request->getVar('adhar');
+        } else {
+            # code...
+            $adhar = $this->request->getVar('mobile') . "/N";
+        }
+        if ($this->request->getVar('gstNo') != '') {
+            # code...
+            $gst = $this->request->getVar('gstNo');
+        } else {
+            # code...
+            $gst = $this->request->getVar('panNo') . "/NA";
+        }
+        if ($this->request->getVar('gender') === 'M') {
+            # code...
+            $gender = 'Male';
+        } elseif ($this->request->getVar('gender') === 'F') {
+            # code....
+            $gender = 'Female';
+        } else {
+            # code...
+            $gender = Null;
+        }
+
+
+
+        $data = [
+            // 'member_id'         =>  $name_str . $mobileFour,
+            'groupName'         => $this->request->getVar('groupName'),
+            'groupId'           => $this->request->getVar('groupId'),
+            'gst'               => $gst,
+            'pan'               => $pan,
+            'adhar'             => $adhar,
+            'name'              => $this->request->getVar('name'),
+            'location'          => $this->request->getVar('memberLocation'),
+            'pincode'           => $this->request->getVar('groupPin'),
+            'gender'            => $gender,
+            'marital'           => $this->request->getVar('marital'),
+            'occupation'        => $this->request->getVar('occupation'),
+            'businessType'      => $this->request->getVar('businessType'),
+            'businessName'      => $this->request->getVar('businessName'),
+            'footFall'          => $this->request->getVar('footFall'),
+            'stock'             => $this->request->getVar('stock'),
+            'outstanding'       => $this->request->getVar('outstanding'),
+            'estab'             => $this->request->getVar('estab'),
+            'dailySales'        => $this->request->getVar('dailySales'),
+            'image'             => $this->request->getVar('downloadURLP1'),
+            'bankAccount'       => $this->request->getVar('bankAccount'),
+            'ifsc'              => $this->request->getVar('ifsc'),
+            'bankName'          => $this->request->getVar('bankName'),
+            'bankBranch'        => $this->request->getVar('bankBranch'),
+            'bankCity'          => $this->request->getVar('bankCity'),
+            'bankState'         => $this->request->getVar('bankState'),
+            'bankAddress'       => $this->request->getVar('bankAddress'),
+            'agent'             => $this->request->getVar('agent'),
+            'aadhaarVerified'   => $this->request->getVar('authenticate'),
+            'aadhaarData'       => $this->request->getVar('kycLocalValueSubmit'),
+            'gstData'           => $this->request->getVar('gstLocalValueSubmit'),
+            'panName'           => $this->request->getVar('panName'),
+            'created_at'        => $date,
+            'month_purchase'    => $this->request->getVar('purchaseMonthly'),
+            'eli_run'           => "N",
+            'userDOB'           => $this->request->getVar('panDob'),
+            'loanPurpose'       => $this->request->getVar('loanPurpose'),
+        ];
+
+
+
+        $query = $model
+            ->where('mobile', $mobile)
+
+            ->set($data)
+            ->update();
+
+        if (!$query) {
+            return $this->respond(['error' => 'Invalid Request.' . $query], 401);
+        } else {
+            # code...
+            return $this->respond(['members' => $data], 200);
+        }
+    }
     // From CRM
 
     public function view_member()
@@ -339,7 +445,7 @@ class MemberController extends BaseController
         $model = new MemberModel();
         $groupID = $this->request->getVar('groupID');
         $employeeIDTotal = $this->request->getVar('employeeIDTotal');
-        $groupMembers = $model->where('groupId', $groupID)->where('agent', $employeeIDTotal)->countAllResults();
+        $groupMembers = $model->where('groupId', $groupID)->countAllResults();
 
         if (is_null($groupMembers)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
@@ -355,7 +461,8 @@ class MemberController extends BaseController
         $groupID = $this->request->getVar('groupID');
         $employeeIDG = $this->request->getVar('employeeIDG');
         $member = $model->where('groupId', $groupID)
-            ->where('agent', $employeeIDG)->findAll();
+            // ->where('agent', $employeeIDG)
+            ->findAll();
 
         if (is_null($member)) {
             return $this->respond(['error' => 'Invalid Request.'], 401);

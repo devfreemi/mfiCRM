@@ -172,18 +172,22 @@ class RetailerDocumentsController extends BaseController
 
         // Check Pan_Card
         $panExists = $builder->where('member_id', $memberId)
-            ->where('document_type', 'PAN_ID')
+            ->where('document_type', 'PAN')
             ->countAllResults();
 
         // Reset builder for next query
         $builder = $db->table('retailerdocuments');
 
         // Check Voter_ID
-        $voterExists = $builder->where('member_id', $memberId)
-            ->where('document_type', 'VOTER_ID')
+        $voterExistsF = $builder->where('member_id', $memberId)
+            ->where('document_type', 'VOTER_FRONT')
             ->countAllResults();
 
-        if ($panExists > 0 && $voterExists > 0) {
+        $voterExistsB = $builder->where('member_id', $memberId)
+            ->where('document_type', 'VOTER_BACK')
+            ->countAllResults();
+        log_message('info', "PAN Count: $panExists, Voter Front: $voterExistsF, Voter Back: $voterExistsB");
+        if ($panExists > 0 && $voterExistsF > 0 && $voterExistsB > 0) {
             return $this->respond([
                 'status' => true,
                 'message' => 'captured'
@@ -337,7 +341,7 @@ class RetailerDocumentsController extends BaseController
         $builder = $db->table('retailerdocuments');
 
         // Required business documents
-        $requiredDocs = ['Doc_GST', 'Doc_Trade_License', 'Doc_ITR', 'Doc_Purchase_Bill', 'Doc_Sale_Bill'];
+        $requiredDocs = ['Doc_GST', 'Doc_Trade_License', 'Doc_ITR'];
 
         $uploaded = [];
 
@@ -452,7 +456,7 @@ class RetailerDocumentsController extends BaseController
                     // Config
                     $apiKey = getenv('SUREPASS_API_KEY_PROD');
                     $url = 'https://kyc-api.surepass.app/api/v1/bank/statement/download';
-                    $maxAttempts = 35; // Maximum retries
+                    $maxAttempts = 500; // Maximum retries
                     $attempt = 0;
                     $finalResponse = null;
 
@@ -580,12 +584,15 @@ class RetailerDocumentsController extends BaseController
             'Doc_GST',
             'Doc_Trade_License',
             'Doc_Shop_Property_Tax',
-            'Doc_Purchase_Bill',
+            'Doc_Purchase_Bill_1',
+            'Doc_Purchase_Bill_2',
+            'Doc_Purchase_Bill_3',
             'Doc_Sale_Bill',
             'BANK_STATEMENT',
             'Doc_House_Electricity_Bill',
-            'VOTER_ID',
-            'PAN_ID',
+            'VOTER_FRONT',
+            'VOTER_BACK',
+            'PAN',
             'Doc_House_Property_Tax',
             'Doc_Shop_Electricity_Bill',
             'Doc_ITR',

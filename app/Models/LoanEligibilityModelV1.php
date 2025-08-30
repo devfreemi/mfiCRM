@@ -223,59 +223,35 @@ class LoanEligibilityModelV1 extends Model
         // Ensure the loan amount is within limits
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
 
-        // Fixed ROI and Tenure based on Loan Eligibility Amount
-        if ($eligibility_amount >= 200000) {
-            $fixed_roi = 26.0;
+        // Fixed ROI & Tenure Mapping (Loan 2.5L–50k, ROI 18–24%, Tenure 24–6 months)
+        if ($eligibility_amount >= 250000) {
+            $fixed_roi = 18.0;
             $tenure = 24;
+        } elseif ($eligibility_amount >= 220000) {
+            $fixed_roi = 18.8;
+            $tenure = 21;
         } elseif ($eligibility_amount >= 190000) {
-            $fixed_roi = 26.2;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 180000) {
-            $fixed_roi = 26.4;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 170000) {
-            $fixed_roi = 26.6;
-            $tenure = 24;
+            $fixed_roi = 19.6;
+            $tenure = 21;
         } elseif ($eligibility_amount >= 160000) {
-            $fixed_roi = 26.8;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 150000) {
-            $fixed_roi = 27.0;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 140000) {
-            $fixed_roi = 27.2;
-            $tenure = 21;
+            $fixed_roi = 20.8;
+            $tenure = 18;
         } elseif ($eligibility_amount >= 130000) {
-            $fixed_roi = 27.4;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 120000) {
-            $fixed_roi = 27.6;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 110000) {
-            $fixed_roi = 27.8;
-            $tenure = 21;
+            $fixed_roi = 22.0;
+            $tenure = 15;
         } elseif ($eligibility_amount >= 100000) {
-            $fixed_roi = 28.0;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 90000) {
-            $fixed_roi = 28.2;
-            $tenure = 18;
-        } elseif ($eligibility_amount >= 80000) {
-            $fixed_roi = 28.4;
-            $tenure = 18;
-        } elseif ($eligibility_amount >= 70000) {
-            $fixed_roi = 28.6;
-            $tenure = 18;
-        } elseif ($eligibility_amount >= 60000) {
-            $fixed_roi = 28.8;
+            $fixed_roi = 23.0;
             $tenure = 12;
+        } elseif ($eligibility_amount >= 75000) {
+            $fixed_roi = 23.5;
+            $tenure = 9;
         } elseif ($eligibility_amount >= 50000) {
-            $fixed_roi = 29.0;
-            $tenure = 12;
+            $fixed_roi = 24.0;
+            $tenure = 6;
         } else {
-            // Should not be eligible — fallback
-            $fixed_roi = 30.0;
-            $tenure = 12;
+            // below 50k not allowed
+            $fixed_roi = null;
+            $tenure = null;
         }
 
         // Ensure ROI is the higher of the calculated ROI or the fixed ROI

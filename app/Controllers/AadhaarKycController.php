@@ -852,6 +852,7 @@ class AadhaarKycController extends BaseController
                         // return $this->respond(['gst' => $response_decode_gst], 200);
                         $response_decode_gst = json_decode($response_gst, true);
                         // return $this->respond(['panVerify' => $response_decode], 200);
+                        log_message('info', 'PAN Verification for User API & GST Search by PAN API called & Success. Payload: ' . $response_gst);
                         return $this->respond([
                             'panVerify' => $response_decode,
                             'gst' => $response_decode_gst
