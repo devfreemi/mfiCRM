@@ -923,7 +923,7 @@ class AadhaarKycController extends BaseController
                     'gstType'           => $response_decode['data']['taxpayer_type'],
                     'holderEmail'       => $response_decode['data']['contact_details']['principal']['email'],
                     'holderMobile'      => $response_decode['data']['contact_details']['principal']['mobile'],
-                    'holderName'        => $response_decode['data']['promoters'][0],
+                    'holderName'        => $response_decode['data']['promoters'][0] ?? $response_decode['data']['legal_name'],
                     'tradeName'         => $response_decode['data']['business_name'],
                     'regDate'           => $response_decode['data']['date_of_registration'],
                     'businessAddress'   => $response_decode['data']['contact_details']['principal']['address'],

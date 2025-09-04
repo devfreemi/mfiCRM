@@ -209,7 +209,7 @@ class MemberController extends BaseController
             'gstData'           => $this->request->getVar('gstLocalValueSubmit'),
             'panName'           => $this->request->getVar('panName'),
             'created_at'        => $date,
-            'eli_run'           => "Y",
+            'eli_run'           => "N",
             'userDOB'           => $this->request->getVar('panDob'),
             'month_purchase'    => $this->request->getVar('month_purchase')
         ];

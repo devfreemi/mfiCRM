@@ -27,7 +27,7 @@ class MemberLoginController extends BaseController
 
         $key = getenv('JWT_SECRET');
         $iat = time(); // current timestamp value
-        $exp = $iat + 3600 * 24;
+        $exp = $iat + (3600 * 24 * 30); // jwt valid for 30 days
 
         $payload = array(
             "iss" => "retailpe.in",
@@ -68,7 +68,7 @@ class MemberLoginController extends BaseController
 
         $key = getenv('JWT_SECRET');
         $iat = time(); // current timestamp value
-        $exp = $iat + 3600 * 24;
+        $exp = $iat + (3600 * 24 * 30);
 
         $payload = array(
             "iss" => "NFSPL",

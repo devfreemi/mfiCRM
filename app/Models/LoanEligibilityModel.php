@@ -352,12 +352,12 @@ class LoanEligibilityModel extends Model
     public function serviceUPIInwardCheck()
     {
         $monthly = $this->monthly_sales ?: ($this->daily_sales * 30);
-        $required = 0.5 * $monthly;
+        $required = 0.3 * $monthly;
         log_message('info', "serviceUPIInwardCheck: upiInward={$this->upiInward}, monthly_sales={$monthly}, required={$required}");
 
         if ($monthly > 0 && $this->upiInward < $required) {
             log_message('error', "serviceUPIInwardCheck: failed - upiInward < required");
-            return ['status' => false, 'reason' => 'UPI inward is less than 50% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required]];
+            return ['status' => false, 'reason' => 'UPI inward is less than 30% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required]];
         }
 
         log_message('info', "serviceUPIInwardCheck: passed");
