@@ -36,6 +36,11 @@
 				</a>
 			</li>
 			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>android-leads">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Inbound Leads</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
 				<a class="sidebar-link" href="<?= base_url() ?>fi-report">
 					<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">FI Data</span>
 				</a>
@@ -65,6 +70,7 @@
 					<i class="align-middle" data-feather="user"></i> <span class="user">Geo Tagging</span>
 				</a>
 			</li>
+
 
 
 

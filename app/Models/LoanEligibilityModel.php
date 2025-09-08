@@ -12,7 +12,7 @@ class LoanEligibilityModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'cibil', 'cibilReport', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['member_id', 'first_date', 'second_date', 'eligibility', 'loan_amount', 'roi', 'tenure', 'score', 'eligibilityV2', 'loan_amountV2', 'roiV2', 'tenureV2', 'scoreV2', 'reasonV2', 'reason', 'cibil', 'cibilReport', 'created_at', 'updated_at'];
 
     /* --------------------------
      * State (input) fields
@@ -356,8 +356,8 @@ class LoanEligibilityModel extends Model
         log_message('info', "serviceUPIInwardCheck: upiInward={$this->upiInward}, monthly_sales={$monthly}, required={$required}");
 
         if ($monthly > 0 && $this->upiInward < $required) {
-            log_message('error', "serviceUPIInwardCheck: failed - upiInward < required");
-            return ['status' => false, 'reason' => 'UPI inward is less than 30% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required]];
+            log_message('info', "serviceUPIInwardCheck: not matched get higher ROI - upiInward < required");
+            return ['status' => true, 'reason' => 'UPI inward is less than 30% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required, 'scoreDelta' => -0.5, 'roiDelta' => 0.50]];
         }
 
         log_message('info', "serviceUPIInwardCheck: passed");
@@ -834,7 +834,7 @@ class LoanEligibilityModel extends Model
         $final_roi = min(max($roi, $fixed_roi), 30);
 
         // score threshold
-        if ($score < 7) {
+        if ($score < 6) {
             log_message('error', 'calculateLoanEligibility: failed - low score ' . $score);
             return [
                 "Eligibility" => "Not Eligible",
@@ -964,9 +964,9 @@ class LoanEligibilityModel extends Model
         $foir_limit = $gross_income * 0.6;
         // Pick higher EMI
         // $existing_emi = max($this->totalEMI, $this->previous_emi);
-        // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
-        $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
-        // log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . ' and from Credit Report =' . $this->totalEMIAmountFromCibil . '. Take which ever is higher and that is = ' . $existing_emi);
+        $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);
+        // $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi);
+        log_message('info', 'checkCurrentEMI: from Bank = ' . $this->totalEMI . ' and from input field = ' . $this->previous_emi . ' and from Credit Report =' . $this->totalEMIAmountFromCibil . '. Take which ever is higher and that is = ' . $existing_emi);
         $net_affordable_emi = $foir_limit - $existing_emi;
 
         if ($gross_income >= 0 && $gross_income <= 33000) {

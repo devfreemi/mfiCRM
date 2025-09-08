@@ -130,7 +130,7 @@ class BankController extends BaseController
     // Bank Verification for RM app
     public function bank_verification_rm_app()
     {
-
+        $member_id = $this->request->getVar('memberId_bank');
         $dataApi = array(
             'id_number'                 => $this->request->getVar('acc_no'),
             'ifsc'                      => $this->request->getVar('ifsc_code'),
@@ -163,16 +163,43 @@ class BankController extends BaseController
         $response_decode_an = json_decode($responseDown, true);
 
         curl_close($curl);
+        $data = [
+            'bankName' => $response_decode_an['data']['ifsc_details']['bank_name'],
+            'ifsc' => $response_decode_an['data']['ifsc_details']['ifsc'],
+            'bankBranch' => $response_decode_an['data']['ifsc_details']['branch'],
+            'bankCity' => $response_decode_an['data']['ifsc_details']['city'],
+            'bankState' => $response_decode_an['data']['ifsc_details']['state'],
+
+            'bankAddress' => $response_decode_an['data']['ifsc_details']['address'],
+            'bankAccount' => $this->request->getVar('acc_no'),
+            // 'code' => $response_decode_an['status_code'],
+        ];
+        curl_close($curl);
         if ($error_an) {
             # code...
             log_message('error', 'Bank Verification Failed. Error: ' . $error_an);
             return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
         } else {
             # code...
+            $db = db_connect();
+            $builder = $db->table('members');
+            $builder->where('member_id', $member_id);
+            $builder->update($data);
             log_message('info', 'Bank Verification Success. Payload: ' . $responseDown);
             return $this->respond([
                 'bank_verified' => $response_decode_an
             ], 200);
         }
+        // if ($error_an) {
+        //     # code...
+        //     log_message('error', 'Bank Verification Failed. Error: ' . $error_an);
+        //     return $this->respond(['error' => 'Internal Exception!' . $error_an], 502);
+        // } else {
+        //     # code...
+        //     log_message('info', 'Bank Verification Success. Payload: ' . $responseDown);
+        //     return $this->respond([
+        //         'bank_verified' => $response_decode_an
+        //     ], 200);
+        // }
     }
 }

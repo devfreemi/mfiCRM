@@ -362,14 +362,14 @@ class LoanEligibilityController extends BaseController
             // 'cibil' => $cibil,
             'member_id' => $memberId,
             // 'cibilReport' =>  $cibilReport,
-            'first_date' => date('Y-m-d'),
-            'loan_amount' => $result['LoanAmount'] ?? 0,
-            'roi' => $result['FixedROI'] ?? 0,
-            'tenure' => $result['Tenure'] ?? 0,
-            'emi' => $result['EMI'] ?? 0,
-            'score' => $result['Score'] ?? 0,
-            'eligibility' => $result['Eligibility'] ?? 'Not Eligible',
-            'reason' => $result['Reason'] ?? '',
+            'second_date' => date('Y-m-d'),
+            'loan_amountV2' => $result['LoanAmount'] ?? 0,
+            'roiV2' => $result['FixedROI'] ?? 0,
+            'tenureV2' => $result['Tenure'] ?? 0,
+            'emiV2' => $result['EMI'] ?? 0,
+            'scoreV2' => $result['Score'] ?? 0,
+            'eligibilityV2' => $result['Eligibility'] ?? 'Not Eligible',
+            'reasonV2' => $result['Reason'] ?? '',
         ];
 
         $db = db_connect();
@@ -570,7 +570,8 @@ class LoanEligibilityController extends BaseController
         $loanModel = new LoanEligibilityModel();
         $data = $loanModel->join('members', 'members.member_id  = initial_eli_run.member_id')
             // ->join('loans', 'loans.member_id = initial_eli_run.member_id', 'left')
-            ->where('initial_eli_run.eligibility', 'Eligible')
+            ->where('initial_eli_run.eligibilityV2', 'Eligible')
+            ->orWhere('initial_eli_run.eligibility', 'Eligible')
             ->where('members.eli_run', 'Y')
             ->where('agent', $empID)->findAll();
 

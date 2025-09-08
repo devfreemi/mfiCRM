@@ -1,12 +1,13 @@
 <?php include 'fragments/head.php'; ?>
 <?php include 'fragments/sidebar.php'; ?>
-<link href="https://cdn.datatables.net/2.1.0/css/dataTables.bootstrap5.css" rel="stylesheet">
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.1.0/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+<style>
+    table.dataTable thead th {
+        background-color: #f8f9fa;
+    }
+</style>
 
 
 
@@ -36,27 +37,32 @@
                 <div class="col-xl-12 col-xxl-12 d-flex">
 
                     <div class="w-100 table-responsive">
-                        <table id="branch" class="table table-striped">
+                        <table id="feedbackTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
-                                    <th>Eligibility</th>
-                                    <th>Remarks</th>
+                                    <th>V1 Checking</th>
+                                    <th>V1 Status</th>
+                                    <th>V2 Checking</th>
+                                    <th>V2 Status</th>
+                                    <th>CRE Score V1</th>
+                                    <th>CRE Score V2</th>
+                                    <th>Credit Score</th>
+                                    <th>Business Name</th>
+                                    <th>Business Type</th>
+                                    <th>Owner Name</th>
                                     <th>Market Name</th>
-                                    <th>Market Type</th>
+                                    <!-- <th>Market Type</th> -->
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
                                     <th>GST Number</th>
-                                    <th>Business Name</th>
-                                    <th>Business Type</th>
-                                    <th>Owner Name</th>
+
                                     <th>Location</th>
                                     <th>Pincode</th>
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
-                                    <th>Daily Footfall</th>
                                     <th>Current EMI</th>
                                     <th>Established Year</th>
                                     <th>Images</th>
@@ -77,8 +83,9 @@
                                         <td><?php echo $i++; ?></td>
                                         <td><?php echo $row->member_id; ?></td>
                                         <?php
+                                        $eli = 'Not Run';
 
-                                        if ($row->eli_run === "Y") {
+                                        if ($row->eli_run === "W" || $row->eli_run === "Y") {
                                             $builderB = $db->table('initial_eli_run');
                                             $builderB->select('*');
                                             $builderB->where('member_id ', $row->member_id);
@@ -90,37 +97,83 @@
                                         ?>
 
                                             <td class="text-success fw-bold">Checked</td>
+                                            <td>
+                                                <?= $eli == 'Eligible' ? '<span class="text-success fw-bold">' . $eli . '</span>' : '<span class="text-danger fw-bold">' . $eli . '</span>' ?>
+                                            </td>
                                         <?php
                                         } else {
-                                            # code...
                                         ?>
-                                            <td class="text-danger">Not Checked</td>
+                                            <td class="text-warning">Not Checked</td>
+                                            <td class="text-warning text-center">⚠️</td>
                                         <?php  } ?>
-
                                         <?php
-                                        if ($row->remarks === 'Reject') { ?>
+                                        $eliV2 = Null;
 
-                                            <td class="text-danger fw-bold">Rejected</td>
-                                        <?php } else { ?>
-                                            <td class="text-success fw-bold"><?php echo $row->remarks; ?></td>
-                                        <?php }
-
+                                        if ($row->eli_run === "Y") {
+                                            $builderB2 = $db->table('initial_eli_run');
+                                            $builderB2->select('*');
+                                            $builderB2->where('member_id ', $row->member_id);
+                                            $queryB2 = $builderB2->get();
+                                            // $countEli = $builderB->countAllResults();
+                                            foreach ($queryB2->getResult() as $rowB2) {
+                                                $eliV1 = $rowB2->eligibility;
+                                                $eliV2 = $rowB2->eligibilityV2;
+                                            }
                                         ?>
 
+                                            <td>
+                                                <?php if ($eliV2 === null): ?>
+                                                    <span class="text-warning text-center">Not Checked</span>
+                                                <?php else: ?>
+                                                    <span class="text-success fw-bold">Checked</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($eliV2 === null): ?>
+                                                    <span class="text-warning">⚠️</span>
+                                                <?php elseif ($eliV2 === 'Eligible'): ?>
+                                                    <span class="text-success fw-bold"><?= $eliV2 ?></span>
+                                                <?php else: ?>
+                                                    <span class="text-danger fw-bold"><?= $eliV2 ?></span>
+                                                <?php endif; ?>
+                                            </td>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <td class="text-warning">Not Checked</td>
+                                            <td class="text-warning text-center">⚠️</td>
+                                        <?php  } ?>
+                                        <?php
+                                        $scoreV1 = 0;
+                                        $scoreV2 = 0;
+                                        $cibil = 0;
+                                        $builderS = $db->table('initial_eli_run');
+                                        $builderS->select('*');
+                                        $builderS->where('member_id ', $row->member_id);
+                                        $queryS = $builderS->get();
+                                        // $countEli = $builderB->countAllResults();
+                                        foreach ($queryS->getResult() as $rowS) {
+                                            $scoreV1 = $rowS->score;
+                                            $scoreV2 = $rowS->scoreV2;
+                                            $cibil = $rowS->cibil;
+                                        }
+                                        ?>
+                                        <td><?php echo $scoreV1; ?></td>
+                                        <td><?php echo $scoreV2; ?></td>
+                                        <td><?php echo $cibil; ?></td>
+                                        <td><?php echo $row->businessName; ?></td>
+                                        <td><?php echo $row->businessType; ?></td>
+                                        <td><?php echo $row->owner; ?></td>
                                         <td><?php echo $row->groupName; ?></td>
-                                        <td><?php echo $row->group_type; ?></td>
                                         <td><?php echo $row->name; ?></td>
                                         <td><?php echo $row->r_mobile; ?></td>
                                         <td><?php echo $row->pan; ?></td>
                                         <td><?php echo $row->gst; ?></td>
-                                        <td><?php echo $row->businessName; ?></td>
-                                        <td><?php echo $row->businessType; ?></td>
-                                        <td><?php echo $row->owner; ?></td>
+
                                         <td><?php echo $row->location; ?></td>
                                         <td><?php echo $row->pincode; ?></td>
                                         <td><?php echo $row->dailySales; ?></td>
                                         <td><?php echo $row->stock; ?></td>
-                                        <td><?php echo $row->footFall; ?></td>
                                         <td><?php echo $row->outstanding; ?></td>
                                         <td><?php echo $row->estab; ?></td>
 
@@ -151,24 +204,29 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Members Id</th>
-                                    <th>Eligibility</th>
+                                    <th>V1 Checking</th>
+                                    <th>V1 Status</th>
+                                    <th>V2 Checking</th>
+                                    <th>V2 Status</th>
+                                    <th>CRE Score V1</th>
+                                    <th>CRE Score V2</th>
+                                    <th>Credit Score</th>
+                                    <th>Business Name</th>
+                                    <th>Business Type</th>
+                                    <th>Owner Name</th>
                                     <th>Market Name</th>
-                                    <th>Market Type</th>
+                                    <!-- <th>Market Type</th> -->
                                     <th>Agent Name</th>
                                     <th>Mobile</th>
                                     <th>PAN Number</th>
                                     <th>GST Number</th>
-                                    <th>Business Name</th>
-                                    <th>Business Type</th>
-                                    <th>Owner Name</th>
+
                                     <th>Location</th>
                                     <th>Pincode</th>
                                     <th>Daily Sales</th>
                                     <th>Current Stock</th>
-                                    <th>Daily Footfall</th>
                                     <th>Current EMI</th>
                                     <th>Established Year</th>
-                                    <th>Remarks</th>
                                     <th>Images</th>
                                     <th>Date</th>
                                     <th>Action</th>
@@ -200,15 +258,24 @@
 </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
 <script>
-    // new DataTable('#branch');
-    $('#branch').DataTable({
-        responsive: true,
-        layout: {
-            topStart: {
-                buttons: ['excelHtml5']
+    $(document).ready(function() {
+        $('#feedbackTable').DataTable({
+            responsive: true,
+            pageLength: 25,
+            language: {
+                search: "🔍 Search:",
+                lengthMenu: "Show _MENU_ entries",
+                info: "Showing _START_ to _END_ of _TOTAL_ records",
             }
-        }
+        });
     });
 </script>
 <script type="text/javascript">

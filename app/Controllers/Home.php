@@ -26,6 +26,10 @@ class Home extends BaseController
     {
         return view('members');
     }
+    public function members_app()
+    {
+        return view('app-leads');
+    }
     public function member_edit()
     {
         return view('member_edit');

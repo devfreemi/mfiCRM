@@ -52,6 +52,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->get('payment/conformation', 'PaymentController::pay_conf');
     $routes->add('loan-create', 'LoanApi::loan_create');
     $routes->add('retailers/cibil-report/(:any)', 'LoanEligibilityController::cibil_report/$1');
+    $routes->add('android-leads', 'Home::members_app');
     // PFD Test
 
 });
