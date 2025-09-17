@@ -20,8 +20,8 @@
 				</a>
 			</li>
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="<?= base_url() ?>bank">
-					<i class="align-middle" data-feather="user"></i> <span class="user">Bank Details</span>
+				<a class="sidebar-link" href="<?= base_url() ?>collection">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Collection</span>
 				</a>
 			</li>
 			<li class="sidebar-item">
@@ -70,7 +70,11 @@
 					<i class="align-middle" data-feather="user"></i> <span class="user">Geo Tagging</span>
 				</a>
 			</li>
-
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="<?= base_url() ?>send-rcs">
+					<i class="align-middle" data-feather="user"></i> <span class="user">Start Campaign</span>
+				</a>
+			</li>
 
 
 

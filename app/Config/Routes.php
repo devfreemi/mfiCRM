@@ -53,6 +53,8 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('loan-create', 'LoanApi::loan_create');
     $routes->add('retailers/cibil-report/(:any)', 'LoanEligibilityController::cibil_report/$1');
     $routes->add('android-leads', 'Home::members_app');
+    $routes->add('send-rcs', 'CampaignController::index');
+    $routes->add('collection', 'CollectionController::index');
     // PFD Test
 
 });
@@ -83,9 +85,10 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/member-loan-api-v1', 'LoanApi::applied_loan');
     $routes->add('api/loan-list-api-v1', 'LoanApi::list_of_loan');
     $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
+    $routes->add('api/loan-emi-count-api-v1', 'LoanApi::total_emi_count');
     $routes->add('api/total-group-api-v1', 'GroupListApi::total_group');
     $routes->add('api/total-loan-status-count-api-v1', 'LoanApi::status_count_of_loan');
-    $routes->add('api/loan-emi-api-v1', 'LoanApi::loan_emi');
+    $routes->add('api/rm/loan-emi-api-v1', 'LoanApi::loan_emi_rm');
     $routes->add('api/loan-emi-payment-status-api-v1', 'LoanApi::loan_emi_payment_status');
     $routes->add('api/loan-disbursement-status', 'LoanApi::disbursement_status');
     $routes->add('api/loan-disbursement-member-status', 'LoanApi::disbursement_status_member');
@@ -161,6 +164,7 @@ $routes->group(
         $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
         // $routes->add('api/loan-details-api-v1', 'LoanApi::details_of_loan');
         $routes->add('api/retailer-loan-doc-api-v1', 'MemberController::retailer_loan_doc');
+        $routes->add('api/loan-emi-api-v1', 'LoanApi::loan_emi');
     }
 );
 $routes->add('payment/redirect/gateway', 'PaymentController::app_payment_collection');

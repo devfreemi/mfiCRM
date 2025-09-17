@@ -49,6 +49,8 @@
                                     <th>CRE Score V1</th>
                                     <th>CRE Score V2</th>
                                     <th>Credit Score</th>
+                                    <th>Pre Approved Amount</th>
+                                    <th>Final Approval Amount</th>
                                     <th>Business Name</th>
                                     <th>Business Type</th>
                                     <th>Owner Name</th>
@@ -147,6 +149,8 @@
                                         $scoreV1 = 0;
                                         $scoreV2 = 0;
                                         $cibil = 0;
+                                        $loan_amount = 0;
+                                        $loan_amountV2 = 0;
                                         $builderS = $db->table('initial_eli_run');
                                         $builderS->select('*');
                                         $builderS->where('member_id ', $row->member_id);
@@ -156,11 +160,15 @@
                                             $scoreV1 = $rowS->score;
                                             $scoreV2 = $rowS->scoreV2;
                                             $cibil = $rowS->cibil;
+                                            $loan_amount = $rowS->loan_amount;
+                                            $loan_amountV2 = $rowS->loan_amountV2;
                                         }
                                         ?>
                                         <td><?php echo $scoreV1; ?></td>
                                         <td><?php echo $scoreV2; ?></td>
                                         <td><?php echo $cibil; ?></td>
+                                        <td><?php echo $loan_amount; ?></td>
+                                        <td><?php echo $loan_amountV2; ?></td>
                                         <td><?php echo $row->businessName; ?></td>
                                         <td><?php echo $row->businessType; ?></td>
                                         <td><?php echo $row->owner; ?></td>
@@ -211,6 +219,8 @@
                                     <th>CRE Score V1</th>
                                     <th>CRE Score V2</th>
                                     <th>Credit Score</th>
+                                    <th>Pre Approved Amount</th>
+                                    <th>Final Approval Amount</th>
                                     <th>Business Name</th>
                                     <th>Business Type</th>
                                     <th>Owner Name</th>
@@ -280,7 +290,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#branch").on("click", ".view", function() {
+        $("#feedbackTable").on("click", ".view", function() {
             var member_id = $(this).attr("id");
 
             $.ajax({

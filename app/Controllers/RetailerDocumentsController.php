@@ -667,14 +667,18 @@ class RetailerDocumentsController extends BaseController
                         array(
                             "type" => "input_text",
                             "text" => "You are an expert data analyst. Analyze the provided image carefully. 
-                                1. Identify all rows that contain 'Todays Sale' or similar terms. 
-                                2. Extract the numeric sale values from each of those rows. 
-                                3. Calculate the SUM of all 'Todays Sale' rows. 
-                                4. Calculate the AVERAGE sale value. 
-                                5. Respond only with structured JSON in this format:
-                                {\"total_sale\": number, \"average_sale\": number}.
-                                6. If the image is missing, unreadable, or does not contain sales data,
-                                return: {\"total_sale\": \"no data\", \"average_sale\": \"no data\"}."
+                                        1. Count the total number of rows in the table. 
+                                        2. If the total row count is less than 55, return:
+                                        {\"total_sale\": \"incorrect\", \"average_sale\": \"incorrect\", \"missing_rows\": \"yes\"}.
+                                        3. Otherwise:
+                                        a. Identify all rows that contain 'Todays Sale' or similar terms. 
+                                        b. Extract the numeric sale values from each of those rows. 
+                                        c. Calculate the SUM of all 'Todays Sale' rows. 
+                                        d. Calculate the AVERAGE sale value. 
+                                        e. Respond only with structured JSON in this format:
+                                            {\"total_sale\": number, \"average_sale\": number}.
+                                        4. If the image is missing, unreadable, or does not contain sales data,
+                                        return: {\"total_sale\": \"no data\", \"average_sale\": \"no data\"}."
                         ),
                         array(
                             "type" => "input_image",

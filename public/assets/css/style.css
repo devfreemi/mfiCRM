@@ -326,3 +326,36 @@
    .bg-brand {
        background-color: #6819e6 !important;
    }
+.glass-card {
+    max-width: 380px;
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    color: #fff;
+}
+.glass-card-purple {
+    background: linear-gradient(135deg, rgba(104, 25, 230, 0.85), rgba(155, 89, 182, 0.85));
+}
+.glass-card-blue {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.85), rgba(0, 210, 255, 0.85));
+}
+.glass-card-green {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.85), rgba(0, 200, 83, 0.85));
+}
+.glass-card-orange {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 0.85), rgba(255, 193, 7, 0.85));
+}
+.icon-glass {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75);
+}

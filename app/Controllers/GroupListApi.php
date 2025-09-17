@@ -13,16 +13,27 @@ class GroupListApi extends BaseController
     public function group_list_api()
     {
         //
+        $db = db_connect();
         $model = new GroupModel();
         // $agentID   = $this->request->getVar('employeeID');
 
-        $group = $model->findAll();
+        // Fetch all groups
+        $groups = $model->findAll();
 
-        if (is_null($group)) {
-            return $this->respond(['error' => 'Invalid Request.'], 401);
+        if (empty($groups)) {
+            return $this->respond(['error' => 'No groups found.'], 404);
         }
 
-        return $this->respond($group, 200);
+        // Add member count to each group
+        foreach ($groups as &$group) {
+            $builder = $db->table('members');
+            $builder->where('groupId', $group['g_id']); // assuming PK is "id"
+            $memberCount = $builder->countAllResults();
+
+            $group['member_count'] = $memberCount; // append count to response
+        }
+
+        return $this->respond($groups, 200);
     }
     public function total_group()
     {

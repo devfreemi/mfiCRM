@@ -54,7 +54,6 @@ class MemberModel extends Model
         'userDOB',
         'gstData',
         'loanPurpose'
-
     ];
 
     // Dates

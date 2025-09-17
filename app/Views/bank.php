@@ -11,7 +11,7 @@
         <div class="container-fluid p-0">
 
             <h1 class="h3 mb-3"><strong>Company</strong> Bank Details</h1>
-
+            <a href="losretailpe://check">Open MyApp</a>
             <div class="row">
                 <?php if (session()->getFlashdata('msg')) : ?>
                     <div class="col-xl-12 col-xxl-12 my-5">

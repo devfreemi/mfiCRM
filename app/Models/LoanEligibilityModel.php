@@ -223,7 +223,7 @@ class LoanEligibilityModel extends Model
         // }
         // Decode CIBIL report if available
         log_message('info', "serviceCibil: checking cibil_score={$this->cibil_score}");
-        log_message('info', "serviceCibil: checking cibil_report={$this->cibil_report}");
+        // log_message('info', "serviceCibil: checking cibil_report={$this->cibil_report}");
         // Decode CIBIL report JSON
         $report = [];
         if (!empty($this->cibil_report)) {
@@ -269,7 +269,7 @@ class LoanEligibilityModel extends Model
                 }
             }
         }
-
+        $this->totalEMIAmountFromCibil = $totalEMIAmount;
         // ===== Log CIBIL summary =====
         $summary = [
             'CIBIL Score'           => $this->cibil_score,
@@ -279,7 +279,8 @@ class LoanEligibilityModel extends Model
             'Total EMI Amount'      => $totalEMIAmount,
             'Active Loan EMI Count' => count($activeLoanWiseEMI)
         ];
-        $this->totalEMIAmountFromCibil = $totalEMIAmount;
+
+
         log_message('info', 'CIBIL Summary: ' . json_encode($summary));
 
         foreach ($activeLoanWiseEMI as $loan) {
@@ -326,12 +327,12 @@ class LoanEligibilityModel extends Model
         // ===== STRICT LOGIC =====
         // Example rules:
 
-        if ($totalOutstanding > 500000) { // ₹5L+ total outstanding
-            return ['status' => false, 'reason' => 'High total outstanding balance', 'meta' => compact('totalOutstanding', 'totalLoanAccounts', 'totalActiveLoanAmount', 'activeLoanWiseEMI')];
-        }
-        if ($totalActiveLoanAmount > 300000) { // ₹3L+ active loan amount
-            return ['status' => false, 'reason' => 'High active loan exposure', 'meta' => compact('totalOutstanding', 'totalLoanAccounts', 'totalActiveLoanAmount', 'activeLoanWiseEMI')];
-        }
+        // if ($totalOutstanding > 500000) { // ₹5L+ total outstanding
+        //     return ['status' => false, 'reason' => 'High total outstanding balance', 'meta' => compact('totalOutstanding', 'totalLoanAccounts', 'totalActiveLoanAmount', 'activeLoanWiseEMI')];
+        // }
+        // if ($totalActiveLoanAmount > 300000) { // ₹3L+ active loan amount
+        //     return ['status' => false, 'reason' => 'High active loan exposure', 'meta' => compact('totalOutstanding', 'totalLoanAccounts', 'totalActiveLoanAmount', 'activeLoanWiseEMI')];
+        // }
 
         // Keep your old CIBIL score slab logic if needed
         if ($this->cibil_score >= 800) {
@@ -851,7 +852,7 @@ class LoanEligibilityModel extends Model
 
         // affordability minimum
         $min_loan = 50000;
-        $max_roi = 30;
+        $max_roi = 26;
         $min_tenure = 9;
         $min_required_emi = $this->serviceCalculateEMI($min_loan, $max_roi, $min_tenure);
         $loan_amount = $eligibility_amount;
@@ -900,7 +901,18 @@ class LoanEligibilityModel extends Model
                 "FOIR" => $foir_meta,
             ];
         }
+        // Always calculate loan amount based on EligibleEMI (if provided)
+        $eligibleEmi = $foir_meta['EligibleEMI'] ?? 0;
 
+        if ($eligibleEmi > 0) {
+            // Calculate loan amount from EligibleEMI
+            $loan_amount = $this->calculateLoanAmountFromEMI($eligibleEmi, $final_roi, $tenure);
+
+            // Recalculate EMI for consistency
+            $calculated_emi = $this->serviceCalculateEMI($loan_amount, $final_roi, $tenure);
+
+            log_message('info', "calculateLoanEligibility: LoanAmount recalculated from EligibleEMI={$eligibleEmi} → LoanAmount={$loan_amount}, EMI={$calculated_emi}");
+        }
         // Eligible - final result
         log_message('info', 'calculateLoanEligibility: Eligible. Preparing final result.');
 
@@ -919,23 +931,30 @@ class LoanEligibilityModel extends Model
     }
 
     // Simple Flat Loan Amount calculation from EMI
-    // private function calculateLoanAmountFromEMI($emi, $roi = null, $tenure = null)
-    // {
-    //     // use the same ROI & Tenure as in eligibility calculation
-    //     $roi    = $roi ?? $this->fixed_roi ?? 24; // fallback 24% yearly
-    //     $tenure = $tenure ?? $this->fixed_tenure ?? 12; // fallback 12 months
+    private function calculateLoanAmountFromEMI($emi, $roi = null, $tenure = null)
+    {
+        // use the same ROI & Tenure as in eligibility calculation
+        $roi    = $roi ?? $this->fixed_roi ?? 24; // fallback 24% yearly
+        $tenure = $tenure ?? $this->fixed_tenure ?? 12; // fallback 12 months
 
-    //     // Flat method: Loan Amount = (EMI × Tenure) / (1 + (ROI × Tenure / 1200))
-    //     // ROI in % yearly → convert to per year fraction
-    //     $loanAmount = ($emi * $tenure) / (1 + (($roi * $tenure) / 1200));
+        // Flat method: Loan Amount = (EMI × Tenure) / (1 + (ROI × Tenure / 1200))
+        // ROI in % yearly → convert to per year fraction
+        $loanAmount = ($emi * $tenure) / (1 + (($roi * $tenure) / 1200));
 
-    //     return round($loanAmount, 2);
-    // }
+        return round($loanAmount, 2);
+    }
     /* --------------------------
      * Existing helper kept (FOIR calc)
      * -------------------------- */
+
     public function calculateFOIREligibleEMI($daily_sales, $business_type, $existing_emi = 0)
     {
+
+        // Ensure CIBIL is parsed before calculation
+        if (!isset($this->totalEMIAmountFromCibil) || $this->totalEMIAmountFromCibil === 0) {
+            $this->serviceCibil();
+        }
+        log_message('info', "calculateFOIREligibleEMI: totalEMIFromCibil={$this->totalEMIAmountFromCibil}, totalEMIFromBank={$this->totalEMI}");
         $margin_table = [
             'Grocery' => [[0, 10000, 0.12], [10000, 25000, 0.12], [25000, 35000, 0.10], [35000, 50000, 0.08], [50000, 75000, 0.07], [75000, INF, 0.07]],
             'Stationary' => [[0, 10000, 0.25], [10000, 25000, 0.24], [25000, 35000, 0.23], [35000, 50000, 0.22], [50000, 75000, 0.21], [75000, INF, 0.20]],
@@ -962,6 +981,7 @@ class LoanEligibilityModel extends Model
         $monthly_sales = $daily_sales * 30;
         $gross_income = $monthly_sales * $margin;
         $foir_limit = $gross_income * 0.6;
+        log_message('error', 'Check EMI from CIBIL loaded ' . $this->totalEMIAmountFromCibil);
         // Pick higher EMI
         // $existing_emi = max($this->totalEMI, $this->previous_emi);
         $existing_emi = max($this->totalEMIAmountFromCibil, $this->previous_emi, $this->totalEMI);

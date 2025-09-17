@@ -201,8 +201,8 @@ class FiCheckController extends BaseController
 
             // Flat EMI: Total payable / total months
             $emi = round($due / $tenure, 2);
-            $disbursable = round($loan_amount - ($loan_amount * 0.04), 2);
-            $chargesandinsurance = round($loan_amount * 0.04);
+            $disbursable = round($loan_amount - (($loan_amount * 0.04) + 2643.2), 2);
+            $chargesandinsurance = round(($loan_amount * 0.04) + 2643.20, 2);
 
             $data_loan = [
 
@@ -217,6 +217,7 @@ class FiCheckController extends BaseController
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
+                'insurance_fee'      =>  2643.20,
                 'interest'          =>  $interest,
                 'employee_id'   => $this->request->getVar('agent'),
                 'loan_status'     => $fiResult,

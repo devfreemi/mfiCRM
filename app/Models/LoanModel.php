@@ -27,7 +27,8 @@ class LoanModel extends Model
         'employee_id',
         'applicationID',
         'created_at',
-        'emi_day'
+        'emi_day',
+        'insurance_fee'
     ];
 
     // Dates

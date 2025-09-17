@@ -60,7 +60,7 @@ class LoanEligibilityModelV1 extends Model
 
         $monthly_sales = $daily_sales * 30;
         $gross_income = $monthly_sales * $margin;
-        $foir_limit = $gross_income * 0.6;
+        $foir_limit = $gross_income * 0.75;
         $net_affordable_emi = $foir_limit - $existing_emi;
 
         if ($gross_income >= 0 && $gross_income <= 33000) {
@@ -136,8 +136,8 @@ class LoanEligibilityModelV1 extends Model
         } elseif ($this->cibil_score > 0) {
             return ["Eligibility" => "Not Eligible", "Reason" => "Low CIBIL score", "LoanAmount" => 0, "ROI" => 0, "FixedROI" => 0, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         } else {
-            $score -= 1;
-            $roi += 2;
+            $score -= 0.5;
+            $roi += 1;
             $reason .= "No CIBIL score. ";
         }
 
@@ -255,15 +255,15 @@ class LoanEligibilityModelV1 extends Model
         }
 
         // Ensure ROI is the higher of the calculated ROI or the fixed ROI
-        $final_roi = min(max($roi, $fixed_roi), 30);
+        $final_roi = min(max($roi, $fixed_roi), 26);
 
-        if ($score < 7) {
+        if ($score < 6) {
             return ["Eligibility" => "Not Eligible", "Reason" => "Low score", "LoanAmount" => 0, "ROI" => $roi, "FixedROI" => $fixed_roi, "Tenure" => 0, "Score" => $score, "EMI" => 0, "FOIR" => $foir];
         }
 
 
         $min_loan = 50000;
-        $max_roi = 30;
+        $max_roi = 26;
         $min_tenure = 9;
 
         // Calculate EMI for ₹50K at 30% ROI for 9 months
@@ -272,7 +272,7 @@ class LoanEligibilityModelV1 extends Model
         $calculated_emi = $this->calculateEMI($eligibility_amount, $final_roi, $tenure);
         // Reject if user cannot afford even the minimum plan
         if ($eligible_emi < $min_required_emi) {
-            log_message('info', 'Rule Engine Reject The Retailer: Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.');
+            log_message('info', 'Rule Engine Reject The Retailer: Rejected — FOIR.');
 
             return [
                 "Eligibility" => "Not Eligible",
@@ -282,7 +282,7 @@ class LoanEligibilityModelV1 extends Model
                 "Tenure" => 0,
                 "Score" => round($score, 2),
                 "EMI" => 0,
-                "Reason" => "Rejected — cannot afford minimum ₹50K loan at 30% ROI for 9 months.",
+                "Reason" => "Rejected — FOIR.",
                 "FOIR" => $foir,
             ];
         } else {

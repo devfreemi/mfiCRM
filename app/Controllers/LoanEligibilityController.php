@@ -529,7 +529,9 @@ class LoanEligibilityController extends BaseController
         $db = db_connect();
         $builder = $db->table('initial_eli_run');
         $existing = $builder->where('member_id', $memberId)->get()->getRow();
+        log_message('info', 'Existing eligibility run: ' . json_encode($existing));
         if ($existing) {
+            log_message('info', 'Existing eligibility run: ' . json_encode($existing));
             $builder->where('member_id', $memberId)->update($data_eli_run);
         } else {
             $builder->insert($data_eli_run);

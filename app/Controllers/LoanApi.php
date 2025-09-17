@@ -94,6 +94,21 @@ class LoanApi extends BaseController
 
         return $this->respond($loan, 200);
     }
+    public function total_emi_count()
+    {
+        $db = db_connect();
+        $model = new LoanModel();
+        $loanID   = $this->request->getVar('loanIDE');
+        $table = "tab_" . $loanID;
+        // $loan = $model->where('applicationID', $loanID)->first();
+        $builder_app = $db->table($table);
+        $count = $builder_app->countAll();
+        if (!$count) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+        }
+
+        return $this->respond(['total_emi' => $count], 200);
+    }
     public function update_of_loan()
     {
         $model = new LoanModel();
@@ -127,8 +142,8 @@ class LoanApi extends BaseController
 
             // Flat EMI: Total payable / total months
             $emi = round($due / $tenure, 2);
-            $disbursable = round($loan_amount - ($loan_amount * 0.04));
-            $chargesandinsurance = round($loan_amount * 0.04);
+            $disbursable = round($loan_amount - (($loan_amount * 0.04) + 2643.2));
+            $chargesandinsurance = round(($loan_amount * 0.04) + 2643.20, 2);
             $data = [
 
                 'loan_status'       => "Approved",
@@ -143,6 +158,7 @@ class LoanApi extends BaseController
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
+                'insurance_fee'      =>  2643.20,
                 'updated_at'      => date('Y-m-d H:i:s'),
 
             ];
@@ -488,7 +504,41 @@ class LoanApi extends BaseController
             log_message('info', 'Success.');
         }
     }
+    public function loan_emi_rm()
+    {
+        $loanID = $this->request->getVar('loanAC');
+        $table = "tab_" . $loanID;
+        $db = db_connect();
 
+        if (!$loanID || !$db->tableExists($table)) {
+            return $this->respond(['error' => 'Invalid Request.'], 401);
+            log_message('error', 'Invalid Request: Loan ID or table does not exist.');
+        } else {
+
+            $builder_emi = $db->table($table);
+
+            $query = $builder_emi->where('reference', 'N')->orWhere('reference', 'Due')->get();
+            // $query = $builder_emi->get();
+            foreach ($query->getResult() as $row) {
+
+                $response[] = array(
+                    "emi_number" =>  $row->Id,
+                    "emi" => $row->emi,
+                    "valueDate" => $row->valueDate,
+                    "reference" => $row->reference,
+                    "valueDateStamp" => $row->valueDateStamp,
+                    "statusCode" => 200,
+
+
+                );
+            }
+            return $this->respond(
+                $response,
+                200
+            );
+            log_message('info', 'Success.');
+        }
+    }
     public function loan_emi_payment_status()
     {
         $loanID = $this->request->getVar('loanAC');
@@ -761,7 +811,7 @@ class LoanApi extends BaseController
         if (!$empID) {
             return $this->respond(['error' => 'Invalid Request.'], 401);
         } else {
-            $totalDisbursed = $model->selectSum('loan_amount', 'total_amount')->where('employee_id', $empID)->where('loan_status', 'Disbursed')->get();
+            $totalDisbursed = $model->selectSum('total_amount', 'total_amount')->where('employee_id', $empID)->where('loan_status', 'Disbursed')->get();
             foreach ($totalDisbursed->getResult() as $rowD) {
                 return $this->respond(
                     $rowD,

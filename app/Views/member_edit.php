@@ -16,7 +16,6 @@
 ?>
 
             <div class="modal-body" id="member_detail">
-
                 <form class="row g-3" action="<?= base_url() ?>loan/check" method="post">
                     <?= csrf_field('auth') ?>
                     <div class="col-md-4">

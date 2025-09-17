@@ -439,34 +439,33 @@
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sanctioned Credit
                         Facility</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rs. 2,00,000.00</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rs. 2,50,000.00</td>
                 </tr>
 
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6a</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing Fees</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>4%</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6b</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance Premium</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Tenure</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum of 12 months from each of the individual drawdown.
-                        The tenure of the credit facility is 36 months.</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum of <?= esc($loan_tenure) ?> months (<?= esc($pending_emi) ?> Days)</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Credit Facility Servicing
                         and Repayment of Principal and Interest</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>As would be acknowledged
                         on each of the Disbursement/Drawdown Date(s)</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Disbursement and
                         Repayment Method</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The Credit Facility shall be disbursed by the Lender through the platform of
@@ -477,13 +476,13 @@
 
 
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Interest Rate</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>% p.a.
-                        payable monthly (Fixed)</td>
+                        payable</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Delayed Interest</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The interest rate as in
                         (11) will continue to be charged daily if the drawdown amount is not paid within the date of repayment
@@ -492,7 +491,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>13</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>12</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Prepayment Charges</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
                 </tr>
@@ -503,14 +502,14 @@
                         Not Applicable or specify amount]</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>14</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>13</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Charges on miscellaneous
                         request(s) such as, change in servicing date, changes in Credit Facility servicing bank account,
                         replacement of security/servicing cheques etc.</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Not Applicable</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>16</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>14</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Address of the Borrower
                         for the purpose of service of Notice</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>As per Schedule I</td>
@@ -605,13 +604,13 @@
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>a</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing fees (in
                         Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($chargesandinsurance - $insurance_fee, 2) ?></td>
                 </tr>
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>b</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance charges (in
                         Rupees)</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>NIL</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($insurance_fee, 2) ?></td>
                 </tr>
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>c</td>
@@ -645,7 +644,7 @@
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($total_amount, 2) ?>/-</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rate of annualized delay
                         interest in case of delayed payments (if any)</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>%
@@ -659,7 +658,7 @@
                         month</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Cooling off/look-up
                         period</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>No prepayment charges
@@ -667,14 +666,14 @@
                         tenure.</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Details of LSP acting as
                         recovery agent and authorized to approach the borrower</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Ntactus
                         Financial Services Private Limited</td>
                 </tr>
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>11</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Name, designation,
                         address and phone number of nodal grievance redressal officer</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'> Mr. Bapan Sarkar
@@ -712,14 +711,13 @@
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>4</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Insurance charges</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Nill</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($insurance_fee, 2) ?></td>
                 </tr>
 
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing fee inclusive
-                        of GST</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($chargesandinsurance, 2) ?></td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Processing fee </td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>INR <?= number_format($chargesandinsurance - $insurance_fee, 2) ?></td>
                 </tr>
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>6</td>
@@ -847,15 +845,15 @@
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Maximum of [MAXIMUM
                         DRAWDOWN TENURE] months from each of the individual drawdown.</td>
                 </tr> -->
-                <tr>
+                <!-- <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Credit Facility Servicing
                         and Repayment of Principal and Interest</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Repayment date:
                         5th of every month.</td>
-                </tr>
+                </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>7</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Disbursement and
                         Repayment Method</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>The Credit Facility shall
@@ -883,10 +881,10 @@
                         parameters of other terms)</td>
                 </tr> -->
                 <tr>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>9</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>8</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Interest Rate</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'><?= esc($roi) ?>% p.a.
-                        payable monthly (Reducing)</td>
+                        payable</td>
                 </tr>
                 <tr>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>10</td>
@@ -1112,7 +1110,7 @@
                         <ol>
                             <li>PAN Card (Copy attached)</li>
                             <li>Aadhaar Card (Copy attached)</li>
-                            <li>Passport-size Photograph</li>
+
                             <li>Bank Passbook / Cancelled Cheque (For disbursement and repayment tracking)</li>
                         </ol>
                     </div>
