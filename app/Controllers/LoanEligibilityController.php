@@ -287,7 +287,7 @@ class LoanEligibilityController extends BaseController
 
             // Find Consolidated Row
             foreach ($camSheets as $sheet) {
-                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'consolidated') {
+                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'total') {
                     $consolidated = $sheet;
                     break;
                 }

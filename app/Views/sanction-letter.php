@@ -439,7 +439,7 @@
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>5</td>
                     <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Sanctioned Credit
                         Facility</td>
-                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rs. 2,50,000.00</td>
+                    <td style='border:1px solid #000; padding:5px; font-family:Arial; font-size:16px; font-weight:500'>Rs. 1,50,000.00</td>
                 </tr>
 
                 <tr>
@@ -1352,7 +1352,7 @@
                     </p>
                     <p>4. That I am executing this declaration voluntarily and with full understanding of its legal
                         implications.</p>
-                    <p>Declared on this <span><?= date('l d') ?></span> of <span><?= date('Y') ?></span>, at <?= esc($location) ?><span></span>
+                    <p>Declared on this <span><?= date('l d F') ?></span> of <span><?= date('Y') ?></span>, at <?= esc($location) ?><span></span>
                     </p>
                     <div class="dclrtn-info-dtls">
                         <h5 class="mb-3">Digitally Signed Declaration</h5>

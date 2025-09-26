@@ -178,6 +178,20 @@ class FiCheckController extends BaseController
 
             $model->insert($data);
             $db = db_connect();
+            // get member_id from request
+            $member_id = $this->request->getVar('member_id');
+
+            // connect to "loan" DB
+
+            $builderIns = $db->table('loans'); // replace with your correct table name
+
+            // fetch insurance_fee
+            $builderIns->select('insurance_fee');
+            $builderIns->where('member_id', $member_id);
+            $queryIns  = $builderIns->get();
+            $resultIns = $queryIns->getRow();
+
+            $insurance_fee = ($resultIns) ? $resultIns->insurance_fee : 0; // default 0 if not found
             // $model = new LoanModel();
 
             $loan_amount = $this->request->getVar('eligible_amount');
@@ -201,8 +215,8 @@ class FiCheckController extends BaseController
 
             // Flat EMI: Total payable / total months
             $emi = round($due / $tenure, 2);
-            $disbursable = round($loan_amount - (($loan_amount * 0.04) + 2643.2), 2);
-            $chargesandinsurance = round(($loan_amount * 0.04) + 2643.20, 2);
+            $disbursable = round($loan_amount - (($loan_amount * 0.04) + $insurance_fee), 2);
+            $chargesandinsurance = round(($loan_amount * 0.04) + $insurance_fee, 2);
 
             $data_loan = [
 
@@ -217,7 +231,7 @@ class FiCheckController extends BaseController
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
-                'insurance_fee'      =>  2643.20,
+                'insurance_fee'      =>  $insurance_fee,
                 'interest'          =>  $interest,
                 'employee_id'   => $this->request->getVar('agent'),
                 'loan_status'     => $fiResult,

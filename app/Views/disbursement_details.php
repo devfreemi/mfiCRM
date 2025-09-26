@@ -1,6 +1,13 @@
 <?php include 'fragments/head.php'; ?>
 <?php include 'fragments/sidebar.php'; ?>
-
+<?php
+$db = db_connect();
+$builder = $db->table('members');
+$builder->select('*');
+$builder->where('member_id', $disbursement['member_id']);
+$query = $builder->get();
+$memberDetails = $query->getRowArray();
+?>
 
 <div class="main">
 
@@ -41,6 +48,11 @@
                                         <input type="text" class="form-control" name="member_id" id="member_id" value="<?= $disbursement['member_id'] ?>" required readonly>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="business_name" class="form-label">Business Name</label>
+                                        <input type="text" class="form-control" name="business_name" id="business_name" value="<?= esc($memberDetails['businessName']) ?>" required readonly>
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label for="customer_email" class="form-label">Customer Email</label>
                                         <input type="email" class="form-control" name="customer_email" id="customer_email" value="">
                                     </div>
@@ -67,14 +79,7 @@
                                     <input type="hidden" name="emi_amount" value="<?= round($disbursement['total_amount'] / $disbursement['pending_emi']) ?>">
                                     <input type="hidden" name="first_dei_date" value="<?= date('Y-m-d', strtotime('+1 day')) ?>">
                                     <input type="hidden" name="status" value="Disbursed">
-                                    <?php
-                                    $db = db_connect();
-                                    $builder = $db->table('members');
-                                    $builder->select('*');
-                                    $builder->where('member_id', $disbursement['member_id']);
-                                    $query = $builder->get();
-                                    $memberDetails = $query->getRowArray();
-                                    ?>
+
 
 
                                     <input type="hidden" name="member_name" value="<?= $memberDetails['panName'] ?>">
@@ -121,6 +126,8 @@
                                             <li class="list-group-item d-flex justify-content-between"><strong>Bank Name:</strong> <span><?= esc($memberDetails['bankName']) ?></span></li>
                                             <li class="list-group-item d-flex justify-content-between"><strong>Account Number:</strong> <span><?= esc($memberDetails['bankAccount']) ?></span></li>
                                             <li class="list-group-item d-flex justify-content-between"><strong>IFSC Code:</strong> <span><?= esc($memberDetails['ifsc']) ?></span></li>
+                                            <li class="list-group-item d-flex justify-content-between"><strong>Bank Branch:</strong> <span><?= esc($memberDetails['bankBranch']) ?></span></li>
+                                            <li class="list-group-item d-flex justify-content-between"><strong>Branch Address:</strong> <span><?= esc($memberDetails['bankAddress']) ?></span></li>
                                         </ul>
 
                                     </div>

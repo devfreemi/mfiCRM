@@ -158,7 +158,7 @@
             // Find Consolidated row
             $consolidated = null;
             foreach ($camSheets as $sheet) {
-                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'consolidated') {
+                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'total') {
                     $consolidated = $sheet;
                     break;
                 }
@@ -272,17 +272,18 @@
             // Load JSON directly in view (not recommended for production, but fine for testing)
             if ($retailers['eli_run'] === "Y") {
                 $builderCibil = $db->table('initial_eli_run');
-                $builderCibil->select('cibilReport');
+                $builderCibil->select('*');
                 $builderCibil->where('member_id ', $retailers['member_id']);
                 $queryCibil = $builderCibil->get();
 
                 $rowCibil = $queryCibil->getRow();
+                if ($rowCibil->cibilReport === -1) {
 
-                if ($rowCibil && !empty($rowCibil->cibilReport)) {
-                    $jsonData = json_decode($rowCibil->cibilReport, true); // decode JSON to array
-                } else {
-                    $jsonData = null; // or handle no data
-                }
+                    if ($rowCibil && !empty($rowCibil->cibilReport)) {
+                        $jsonData = json_decode($rowCibil->cibilReport, true); // decode JSON to array
+                    } else {
+                        $jsonData = null; // or handle no data
+                    }
 
                 $report = $jsonData['data']['credit_report'];
 
@@ -362,7 +363,7 @@
                         </tr>
                     <?php endforeach; ?>
                 </table>
-            <?php } ?>
+            <?php } }?>
             <!-- CIBIL TEST -->
             <?php if ($retailers['eli_run'] === "Y") { ?>
                 <div class="col-12 mx-auto text-center">

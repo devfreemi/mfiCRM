@@ -644,6 +644,123 @@ class RetailerDocumentsController extends BaseController
     }
 
     // OpenAI api
+    public function analyzeUpiPdf()
+    {
+        $apiKey = getenv('OPENAI_API_KEY'); // from .env
+        $pdfUrl = $this->request->getVar('document_path');
+        if (!$pdfUrl) {
+            return $this->respond([
+                'status' => 'error',
+                'message' => 'No PDF URL provided'
+            ], 400);
+        }
+
+        // OpenAI API endpoint
+        $url = "https://api.openai.com/v1/responses";
+
+        // Prompt for UPI PDF analysis
+        $data = array(
+            "model" => "gpt-4.1-mini",
+            "input" => array(
+                array(
+                    "role" => "user",
+                    "content" => array(
+                        array(
+                            "type" => "input_text",
+                            "text" => "You are a financial data analyst. Analyze the provided UPI transaction data (PDF or extracted text).\n\n
+                                1. Consider ONLY transactions where the transaction type is CREDIT.\n
+                                2. Ignore DEBIT, REVERSAL, FAILED, or any non-CREDIT entries.\n
+                                3. From the CREDIT transactions:\n
+                                   a. Count the total number of CREDIT transactions.\n
+                                   b. Calculate the total credited amount.\n
+                                   c. Count the total number of unique transaction dates (total_days).\n
+                                   d. Calculate the daily average credited amount (total credited amount ÷ total_days).\n
+                                4. Respond only with valid structured JSON in this exact format:\n
+                                {\n
+                                  \"credit_transactions\": number,\n
+                                  \"total_credit_amount\": number,\n
+                                  \"total_days\": number,\n
+                                  \"daily_avg_credit\": number\n
+                                }\n
+                                5. If there are no CREDIT transactions or the file does not contain valid data, return:\n
+                                {\n
+                                  \"credit_transactions\": \"no data\",\n
+                                  \"total_credit_amount\": \"no data\",\n
+                                  \"total_days\": \"no data\",\n
+                                  \"daily_avg_credit\": \"no data\"\n
+                                }"
+                        ),
+                        array(
+                            "type" => "input_file",
+                            "file_url" => $pdfUrl
+                        )
+                    )
+                )
+            )
+        );
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: ' . 'Bearer ' . $apiKey
+            ),
+            CURLOPT_POSTFIELDS => json_encode($data),
+        ));
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            return $this->respond([
+                'status' => 'error',
+                'message' => curl_error($ch)
+            ], 500);
+        }
+
+        curl_close($ch);
+
+        // Decode AI response
+        $responseArray = json_decode($response, true);
+
+        // Extract AI JSON
+        $rawJsonText = $responseArray['output'][0]['content'][0]['text'] ?? null;
+        log_message('info', 'OpenAI Response: ' . $rawJsonText);
+
+        if ($rawJsonText) {
+            $cleanJson = trim($rawJsonText);
+            $cleanJson = preg_replace('/^```[a-z]*\n?/i', '', $cleanJson);
+            $cleanJson = preg_replace('/```$/', '', $cleanJson);
+            $cleanJson = trim($cleanJson);
+
+            // Fix numeric formatting issues
+            $cleanJsonText = preg_replace('/(?<=\d),(?=\d)/', '', $cleanJson);
+
+            $upiData = json_decode($cleanJsonText, true);
+
+            if (json_last_error() === JSON_ERROR_NONE && is_array($upiData)) {
+                return $this->respond([
+                    'status' => 'success',
+                    'data' => $upiData
+                ], 200);
+            } else {
+                return $this->respond([
+                    'status' => 'error',
+                    'message' => 'Invalid JSON format in AI response',
+                    'raw_text' => $rawJsonText
+                ], 500);
+            }
+        } else {
+            return $this->respond([
+                'status' => 'error',
+                'message' => 'AI response did not contain valid UPI data',
+                'ai_response' => $responseArray
+            ], 500);
+        }
+    }
     public function analyzeImage()
     {
         $apiKey = getenv('OPENAI_API_KEY'); // from .env

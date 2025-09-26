@@ -677,7 +677,7 @@ class AadhaarKycController extends BaseController
             $response = curl_exec($curl);
             $err = curl_error($curl);
             $response_decode = json_decode($response, true);
-
+            log_message('info', 'GST Validation API Response. Payload: ' . json_encode($response_decode));
             curl_close($curl);
             if ($err) {
                 // echo "cURL Error #:" . $err;
@@ -696,7 +696,7 @@ class AadhaarKycController extends BaseController
                     'gstType'           => $response_decode['data']['taxpayer_type'],
                     'holderEmail'       => $response_decode['data']['contact_details']['principal']['email'],
                     'holderMobile'      => $response_decode['data']['contact_details']['principal']['mobile'],
-                    'holderName'        => $response_decode['data']['promoters'][0],
+                    'holderName'        => $response_decode['data']['promoters'][0] ?? $response_decode['data']['legal_name'],
                     'tradeName'         => $response_decode['data']['business_name'],
                     'regDate'           => $response_decode['data']['date_of_registration'],
                     'businessAddress'   => $response_decode['data']['contact_details']['principal']['address'],

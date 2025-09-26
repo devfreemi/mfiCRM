@@ -72,6 +72,7 @@
                         <select id="inputState" class="form-select" name="status" required>
                             <option selected disabled>Choose</option>
                             <option value="Approved">Approved</option>
+                            <option value="On Hold" <?php if ($row->loan_status === 'On Hold') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>On Hold</option>
 
                             <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed Verified</option>
                             <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed</option>

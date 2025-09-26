@@ -117,8 +117,24 @@ class LoanApi extends BaseController
         $applicationid   = $this->request->getPost('applicationid');
         $table = "tab_" . $applicationid;
         $status = $this->request->getPost('status');
+        if ($status == "Completed") {
+            # code...
+            # code...
+            $data = [
+
+                'loan_status'      => $this->request->getPost('status'),
+                'updated_at'      => date('Y-m-d H:i:s'),
+            ];
+
+            $builder->where('applicationID', $applicationid);
+            $query = $builder->update($data);
+            $session = session();
+            $session->setFlashdata('msg', 'Loan Status Updated!');
+            return redirect()->to(base_url() . 'loan');
+        }
         $loan_amount = $this->request->getPost('loan_amount');
         $tenure = $this->request->getPost('tenure');
+
         // Exact Date calculation
         $start = new \DateTime();
         $end = (clone $start)->modify("+$tenure months");
@@ -142,8 +158,24 @@ class LoanApi extends BaseController
 
             // Flat EMI: Total payable / total months
             $emi = round($due / $tenure, 2);
-            $disbursable = round($loan_amount - (($loan_amount * 0.04) + 2643.2));
-            $chargesandinsurance = round(($loan_amount * 0.04) + 2643.20, 2);
+            $db = db_connect();
+            // get member_id from request
+            $member_id = $this->request->getVar('member_id');
+
+            // connect to "loan" DB
+
+            $builderIns = $db->table('loans'); // replace with your correct table name
+
+            // fetch insurance_fee
+            $builderIns->select('insurance_fee');
+            $builderIns->where('applicationID', $applicationid);
+            $queryIns  = $builderIns->get();
+            $resultIns = $queryIns->getRow();
+
+            $insurance_fee = ($resultIns) ? $resultIns->insurance_fee : 0; // default 0 if not found
+            // Get Insurance Fee from members table
+            $disbursable = round($loan_amount - (($loan_amount * 0.04) + $insurance_fee));
+            $chargesandinsurance = round(($loan_amount * 0.04) + $insurance_fee, 2);
             $data = [
 
                 'loan_status'       => "Approved",
@@ -158,7 +190,7 @@ class LoanApi extends BaseController
                 'total_amount'      => $due,
                 'disbursable_amount' => $disbursable,
                 'chargesandinsurance' => $chargesandinsurance,
-                'insurance_fee'      =>  2643.20,
+                'insurance_fee'      =>  $insurance_fee,
                 'updated_at'      => date('Y-m-d H:i:s'),
 
             ];

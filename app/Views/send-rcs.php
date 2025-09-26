@@ -76,8 +76,20 @@ function groupName_from_row($row, $key)
                 <div class="col-auto">
                     <button id="selectAllBtn" type="button" class="btn btn-sm btn-outline-secondary">Select All</button>
                     <button id="clearAllBtn" type="button" class="btn btn-sm btn-outline-secondary">Clear All</button>
-                </div>
 
+
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Project ID" aria-label="First name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Template name" aria-label="Last name">
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100" id="sendRcs">Submit</button>
+                    </div>
+                </div>
                 <div class="col-auto ms-auto">
                     <label class="visually-hidden" for="searchInput">Search</label>
                     <input id="searchInput" type="search" class="form-control form-control-sm" placeholder="Search name or phone">
@@ -118,9 +130,7 @@ function groupName_from_row($row, $key)
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Template name" aria-label="Last name">
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-primary w-100" id="sendRcs">Submit</button>
-                </div>
+
             </div>
         </section>
     </main>

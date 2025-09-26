@@ -358,7 +358,7 @@ class LoanEligibilityModel extends Model
 
         if ($monthly > 0 && $this->upiInward < $required) {
             log_message('info', "serviceUPIInwardCheck: not matched get higher ROI - upiInward < required");
-            return ['status' => true, 'reason' => 'UPI inward is less than 30% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required, 'scoreDelta' => -0.5, 'roiDelta' => 0.50]];
+            return ['status' => false, 'reason' => 'UPI inward is less than 30% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required, 'scoreDelta' => -0.5, 'roiDelta' => 0.50]];
         }
 
         log_message('info', "serviceUPIInwardCheck: passed");
@@ -799,12 +799,30 @@ class LoanEligibilityModel extends Model
         $additional_loan = min($stock_contribution, $daily_sales_contribution);
         $eligibility_amount = $base_loan + $additional_loan;
         $eligibility_amount = max(50000, min($eligibility_amount, 250000));
+        log_message('info', "eligibility_amount: As Per RuleEngine {$eligibility_amount}");
+        if ($eligibility_amount > 250000) {
+            log_message('info', "loanIsHigher: As Per internal policy, loan requests above ₹2.5 Lakhs require manual review.{$eligibility_amount}");
+            // On Hold case
+            return [
+                "Eligibility" => "On Hold",
+                "Reason" => "As Per internal policy, loan requests above ₹2.5 Lakhs require manual review.",
+                "LoanAmount" => 0,
+                "ROI" => $roi,
+                "FixedROI" => null,
+                "Tenure" => null,
+                "Score" => round($score, 2),
+                "EMI" => 0,
+                "FOIR" => $foir_meta,
+            ];   
+        }
 
-        // Fixed ROI & Tenure Mapping (Loan 2.5L–50k, ROI 18–24%, Tenure 24–6 months)
+        // Cap amount between 50k and 2.5L
+        $eligibility_amount = max(50000, min($eligibility_amount, 250000));
+
         if ($eligibility_amount >= 250000) {
-            $fixed_roi = 18.0;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 220000) {
+            $fixed_roi = 18.8;
+            $tenure = 21;
+        }elseif ($eligibility_amount >= 220000) {
             $fixed_roi = 18.8;
             $tenure = 21;
         } elseif ($eligibility_amount >= 190000) {
@@ -853,7 +871,7 @@ class LoanEligibilityModel extends Model
         // affordability minimum
         $min_loan = 50000;
         $max_roi = 26;
-        $min_tenure = 9;
+        $min_tenure = 6;
         $min_required_emi = $this->serviceCalculateEMI($min_loan, $max_roi, $min_tenure);
         $loan_amount = $eligibility_amount;
         $calculated_emi = $this->serviceCalculateEMI($eligibility_amount, $final_roi, $tenure);
@@ -907,6 +925,11 @@ class LoanEligibilityModel extends Model
         if ($eligibleEmi > 0) {
             // Calculate loan amount from EligibleEMI
             $loan_amount = $this->calculateLoanAmountFromEMI($eligibleEmi, $final_roi, $tenure);
+            // ✅ Cap loan amount between 2,00,000
+            if ($loan_amount > 250000) {
+                log_message('info', "loanCapApplied: LoanAmount {$loan_amount} exceeded policy limit. Capped at ₹2,50,000.");
+                $loan_amount = $eligibility_amount;
+            } 
 
             // Recalculate EMI for consistency
             $calculated_emi = $this->serviceCalculateEMI($loan_amount, $final_roi, $tenure);

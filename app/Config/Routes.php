@@ -55,6 +55,9 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('android-leads', 'Home::members_app');
     $routes->add('send-rcs', 'CampaignController::index');
     $routes->add('collection', 'CollectionController::index');
+    // $routes->add('insurance', 'InsuranceController::index');
+    $routes->add('insurance/(:any)', 'InsuranceController::index/$1');
+    $routes->add('insurance-update', 'InsuranceController::update_insurance');
     // PFD Test
 
 });
@@ -144,6 +147,7 @@ $routes->group('', ['filter' => 'AuthFilterJWT'], function ($routes) {
     $routes->add('api/verify-bank-v1', 'BankController::bank_verification_rm_app');
     $routes->add('api/analyze-image-v1', 'RetailerDocumentsController::analyzeImage');
     $routes->add('api/analyze-purchase-image-v1', 'RetailerDocumentsController::analyzeImagePurchase');
+    $routes->add('api/analyze-upi-pdf-v1', 'RetailerDocumentsController::analyzeUpiPdf');
 });
 // $routes->add('api/fi/start', 'FIautoController::auto_mail_fi_start');
 $routes->add('api/page/verify-bank-v1', 'BankController::bank_verification');

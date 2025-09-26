@@ -3,7 +3,7 @@
 <link href="https://cdn.datatables.net/2.1.0/css/dataTables.bootstrap5.css" rel="stylesheet">
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.0/js/dataTables.bootstrap5.js"></script>
-
+<?php date_default_timezone_set('Asia/Kolkata'); ?>
 <div class="main">
 
     <?php include 'fragments/nav.php'; ?>
@@ -45,7 +45,7 @@
                                 <i class="fas fa-rupee-sign fs-3 text-white"></i>
                             </div>
                         </div>
-                        <p class="mb-0 text-white-75">Collected on <?= date('d M Y'); ?></p>
+                        <p class="mb-0 text-white-75">Collected on <?= date('d M Y H:i A'); ?></p>
                     </div>
                 </div>
                 <div class="col-4">

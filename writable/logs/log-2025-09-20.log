@@ -1,0 +1,194 @@
+INFO - 2025-09-20 13:30:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:30:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:30:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:30:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-20 13:30:36 --> mysqli_sql_exception: Table 'u652040979_dev.transaction_master' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT COUNT(id...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(id...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(id...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(43): view('loan')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-09-20 13:30:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u652040979_dev.transaction_master' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = :DATE(created_at):
+AND `payment_status` = :payment_status:', [...], false)
+ 2 APPPATH\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan', [], true)
+ 6 APPPATH\Controllers\Home.php(43): view('loan')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-09-20 13:30:37 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u652040979_dev.transaction_master' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = :DATE(created_at):
+AND `payment_status` = :payment_status:', [...], false)
+ 4 APPPATH\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan', [], true)
+ 8 APPPATH\Controllers\Home.php(43): view('loan')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-09-20 13:30:37 --> [Caused by] mysqli_sql_exception: Table 'u652040979_dev.transaction_master' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = :DATE(created_at):
+AND `payment_status` = :payment_status:', [...], false)
+ 5 APPPATH\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan', [], true)
+ 9 APPPATH\Controllers\Home.php(43): view('loan')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-09-20 13:35:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-09-20 13:35:10 --> mysqli_sql_exception: Table 'u652040979_dev.transaction_master' doesn't exist in C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\www\mfiCRM\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT COUNT(id...', 0)
+#1 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(id...')
+#2 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(id...')
+#3 C:\xampp\htdocs\www\mfiCRM\system\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id...', Array, false)
+#4 C:\xampp\htdocs\www\mfiCRM\app\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(228): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\www\mfiCRM\system\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\www\mfiCRM\system\Common.php(1178): CodeIgniter\View\View->render('loan', Array, true)
+#8 C:\xampp\htdocs\www\mfiCRM\app\Controllers\Home.php(43): view('loan')
+#9 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(941): App\Controllers\Home->loan()
+#10 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\www\mfiCRM\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\www\mfiCRM\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\www\mfiCRM\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-09-20 13:35:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u652040979_dev.transaction_master' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = :DATE(created_at):
+AND `payment_status` = :payment_status:', [...], false)
+ 2 APPPATH\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan.php')
+ 4 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan', [], true)
+ 6 APPPATH\Controllers\Home.php(43): view('loan')
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-09-20 13:35:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u652040979_dev.transaction_master' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 311.
+ 1 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = :DATE(created_at):
+AND `payment_status` = :payment_status:', [...], false)
+ 4 APPPATH\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan', [], true)
+ 8 APPPATH\Controllers\Home.php(43): view('loan')
+ 9 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+CRITICAL - 2025-09-20 13:35:10 --> [Caused by] mysqli_sql_exception: Table 'u652040979_dev.transaction_master' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 306.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(306): mysqli->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = \'2025-09-20\'
+AND `payment_status` = \'SUCCESS\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1613): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(id) as total_count, SUM(payment_amount) as total_amount
+FROM `transaction_master`
+WHERE DATE(created_at) = :DATE(created_at):
+AND `payment_status` = :payment_status:', [...], false)
+ 5 APPPATH\Views\loan.php(28): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\www\\mfiCRM\\app\\Views\\loan.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('loan', [], true)
+ 9 APPPATH\Controllers\Home.php(43): view('loan')
+10 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\Home->loan()
+11 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+12 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\www\\mfiCRM\\public\\index.php')
+INFO - 2025-09-20 13:36:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:39:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:39:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:40:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:41:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:41:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:41:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:42:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:43:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:45:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:46:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:48:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:49:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:55:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 13:59:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-09-20 14:02:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
