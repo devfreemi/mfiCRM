@@ -176,51 +176,6 @@ class LoanEligibilityController extends BaseController
     {
         log_message('info', '✅ checkEligibilityAPI - V2 called');
 
-        // // ===== STEP 1: Gather Inputs =====
-        // // $cibil = 680; // default placeholder
-        // // ===== STEP 1: Gather Inputs =====
-        // $name = $this->request->getVar('panName');
-        // $name = $this->request->getVar('panName');
-        // $mobile = $this->request->getVar('mobile');
-        // $panNumber = $this->request->getVar('panNumber');
-
-        // // Call Experian API in real time
-        // $dataApi = [
-        //     'name'    => $name,
-        //     'consent' => "Y",
-        //     'mobile'  => $mobile,
-        //     'pan'     => $panNumber
-        // ];
-        // $data_json = json_encode($dataApi);
-
-        // $curl = curl_init();
-        // curl_setopt_array($curl, [
-        //     CURLOPT_URL            => 'https://kyc-api.surepass.app/api/v1/credit-report-experian/fetch-report',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING       => '',
-        //     CURLOPT_MAXREDIRS      => 10,
-        //     CURLOPT_TIMEOUT        => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST  => 'POST',
-        //     CURLOPT_POSTFIELDS     => $data_json,
-        //     CURLOPT_HTTPHEADER     => [
-        //         'Authorization: Bearer ' . getenv('SUREPASS_API_KEY_PROD'),
-        //         'Content-Type: application/json'
-        //     ],
-        // ]);
-
-        // $response = curl_exec($curl);
-        // $err = curl_error($curl);
-        // curl_close($curl);
-
-        // if ($err) {
-        //     log_message('error', 'CIBIL API Error: ' . $err);
-        //     return $this->respond(['error' => 'Unable to fetch CIBIL report'], 500);
-        // }
-
-        // $response_decode = json_decode($response, true);
-        // // log_message('info', 'Experian CIBIL Check API Response: ' . $response);
         $memberIdApi = $this->request->getVar('memberId_api') ?? $this->request->getVar('memberId') ?? null;
         $memberId = $memberIdApi;
         $db = db_connect();
@@ -262,6 +217,7 @@ class LoanEligibilityController extends BaseController
         }
 
         $daily_sales = (float) ($this->request->getVar('daily_sales') ?? 0);
+        $dailyUPI = (float) ($this->request->getVar('dailyUPI') ?? 0);
         $purchase_monthly_input = $this->request->getVar('purchase_monthly');
         $purchase_monthly = is_null($purchase_monthly_input) || $purchase_monthly_input === '' ? null : (float)$purchase_monthly_input;
 
@@ -287,7 +243,7 @@ class LoanEligibilityController extends BaseController
 
             // Find Consolidated Row
             foreach ($camSheets as $sheet) {
-                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'total') {
+                if (isset($sheet['Month']) && strtolower($sheet['Month']) === 'consolidated') {
                     $consolidated = $sheet;
                     break;
                 }
@@ -348,6 +304,7 @@ class LoanEligibilityController extends BaseController
             'investment' => $investment,
             'finalValue' => $finalValue,
             'upiInward' => $upiInward,
+            'dailyUPI' => $dailyUPI,
         ];
 
         // ===== STEP 5: Send to Model for Microservice Checks =====

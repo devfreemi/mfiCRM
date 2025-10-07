@@ -56,6 +56,7 @@ class MemberLoginController extends BaseController
         $mobileNo = $this->request->getVar('mobile');
         $data = [
             'mobile'         =>  $mobileNo,
+            'groupId'        =>  002,
         ];
         // $member = $model->where('mobile', $mobileNo)->first();
         $query = $model->insert($data);

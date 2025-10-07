@@ -82,8 +82,8 @@ class Home extends BaseController
     {
         return view('digilocker_success');
     }
-    // public function send_rcs()
-    // {
-    //     return view('send-rcs');
-    // }
+    public function open_app()
+    {
+        return view('app-open');
+    }
 }

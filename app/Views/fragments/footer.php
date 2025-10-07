@@ -3,7 +3,7 @@
         <div class="row text-muted">
             <div class="col-6 text-start">
                 <p class="mb-0">
-                    <a class="text-muted" href="" target="_blank"><strong>Retail Pe</strong></a> - <a class="text-muted" href="https://www.retailpe.in/" target="_blank"><strong>All rights reserved</strong></a> &copy;
+                    <a class="text-muted" href="" target="_blank"><strong>Retail Pe</strong></a> - <a class="text-muted" href="retailpe://open" target="_blank"><strong>All rights reserved</strong></a> &copy;
                 </p>
             </div>
             <div class="col-6 text-end">

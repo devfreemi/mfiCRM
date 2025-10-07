@@ -19,6 +19,7 @@ class LoanEligibilityModel extends Model
      * -------------------------- */
     protected $stock = 0;
     protected $daily_sales = 0;
+    protected $dailyUPI = 0;
     protected $monthly_sales = 0;
     protected $purchase_monthly = null;
     protected $cibil_score = 0;
@@ -49,6 +50,7 @@ class LoanEligibilityModel extends Model
         $this->memberId = $data['memberId'] ?? null;
         $this->stock = isset($data['stock']) ? (float)$data['stock'] : 0;
         $this->daily_sales = isset($data['daily_sales']) ? (float)$data['daily_sales'] : 0;
+        $this->dailyUPI = isset($data['dailyUPI']) ? (float)$data['dailyUPI'] : 0;
         $this->monthly_sales = isset($data['monthly_sales']) ? (float)$data['monthly_sales'] : ($this->daily_sales * 30);
         $this->purchase_monthly = array_key_exists('purchase_monthly', $data) ? ($data['purchase_monthly'] === null ? null : (float)$data['purchase_monthly']) : null;
         $this->cibil_score = isset($data['cibil_score']) ? (float)$data['cibil_score'] : 0;
@@ -67,7 +69,7 @@ class LoanEligibilityModel extends Model
         $this->finalValue = isset($data['finalValue']) ? (float)$data['finalValue'] : null;
         $this->upiInward = isset($data['upiInward']) ? (float)$data['upiInward'] : (isset($this->cam_consolidated['Total of Inward UPI Amount']) ? (float)$this->cam_consolidated['Total of Inward UPI Amount'] : 0);
 
-        log_message('info', "Model inputs set: memberId={$this->memberId}, daily_sales={$this->daily_sales}, monthly_sales={$this->monthly_sales}, cibil={$this->cibil_score}");
+        log_message('info', "Model inputs set: memberId={$this->memberId}, daily_sales={$this->daily_sales}, monthly_sales={$this->monthly_sales}, cibil={$this->cibil_score}, dailyUPI = {$this->dailyUPI}");
     }
 
     /* --------------------------
@@ -353,12 +355,15 @@ class LoanEligibilityModel extends Model
     public function serviceUPIInwardCheck()
     {
         $monthly = $this->monthly_sales ?: ($this->daily_sales * 30);
-        $required = 0.3 * $monthly;
-        log_message('info', "serviceUPIInwardCheck: upiInward={$this->upiInward}, monthly_sales={$monthly}, required={$required}");
+        $daily_UPI = $this->dailyUPI ?: 0;
+        $dailySales = $this->daily_sales ?: 0; // avoid division by zero
+        $required = 0.3 * $dailySales;
+        $deviation = 100; // allowed deviation
+        log_message('info', "serviceUPIInwardCheck: upiInward={$this->upiInward}, monthly_sales={$monthly}, daily_UPI={$daily_UPI}, required={$required}");
 
-        if ($monthly > 0 && $this->upiInward < $required) {
+        if ($dailySales > 0 && $daily_UPI < ($required - $deviation)) {
             log_message('info', "serviceUPIInwardCheck: not matched get higher ROI - upiInward < required");
-            return ['status' => false, 'reason' => 'UPI inward is less than 30% of monthly sales.', 'meta' => ['upiInward' => $this->upiInward, 'required' => $required, 'scoreDelta' => -0.5, 'roiDelta' => 0.50]];
+            return ['status' => false, 'reason' => 'UPI inward is less than 30% of daily sales.', 'meta' => ['upiInward' => $daily_UPI, 'required' => $required, 'scoreDelta' => -0.5, 'roiDelta' => 0.50]];
         }
 
         log_message('info', "serviceUPIInwardCheck: passed");
@@ -813,7 +818,7 @@ class LoanEligibilityModel extends Model
                 "Score" => round($score, 2),
                 "EMI" => 0,
                 "FOIR" => $foir_meta,
-            ];   
+            ];
         }
 
         // Cap amount between 50k and 2.5L
@@ -822,7 +827,7 @@ class LoanEligibilityModel extends Model
         if ($eligibility_amount >= 250000) {
             $fixed_roi = 18.8;
             $tenure = 21;
-        }elseif ($eligibility_amount >= 220000) {
+        } elseif ($eligibility_amount >= 220000) {
             $fixed_roi = 18.8;
             $tenure = 21;
         } elseif ($eligibility_amount >= 190000) {
@@ -929,7 +934,7 @@ class LoanEligibilityModel extends Model
             if ($loan_amount > 250000) {
                 log_message('info', "loanCapApplied: LoanAmount {$loan_amount} exceeded policy limit. Capped at ₹2,50,000.");
                 $loan_amount = $eligibility_amount;
-            } 
+            }
 
             // Recalculate EMI for consistency
             $calculated_emi = $this->serviceCalculateEMI($loan_amount, $final_roi, $tenure);

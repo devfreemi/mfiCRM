@@ -514,8 +514,8 @@ class LoanApi extends BaseController
 
             $builder_emi = $db->table($table);
 
-            // $query = $builder_emi->where('reference', 'N')->orWhere('reference', 'Due')->get();
-            $query = $builder_emi->get();
+            $query = $builder_emi->where('reference', 'Y')->orWhere('reference', 'Due')->orderBy('Id', 'DESC')->get();
+            // $query = $builder_emi->orderBy('Id', 'ASC')->get();
             foreach ($query->getResult() as $row) {
 
                 $response[] = array(

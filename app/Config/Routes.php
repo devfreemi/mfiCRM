@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->add('backoffice-user-signup', 'Auth::signup_validation');
 $routes->add('backoffice-user-login', 'Auth::login_validation');
+$routes->add('open-app', 'Home::open_app');
 
 $routes->add('retailers/fi/(:any)', 'MemberController::retailer_fi/$1');
 $routes->add('submit-fi', 'FiCheckController::submit');
@@ -53,7 +54,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
     $routes->add('loan-create', 'LoanApi::loan_create');
     $routes->add('retailers/cibil-report/(:any)', 'LoanEligibilityController::cibil_report/$1');
     $routes->add('android-leads', 'Home::members_app');
-    $routes->add('send-rcs', 'CampaignController::index');
+    // $routes->add('send-rcs', 'CampaignController::index');
     $routes->add('collection', 'CollectionController::index');
     // $routes->add('insurance', 'InsuranceController::index');
     $routes->add('insurance/(:any)', 'InsuranceController::index/$1');
@@ -180,6 +181,7 @@ $routes->get('payment/conformation/gateway', 'PaymentController::app_pay_conf');
 $routes->get('member/kyc', 'AadhaarKycController::kyc');
 $routes->add('page/kyc-aadhaar-send-otp', 'AadhaarKycController::send_otp_page');
 $routes->add('page/kyc-aadhaar-verify-otp', 'AadhaarKycController::verify_otp_page');
+$routes->add('send-rcs', 'CampaignController::index');
 
 $routes->add('api/protean', 'ApiController::index');
 $routes->add('api/protean/decrypt', 'ProteanDataDecryptController::index');

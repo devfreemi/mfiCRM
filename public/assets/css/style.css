@@ -362,3 +362,10 @@
 .text-white-75 {
     color: rgba(255, 255, 255, 0.75);
 }
+.blurred-text {
+    font-size: 40px;
+    filter: blur(3px);
+    /* Adjust the pixel value for more or less blur */
+    -webkit-filter: blur(10px);
+    /* For Safari compatibility */
+}

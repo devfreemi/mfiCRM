@@ -53,6 +53,14 @@ function groupName_from_row($row, $key)
             font-size: .9rem;
             color: #6c757d;
         }
+
+        .blurred-text {
+
+            filter: blur(3px);
+            /* Adjust the pixel value for more or less blur */
+            -webkit-filter: blur(5px);
+            /* For Safari compatibility */
+        }
     </style>
 </head>
 
@@ -123,7 +131,7 @@ function groupName_from_row($row, $key)
             <!--        <p class="small-muted">-->
             <!--            RCS (Rich Communication Services) is an advanced messaging protocol that enhances traditional SMS by enabling features like high-resolution images, read receipts, typing indicators, and interactive elements. It provides a more engaging and interactive experience for users, similar to popular messaging apps. RCS is designed to work across different devices and carriers, making it a versatile option for modern communication.-->
             <!--        </p>-->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Project ID" aria-label="First name">
                 </div>
@@ -131,7 +139,7 @@ function groupName_from_row($row, $key)
                     <input type="text" class="form-control" placeholder="Template name" aria-label="Last name">
                 </div>
 
-            </div>
+            </div> -->
         </section>
     </main>
 
@@ -193,6 +201,7 @@ function groupName_from_row($row, $key)
                     tdName.innerHTML = escapeHtml(name);
 
                     const tdPhone = document.createElement('td');
+                    tdPhone.classList.add('blurred-text');
                     tdPhone.innerHTML = escapeHtml(phone);
 
                     const tdMarket = document.createElement('td');
