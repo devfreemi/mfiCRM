@@ -69,10 +69,11 @@
                     </div>
                     <div class="col-md-4">
                         <label for="inputState" class="form-label">Status</label>
-                        <select id="inputState" class="form-select" name="status" required>
+                        <select id="inputState" class="form-select" name="status">
                             <option selected disabled>Choose</option>
                             <option value="Approved">Approved</option>
                             <option value="On Hold" <?php if ($row->loan_status === 'On Hold') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>On Hold</option>
+                            <option value="FI Initiated" <?php if ($row->loan_status === 'FI Initiated') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>FI Initiated</option>
 
                             <option value="Disbursed Verified" <?php if ($row->loan_status === 'Disbursed Verified') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Disbursed' || $row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed Verified</option>
                             <option value="Disbursed" <?php if ($row->loan_status === 'Disbursed') echo 'selected="selected"'; ?><?php if ($row->loan_status === 'Completed' || $row->loan_status === 'Rejected') echo 'disabled'; ?>>Disbursed</option>

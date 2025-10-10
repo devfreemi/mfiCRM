@@ -119,7 +119,15 @@ class FiCheckController extends BaseController
             $fiFailPercent = ($fiFailCount / $totalFiChecks) * 100;
 
             // Combine both (business mismatch + field failures)
-            if ($deviation >= 70 || $fiFailPercent >= 50) {
+            $fiStatusInput = $this->request->getVar('fi_status'); // get the input FI status
+
+            if ($fiStatusInput == 'H') {
+                // 🔹 High priority condition — executes before deviation checks
+                $fiStatus = '⛔ FI On Hold - Pending clarification or high discrepancy.';
+                $fiResult = 'On Hold';
+                $fi_final = 'W';
+                $application_stage = 'fi_hold';
+            } elseif ($deviation >= 70 || $fiFailPercent >= 50) {
                 $fiStatus = '❌ FI Failed due to high mismatch and/or poor shop conditions.';
                 $fiResult = 'FI failed';
                 $fi_final = 'N';

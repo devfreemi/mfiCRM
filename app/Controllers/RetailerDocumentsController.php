@@ -657,7 +657,70 @@ class RetailerDocumentsController extends BaseController
 
         // OpenAI API endpoint
         $url = "https://api.openai.com/v1/responses";
+        // Prompt for advanced UPI PDF analysis
+        $advancedPrompt = 'You are a financial data analyst. Analyze the provided UPI transaction data (PDF or extracted text). Follow these rules exactly.
 
+            1) IDENTIFY CREDIT TRANSACTIONS (strict):
+            - Prefer an explicit transaction type column. Treat as CREDIT any value (case-insensitive) matching any of:
+                ["CREDIT","CREDITED","CR","CRDT","CR/NEFT","INWARD","INWARD-CREDIT","Crdt","C"]
+            - If no explicit type column exists, INFER type as follows:
+                • If amount is positive (no leading " - " or parentheses) treat as CREDIT.
+                • If description contains keywords (case-insensitive) like "received", "credited", "received from", "amount credited", or "inward", treat as CREDIT.
+                • If none of the above can be determined for a row, IGNORE the row.
+            - ALWAYS ignore rows with indicators of failure/reversal: any status or description with ["FAILED","FAIL","REVERSAL","REVERSED","REFUND","CHARGEBACK"].
+
+            2) AMOUNT PARSING:
+            - Strip currency symbols and codes (₹, Rs., INR, USD), remove commas and whitespace.
+            - Treat parentheses as negative (e.g. "(1,000)" => -1000.00).
+            - Accept amounts with decimals and thousands separators.
+            - If multiple numeric fields appear, attempt to choose the field labelled "amount","Net amount", "amt", "credit amount", or the numeric token placed next to words "credit"/"credited". If still ambiguous, choose the numeric token that is not labelled as "balance" or "bal".
+            - Convert amounts to numeric decimals and round to 2 decimal places.
+
+            3) DATE PARSING:
+            - Recognize common date formats (DD-MM-YYYY, DD/MM/YYYY, YYYY-MM-DD, D MMM YYYY, etc.). Normalize to YYYY-MM-DD internally.
+            - For unique-day counting, use only the date portion (ignore time).
+            - If a row has no parsable date, exclude that row from the unique-date count but still include it in totals if it is a valid credit (see rule 1). If no rows have parsable dates but there are credit transactions, treat total_days = 1 for averaging (to avoid division by zero).
+
+            4) DEDUPLICATION:
+            - If transaction IDs/UTR are available, deduplicate by that ID.
+            - Otherwise deduplicate by exact match of (normalized date + normalized amount + normalized description). Remove exact duplicates before counting.
+
+            5) FILTERS:
+            - Exclude rows where amount is zero or non-numeric after cleaning.
+            - Exclude rows flagged as FAILED/REVERSAL/REFUND/CHARGEBACK even if amount appears positive.
+
+            6) OUTPUT RULES (STRICT):
+            - Compute:
+                credit_transactions = integer count of unique CREDIT rows after deduplication and filtering.
+                total_credit_amount = sum of amounts of those credit rows, numeric, rounded to 2 decimal places.
+                total_days = count of unique dates among those rows (integer). If zero but credit_transactions > 0, set total_days = 1.
+                daily_avg_credit = total_credit_amount ÷ total_days, numeric, rounded to 2 decimal places.
+            - If there are zero valid CREDIT transactions OR file contains no valid transaction table, RETURN exactly:
+                {
+                "credit_transactions": "no data",
+                "total_credit_amount": "no data",
+                "total_days": "no data",
+                "daily_avg_credit": "no data"
+                }
+            - OTHERWISE return exactly the numeric JSON structure below (no extra keys, no comments, no explanation):
+                {
+                "credit_transactions": number,
+                "total_credit_amount": number,
+                "total_days": number,
+                "daily_avg_credit": number
+                }
+
+            7) STRICT FORMATTING:
+            - Output MUST be valid JSON only, nothing else (no leading/trailing text, no markdown).
+            - Numbers must be JSON numbers (not strings) except when returning the "no data" object which uses those four fields as the string "no data".
+            - Round monetary values to two decimal places.
+
+            8) ERRORS OR AMBIGUITY:
+            - If you cannot reliably identify any CREDIT rows, return the "no data" JSON object above.
+            - Do not guess or hallucinate transaction IDs, dates, or amounts.
+
+            Now analyze the attached PDF/text using these rules and output the single JSON object described above.
+            PROMPT';
         // Prompt for UPI PDF analysis
         $data = array(
             "model" => "gpt-4.1-mini",
@@ -667,28 +730,29 @@ class RetailerDocumentsController extends BaseController
                     "content" => array(
                         array(
                             "type" => "input_text",
-                            "text" => "You are a financial data analyst. Analyze the provided UPI transaction data (PDF or extracted text).\n\n
-                                1. Consider ONLY transactions where the transaction type is CREDIT.\n
-                                2. Ignore DEBIT, REVERSAL, FAILED, or any non-CREDIT entries.\n
-                                3. From the CREDIT transactions:\n
-                                   a. Count the total number of CREDIT transactions.\n
-                                   b. Calculate the total credited amount.\n
-                                   c. Count the total number of unique transaction dates (total_days).\n
-                                   d. Calculate the daily average credited amount (total credited amount ÷ total_days).\n
-                                4. Respond only with valid structured JSON in this exact format:\n
-                                {\n
-                                  \"credit_transactions\": number,\n
-                                  \"total_credit_amount\": number,\n
-                                  \"total_days\": number,\n
-                                  \"daily_avg_credit\": number\n
-                                }\n
-                                5. If there are no CREDIT transactions or the file does not contain valid data, return:\n
-                                {\n
-                                  \"credit_transactions\": \"no data\",\n
-                                  \"total_credit_amount\": \"no data\",\n
-                                  \"total_days\": \"no data\",\n
-                                  \"daily_avg_credit\": \"no data\"\n
-                                }"
+                            "text" => $advancedPrompt
+                            // "You are a financial data analyst. Analyze the provided UPI transaction data (PDF or extracted text).\n\n
+                            //     1. Consider ONLY transactions where the transaction type is CREDIT.\n
+                            //     2. Ignore DEBIT, REVERSAL, FAILED, or any non-CREDIT entries.\n
+                            //     3. From the CREDIT transactions:\n
+                            //        a. Count the total number of CREDIT transactions.\n
+                            //        b. Calculate the total credited amount.\n
+                            //        c. Count the total number of unique transaction dates (total_days).\n
+                            //        d. Calculate the daily average credited amount (total credited amount ÷ total_days).\n
+                            //     4. Respond only with valid structured JSON in this exact format:\n
+                            //     {\n
+                            //       \"credit_transactions\": number,\n
+                            //       \"total_credit_amount\": number,\n
+                            //       \"total_days\": number,\n
+                            //       \"daily_avg_credit\": number\n
+                            //     }\n
+                            //     5. If there are no CREDIT transactions or the file does not contain valid data, return:\n
+                            //     {\n
+                            //       \"credit_transactions\": \"no data\",\n
+                            //       \"total_credit_amount\": \"no data\",\n
+                            //       \"total_days\": \"no data\",\n
+                            //       \"daily_avg_credit\": \"no data\"\n
+                            //     }"
                         ),
                         array(
                             "type" => "input_file",

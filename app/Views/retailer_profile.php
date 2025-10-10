@@ -32,7 +32,38 @@
                         $queryB = $builderB->get();
                         // $countEli = $builderB->countAllResults();
                         foreach ($queryB->getResult() as $rowB) {
-                            $eli = $rowB->eligibility;
+                            $eli = $rowB->eligibilityV2;
+                            $eligible_amount = $rowB->loan_amountV2;
+                            $roi = $rowB->roiV2;
+                            $emi = $rowB->emiV2;
+                            $tenure = $rowB->tenureV2;
+                            $report = $rowB->cibilReport;
+                            $cibil = $rowB->cibil;
+                            $res = $rowB->reasonV2;
+                            if ($eli === 'Not Eligible') {
+                                # code...
+
+                                echo '<h3 class=" fw-bold">' . esc($retailers["name"]) . '</h3>
+                                        <span class="badge bg-danger my-3">' . $eli . '</span>';
+                            } else {
+                                # code...
+
+                                echo '<h3 class=" fw-bold">' . esc($retailers["name"]) . '</h3>
+                                <span class="badge bg-success my-3">' . $eli . '</span>';
+                            }
+                        }
+                    ?>
+                    <?php
+
+                    } elseif ($retailers['eli_run'] === "W") {
+                        $db = db_connect();
+                        $builderB = $db->table('initial_eli_run');
+                        $builderB->select('*');
+                        $builderB->where('member_id ', $retailers['member_id']);
+                        $queryB = $builderB->get();
+                        // $countEli = $builderB->countAllResults();
+                        foreach ($queryB->getResult() as $rowB) {
+                            $eli = $rowB->eligibility . 'for Pre Approved';
                             $eligible_amount = $rowB->loan_amount;
                             $roi = $rowB->roi;
                             $emi = $rowB->emi;
@@ -53,7 +84,6 @@
                             }
                         }
                     ?>
-
                     <?php
                     } else {
                         # code...
@@ -64,6 +94,17 @@
 
                     <?php  } ?>
                     <div class="row">
+                        <?php if ($retailers['eli_run'] === "W") { ?>
+                            <div class="col-md-4 mb-2">
+                                <p class="mb-1"><strong>Eligible Amount:</strong> <strong class="text-success fw-bold"><?= number_format($eligible_amount) ?>.00</strong> </p>
+                                <p class="mb-1"><strong>ROI:</strong> <?= $roi ?> %</p>
+                                <p class="mb-1"><strong>EMI:</strong> <?= number_format($emi) ?>.00</p>
+                                <p class="mb-1"><strong>Tenure:</strong> <?= $tenure ?> Months</p>
+                                <p class="mb-1"><strong>CIBIL Score:</strong> <?= $cibil ?> </p>
+                                <p class="mb-1"><strong>Reason: </strong> <?= $res ?> </p>
+                                <p class="mb-1"><strong>CIBIL Report:</strong> <a href="<?= base_url() ?>retailers/cibil-report/<?= $retailers['member_id'] ?>" target="_blank" class="btn btn-sm btn-outline-primary">View Report</a></p>
+                            </div>
+                        <?php }  ?>
                         <?php if ($retailers['eli_run'] === "Y") { ?>
                             <div class="col-md-4 mb-2">
                                 <p class="mb-1"><strong>Eligible Amount:</strong> <strong class="text-success fw-bold"><?= number_format($eligible_amount) ?>.00</strong> </p>
@@ -285,85 +326,86 @@
                         $jsonData = null; // or handle no data
                     }
 
-                $report = $jsonData['data']['credit_report'];
+                    $report = $jsonData['data']['credit_report'];
 
-                // 1. Total Outstanding
-                $totalOutstanding = (float) ($report['CAIS_Account']['CAIS_Summary']['Total_Outstanding_Balance']['Outstanding_Balance_All'] ?? 0);
+                    // 1. Total Outstanding
+                    $totalOutstanding = (float) ($report['CAIS_Account']['CAIS_Summary']['Total_Outstanding_Balance']['Outstanding_Balance_All'] ?? 0);
 
-                // 2. Total Loan Accounts (Portfolio_Type = 'I')
-                $totalLoanAccounts = (float) ($report['CAIS_Account']['CAIS_Summary']['Credit_Account']['CreditAccountTotal'] ?? 0);
-                // foreach ($report['CAIS_Account']['CAIS_Account_DETAILS'] as $acc) {
-                //     if (!empty($acc['Portfolio_Type']) && $acc['Portfolio_Type'] === 'I') {
-                //         $totalLoanAccounts++;
-                //     }
-                // }
+                    // 2. Total Loan Accounts (Portfolio_Type = 'I')
+                    $totalLoanAccounts = (float) ($report['CAIS_Account']['CAIS_Summary']['Credit_Account']['CreditAccountTotal'] ?? 0);
+                    // foreach ($report['CAIS_Account']['CAIS_Account_DETAILS'] as $acc) {
+                    //     if (!empty($acc['Portfolio_Type']) && $acc['Portfolio_Type'] === 'I') {
+                    //         $totalLoanAccounts++;
+                    //     }
+                    // }
 
-                // 3. Total Active Loan Amount & EMI details
-                $totalActiveLoanAmount = 0;
-                $activeLoanWiseEMI = [];
+                    // 3. Total Active Loan Amount & EMI details
+                    $totalActiveLoanAmount = 0;
+                    $activeLoanWiseEMI = [];
 
-                foreach ($report['CAIS_Account']['CAIS_Account_DETAILS'] as $account) {
-                    if (
-                        !empty($account['Portfolio_Type']) &&
-                        $account['Portfolio_Type'] === 'I' &&
-                        isset($account['Account_Status']) &&
-                        $account['Account_Status'] == '11'
-                    ) {
-                        $currBal = (float) ($account['Current_Balance'] ?? 0);
-                        $totalActiveLoanAmount += $currBal;
+                    foreach ($report['CAIS_Account']['CAIS_Account_DETAILS'] as $account) {
+                        if (
+                            !empty($account['Portfolio_Type']) &&
+                            $account['Portfolio_Type'] === 'I' &&
+                            isset($account['Account_Status']) &&
+                            $account['Account_Status'] == '11'
+                        ) {
+                            $currBal = (float) ($account['Current_Balance'] ?? 0);
+                            $totalActiveLoanAmount += $currBal;
 
-                        // Get EMI from first non-empty EMI_Amount
-                        $emiAmount = '';
-                        if (!empty($account['Account_Review_Data'])) {
-                            foreach ($account['Account_Review_Data'] as $review) {
-                                if (!empty($review['EMI_Amount'])) {
-                                    $emiAmount = $review['EMI_Amount'];
-                                    break;
+                            // Get EMI from first non-empty EMI_Amount
+                            $emiAmount = '';
+                            if (!empty($account['Account_Review_Data'])) {
+                                foreach ($account['Account_Review_Data'] as $review) {
+                                    if (!empty($review['EMI_Amount'])) {
+                                        $emiAmount = $review['EMI_Amount'];
+                                        break;
+                                    }
                                 }
                             }
-                        }
 
-                        $activeLoanWiseEMI[] = [
-                            'account_number' => $account['Account_Number'] ?? '',
-                            'current_balance' => $currBal,
-                            'emi_amount' => $emiAmount
-                        ];
+                            $activeLoanWiseEMI[] = [
+                                'account_number' => $account['Account_Number'] ?? '',
+                                'current_balance' => $currBal,
+                                'emi_amount' => $emiAmount
+                            ];
+                        }
                     }
-                }
 
             ?>
-                <h2>Credit Report Summary</h2>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <tr>
-                        <th>Total Outstanding</th>
-                        <td><?= number_format($totalOutstanding, 2) ?></td>
-                    </tr>
-                    <tr>
-                        <th>Total Loan Accounts</th>
-                        <td><?= $totalLoanAccounts ?></td>
-                    </tr>
-                    <tr>
-                        <th>Total Active Loan Amount</th>
-                        <td><?= number_format($totalActiveLoanAmount, 2) ?></td>
-                    </tr>
-                </table>
-
-                <h3>Active Loan-wise EMI Details</h3>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <tr>
-                        <th>Account Number</th>
-                        <th>Current Balance</th>
-                        <th>EMI Amount</th>
-                    </tr>
-                    <?php foreach ($activeLoanWiseEMI as $loan): ?>
+                    <h2>Credit Report Summary</h2>
+                    <table border="1" cellpadding="8" cellspacing="0">
                         <tr>
-                            <td><?= esc($loan['account_number']) ?></td>
-                            <td><?= number_format($loan['current_balance'], 2) ?></td>
-                            <td><?= !empty($loan['emi_amount']) ? number_format($loan['emi_amount'], 2) : '-' ?></td>
+                            <th>Total Outstanding</th>
+                            <td><?= number_format($totalOutstanding, 2) ?></td>
                         </tr>
-                    <?php endforeach; ?>
-                </table>
-            <?php } }?>
+                        <tr>
+                            <th>Total Loan Accounts</th>
+                            <td><?= $totalLoanAccounts ?></td>
+                        </tr>
+                        <tr>
+                            <th>Total Active Loan Amount</th>
+                            <td><?= number_format($totalActiveLoanAmount, 2) ?></td>
+                        </tr>
+                    </table>
+
+                    <h3>Active Loan-wise EMI Details</h3>
+                    <table border="1" cellpadding="8" cellspacing="0">
+                        <tr>
+                            <th>Account Number</th>
+                            <th>Current Balance</th>
+                            <th>EMI Amount</th>
+                        </tr>
+                        <?php foreach ($activeLoanWiseEMI as $loan): ?>
+                            <tr>
+                                <td><?= esc($loan['account_number']) ?></td>
+                                <td><?= number_format($loan['current_balance'], 2) ?></td>
+                                <td><?= !empty($loan['emi_amount']) ? number_format($loan['emi_amount'], 2) : '-' ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+            <?php }
+            } ?>
             <!-- CIBIL TEST -->
             <?php if ($retailers['eli_run'] === "Y") { ?>
                 <div class="col-12 mx-auto text-center">

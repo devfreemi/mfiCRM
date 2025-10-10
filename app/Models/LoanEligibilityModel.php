@@ -355,7 +355,7 @@ class LoanEligibilityModel extends Model
     public function serviceUPIInwardCheck()
     {
         $monthly = $this->monthly_sales ?: ($this->daily_sales * 30);
-        $daily_UPI = $this->dailyUPI ?: 0;
+        $daily_UPI = $this->dailyUPI ?: ($this->upiInward / 60);
         $dailySales = $this->daily_sales ?: 0; // avoid division by zero
         $required = 0.3 * $dailySales;
         $deviation = 100; // allowed deviation
@@ -803,14 +803,14 @@ class LoanEligibilityModel extends Model
         $daily_sales_contribution = $this->daily_sales * 10;
         $additional_loan = min($stock_contribution, $daily_sales_contribution);
         $eligibility_amount = $base_loan + $additional_loan;
-        $eligibility_amount = max(50000, min($eligibility_amount, 250000));
+        $eligibility_amount = max(50000, min($eligibility_amount, 110000)); // cap at 1.1L before policy check
         log_message('info', "eligibility_amount: As Per RuleEngine {$eligibility_amount}");
-        if ($eligibility_amount > 250000) {
-            log_message('info', "loanIsHigher: As Per internal policy, loan requests above ₹2.5 Lakhs require manual review.{$eligibility_amount}");
+        if ($eligibility_amount > 110000) {
+            log_message('info', "loanIsHigher: As Per internal policy, loan requests above ₹1.1 Lakhs require manual review.{$eligibility_amount}");
             // On Hold case
             return [
                 "Eligibility" => "On Hold",
-                "Reason" => "As Per internal policy, loan requests above ₹2.5 Lakhs require manual review.",
+                "Reason" => "As Per internal policy, loan requests above ₹1.1 Lakhs require manual review.",
                 "LoanAmount" => 0,
                 "ROI" => $roi,
                 "FixedROI" => null,
@@ -822,23 +822,27 @@ class LoanEligibilityModel extends Model
         }
 
         // Cap amount between 50k and 2.5L
-        $eligibility_amount = max(50000, min($eligibility_amount, 250000));
+        $eligibility_amount = max(50000, min($eligibility_amount, 110000));
 
-        if ($eligibility_amount >= 250000) {
-            $fixed_roi = 18.8;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 220000) {
-            $fixed_roi = 18.8;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 190000) {
-            $fixed_roi = 19.6;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 160000) {
-            $fixed_roi = 20.8;
-            $tenure = 18;
-        } elseif ($eligibility_amount >= 130000) {
+        // if ($eligibility_amount >= 250000) {
+        //     $fixed_roi = 18.8;
+        //     $tenure = 21;
+        // } elseif ($eligibility_amount >= 220000) {
+        //     $fixed_roi = 18.8;
+        //     $tenure = 21;
+        // } elseif ($eligibility_amount >= 190000) {
+        //     $fixed_roi = 19.6;
+        //     $tenure = 21;
+        // } elseif ($eligibility_amount >= 160000) {
+        //     $fixed_roi = 20.8;
+        //     $tenure = 18;
+        // } elseif ($eligibility_amount >= 130000) {
+        //     $fixed_roi = 22.0;
+        //     $tenure = 15;
+        // } 
+        if ($eligibility_amount >= 110000) {
             $fixed_roi = 22.0;
-            $tenure = 15;
+            $tenure = 12;
         } elseif ($eligibility_amount >= 100000) {
             $fixed_roi = 23.0;
             $tenure = 12;
@@ -855,7 +859,7 @@ class LoanEligibilityModel extends Model
         }
 
         // final ROI (ensure within limits)
-        $final_roi = min(max($roi, $fixed_roi), 30);
+        $final_roi = min(max($roi, $fixed_roi), 26);
 
         // score threshold
         if ($score < 6) {
@@ -930,10 +934,10 @@ class LoanEligibilityModel extends Model
         if ($eligibleEmi > 0) {
             // Calculate loan amount from EligibleEMI
             $loan_amount = $this->calculateLoanAmountFromEMI($eligibleEmi, $final_roi, $tenure);
-            // ✅ Cap loan amount between 2,00,000
-            if ($loan_amount > 250000) {
-                log_message('info', "loanCapApplied: LoanAmount {$loan_amount} exceeded policy limit. Capped at ₹2,50,000.");
-                $loan_amount = $eligibility_amount;
+            // ✅ Cap loan amount between 1,00,000
+            if ($loan_amount > 100000) {
+                log_message('info', "loanCapApplied: LoanAmount {$loan_amount} exceeded policy limit. Capped at ₹1,00,000.");
+                $loan_amount = 100000;
             }
 
             // Recalculate EMI for consistency

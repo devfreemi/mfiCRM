@@ -44,15 +44,13 @@
                             // $countEli = $builderB->countAllResults();
                             foreach ($queryB->getResult() as $rowB) {
                                 $eli = $rowB->eligibility;
-                                $eligible_amount = $rowB->loan_amount;
-                                $roi = $rowB->roi;
+                                $eligible_amount = $rowB->loan_amountV2;
+                                $roi = $rowB->roiV2;
                                 $emi = $rowB->emi;
-                                $tenure = $rowB->tenure;
+                                $tenure = $rowB->tenureV2;
                             }
                             ?>
-                            <input type="text" value="<?= $eligible_amount ?>" name="eligible_amount" hidden>
-                            <input type="text" value="<?= $roi ?>" name="roi" hidden>
-                            <input type="text" value="<?= $tenure ?>" name="tenure" hidden>
+
                             <!-- Inspector & Member Info -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -431,7 +429,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Card Container -->
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3 text-primary">
+                                        <i class="fas fa-calculator me-2"></i>Loan Eligibility Details
+                                    </h5>
 
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold text-secondary">Eligible Loan Amount</label>
+                                        <input type="text" class="form-control form-control-lg"
+                                            name="eligible_amount"
+                                            value="<?= $eligible_amount ?>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold text-secondary">Rate of Interest (ROI)</label>
+                                        <input type="text" class="form-control form-control-lg"
+                                            name="roi"
+                                            value="<?= $roi ?>"
+                                            readonly>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label fw-semibold text-secondary">Tenure (in Months)</label>
+                                        <input type="text" class="form-control form-control-lg"
+                                            name="tenure"
+                                            value="<?= $tenure ?>">
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Submit -->
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary">Submit Feedback</button>

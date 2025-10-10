@@ -122,10 +122,10 @@ class FIautoController extends BaseController
             // $countEli = $builderB->countAllResults();
             foreach ($queryB->getResult() as $rowB) {
                 $eli = $rowB->eligibility;
-                $eligible_amount = $rowB->loan_amount;
-                $roi = $rowB->roi;
+                $eligible_amount = $rowB->loan_amountV2;
+                $roi = $rowB->roiV2;
                 $emi = $rowB->emi;
-                $tenure = $rowB->tenure;
+                $tenure = $rowB->tenureV2;
             }
 
             $model = new LoanModel();

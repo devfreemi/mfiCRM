@@ -221,22 +221,27 @@ class LoanEligibilityModelV1 extends Model
         $eligibility_amount = $base_loan + $additional_loan;
 
         // Ensure the loan amount is within limits
-        $eligibility_amount = max(50000, min($eligibility_amount, 250000));
+        $eligibility_amount = max(50000, min($eligibility_amount, 110000));
 
         // Fixed ROI & Tenure Mapping (Loan 2.5L–50k, ROI 18–24%, Tenure 24–6 months)
-        if ($eligibility_amount >= 250000) {
-            $fixed_roi = 18.0;
-            $tenure = 24;
-        } elseif ($eligibility_amount >= 220000) {
-            $fixed_roi = 18.8;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 190000) {
-            $fixed_roi = 19.6;
-            $tenure = 21;
-        } elseif ($eligibility_amount >= 160000) {
-            $fixed_roi = 20.8;
-            $tenure = 18;
-        } elseif ($eligibility_amount >= 130000) {
+        // if ($eligibility_amount >= 250000) {
+        //     $fixed_roi = 18.0;
+        //     $tenure = 24;
+        // } elseif ($eligibility_amount >= 220000) {
+        //     $fixed_roi = 18.8;
+        //     $tenure = 21;
+        // } elseif ($eligibility_amount >= 190000) {
+        //     $fixed_roi = 19.6;
+        //     $tenure = 21;
+        // } elseif ($eligibility_amount >= 160000) {
+        //     $fixed_roi = 20.8;
+        //     $tenure = 18;
+        // } 
+        // elseif ($eligibility_amount >= 130000) {
+        //     $fixed_roi = 22.0;
+        //     $tenure = 15;
+        // }
+        if ($eligibility_amount >= 110000) {
             $fixed_roi = 22.0;
             $tenure = 15;
         } elseif ($eligibility_amount >= 100000) {
